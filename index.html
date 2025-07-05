@@ -65,71 +65,37 @@
       cursor: pointer;
     }
     .card {
-      background: linear-gradient(135deg, rgba(36, 36, 36, 0.6), rgba(24, 24, 24, 0.8));
-      padding: 24px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      border: 1px solid rgba(139, 92, 246, 0.1);
-      color: #d1d5db;
-      line-height: 1.6;
-      font-size: 0.95rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      background-color: rgba(36, 36, 36, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(139, 92, 246, 0.2);
     }
     .collapsible {
       cursor: pointer;
-      padding: 20px 24px;
-      background: linear-gradient(135deg, rgba(42, 42, 42, 0.6), rgba(30, 30, 30, 0.8));
-      border-radius: 12px;
-      margin-top: 16px;
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 1.1rem;
-      border: 1px solid rgba(139, 92, 246, 0.15);
+      padding: 15px;
+      background-color: rgba(42, 42, 42, 0.8);
+      border-radius: 8px;
+      margin-top: 10px;
+      color: #8b5cf6;
+      font-weight: bold;
+      border: 1px solid rgba(139, 92, 246, 0.2);
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
     .collapsible:hover {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+      background-color: rgba(139, 92, 246, 0.1);
       transform: translateY(-2px);
-      border-color: rgba(139, 92, 246, 0.3);
-      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
     }
     .collapsible.active {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.08));
-      border-color: rgba(139, 92, 246, 0.4);
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
-    }
-    .collapsible::after {
-      content: '▼';
-      position: absolute;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #8b5cf6;
-      font-size: 0.8rem;
-      transition: transform 0.3s ease;
-    }
-    .collapsible.active::after {
-      transform: translateY(-50%) rotate(180deg);
+      background-color: rgba(139, 92, 246, 0.2);
+      border-color: rgba(139, 92, 246, 0.5);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
     }
     .content {
-      padding: 0 4px;
+      padding: 0 10px;
       display: none;
       overflow: hidden;
-      margin-bottom: 16px;
-      animation: slideDown 0.3s ease-out;
-    }
-    
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      margin-bottom: 10px;
     }
     .content img {
       max-width: 100%;
@@ -283,104 +249,10 @@
         flex-direction: column;
       }
     }
-    
-    /* Knowledge Base Menu Styles */
-    .kb-menu-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      border-color: rgba(139,92,246,0.4);
-    }
-    
-    .kb-menu-btn:hover .kb-menu-btn span:last-child {
-      transform: translateX(4px);
-    }
-    
-    .kb-section {
-      display: none;
-    }
-    
-    .kb-section.active {
-      display: block;
-    }
-    
-    #knowledgebase-menu {
-      display: block;
-    }
-    
-    #knowledgebase-menu.hidden {
-      display: none;
-    }
-
-    /* --- Button Styles (Consolidated) --- */
-    .btn {
-      display: inline-block;
-      border-radius: 6px;
-      padding: 8px 16px;
-      font-size: 0.9em;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: all 0.2s ease;
-      outline: none;
-      background: none;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
-      color: #fff;
-      border: none;
-      box-shadow: 0 4px 12px rgba(139,92,246,0.3);
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
-      color: #fff;
-    }
-    .btn-success {
-      background: rgba(16,185,129,0.1);
-      color: #10b981;
-      border: 1px solid rgba(16,185,129,0.3);
-    }
-    .btn-success:hover {
-      background: rgba(16,185,129,0.2);
-      color: #10b981;
-    }
-    .btn-warning {
-      background: rgba(245,158,11,0.1);
-      color: #f59e0b;
-      border: 1px solid rgba(245,158,11,0.3);
-    }
-    .btn-warning:hover {
-      background: rgba(245,158,11,0.2);
-      color: #f59e0b;
-    }
-    .btn-danger {
-      background: rgba(239,68,68,0.1);
-      color: #ef4444;
-      border: 1px solid rgba(239,68,68,0.3);
-    }
-    .btn-danger:hover {
-      background: rgba(239,68,68,0.2);
-      color: #ef4444;
-    }
-    /* --- End Button Styles --- */
-    
-    /* Tool Card Hover Effects */
-    .tool-card {
-      transition: all 0.3s ease;
-    }
-    
-    .tool-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      border-color: rgba(139,92,246,0.4);
-    }
-    
-    .tool-card:hover .tool-arrow {
-      transform: translateX(4px);
-    }
   </style>
 </head>
 <body>
-  <header>CoinStack - Crypto Trading Journal & Knowledge Base</header>
+  <header>Crypto Trading Analysis Dashboard</header>
   
   <div style="padding: 20px; background-color: rgba(30, 30, 30, 0.8); border-bottom: 1px solid rgba(139, 92, 246, 0.3);">
     <div style="max-width: 600px; margin: 0 auto;">
@@ -425,124 +297,20 @@
   </div>
   
   <div class="tabs">
-    <button class="tab-button active" onclick="openTab('knowledgebase', this)">Knowledge Base</button>
-    <button class="tab-button" onclick="openTab('trading-tools', this)">Trading Tools</button>
+    <button class="tab-button active" onclick="openTab('structure', this)">Market Structure</button>
+    <button class="tab-button" onclick="openTab('gaps', this)">Fair Value Gaps</button>
+    <button class="tab-button" onclick="openTab('levels', this)">EQH/EQL</button>
+    <button class="tab-button" onclick="openTab('candles', this)">Candlestick Patterns</button>
+    <button class="tab-button" onclick="openTab('trend', this)">Trend Indicators</button>
+    <button class="tab-button" onclick="openTab('momentum', this)">Momentum Indicators</button>
+    <button class="tab-button" onclick="openTab('volatility', this)">Volatility Indicators</button>
+    <button class="tab-button" onclick="openTab('volume', this)">Volume Indicators</button>
     <button class="tab-button" onclick="openTab('trading-history', this)">Trading History</button>
     <button class="tab-button" onclick="openTab('trading-schedule', this)">Trading Schedule</button>
   </div>
 
-  <div id="knowledgebase" class="tab-content active">
-    <!-- Knowledge Base Menu -->
-    <div id="knowledgebase-menu" style="max-width: 1200px; margin: 0 auto;">
-      <!-- Header -->
-      <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="color: #ffffff; font-size: 2.5rem; font-weight: 200; margin: 0 0 12px 0; letter-spacing: -0.5px;">Knowledge Base</h2>
-        <p style="color: #9ca3af; font-size: 1.1rem; margin: 0; font-weight: 300;">Master the fundamentals of technical analysis</p>
-      </div>
-
-      <!-- Menu Grid -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
-        <button onclick="showSection('market-structure')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0.03) 100%); border: 1px solid rgba(139,92,246,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(139,92,246,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">🏗️</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Market Structure</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Break of Structure, Change of Character, and trend analysis fundamentals</div>
-          <div style="display: flex; align-items: center; color: #8b5cf6; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-
-        <button onclick="showSection('fair-value-gaps')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.03) 100%); border: 1px solid rgba(16,185,129,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(16,185,129,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">⚡</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Fair Value Gaps</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Price imbalances and inefficiencies in the market structure</div>
-          <div style="display: flex; align-items: center; color: #10b981; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-
-        <button onclick="showSection('eqh-eql')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.03) 100%); border: 1px solid rgba(245,158,11,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(245,158,11,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">🎯</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">EQH/EQL</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Equal highs and lows, liquidity zones, and market structure</div>
-          <div style="display: flex; align-items: center; color: #f59e0b; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-
-        <button onclick="showSection('candlestick-patterns')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.03) 100%); border: 1px solid rgba(239,68,68,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(239,68,68,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">🕯️</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Candlestick Patterns</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Bullish, bearish, and neutral candlestick formations</div>
-          <div style="display: flex; align-items: center; color: #ef4444; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-
-        <button onclick="showSection('trend-indicators')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0.03) 100%); border: 1px solid rgba(139,92,246,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(139,92,246,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">📈</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Trend Indicators</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Moving averages, MACD, ADX, and Ichimoku Cloud</div>
-          <div style="display: flex; align-items: center; color: #8b5cf6; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-
-        <button onclick="showSection('momentum-indicators')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.03) 100%); border: 1px solid rgba(16,185,129,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(16,185,129,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">⚡</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Momentum Indicators</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">RSI, Stochastic, Williams %R, and momentum oscillators</div>
-          <div style="display: flex; align-items: center; color: #10b981; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-
-        <button onclick="showSection('volatility-indicators')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.03) 100%); border: 1px solid rgba(245,158,11,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(245,158,11,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">📊</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Volatility Indicators</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Bollinger Bands, ATR, Keltner Channels, and volatility tools</div>
-          <div style="display: flex; align-items: center; color: #f59e0b; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-
-        <button onclick="showSection('volume-indicators')" class="kb-menu-btn" style="background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.03) 100%); border: 1px solid rgba(239,68,68,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(239,68,68,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">📈</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Volume Indicators</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">VWAP, OBV, Volume Profile, and volume analysis</div>
-          <div style="display: flex; align-items: center; color: #ef4444; font-size: 0.85rem; font-weight: 500;">
-            <span>Explore</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-          </div>
-        </button>
-      </div>
-    </div>
-
-    <!-- Market Structure Section -->
-    <div id="market-structure" class="kb-section">
-      <div style="max-width: 1000px; margin: 0 auto;">
-        <!-- Header -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(139,92,246,0.2);">
-          <div>
-            <h2 style="color: #ffffff; font-size: 2.2rem; font-weight: 200; margin: 0 0 8px 0; letter-spacing: -0.5px;">🏗️ Market Structure</h2>
-            <p style="color: #9ca3af; font-size: 1rem; margin: 0; font-weight: 300;">Break of Structure, Change of Character, and trend analysis fundamentals</p>
-          </div>
-          <button onclick="showMenu()" style="background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(139,92,246,0.05)); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.2); border-radius: 12px; padding: 12px 20px; font-size: 0.9em; cursor: pointer; transition: all 0.3s ease; font-weight: 500;">← Back to Menu</button>
-        </div>
+  <div id="structure" class="tab-content active">
+    <div class="section">
       <div class="collapsible" onclick="toggleContent(this)">Break of Structure (BoS)</div>
       <div class="content">
         <div class="card">Occurs when price closes above/below a significant high/low, confirming trend continuation or reversal.</div>
@@ -551,27 +319,20 @@
       <div class="content">
         <div class="card">Signals a shift in market structure from bullish to bearish or vice versa. Often marks the start of a new trend.</div>
       </div>
-      </div>
     </div>
+  </div>
 
-    <!-- Fair Value Gaps Section -->
-    <div id="fair-value-gaps" class="kb-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #10b981; margin: 0; font-size: 1.3rem;">⚡ Fair Value Gaps</h3>
-        <button onclick="showMenu()" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">← Back to Menu</button>
-      </div>
+  <div id="gaps" class="tab-content">
+    <div class="section">
       <div class="collapsible" onclick="toggleContent(this)">Fair Value Gap (FVG)</div>
       <div class="content">
         <div class="card">A price imbalance or inefficiency between candles, often revisited by price. Used for entries or exits.</div>
       </div>
     </div>
+  </div>
 
-    <!-- EQH/EQL Section -->
-    <div id="eqh-eql" class="kb-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #f59e0b; margin: 0; font-size: 1.3rem;">🎯 EQH/EQL</h3>
-        <button onclick="showMenu()" style="background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">← Back to Menu</button>
-      </div>
+  <div id="levels" class="tab-content">
+    <div class="section">
       <div class="collapsible" onclick="toggleContent(this)">Equal Highs (EQH)</div>
       <div class="content">
         <div class="card">Indicates potential liquidity above resistance. Price may hunt these levels before reversing.</div>
@@ -592,17 +353,11 @@
         <div class="card">A swing low with multiple tests and little bounce. Likely to be broken.</div>
       </div>
     </div>
+  </div>
 
-
-
-    <!-- Candlestick Patterns Section -->
-    <div id="candlestick-patterns" class="kb-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #ef4444; margin: 0; font-size: 1.3rem;">🕯️ Candlestick Patterns</h3>
-        <button onclick="showMenu()" style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">← Back to Menu</button>
-      </div>
-      
-      <h4 style="color: #10b981; margin-bottom: 15px; font-size: 1.1rem;">🟢 Bullish Patterns</h4>
+  <div id="candles" class="tab-content">
+    <div class="section">
+      <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">🟢 Bullish Patterns</h3>
       
       <div class="collapsible" onclick="toggleContent(this)">Bullish Engulfing</div>
       <div class="content">
@@ -960,13 +715,11 @@
         </div>
       </div>
     </div>
+  </div>
 
-        <!-- Trend Indicators Section -->
-    <div id="trend-indicators" class="kb-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #8b5cf6; margin: 0; font-size: 1.3rem;">📈 Trend Direction Indicators</h3>
-        <button onclick="showMenu()" style="background: rgba(139,92,246,0.1); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">← Back to Menu</button>
-      </div>
+  <div id="trend" class="tab-content">
+    <div class="section">
+      <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">📈 Trend Direction Indicators</h3>
       
       <div class="collapsible" onclick="toggleContent(this)">Moving Averages (MA)</div>
       <div class="content">
@@ -1020,13 +773,11 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Momentum Indicators Section -->
-    <div id="momentum-indicators" class="kb-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #10b981; margin: 0; font-size: 1.3rem;">⚡ Momentum & Oscillator Indicators</h3>
-        <button onclick="showMenu()" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">← Back to Menu</button>
-      </div>
+  <div id="momentum" class="tab-content">
+    <div class="section">
+      <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">⚡ Momentum & Oscillator Indicators</h3>
       
       <div class="collapsible" onclick="toggleContent(this)">RSI (Relative Strength Index)</div>
       <div class="content">
@@ -1087,13 +838,11 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Volatility Indicators Section -->
-    <div id="volatility-indicators" class="kb-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #f59e0b; margin: 0; font-size: 1.3rem;">📊 Volatility & Range Indicators</h3>
-        <button onclick="showMenu()" style="background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">← Back to Menu</button>
-      </div>
+  <div id="volatility" class="tab-content">
+    <div class="section">
+      <h3 style="color: #f59e0b; margin-bottom: 15px; font-size: 1.3rem;">📊 Volatility & Range Indicators</h3>
       
       <div class="collapsible" onclick="toggleContent(this)">Bollinger Bands</div>
       <div class="content">
@@ -1141,13 +890,11 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Volume Indicators Section -->
-    <div id="volume-indicators" class="kb-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="color: #ef4444; margin: 0; font-size: 1.3rem;">📈 Volume & Market Structure</h3>
-        <button onclick="showMenu()" style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">← Back to Menu</button>
-      </div>
+  <div id="volume" class="tab-content">
+    <div class="section">
+      <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 1.3rem;">📈 Volume & Market Structure</h3>
       
       <div class="collapsible" onclick="toggleContent(this)">Volume Analysis</div>
       <div class="content">
@@ -1208,134 +955,15 @@
     </div>
   </div>
 
-  <!-- Trading Tools Section -->
-  <div id="trading-tools" class="tab-content">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <!-- Header -->
-      <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="color: #ffffff; font-size: 2.5rem; font-weight: 200; margin: 0 0 12px 0; letter-spacing: -0.5px;">🛠️ Trading Tools</h2>
-        <p style="color: #9ca3af; font-size: 1.1rem; margin: 0; font-weight: 300;">Professional tools for crypto trading analysis and risk management</p>
-      </div>
-
-      <!-- Tools Grid -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 40px;">
-        
-        <!-- Advanced Trading Analysis UI -->
-        <a href="crypto_trading_analysis_ui.html" style="text-decoration: none;">
-          <div class="tool-card" style="background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0.03) 100%); border: 1px solid rgba(139,92,246,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden; height: 100%;">
-            <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(139,92,246,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-            <div style="font-size: 2rem; margin-bottom: 16px; display: block;">📊</div>
-            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Advanced Trading Analysis</div>
-            <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Comprehensive trading analysis with advanced indicators, chart patterns, and market structure analysis</div>
-            <div style="display: flex; align-items: center; color: #8b5cf6; font-size: 0.85rem; font-weight: 500;">
-              <span>Open Tool</span>
-              <span class="tool-arrow" style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Position Calculator -->
-        <a href="positioncalculator.html" style="text-decoration: none;">
-          <div class="tool-card" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.03) 100%); border: 1px solid rgba(16,185,129,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden; height: 100%;">
-            <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(16,185,129,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-            <div style="font-size: 2rem; margin-bottom: 16px; display: block;">🧮</div>
-            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Position Calculator</div>
-            <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Calculate position sizes, risk management, stop losses, and profit targets for optimal trading</div>
-            <div style="display: flex; align-items: center; color: #10b981; font-size: 0.85rem; font-weight: 500;">
-              <span>Open Tool</span>
-              <span class="tool-arrow" style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Basic Trading Analysis -->
-        <a href="tradinganalysis.html" style="text-decoration: none;">
-          <div class="tool-card" style="background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.03) 100%); border: 1px solid rgba(245,158,11,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden; height: 100%;">
-            <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(245,158,11,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-            <div style="font-size: 2rem; margin-bottom: 16px; display: block;">📈</div>
-            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Basic Trading Analysis</div>
-            <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Essential trading analysis tools with fundamental indicators and pattern recognition</div>
-            <div style="display: flex; align-items: center; color: #f59e0b; font-size: 0.85rem; font-weight: 500;">
-              <span>Open Tool</span>
-              <span class="tool-arrow" style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Alternative Dashboard -->
-        <a href="crypto-trading-dashboard.html" style="text-decoration: none;">
-          <div class="tool-card" style="background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.03) 100%); border: 1px solid rgba(239,68,68,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden; height: 100%;">
-            <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(239,68,68,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-            <div style="font-size: 2rem; margin-bottom: 16px; display: block;">🎛️</div>
-            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Alternative Dashboard</div>
-            <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Alternative dashboard view with different layout and trading tools for various analysis needs</div>
-            <div style="display: flex; align-items: center; color: #ef4444; font-size: 0.85rem; font-weight: 500;">
-              <span>Open Tool</span>
-              <span class="tool-arrow" style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Mobile Trading App -->
-        <a href="crypto-trading-app/" style="text-decoration: none;">
-          <div class="tool-card" style="background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(139,92,246,0.03) 100%); border: 1px solid rgba(139,92,246,0.15); border-radius: 16px; padding: 28px 24px; cursor: pointer; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden; height: 100%;">
-            <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(139,92,246,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-            <div style="font-size: 2rem; margin-bottom: 16px; display: block;">📱</div>
-            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Mobile Trading App</div>
-            <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Mobile-optimized trading application with Capacitor for iOS and Android deployment</div>
-            <div style="display: flex; align-items: center; color: #8b5cf6; font-size: 0.85rem; font-weight: 500;">
-              <span>Open App</span>
-              <span class="tool-arrow" style="margin-left: 8px; transition: transform 0.2s ease;">→</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Trading Calendar -->
-        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.03) 100%); border: 1px solid rgba(16,185,129,0.15); border-radius: 16px; padding: 28px 24px; text-align: left; position: relative; overflow: hidden; height: 100%;">
-          <div style="position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: linear-gradient(135deg, rgba(16,185,129,0.1), transparent); border-radius: 0 16px 0 60px;"></div>
-          <div style="font-size: 2rem; margin-bottom: 16px; display: block;">📅</div>
-          <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 8px; color: #ffffff;">Trading Calendar</div>
-          <div style="font-size: 0.9rem; color: #9ca3af; line-height: 1.5; margin-bottom: 16px;">Track trading sessions, market hours, and important trading events with integrated calendar</div>
-          <div style="display: flex; align-items: center; color: #10b981; font-size: 0.85rem; font-weight: 500;">
-            <span>Coming Soon</span>
-            <span style="margin-left: 8px; transition: transform 0.2s ease;">🔒</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Quick Access Section -->
-      <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-top: 40px;">
-        <h3 style="color: #8b5cf6; font-size: 1.3rem; font-weight: 500; margin-bottom: 20px;">🚀 Quick Access</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-          <a href="crypto_trading_analysis_ui.html" style="text-decoration: none;">
-            <button style="width: 100%; background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 16px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(139,92,246,0.3);">Advanced Analysis</button>
-          </a>
-          <a href="positioncalculator.html" style="text-decoration: none;">
-            <button style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 16px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(16,185,129,0.3);">Position Calculator</button>
-          </a>
-          <a href="tradinganalysis.html" style="text-decoration: none;">
-            <button style="width: 100%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 16px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(245,158,11,0.3);">Basic Analysis</button>
-          </a>
-          <a href="crypto-trading-dashboard.html" style="text-decoration: none;">
-            <button style="width: 100%; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 16px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(239,68,68,0.3);">Alt Dashboard</button>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div id="trading-history" class="tab-content">
     <div class="section">
       <!-- Header -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
         <h3 style="color: #8b5cf6; font-size: 1.5rem; font-weight: 300; margin: 0;">📒 Trading History</h3>
         <div style="display: flex; gap: 12px;">
-          <button class="btn btn-success" onclick="exportCSV()">Export</button>
-          <label for="importCSV" class="btn btn-primary" style="margin-bottom: 0;">
-            Import<input id="importCSV" type="file" accept=".csv" style="display: none;" onchange="importCSVFile(event)" />
-          </label>
-          <button class="btn btn-warning" onclick="showBulkPaste()">Bulk Paste</button>
+          <button onclick="exportCSV()" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
+          <label for="importCSV" style="background: rgba(139,92,246,0.1); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease; margin-bottom: 0;">Import<input id="importCSV" type="file" accept=".csv" style="display: none;" onchange="importCSVFile(event)" /></label>
+          <button onclick="showBulkPaste()" style="background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Bulk Paste</button>
         </div>
       </div>
 
@@ -1352,7 +980,7 @@
             <div id="tradeFormError" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px; display: none;"></div>
           </div>
           <button type="submit" style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(139,92,246,0.3);">Add Trade</button>
-      </form>
+        </form>
       </div>
 
       <!-- Trading Table -->
@@ -1362,8 +990,9 @@
         </div>
         <div style="overflow-x: auto;">
           <table id="tradingHistoryTable" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-          <thead>
+            <thead>
               <tr style="background: rgba(139,92,246,0.05);">
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1); width: 60px;">Actions</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Contracts</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Filled Type</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Filled/Total</th>
@@ -1376,10 +1005,10 @@
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Transaction Time</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Profit/Loss</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Risk Amount</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </div>
 
@@ -1394,8 +1023,8 @@
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
         <h3 style="color: #8b5cf6; font-size: 1.5rem; font-weight: 300; margin: 0;">Trading Schedule</h3>
         <div style="display: flex; gap: 12px;">
-          <button class="btn btn-success" onclick="exportScheduleCSV()">Export</button>
-          <button class="btn btn-danger" onclick="clearCompletedSessions()">Clear Completed</button>
+          <button onclick="exportScheduleCSV()" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
+          <button onclick="clearCompletedSessions()" style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Clear Completed</button>
         </div>
       </div>
 
@@ -1479,6 +1108,7 @@
           <table id="scheduleTable" style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
             <thead>
               <tr style="background: rgba(139,92,246,0.05);">
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1); width: 60px;">Actions</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Date</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Time</th>
                 <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Duration</th>
@@ -1752,12 +1382,12 @@
       <div style="margin-top: 30px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px;">
         <h4 style="color: #8b5cf6; margin-bottom: 16px; font-weight: 500;">Quick Add Common Sessions</h4>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <button class="btn btn-warning" onclick="quickAddSession('London Open', '15:00', '17:00')">🟡 London Open (3PM-5PM)</button>
-          <button class="btn btn-danger" onclick="quickAddSession('London + NY Overlap', '20:00', '00:00')">🔥 London+NY Overlap (8PM-12AM)</button>
-          <button class="btn btn-danger" onclick="quickAddSession('New York Open', '21:00', '23:00')">🔥 NY Open (9PM-11PM)</button>
-          <button class="btn btn-warning" onclick="quickAddSession('NY Drift/Closing', '00:00', '02:00')">🟠 NY Drift (12AM-2AM)</button>
-          <button class="btn btn-danger" onclick="quickAddSession('Asian Session', '02:00', '10:00')">🔵 Asian (2AM-10AM)</button>
-          <button class="btn btn-warning" onclick="quickAddSession('Pre-London', '10:00', '14:00')">🟠 Pre-London (10AM-2PM)</button>
+          <button onclick="quickAddSession('London Open', '15:00', '17:00')" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟡 London Open (3PM-5PM)</button>
+          <button onclick="quickAddSession('London + NY Overlap', '20:00', '00:00')" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 London+NY Overlap (8PM-12AM)</button>
+          <button onclick="quickAddSession('New York Open', '21:00', '23:00')" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 NY Open (9PM-11PM)</button>
+          <button onclick="quickAddSession('NY Drift/Closing', '00:00', '02:00')" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 NY Drift (12AM-2AM)</button>
+          <button onclick="quickAddSession('Asian Session', '02:00', '10:00')" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🔵 Asian (2AM-10AM)</button>
+          <button onclick="quickAddSession('Pre-London', '10:00', '14:00')" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 Pre-London (10AM-2PM)</button>
         </div>
       </div>
     </div>
@@ -1830,282 +1460,364 @@
   </div>
 
   <script>
-    // ===== Knowledge Base Navigation & Search =====
-    function showSection(sectionId) {
-      document.getElementById('knowledgebase-menu').classList.add('hidden');
-      document.querySelectorAll('.kb-section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(sectionId).classList.add('active');
-    }
-
-    function showMenu() {
-      document.getElementById('knowledgebase-menu').classList.remove('hidden');
-      document.querySelectorAll('.kb-section').forEach(section => {
-        section.classList.remove('active');
-      });
-    }
-
+    // Simple tab switching function
     function openTab(tabId, buttonElement) {
-      // Hide all tab contents
-      const tabContents = document.querySelectorAll('.tab-content');
-      tabContents.forEach(content => {
-        content.classList.remove('active');
-      });
-
-      // Remove active class from all tab buttons
-      const tabButtons = document.querySelectorAll('.tab-button');
-      tabButtons.forEach(button => {
-        button.classList.remove('active');
-      });
-
-      // Show selected tab content
+      // Remove active class from all tabs and contents
+      const buttons = document.querySelectorAll('.tab-button');
+      const contents = document.querySelectorAll('.tab-content');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      contents.forEach(tab => tab.classList.remove('active'));
+      
+      // Add active class to selected tab and content
       document.getElementById(tabId).classList.add('active');
-
-      // Add active class to clicked button
-      buttonElement.classList.add('active');
+      if (buttonElement) {
+        buttonElement.classList.add('active');
+      }
+      // Save last active tab
+      localStorage.setItem('lastActiveTab', tabId);
     }
 
+    // Toggle content sections
     function toggleContent(el) {
-      el.classList.toggle('active');
+      // Close all other content sections first
+      const allContents = document.querySelectorAll('.content');
+      const allCollapsibles = document.querySelectorAll('.collapsible');
+      
+      allContents.forEach(content => {
+        if (content !== el.nextElementSibling) {
+          content.style.display = 'none';
+        }
+      });
+      
+      // Remove active class from all collapsibles
+      allCollapsibles.forEach(collapsible => {
+        collapsible.classList.remove('active');
+      });
+      
+      // Toggle the clicked content
       const content = el.nextElementSibling;
       if (content.style.display === 'block') {
         content.style.display = 'none';
+        el.classList.remove('active');
       } else {
         content.style.display = 'block';
+        el.classList.add('active');
       }
     }
 
+    // Search functionality
     function searchContent() {
       const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      const resultsContainer = document.getElementById('searchResults');
+      const searchResults = document.getElementById('searchResults');
       
       if (searchTerm.length < 2) {
-        resultsContainer.style.display = 'none';
+        searchResults.style.display = 'none';
         return;
       }
-
-      const results = [];
-      const sections = document.querySelectorAll('.collapsible');
       
-      sections.forEach(section => {
-        const title = section.textContent.toLowerCase();
-        const content = section.nextElementSibling.querySelector('.card').textContent.toLowerCase();
+      const results = [];
+      const collapsibles = document.querySelectorAll('.collapsible');
+      
+      collapsibles.forEach(collapsible => {
+        const title = collapsible.textContent.toLowerCase();
+        const content = collapsible.nextElementSibling.querySelector('.card').textContent.toLowerCase();
+        const tabContent = collapsible.closest('.tab-content');
+        const category = getCategoryName(tabContent.id);
         
         if (title.includes(searchTerm) || content.includes(searchTerm)) {
-          const tabId = section.closest('.kb-section') ? section.closest('.kb-section').id : 'knowledgebase';
+          const preview = collapsible.nextElementSibling.querySelector('.card').textContent.substring(0, 150) + '...';
           results.push({
-            title: section.textContent,
-            category: getCategoryName(tabId),
-            tabId: tabId,
-            preview: section.nextElementSibling.querySelector('.card').textContent.substring(0, 100) + '...'
+            title: collapsible.textContent,
+            category: category,
+            preview: preview,
+            tabId: tabContent.id,
+            element: collapsible
           });
         }
       });
-
+      
       displaySearchResults(results, searchTerm);
     }
-
+    
     function getCategoryName(tabId) {
-      const categoryNames = {
-        'market-structure': 'Market Structure',
-        'fair-value-gaps': 'Fair Value Gaps',
-        'eqh-eql': 'EQH/EQL',
-        'candlestick-patterns': 'Candlestick Patterns',
-        'trend-indicators': 'Trend Indicators',
-        'momentum-indicators': 'Momentum Indicators',
-        'volatility-indicators': 'Volatility Indicators',
-        'volume-indicators': 'Volume Indicators'
+      const categoryMap = {
+        'structure': 'Market Structure',
+        'gaps': 'Fair Value Gaps',
+        'levels': 'EQH/EQL',
+        'candles': 'Candlestick Patterns',
+        'trend': 'Trend Indicators',
+        'momentum': 'Momentum Indicators',
+        'volatility': 'Volatility Indicators',
+        'volume': 'Volume Indicators'
       };
-      return categoryNames[tabId] || 'Knowledge Base';
+      return categoryMap[tabId] || 'Unknown';
     }
-
+    
     function displaySearchResults(results, searchTerm) {
-      const resultsContainer = document.getElementById('searchResults');
+      const searchResults = document.getElementById('searchResults');
       
       if (results.length === 0) {
-        resultsContainer.innerHTML = '<div style="padding: 15px; color: #9ca3af; text-align: center;">No results found</div>';
-        resultsContainer.style.display = 'block';
+        searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-title">No results found</div><div class="search-result-preview">Try different keywords or check spelling</div></div>';
+        searchResults.style.display = 'block';
         return;
       }
-
+      
       let html = '';
-      results.forEach(result => {
+      results.slice(0, 8).forEach(result => {
+        const highlightedTitle = highlightText(result.title, searchTerm);
+        const highlightedPreview = highlightText(result.preview, searchTerm);
+        
         html += `
           <div class="search-result-item" onclick="navigateToResult('${result.tabId}', '${result.title}')">
-            <div class="search-result-title">${highlightText(result.title, searchTerm)}</div>
+            <div class="search-result-title">${highlightedTitle}</div>
             <div class="search-result-category">${result.category}</div>
-            <div class="search-result-preview">${highlightText(result.preview, searchTerm)}</div>
+            <div class="search-result-preview">${highlightedPreview}</div>
           </div>
         `;
       });
-
-      resultsContainer.innerHTML = html;
-      resultsContainer.style.display = 'block';
+      
+      if (results.length > 8) {
+        html += `<div class="search-result-item"><div class="search-result-preview">... and ${results.length - 8} more results</div></div>`;
+      }
+      
+      searchResults.innerHTML = html;
+      searchResults.style.display = 'block';
     }
-
+    
     function highlightText(text, searchTerm) {
-      if (!searchTerm) return text;
       const regex = new RegExp(`(${searchTerm})`, 'gi');
       return text.replace(regex, '<span class="highlight">$1</span>');
     }
-
+    
     function navigateToResult(tabId, title) {
-      // Switch to knowledge base tab
-      openTab('knowledgebase', document.querySelector('[onclick="openTab(\'knowledgebase\', this)"]'));
+      // Switch to the correct tab
+      const tabButton = document.querySelector(`[onclick*="'${tabId}'"]`);
+      if (tabButton) {
+        openTab(tabId, tabButton);
+      }
       
-      // Show the specific section
-      showSection(tabId);
+      // Find and expand the specific item
+      setTimeout(() => {
+        const collapsibles = document.querySelectorAll('.collapsible');
+        collapsibles.forEach(collapsible => {
+          if (collapsible.textContent === title) {
+            // Close all others first
+            const allContents = document.querySelectorAll('.content');
+            const allCollapsibles = document.querySelectorAll('.collapsible');
+            
+            allContents.forEach(content => {
+              content.style.display = 'none';
+            });
+            
+            allCollapsibles.forEach(coll => {
+              coll.classList.remove('active');
+            });
+            
+            // Open the target item
+            collapsible.classList.add('active');
+            collapsible.nextElementSibling.style.display = 'block';
+            
+            // Scroll to the item
+            collapsible.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }, 100);
       
-      // Find and expand the specific content
-      const sections = document.querySelectorAll('.collapsible');
-      sections.forEach(section => {
-        if (section.textContent === title) {
-          section.classList.add('active');
-          section.nextElementSibling.style.display = 'block';
-          section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
-      
-      // Hide search results
-      document.getElementById('searchResults').style.display = 'none';
+      // Clear search
       document.getElementById('searchInput').value = '';
+      document.getElementById('searchResults').style.display = 'none';
     }
-
+    
     // Close search results when clicking outside
     document.addEventListener('click', function(event) {
       const searchResults = document.getElementById('searchResults');
       const searchInput = document.getElementById('searchInput');
       
-      if (!searchResults.contains(event.target) && event.target !== searchInput) {
+      if (!searchResults.contains(event.target) && !searchInput.contains(event.target)) {
         searchResults.style.display = 'none';
       }
     });
 
-    // ===== Trading History Logic =====
+    // Trading History logic
+    const defaultTrades = [
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'151.650/Market',feeRate:'0.055%',tradingFee:'0.04170375',tradeType:'Close Long',orderType:'Market',transactionId:'421745f5',transactionTime:'2025-07-03 23:05:42'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'154.390/154.390',feeRate:'0.02%',tradingFee:'0.01543900',tradeType:'Open Long',orderType:'Limit',transactionId:'d57124de',transactionTime:'2025-07-03 21:52:49'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'153.470/Market',feeRate:'0.055%',tradingFee:'0.03376340',tradeType:'Close Short',orderType:'Market',transactionId:'26f7763a',transactionTime:'2025-07-03 21:31:35'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'152.790/152.790',feeRate:'0.02%',tradingFee:'0.01222320',tradeType:'Open Short',orderType:'Limit',transactionId:'23e5d61f',transactionTime:'2025-07-03 20:43:07'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.810/Market',feeRate:'0.055%',tradingFee:'0.17029100',tradeType:'Close Short',orderType:'Market',transactionId:'21ad4965',transactionTime:'2025-07-03 20:30:01'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.500/154.500',feeRate:'0.055%',tradingFee:'0.16995000',tradeType:'Open Short',orderType:'Limit',transactionId:'5d654d18',transactionTime:'2025-07-03 20:07:52'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'146.000/Market',feeRate:'0.055%',tradingFee:'0.40150000',tradeType:'Close Short',orderType:'Market',transactionId:'47faa02d',transactionTime:'2025-06-20 21:51:18'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'148.150/148.100',feeRate:'0.055%',tradingFee:'0.40741250',tradeType:'Open Short',orderType:'Limit',transactionId:'bcea1d95',transactionTime:'2025-06-20 20:15:55'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.500/Market',feeRate:'0.055%',tradingFee:'0.08002500',tradeType:'Close Short',orderType:'Market',transactionId:'966a573e',transactionTime:'2025-06-20 04:28:17'},
+      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.440/145.370',feeRate:'0.055%',tradingFee:'0.07999200',tradeType:'Open Short',orderType:'Limit',transactionId:'a9552705',transactionTime:'2025-06-20 04:28:09'}
+    ];
+
     function getTrades() {
-      const trades = localStorage.getItem('trades');
-      return trades ? JSON.parse(trades) : [];
+      const trades = localStorage.getItem('tradingHistory');
+      if (trades) return JSON.parse(trades);
+      localStorage.setItem('tradingHistory', JSON.stringify(defaultTrades));
+      return [...defaultTrades];
     }
-
     function saveTrades(trades) {
-      localStorage.setItem('trades', JSON.stringify(trades));
+      localStorage.setItem('tradingHistory', JSON.stringify(trades));
     }
-
     function renderTrades() {
       const trades = getTrades();
       const tbody = document.querySelector('#tradingHistoryTable tbody');
       tbody.innerHTML = '';
-
       let totalPnL = 0;
-
       trades.forEach((trade, index) => {
+        const tr = document.createElement('tr');
         const pnl = calculatePnL(trade);
-        totalPnL += pnl;
-        
-        const row = document.createElement('tr');
-        row.style.borderBottom = '1px solid rgba(139,92,246,0.1)';
-        
-        const pnlColor = pnl >= 0 ? '#10b981' : '#ef4444';
-        const pnlText = pnl >= 0 ? `+$${pnl.toFixed(2)}` : `-$${Math.abs(pnl).toFixed(2)}`;
-        
-        row.innerHTML = `
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.contracts}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.filledType}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.filledTotal}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.filledPriceOrderPrice}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.feeRate}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.tradingFee}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.tradeType}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.orderType}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.transactionId}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${trade.transactionTime}</td>
-          <td style="padding: 16px 12px; color: ${pnlColor}; font-weight: 600;">${pnlText}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">$${trade.riskAmount}</td>
+        // Highlight open trades
+        if (/open/i.test(trade.tradeType)) {
+          tr.style.background = 'rgba(16, 185, 129, 0.10)'; // transparent green
+        }
+        const riskAmount = calculateRiskAmount(trade);
+        tr.innerHTML = `
+          <td style="text-align: center;">
+            <button onclick="editTrade(${index})" style="background:none; color:#8b5cf6; border:none; padding:2px 6px; margin-right:4px; cursor:pointer; font-size:0.8em;" title="Edit">✏️</button>
+            <button onclick="deleteTrade(${index})" style="background:none; color:#ef4444; border:none; padding:2px 6px; cursor:pointer; font-size:0.8em;" title="Delete">❌</button>
+          </td>
+          <td>${trade.contracts}</td>
+          <td>${trade.filledType}</td>
+          <td>${trade.filledTotal}</td>
+          <td>${trade.filledPriceOrderPrice}</td>
+          <td>${trade.feeRate}</td>
+          <td>${trade.tradingFee}</td>
+          <td class="trade-type-cell">${trade.tradeType}</td>
+          <td>${trade.orderType}</td>
+          <td>${trade.transactionId}</td>
+          <td>${trade.transactionTime}</td>
+          <td class="pnl-cell">${pnl}</td>
+          <td>${riskAmount}</td>
         `;
-        
-        tbody.appendChild(row);
+        tbody.appendChild(tr);
+        if (!isNaN(parseFloat(pnl))) totalPnL += parseFloat(pnl);
+        // Set PnL cell color
+        const pnlCell = tr.querySelector('.pnl-cell');
+        if (!isNaN(parseFloat(pnl))) {
+          if (parseFloat(pnl) > 0) pnlCell.style.color = '#10b981'; // green
+          else if (parseFloat(pnl) < 0) pnlCell.style.color = '#ef4444'; // red
+        }
+        // Set Trade Type cell color
+        const tradeTypeCell = tr.querySelector('.trade-type-cell');
+        if (/open/i.test(trade.tradeType)) tradeTypeCell.style.color = '#10b981'; // green
+        else if (/close/i.test(trade.tradeType)) tradeTypeCell.style.color = '#ef4444'; // red
       });
-
-      // Update total PnL display
-      const totalPnLElement = document.getElementById('totalPnL');
-      const totalColor = totalPnL >= 0 ? '#10b981' : '#ef4444';
-      const totalText = totalPnL >= 0 ? `Total Profit: +$${totalPnL.toFixed(2)}` : `Total Loss: -$${Math.abs(totalPnL).toFixed(2)}`;
-      totalPnLElement.style.color = totalColor;
-      totalPnLElement.textContent = totalText;
+      // Show total PnL below table
+      const totalPnLElem = document.getElementById('totalPnL');
+      let color = totalPnL > 0 ? '#10b981' : (totalPnL < 0 ? '#ef4444' : '#fff');
+      totalPnLElem.textContent = `Total Profit/Loss: ${totalPnL.toFixed(4)}`;
+      totalPnLElem.style.color = color;
     }
-
     function addTrade(e) {
       e.preventDefault();
-      
-      const tradeInput = document.getElementById('tradeInput').value.trim();
+      const input = document.getElementById('tradeInput');
       const errorDiv = document.getElementById('tradeFormError');
-      
-      if (!tradeInput) {
-        errorDiv.textContent = 'Please enter trade data';
+      errorDiv.style.display = 'none';
+      let value = input.value.trim();
+      // Split by tab or multiple spaces
+      let fields = value.split(/\t|\s{2,}/);
+      if (fields.length !== 10) {
+        errorDiv.textContent = 'Please enter exactly 10 tab-separated values.';
         errorDiv.style.display = 'block';
         return;
       }
-
-      const parts = tradeInput.split('\t');
-      if (parts.length < 11) {
-        errorDiv.textContent = 'Invalid trade format. Expected 11 tab-separated values.';
-        errorDiv.style.display = 'block';
-        return;
-      }
-
       const trade = {
-        contracts: parts[0],
-        filledType: parts[1],
-        filledTotal: parts[2],
-        filledPriceOrderPrice: parts[3],
-        feeRate: parts[4],
-        tradingFee: parts[5],
-        tradeType: parts[6],
-        orderType: parts[7],
-        transactionId: parts[8],
-        transactionTime: parts[9],
-        riskAmount: parts[10] || calculateRiskAmount(parts)
+        contracts: fields[0],
+        filledType: fields[1],
+        filledTotal: fields[2],
+        filledPriceOrderPrice: fields[3],
+        feeRate: fields[4],
+        tradingFee: fields[5],
+        tradeType: fields[6],
+        orderType: fields[7],
+        transactionId: fields[8],
+        transactionTime: fields[9]
       };
-
       const trades = getTrades();
-      trades.push(trade);
+      trades.unshift(trade);
       saveTrades(trades);
       renderTrades();
-
-      // Clear form
-      document.getElementById('tradeInput').value = '';
-      errorDiv.style.display = 'none';
+      input.value = '';
     }
-
-    // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
+      // Restore last active tab
+      const lastTab = localStorage.getItem('lastActiveTab');
+      if (lastTab && document.getElementById(lastTab)) {
+        const tabButton = Array.from(document.querySelectorAll('.tab-button')).find(btn => btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${lastTab}'`));
+        openTab(lastTab, tabButton);
+      }
       renderTrades();
       renderSchedule();
-      updateScheduleStats();
+      
+      // Set default datetime to current time in text format
+      const now = new Date();
+      const currentDateTime = now.getFullYear() + '-' + 
+        String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+        String(now.getDate()).padStart(2, '0') + ' ' + 
+        String(now.getHours()).padStart(2, '0') + ':' + 
+        String(now.getMinutes()).padStart(2, '0') + ':' + 
+        String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('scheduleStartDateTime').value = currentDateTime;
+      document.getElementById('scheduleEndDateTime').value = currentDateTime;
     });
 
+    // Calculate Profit/Loss based on entry/exit, size, trade type, and fee
     function calculatePnL(trade) {
-      const filledPrice = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
-      const contracts = parseFloat(trade.contracts);
-      
-      // This is a simplified calculation - you may need to adjust based on your specific needs
-      // For now, we'll use the risk amount as a proxy for PnL
-      return parseFloat(trade.riskAmount) || 0;
+      // Parse size (first value in filledTotal)
+      let size = 0;
+      if (trade.filledTotal) {
+        size = parseFloat(trade.filledTotal.split('/')[0]);
+      }
+      // If tradeType contains 'Open', PnL is not applicable
+      if (/open/i.test(trade.tradeType)) return '-';
+      // Find the matching open trade for this contract and size before this close
+      const trades = getTrades();
+      const closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
+      let openTrade = null;
+      for (let i = closeIndex + 1; i < trades.length; i++) {
+        if (
+          trades[i].contracts === trade.contracts &&
+          /open/i.test(trades[i].tradeType) &&
+          trades[i].filledTotal === trade.filledTotal
+        ) {
+          openTrade = trades[i];
+          break;
+        }
+      }
+      if (!openTrade) return '-';
+      // Entry price from open, exit price from close - always use filled price (first part before "/")
+      let entry = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
+      let exit = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
+      if (isNaN(entry) || isNaN(exit) || isNaN(size)) return '-';
+      // Trading fees (from both open and close trades)
+      let openFee = parseFloat(openTrade.tradingFee) || 0;
+      let closeFee = parseFloat(trade.tradingFee) || 0;
+      let totalFee = openFee + closeFee;
+      // Direction: Long or Short
+      let isLong = /long/i.test(trade.tradeType);
+      let isShort = /short/i.test(trade.tradeType);
+      let pnl = 0;
+      if (isLong) {
+        pnl = (exit - entry) * size - totalFee;
+      } else if (isShort) {
+        pnl = (entry - exit) * size - totalFee;
+      } else {
+        return '-';
+      }
+      return pnl.toFixed(4);
     }
 
+    // Export trades as CSV
     function exportCSV() {
       const trades = getTrades();
-      if (trades.length === 0) {
-        alert('No trades to export');
-        return;
-      }
-
-      const headers = ['Contracts', 'Filled Type', 'Filled/Total', 'Filled Price/Order Price', 'Fee Rate', 'Trading Fee', 'Trade Type', 'Order Type', 'Transaction ID', 'Transaction Time', 'Risk Amount'];
-      
-      const csvContent = [
-        headers.join(','),
-        ...trades.map(trade => [
+      const headers = ['Contracts','Filled Type','Filled/Total','Filled Price/Order Price','Fee Rate','Trading Fee','Trade Type','Order Type','Transaction ID','Transaction Time','Risk Amount'];
+      let csv = headers.join(',') + '\n';
+      trades.forEach(trade => {
+        let row = [
           trade.contracts,
           trade.filledType,
           trade.filledTotal,
@@ -2116,220 +1828,358 @@
           trade.orderType,
           trade.transactionId,
           trade.transactionTime,
-          trade.riskAmount
-        ].join(','))
-      ].join('\n');
-
+          calculateRiskAmount(trade)
+        ].map(v => '"' + (v ? v.replace(/"/g, '""') : '') + '"').join(',');
+        csv += row + '\n';
+      });
+      
+      // Generate filename with current date and time (without seconds)
       const now = new Date();
-      const dateStr = now.toISOString().split('T')[0];
-      const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-').substring(0, 5);
-      const filename = `trading_history_${dateStr}_${timeStr}.csv`;
-
-      const blob = new Blob([csvContent], { type: 'text/csv' });
-      const url = window.URL.createObjectURL(blob);
+      const dateStr = now.toLocaleDateString('en-CA'); // YYYY-MM-DD format
+      const timeStr = now.toLocaleTimeString('en-US', { 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      }).replace(':', '-'); // HH-MM format
+      const defaultFilename = `trading_history_${dateStr}_${timeStr}.csv`;
+      
+      let filename = prompt('Save as:', defaultFilename);
+      if (!filename) return;
+      if (!filename.toLowerCase().endsWith('.csv')) filename += '.csv';
+      const blob = new Blob([csv], {type: 'text/csv'});
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
+      document.body.appendChild(a);
       a.click();
-      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
+    // Import trades from CSV
     function importCSVFile(event) {
       const file = event.target.files[0];
+      const errorSpan = document.getElementById('importError');
+      errorSpan.style.display = 'none';
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(e) {
-        const content = e.target.result;
-        const lines = content.split('\n');
-        const trades = [];
-
-        for (let i = 1; i < lines.length; i++) { // Skip header
-          const line = lines[i].trim();
-          if (!line) continue;
-
-          const parts = line.split(',');
-          if (parts.length >= 11) {
-            trades.push({
-              contracts: parts[0],
-              filledType: parts[1],
-              filledTotal: parts[2],
-              filledPriceOrderPrice: parts[3],
-              feeRate: parts[4],
-              tradingFee: parts[5],
-              tradeType: parts[6],
-              orderType: parts[7],
-              transactionId: parts[8],
-              transactionTime: parts[9],
-              riskAmount: parts[10]
-            });
+        const text = e.target.result;
+        const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+        if (lines.length < 2) {
+          errorSpan.textContent = 'CSV file is empty or invalid.';
+          errorSpan.style.display = 'inline';
+          return;
+        }
+        const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
+        if (headers.length !== 11) {
+          errorSpan.textContent = 'CSV must have 11 columns (including Risk Amount).';
+          errorSpan.style.display = 'inline';
+          return;
+        }
+        const trades = getTrades();
+        let added = 0;
+        for (let i = 1; i < lines.length; i++) {
+          let row = lines[i];
+          // Handle quoted CSV
+          let values = [];
+          let inQuotes = false, value = '';
+          for (let c = 0; c < row.length; c++) {
+            let char = row[c];
+            if (char === '"') {
+              if (inQuotes && row[c+1] === '"') { value += '"'; c++; }
+              else inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+              values.push(value); value = '';
+            } else {
+              value += char;
+            }
+          }
+          values.push(value);
+          if (values.length !== 11) continue;
+          const trade = {
+            contracts: values[0],
+            filledType: values[1],
+            filledTotal: values[2],
+            filledPriceOrderPrice: values[3],
+            feeRate: values[4],
+            tradingFee: values[5],
+            tradeType: values[6],
+            orderType: values[7],
+            transactionId: values[8],
+            transactionTime: values[9],
+            riskAmount: values[10]
+          };
+          // Prevent duplicate transactionId
+          if (!trades.some(t => t.transactionId === trade.transactionId)) {
+            trades.unshift(trade);
+            added++;
           }
         }
-
         saveTrades(trades);
         renderTrades();
-        alert(`Imported ${trades.length} trades`);
+        if (added === 0) {
+          errorSpan.textContent = 'No new trades imported (duplicates skipped).';
+          errorSpan.style.display = 'inline';
+        }
+        event.target.value = '';
       };
       reader.readAsText(file);
     }
 
+    // Bulk Paste logic
     function showBulkPaste() {
       document.getElementById('bulkPasteModal').style.display = 'flex';
-    }
-
-    function hideBulkPaste() {
-      document.getElementById('bulkPasteModal').style.display = 'none';
       document.getElementById('bulkPasteInput').value = '';
       document.getElementById('bulkPasteError').style.display = 'none';
       document.getElementById('bulkPasteSummary').style.display = 'none';
     }
-
+    function hideBulkPaste() {
+      document.getElementById('bulkPasteModal').style.display = 'none';
+    }
     function submitBulkPaste() {
       const input = document.getElementById('bulkPasteInput').value.trim();
       const errorDiv = document.getElementById('bulkPasteError');
       const summaryDiv = document.getElementById('bulkPasteSummary');
-
+      errorDiv.style.display = 'none';
+      summaryDiv.style.display = 'none';
       if (!input) {
-        errorDiv.textContent = 'Please enter trade data';
+        errorDiv.textContent = 'Please paste at least one line.';
         errorDiv.style.display = 'block';
-        summaryDiv.style.display = 'none';
         return;
       }
-
-      const lines = input.split('\n');
+      const lines = input.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+      let added = 0, skipped = 0;
       const trades = getTrades();
-      let successCount = 0;
-      let errorCount = 0;
-
-      lines.forEach((line, index) => {
-        const trimmedLine = line.trim();
-        if (!trimmedLine) return;
-
-        const parts = trimmedLine.split('\t');
-        if (parts.length >= 11) {
-          trades.push({
-            contracts: parts[0],
-            filledType: parts[1],
-            filledTotal: parts[2],
-            filledPriceOrderPrice: parts[3],
-            feeRate: parts[4],
-            tradingFee: parts[5],
-            tradeType: parts[6],
-            orderType: parts[7],
-            transactionId: parts[8],
-            transactionTime: parts[9],
-            riskAmount: parts[10] || calculateRiskAmount(parts)
-          });
-          successCount++;
+      for (let line of lines) {
+        let fields = line.split(/\t/);
+        if (fields.length !== 10) { skipped++; continue; }
+        const trade = {
+          contracts: fields[0],
+          filledType: fields[1],
+          filledTotal: fields[2],
+          filledPriceOrderPrice: fields[3],
+          feeRate: fields[4],
+          tradingFee: fields[5],
+          tradeType: fields[6],
+          orderType: fields[7],
+          transactionId: fields[8],
+          transactionTime: fields[9]
+        };
+        if (!trades.some(t => t.transactionId === trade.transactionId)) {
+          trades.unshift(trade);
+          added++;
         } else {
-          errorCount++;
+          skipped++;
         }
-      });
-
+      }
       saveTrades(trades);
       renderTrades();
-
-      if (errorCount > 0) {
-        errorDiv.textContent = `${errorCount} lines had invalid format`;
-        errorDiv.style.display = 'block';
-      } else {
-        errorDiv.style.display = 'none';
-      }
-
-      summaryDiv.textContent = `Successfully added ${successCount} trades`;
+      summaryDiv.textContent = `Added ${added} trade(s), skipped ${skipped} (duplicates or invalid).`;
       summaryDiv.style.display = 'block';
-
-      // Clear input after successful submission
-      if (successCount > 0) {
-        document.getElementById('bulkPasteInput').value = '';
-      }
+      errorDiv.style.display = 'none';
+      if (added > 0) document.getElementById('bulkPasteInput').value = '';
     }
 
-    function calculateRiskAmount(tradeParts) {
-      // Calculate risk amount based on filled price and position size
-      const filledPrice = parseFloat(tradeParts[3].split('/')[0]);
-      const contracts = parseFloat(tradeParts[0]);
+    // Auto-calculate risk amount for close trades
+    function calculateRiskAmount(trade) {
+      // Only for Close trades
+      if (!/close/i.test(trade.tradeType)) return '-';
       
-      // This is a simplified calculation - adjust based on your risk management rules
-      return (filledPrice * contracts * 0.01).toFixed(2); // 1% risk example
+      // Find matching open trade
+      const trades = getTrades();
+      const closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
+      let openTrade = null;
+      
+      // Since trades are ordered newest first, look for the open trade AFTER the close trade
+      for (let i = closeIndex + 1; i < trades.length; i++) {
+        if (
+          trades[i].contracts === trade.contracts &&
+          /open/i.test(trades[i].tradeType) &&
+          trades[i].filledTotal === trade.filledTotal
+        ) {
+          openTrade = trades[i];
+          break;
+        }
+      }
+      
+      if (!openTrade) return '-';
+      
+      // Parse prices and size - always use filled price (first part before "/")
+      let entry = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
+      let exit = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
+      let size = parseFloat(trade.filledTotal.split('/')[0]);
+      
+      if (isNaN(entry) || isNaN(exit) || isNaN(size)) return '-';
+      
+      // Calculate risk amount (absolute difference between entry and exit prices * size)
+      let risk = Math.abs(entry - exit) * size;
+      return risk.toFixed(4);
     }
 
-    // ===== Trading Schedule Logic =====
+    // Edit and Delete Trade Functions
+    let editingTradeIndex = -1;
+
+    function editTrade(index) {
+      const trades = getTrades();
+      const trade = trades[index];
+      editingTradeIndex = index;
+      
+      // Populate the edit form
+      document.getElementById('editContracts').value = trade.contracts;
+      document.getElementById('editFilledType').value = trade.filledType;
+      document.getElementById('editFilledTotal').value = trade.filledTotal;
+      document.getElementById('editFilledPriceOrderPrice').value = trade.filledPriceOrderPrice;
+      document.getElementById('editFeeRate').value = trade.feeRate;
+      document.getElementById('editTradingFee').value = trade.tradingFee;
+      document.getElementById('editTradeType').value = trade.tradeType;
+      document.getElementById('editOrderType').value = trade.orderType;
+      document.getElementById('editTransactionId').value = trade.transactionId;
+      document.getElementById('editTransactionTime').value = trade.transactionTime;
+      
+      // Show the modal
+      document.getElementById('editTradeModal').style.display = 'flex';
+    }
+
+    function hideEditTrade() {
+      document.getElementById('editTradeModal').style.display = 'none';
+      editingTradeIndex = -1;
+    }
+
+    function saveEditTrade(event) {
+      event.preventDefault();
+      
+      if (editingTradeIndex === -1) return;
+      
+      const trades = getTrades();
+      
+      // Update the trade with new values
+      trades[editingTradeIndex] = {
+        contracts: document.getElementById('editContracts').value,
+        filledType: document.getElementById('editFilledType').value,
+        filledTotal: document.getElementById('editFilledTotal').value,
+        filledPriceOrderPrice: document.getElementById('editFilledPriceOrderPrice').value,
+        feeRate: document.getElementById('editFeeRate').value,
+        tradingFee: document.getElementById('editTradingFee').value,
+        tradeType: document.getElementById('editTradeType').value,
+        orderType: document.getElementById('editOrderType').value,
+        transactionId: document.getElementById('editTransactionId').value,
+        transactionTime: document.getElementById('editTransactionTime').value
+      };
+      
+      saveTrades(trades);
+      renderTrades();
+      hideEditTrade();
+    }
+
+    function deleteTrade(index) {
+      if (!confirm('Are you sure you want to delete this trade?')) return;
+      
+      const trades = getTrades();
+      trades.splice(index, 1);
+      saveTrades(trades);
+      renderTrades();
+    }
+
+    // Trading Schedule Functions
+    const defaultSchedule = [
+      {
+        id: '1',
+        date: '2025-01-15',
+        startTime: '08:00',
+        endTime: '12:00',
+        sessionType: 'London Open',
+        notes: 'Focus on major pairs',
+        status: 'Scheduled'
+      },
+      {
+        id: '2',
+        date: '2025-01-15',
+        startTime: '13:00',
+        endTime: '17:00',
+        sessionType: 'New York Open',
+        notes: 'High volatility expected',
+        status: 'Scheduled'
+      }
+    ];
+
     function getSchedule() {
-      const schedule = localStorage.getItem('schedule');
-      return schedule ? JSON.parse(schedule) : [];
+      const schedule = localStorage.getItem('tradingSchedule');
+      if (schedule) return JSON.parse(schedule);
+      localStorage.setItem('tradingSchedule', JSON.stringify(defaultSchedule));
+      return [...defaultSchedule];
     }
 
     function saveSchedule(schedule) {
-      localStorage.setItem('schedule', JSON.stringify(schedule));
+      localStorage.setItem('tradingSchedule', JSON.stringify(schedule));
     }
 
     function renderSchedule() {
       const schedule = getSchedule();
       const tbody = document.querySelector('#scheduleTable tbody');
       tbody.innerHTML = '';
-
+      
       schedule.forEach((entry, index) => {
-        const row = document.createElement('tr');
-        row.style.borderBottom = '1px solid rgba(139,92,246,0.1)';
-        
+        const tr = document.createElement('tr');
+        const duration = calculateDuration(entry.startTime, entry.endTime);
         const statusColor = getStatusColor(entry.status);
+        const timeRange = `${entry.startTime} - ${entry.endTime}`;
         
-        row.innerHTML = `
-          <td style="padding: 16px 12px; color: #d1d5db;">${formatDate(entry.startDateTime)}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${entry.startDateTime.split(' ')[1].substring(0, 5)} - ${entry.endDateTime.split(' ')[1].substring(0, 5)}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${entry.duration}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${entry.sessionType}</td>
-          <td style="padding: 16px 12px; color: #d1d5db;">${entry.notes || '-'}</td>
-          <td style="padding: 16px 12px; color: ${statusColor}; font-weight: 600;">${entry.status}</td>
+        tr.innerHTML = `
+          <td style="text-align: center; padding: 12px;">
+            <button onclick="editScheduleEntry(${index})" style="background:none; color:#8b5cf6; border:none; padding:4px 8px; margin-right:4px; cursor:pointer; font-size:0.9em; border-radius:4px; transition: all 0.2s ease;" title="Edit">✏️</button>
+            <button onclick="deleteScheduleEntry(${index})" style="background:none; color:#ef4444; border:none; padding:4px 8px; cursor:pointer; font-size:0.9em; border-radius:4px; transition: all 0.2s ease;" title="Delete">❌</button>
+          </td>
+          <td style="padding: 12px; color: #d1d5db;">${formatDate(entry.date)}</td>
+          <td style="padding: 12px; color: #d1d5db;">${timeRange}</td>
+          <td style="padding: 12px; color: #9ca3af; font-size: 0.85rem;">${duration}</td>
+          <td style="padding: 12px; color: #d1d5db;">${entry.sessionType}</td>
+          <td style="padding: 12px; color: #9ca3af; font-size: 0.85rem;">${entry.notes || '-'}</td>
+          <td style="padding: 12px; color: ${statusColor}; font-weight: 500;">${entry.status}</td>
         `;
-        
-        tbody.appendChild(row);
+        tbody.appendChild(tr);
       });
-
+      
       updateScheduleStats();
     }
 
     function calculateDuration(startTime, endTime) {
-      const start = new Date(startTime);
-      const end = new Date(endTime);
+      const start = new Date(`2000-01-01T${startTime}:00`);
+      const end = new Date(`2000-01-01T${endTime}:00`);
       const diffMs = end - start;
       const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
       const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-      
-      if (diffHours > 0) {
-        return `${diffHours}h ${diffMinutes}m`;
-      } else {
-        return `${diffMinutes}m`;
-      }
+      return `${diffHours}h ${diffMinutes}m`;
     }
 
     function formatDate(dateStr) {
       const date = new Date(dateStr);
       return date.toLocaleDateString('en-US', { 
+        weekday: 'short', 
         month: 'short', 
-        day: 'numeric',
-        year: 'numeric'
+        day: 'numeric' 
       });
     }
 
     function getStatusColor(status) {
-      const colors = {
-        'Scheduled': '#8b5cf6',
-        'In Progress': '#f59e0b',
-        'Completed': '#10b981',
-        'Cancelled': '#ef4444'
-      };
-      return colors[status] || '#6b7280';
+      switch(status) {
+        case 'Scheduled': return '#8b5cf6';
+        case 'In Progress': return '#f59e0b';
+        case 'Completed': return '#10b981';
+        case 'Cancelled': return '#ef4444';
+        default: return '#ffffff';
+      }
     }
 
     function updateScheduleStats() {
       const schedule = getSchedule();
       const total = schedule.length;
+      const completed = schedule.filter(s => s.status === 'Completed').length;
       const scheduled = schedule.filter(s => s.status === 'Scheduled').length;
       const inProgress = schedule.filter(s => s.status === 'In Progress').length;
-      const completed = schedule.filter(s => s.status === 'Completed').length;
-
+      
+      // Update stats cards
       document.getElementById('totalSessions').textContent = total;
       document.getElementById('scheduledSessions').textContent = scheduled;
       document.getElementById('inProgressSessions').textContent = inProgress;
@@ -2341,122 +2191,228 @@
       
       const startDateTime = document.getElementById('scheduleStartDateTime').value;
       const endDateTime = document.getElementById('scheduleEndDateTime').value;
-      const sessionType = document.getElementById('scheduleSession').value;
-      const notes = document.getElementById('scheduleNotes').value;
-      const status = document.getElementById('scheduleStatus').value;
-
-      if (!startDateTime || !endDateTime || !sessionType) {
-        alert('Please fill in all required fields');
+      
+      // Parse datetime inputs
+      let startDate, endDate;
+      
+      try {
+        if (startDateTime.includes('T')) {
+          startDate = new Date(startDateTime);
+        } else {
+          startDate = new Date(startDateTime.replace(' ', 'T'));
+        }
+        
+        if (endDateTime.includes('T')) {
+          endDate = new Date(endDateTime);
+        } else {
+          endDate = new Date(endDateTime.replace(' ', 'T'));
+        }
+        
+        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+          alert('Please enter valid datetime format: YYYY-MM-DD HH:MM:SS');
+          return;
+        }
+      } catch (e) {
+        alert('Please enter valid datetime format: YYYY-MM-DD HH:MM:SS');
         return;
       }
-
-      const duration = calculateDuration(startDateTime, endDateTime);
-
+      
       const entry = {
-        startDateTime,
-        endDateTime,
-        sessionType,
-        duration,
-        notes,
-        status
+        id: Date.now().toString(),
+        date: startDate.toISOString().split('T')[0],
+        startTime: startDate.toTimeString().slice(0, 5),
+        endTime: endDate.toTimeString().slice(0, 5),
+        sessionType: document.getElementById('scheduleSession').value,
+        notes: document.getElementById('scheduleNotes').value,
+        status: document.getElementById('scheduleStatus').value
       };
-
+      
       const schedule = getSchedule();
-      schedule.push(entry);
+      schedule.unshift(entry);
       saveSchedule(schedule);
       renderSchedule();
-
-      // Clear form
-      document.getElementById('scheduleForm').reset();
-      document.getElementById('scheduleDuration').value = '';
+      
+      // Reset form
+      event.target.reset();
+      // Set default datetime to current time
+      const now = new Date();
+      const currentDateTime = now.getFullYear() + '-' + 
+        String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+        String(now.getDate()).padStart(2, '0') + ' ' + 
+        String(now.getHours()).padStart(2, '0') + ':' + 
+        String(now.getMinutes()).padStart(2, '0') + ':' + 
+        String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('scheduleStartDateTime').value = currentDateTime;
+      document.getElementById('scheduleEndDateTime').value = currentDateTime;
     }
 
     function autoDetectSession() {
-      const startInput = document.getElementById('scheduleStartDateTime');
-      const endInput = document.getElementById('scheduleEndDateTime');
-      const sessionSelect = document.getElementById('scheduleSession');
-      const durationInput = document.getElementById('scheduleDuration');
-
-      if (startInput.value && endInput.value) {
-        const startTime = startInput.value.split(' ')[1];
-        const endTime = endInput.value.split(' ')[1];
-        const startHour = parseInt(startTime.split(':')[0]);
-        const endHour = parseInt(endTime.split(':')[0]);
-
-        // Auto-detect session type based on Philippine time
-        let sessionType = 'Custom';
-        if (startHour >= 15 && startHour < 17) {
-          sessionType = 'London Open';
-        } else if (startHour >= 20 && startHour < 24) {
-          sessionType = 'London + NY Overlap';
-        } else if (startHour >= 21 && startHour < 23) {
-          sessionType = 'New York Open';
-        } else if (startHour >= 0 && startHour < 2) {
-          sessionType = 'NY Drift/Closing';
-        } else if (startHour >= 2 && startHour < 10) {
-          sessionType = 'Asian Session';
-        } else if (startHour >= 10 && startHour < 14) {
-          sessionType = 'Pre-London';
+      const startDateTime = document.getElementById('scheduleStartDateTime').value;
+      const endDateTime = document.getElementById('scheduleEndDateTime').value;
+      
+      if (!startDateTime || !endDateTime) return;
+      
+      // Parse datetime strings (format: "2025-06-20 21:51:18")
+      let startDate, endDate;
+      
+      try {
+        // Handle different datetime formats
+        if (startDateTime.includes('T')) {
+          startDate = new Date(startDateTime);
+        } else {
+          // Convert "2025-06-20 21:51:18" to ISO format
+          startDate = new Date(startDateTime.replace(' ', 'T'));
         }
-
-        sessionSelect.value = sessionType;
-        durationInput.value = calculateDuration(startInput.value, endInput.value);
+        
+        if (endDateTime.includes('T')) {
+          endDate = new Date(endDateTime);
+        } else {
+          endDate = new Date(endDateTime.replace(' ', 'T'));
+        }
+        
+        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+          return; // Invalid dates
+        }
+      } catch (e) {
+        return; // Invalid date format
       }
+      
+      // Calculate duration
+      const durationMs = endDate - startDate;
+      if (durationMs < 0) return; // End time before start time
+      
+      const hours = Math.floor(durationMs / (1000 * 60 * 60));
+      const minutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('scheduleDuration').value = `${hours}h ${minutes}m`;
+      
+      // Get hour in PH time
+      const startHour = startDate.getHours();
+      
+      // Auto-detect session type based on start time
+      let sessionType = '';
+      
+      if (startHour >= 15 && startHour < 17) {
+        sessionType = 'London Open';
+      } else if (startHour >= 20 && startHour < 24) {
+        sessionType = 'London + NY Overlap';
+      } else if (startHour >= 21 && startHour < 23) {
+        sessionType = 'New York Open';
+      } else if (startHour >= 0 && startHour < 2) {
+        sessionType = 'NY Drift/Closing';
+      } else if (startHour >= 2 && startHour < 10) {
+        sessionType = 'Asian Session';
+      } else if (startHour >= 10 && startHour < 14) {
+        sessionType = 'Pre-London';
+      } else {
+        sessionType = 'Custom';
+      }
+      
+      document.getElementById('scheduleSession').value = sessionType;
     }
 
     function quickAddSession(sessionType, startTime, endTime) {
-      const today = new Date();
-      const dateStr = today.toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0];
+      const entry = {
+        id: Date.now().toString(),
+        date: today,
+        startTime: startTime,
+        endTime: endTime,
+        sessionType: sessionType,
+        notes: '',
+        status: 'Scheduled'
+      };
       
-      document.getElementById('scheduleStartDateTime').value = `${dateStr} ${startTime}:00`;
-      document.getElementById('scheduleEndDateTime').value = `${dateStr} ${endTime}:00`;
-      document.getElementById('scheduleSession').value = sessionType;
-      document.getElementById('scheduleDuration').value = calculateDuration(`${dateStr} ${startTime}:00`, `${dateStr} ${endTime}:00`);
+      const schedule = getSchedule();
+      schedule.unshift(entry);
+      saveSchedule(schedule);
+      renderSchedule();
+    }
+
+    function editScheduleEntry(index) {
+      const schedule = getSchedule();
+      const entry = schedule[index];
+      
+      // Create datetime strings in text format
+      const startDateTime = `${entry.date} ${entry.startTime}:00`;
+      const endDateTime = `${entry.date} ${entry.endTime}:00`;
+      
+      // Populate form with current values
+      document.getElementById('scheduleStartDateTime').value = startDateTime;
+      document.getElementById('scheduleEndDateTime').value = endDateTime;
+      document.getElementById('scheduleSession').value = entry.sessionType;
+      document.getElementById('scheduleNotes').value = entry.notes || '';
+      document.getElementById('scheduleStatus').value = entry.status;
+      
+      // Calculate and display duration
+      const startDate = new Date(startDateTime.replace(' ', 'T'));
+      const endDate = new Date(endDateTime.replace(' ', 'T'));
+      const durationMs = endDate - startDate;
+      const hours = Math.floor(durationMs / (1000 * 60 * 60));
+      const minutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('scheduleDuration').value = `${hours}h ${minutes}m`;
+      
+      // Remove the old entry and add the updated one
+      schedule.splice(index, 1);
+      saveSchedule(schedule);
+      renderSchedule();
+    }
+
+    function deleteScheduleEntry(index) {
+      if (!confirm('Are you sure you want to delete this schedule entry?')) return;
+      
+      const schedule = getSchedule();
+      schedule.splice(index, 1);
+      saveSchedule(schedule);
+      renderSchedule();
     }
 
     function exportScheduleCSV() {
       const schedule = getSchedule();
-      if (schedule.length === 0) {
-        alert('No schedule entries to export');
-        return;
-      }
-
       const headers = ['Date', 'Start Time', 'End Time', 'Duration', 'Session Type', 'Notes', 'Status'];
+      let csv = headers.join(',') + '\n';
       
-      const csvContent = [
-        headers.join(','),
-        ...schedule.map(entry => [
-          formatDate(entry.startDateTime),
-          entry.startDateTime.split(' ')[1],
-          entry.endDateTime.split(' ')[1],
-          entry.duration,
+      schedule.forEach(entry => {
+        const duration = calculateDuration(entry.startTime, entry.endTime);
+        let row = [
+          entry.date,
+          entry.startTime,
+          entry.endTime,
+          duration,
           entry.sessionType,
           entry.notes || '',
           entry.status
-        ].join(','))
-      ].join('\n');
-
+        ].map(v => '"' + (v ? v.replace(/"/g, '""') : '') + '"').join(',');
+        csv += row + '\n';
+      });
+      
+      // Generate filename with current date and time
       const now = new Date();
-      const dateStr = now.toISOString().split('T')[0];
-      const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-').substring(0, 5);
+      const dateStr = now.toLocaleDateString('en-CA');
+      const timeStr = now.toLocaleTimeString('en-US', { 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      }).replace(':', '-');
       const filename = `trading_schedule_${dateStr}_${timeStr}.csv`;
-
-      const blob = new Blob([csvContent], { type: 'text/csv' });
-      const url = window.URL.createObjectURL(blob);
+      
+      const blob = new Blob([csv], {type: 'text/csv'});
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
+      document.body.appendChild(a);
       a.click();
-      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
     function clearCompletedSessions() {
-      if (confirm('Are you sure you want to clear all completed sessions?')) {
-        const schedule = getSchedule();
-        const filteredSchedule = schedule.filter(entry => entry.status !== 'Completed');
-        saveSchedule(filteredSchedule);
-        renderSchedule();
-      }
+      if (!confirm('Are you sure you want to clear all completed sessions?')) return;
+      
+      const schedule = getSchedule();
+      const filtered = schedule.filter(entry => entry.status !== 'Completed');
+      saveSchedule(filtered);
+      renderSchedule();
     }
   </script>
 </body>

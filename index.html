@@ -53,7 +53,6 @@
           id="searchInput" 
           class="search-input"
           placeholder="Search technical indicators, patterns, or concepts..." 
-          onkeyup="searchContent()"
         >
         <div class="search-icon">🔍</div>
       </div>
@@ -62,63 +61,63 @@
   </div>
   
   <div class="tabs">
-    <button class="tab-button active" onclick="openTab('knowledge-base', this)">Knowledge Base</button>
-    <button class="tab-button" onclick="openTab('trading-history', this)">Trading History</button>
-    <button class="tab-button" onclick="openTab('trading-schedule', this)">Trading Schedule</button>
+    <button class="tab-button active" data-tab="knowledge-base">Knowledge Base</button>
+    <button class="tab-button" data-tab="trading-history">Trading History</button>
+    <button class="tab-button" data-tab="trading-schedule">Trading Schedule</button>
   </div>
 
   <div id="knowledge-base" class="tab-content active">
     <!-- Market Structure Section -->
     <div class="section">
       <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">🏗️ Market Structure</h3>
-      <div class="collapsible" onclick="toggleContent(this)">Break of Structure (BoS)</div>
+      <div class="collapsible">Break of Structure (BoS)</div>
       <div class="content">
         <div class="card">Occurs when price closes above/below a significant high/low, confirming trend continuation or reversal.</div>
       </div>
-      <div class="collapsible" onclick="toggleContent(this)">Change of Character (ChoCh)</div>
+      <div class="collapsible">Change of Character (ChoCh)</div>
       <div class="content">
         <div class="card">Signals a shift in market structure from bullish to bearish or vice versa. Often marks the start of a new trend.</div>
-      </div>
     </div>
+  </div>
 
     <!-- Fair Value Gaps Section -->
     <div class="section">
       <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">⚡ Fair Value Gaps</h3>
-      <div class="collapsible" onclick="toggleContent(this)">Fair Value Gap (FVG)</div>
+      <div class="collapsible">Fair Value Gap (FVG)</div>
       <div class="content">
         <div class="card">A price imbalance or inefficiency between candles, often revisited by price. Used for entries or exits.</div>
-      </div>
     </div>
+  </div>
 
     <!-- EQH/EQL Section -->
     <div class="section">
       <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">📊 EQH/EQL</h3>
-      <div class="collapsible" onclick="toggleContent(this)">Equal Highs (EQH)</div>
+      <div class="collapsible">Equal Highs (EQH)</div>
       <div class="content">
         <div class="card">Indicates potential liquidity above resistance. Price may hunt these levels before reversing.</div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Equal Lows (EQL)</div>
+      <div class="collapsible">Equal Lows (EQL)</div>
       <div class="content">
         <div class="card">Suggests liquidity below support. Often targeted in stop hunts before price moves up.</div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Strong High</div>
+      <div class="collapsible">Strong High</div>
       <div class="content">
         <div class="card">A swing high with strong rejection and no follow-through. Often unbroken for long periods.</div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Weak Low</div>
+      <div class="collapsible">Weak Low</div>
       <div class="content">
         <div class="card">A swing low with multiple tests and little bounce. Likely to be broken.</div>
-      </div>
     </div>
+  </div>
 
     <!-- Candlestick Patterns Section -->
     <div class="section">
       <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">🟢 Bullish Patterns</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Bullish Engulfing</div>
+      <div class="collapsible">Bullish Engulfing</div>
       <div class="content">
         <div class="card">Two-candle reversal at the bottom of a downtrend. A large green candle fully engulfs the prior red candle. Shows buyer strength. Confirmation with a break above the green candle is ideal.</div>
         <div class="candlestick-diagram">
@@ -147,7 +146,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Hammer</div>
+      <div class="collapsible">Hammer</div>
       <div class="content">
         <div class="card">Reversal pattern after a downtrend. A small body on top with a long lower wick. Indicates strong buying after a price drop. Best confirmed with a green candle closing above the high.</div>
         <div class="candlestick-diagram">
@@ -176,7 +175,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Morning Star</div>
+      <div class="collapsible">Morning Star</div>
       <div class="content">
         <div class="card">Three-candle bullish reversal after a downtrend. Pattern: Long red candle → small indecision → strong green candle closing into first candle's body. Indicates sellers lost control. Confirmation is when green candle closes above midpoint of red candle.</div>
         <div class="candlestick-diagram">
@@ -205,7 +204,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Inverted Hammer</div>
+      <div class="collapsible">Inverted Hammer</div>
       <div class="content">
         <div class="card">Bullish reversal pattern with a small body at the bottom and a long upper wick. Similar to a hammer but inverted. Suggests potential reversal from downtrend. Confirmation needed with follow-up bullish candle.</div>
         <div class="candlestick-diagram">
@@ -234,7 +233,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Three White Soldiers</div>
+      <div class="collapsible">Three White Soldiers</div>
       <div class="content">
         <div class="card">Three consecutive long green candles with small wicks. Each candle opens within the previous candle's body and closes higher. Strong bullish momentum indicator. Best in oversold conditions.</div>
         <div class="candlestick-diagram">
@@ -267,7 +266,7 @@
     <div class="section">
       <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 1.3rem;">🔴 Bearish Patterns</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Bearish Engulfing</div>
+      <div class="collapsible">Bearish Engulfing</div>
       <div class="content">
         <div class="card">Two-candle reversal at the top of an uptrend. A large red candle fully engulfs the prior green candle. Signals sellers overpowering buyers. Confirmation is a close below the red candle's low.</div>
         <div class="candlestick-diagram">
@@ -296,7 +295,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Shooting Star</div>
+      <div class="collapsible">Shooting Star</div>
       <div class="content">
         <div class="card">Bearish reversal after an uptrend. A small body near the bottom with a long upper wick. Suggests buyers were rejected at highs. Confirmation is a close below the star's low.</div>
         <div class="candlestick-diagram">
@@ -325,7 +324,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Evening Star</div>
+      <div class="collapsible">Evening Star</div>
       <div class="content">
         <div class="card">Three-candle bearish reversal at the top of an uptrend. Pattern: Long green candle → small indecision → long red candle into first candle's body. Indicates buyers losing strength. Confirmation is a close below the midpoint of the first candle.</div>
         <div class="candlestick-diagram">
@@ -346,6 +345,7 @@
               <div class="candle-wick" style="height: 45%;"></div>
               <div class="candle-body candle-bearish candle-large"></div>
             </div>
+            
             <div class="candle">
               <div class="candle-wick" style="height: 20%;"></div>
               <div class="candle-body candle-bearish candle-small"></div>
@@ -354,7 +354,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Hanging Man</div>
+      <div class="collapsible">Hanging Man</div>
       <div class="content">
         <div class="card">Bearish reversal pattern that looks like a hammer but appears at the top of an uptrend. Small body at the top with long lower wick. Suggests potential reversal. Confirmation needed with bearish follow-up.</div>
         <div class="candlestick-diagram">
@@ -383,7 +383,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Three Black Crows</div>
+      <div class="collapsible">Three Black Crows</div>
       <div class="content">
         <div class="card">Three consecutive long red candles with small wicks. Each candle opens near the previous candle's close and closes lower. Strong bearish momentum indicator. Best in overbought conditions.</div>
         <div class="candlestick-diagram">
@@ -416,7 +416,7 @@
     <div class="section">
       <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">🟣 Neutral/Indecision Patterns</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Doji</div>
+      <div class="collapsible">Doji</div>
       <div class="content">
         <div class="card">A Doji has equal open and close prices, forming a cross shape. It signals market indecision and possible trend exhaustion. Appears after long bullish or bearish candles. Confirmation with the next candle is advised.</div>
         <div class="candlestick-diagram">
@@ -445,7 +445,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Spinning Top</div>
+      <div class="collapsible">Spinning Top</div>
       <div class="content">
         <div class="card">Small body with long upper and lower wicks. Indicates market indecision and potential trend reversal. The longer the wicks, the more indecision. Confirmation needed from subsequent candles.</div>
         <div class="candlestick-diagram">
@@ -469,17 +469,17 @@
             <div class="candle">
               <div class="candle-wick" style="height: 30%;"></div>
               <div class="candle-body candle-bearish candle-small"></div>
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Trend Indicators Section -->
     <div class="section">
       <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">📈 Trend Direction Indicators</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Moving Averages (MA)</div>
+      <div class="collapsible">Moving Averages (MA)</div>
       <div class="content">
         <div class="card">
           <strong>Simple Moving Average (SMA):</strong> Average price over a specific period. Most common: 20, 50, 100, 200 periods.<br><br>
@@ -488,7 +488,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">MACD (Moving Average Convergence Divergence)</div>
+      <div class="collapsible">MACD (Moving Average Convergence Divergence)</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> MACD line (12 EMA - 26 EMA), Signal line (9 EMA of MACD), Histogram (MACD - Signal).<br><br>
@@ -498,7 +498,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Parabolic SAR</div>
+      <div class="collapsible">Parabolic SAR</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Trend following and stop-loss placement.<br><br>
@@ -509,7 +509,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">ADX (Average Directional Index)</div>
+      <div class="collapsible">ADX (Average Directional Index)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Measures trend strength, not direction.<br><br>
@@ -520,7 +520,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Ichimoku Cloud</div>
+      <div class="collapsible">Ichimoku Cloud</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> Tenkan-sen (9-period average), Kijun-sen (26-period average), Senkou Span A & B (cloud), Chikou Span (lagging).<br><br>
@@ -536,7 +536,7 @@
     <div class="section">
       <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">⚡ Momentum & Oscillator Indicators</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">RSI (Relative Strength Index)</div>
+      <div class="collapsible">RSI (Relative Strength Index)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Measures speed and magnitude of price changes.<br><br>
@@ -547,7 +547,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Stochastic Oscillator</div>
+      <div class="collapsible">Stochastic Oscillator</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> %K line (current price vs range), %D line (3-period SMA of %K).<br><br>
@@ -559,7 +559,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Williams %R</div>
+      <div class="collapsible">Williams %R</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Momentum oscillator measuring overbought/oversold levels.<br><br>
@@ -571,7 +571,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">CCI (Commodity Channel Index)</div>
+      <div class="collapsible">CCI (Commodity Channel Index)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Identifies cyclical trends and overbought/oversold conditions.<br><br>
@@ -583,7 +583,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">MFI (Money Flow Index)</div>
+      <div class="collapsible">MFI (Money Flow Index)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Volume-weighted RSI, combines price and volume.<br><br>
@@ -600,7 +600,7 @@
     <div class="section">
       <h3 style="color: #f59e0b; margin-bottom: 15px; font-size: 1.3rem;">📊 Volatility & Range Indicators</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Bollinger Bands</div>
+      <div class="collapsible">Bollinger Bands</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> Middle band (20 SMA), Upper/Lower bands (±2 standard deviations).<br><br>
@@ -612,7 +612,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">ATR (Average True Range)</div>
+      <div class="collapsible">ATR (Average True Range)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Measures market volatility, not direction.<br><br>
@@ -624,7 +624,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Keltner Channel</div>
+      <div class="collapsible">Keltner Channel</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> Middle line (20 EMA), Upper/Lower bands (ATR multiplier).<br><br>
@@ -635,7 +635,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Donchian Channel</div>
+      <div class="collapsible">Donchian Channel</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> Upper (highest high), Lower (lowest low), Middle (average).<br><br>
@@ -651,7 +651,7 @@
     <div class="section">
       <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 1.3rem;">📈 Volume & Market Structure</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Volume Analysis</div>
+      <div class="collapsible">Volume Analysis</div>
       <div class="content">
         <div class="card">
           <strong>High Volume:</strong> Confirms price movement, shows strong conviction.<br><br>
@@ -662,7 +662,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">VWAP (Volume Weighted Average Price)</div>
+      <div class="collapsible">VWAP (Volume Weighted Average Price)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Average price weighted by volume, fair value indicator.<br><br>
@@ -673,7 +673,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Accumulation/Distribution Line</div>
+      <div class="collapsible">Accumulation/Distribution Line</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Measures buying/selling pressure based on price and volume.<br><br>
@@ -684,7 +684,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Chaikin Money Flow</div>
+      <div class="collapsible">Chaikin Money Flow</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Volume-weighted average of accumulation/distribution.<br><br>
@@ -696,7 +696,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Volume Profile</div>
+      <div class="collapsible">Volume Profile</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Shows volume at different price levels.<br><br>
@@ -715,7 +715,7 @@
     <div class="section">
       <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">⚡ Momentum & Oscillator Indicators</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">RSI (Relative Strength Index)</div>
+      <div class="collapsible">RSI (Relative Strength Index)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Measures speed and magnitude of price changes.<br><br>
@@ -726,7 +726,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Stochastic Oscillator</div>
+      <div class="collapsible">Stochastic Oscillator</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> %K line (current price vs range), %D line (3-period SMA of %K).<br><br>
@@ -738,7 +738,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Williams %R</div>
+      <div class="collapsible">Williams %R</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Momentum oscillator measuring overbought/oversold levels.<br><br>
@@ -750,7 +750,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">CCI (Commodity Channel Index)</div>
+      <div class="collapsible">CCI (Commodity Channel Index)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Identifies cyclical trends and overbought/oversold conditions.<br><br>
@@ -762,7 +762,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">MFI (Money Flow Index)</div>
+      <div class="collapsible">MFI (Money Flow Index)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Volume-weighted RSI, combines price and volume.<br><br>
@@ -780,7 +780,7 @@
     <div class="section">
       <h3 style="color: #f59e0b; margin-bottom: 15px; font-size: 1.3rem;">📊 Volatility & Range Indicators</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Bollinger Bands</div>
+      <div class="collapsible">Bollinger Bands</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> Middle band (20 SMA), Upper/Lower bands (±2 standard deviations).<br><br>
@@ -792,7 +792,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">ATR (Average True Range)</div>
+      <div class="collapsible">ATR (Average True Range)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Measures market volatility, not direction.<br><br>
@@ -804,7 +804,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Keltner Channel</div>
+      <div class="collapsible">Keltner Channel</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> Middle line (20 EMA), Upper/Lower bands (ATR multiplier).<br><br>
@@ -815,7 +815,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Donchian Channel</div>
+      <div class="collapsible">Donchian Channel</div>
       <div class="content">
         <div class="card">
           <strong>Components:</strong> Upper (highest high), Lower (lowest low), Middle (average).<br><br>
@@ -832,7 +832,7 @@
     <div class="section">
       <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 1.3rem;">📈 Volume & Market Structure</h3>
       
-      <div class="collapsible" onclick="toggleContent(this)">Volume Analysis</div>
+      <div class="collapsible">Volume Analysis</div>
       <div class="content">
         <div class="card">
           <strong>High Volume:</strong> Confirms price movement, shows strong conviction.<br><br>
@@ -843,7 +843,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">VWAP (Volume Weighted Average Price)</div>
+      <div class="collapsible">VWAP (Volume Weighted Average Price)</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Average price weighted by volume, fair value indicator.<br><br>
@@ -854,7 +854,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Accumulation/Distribution Line</div>
+      <div class="collapsible">Accumulation/Distribution Line</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Measures buying/selling pressure based on price and volume.<br><br>
@@ -865,7 +865,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Chaikin Money Flow</div>
+      <div class="collapsible">Chaikin Money Flow</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Volume-weighted average of accumulation/distribution.<br><br>
@@ -877,7 +877,7 @@
         </div>
       </div>
 
-      <div class="collapsible" onclick="toggleContent(this)">Volume Profile</div>
+      <div class="collapsible">Volume Profile</div>
       <div class="content">
         <div class="card">
           <strong>Purpose:</strong> Shows volume at different price levels.<br><br>
@@ -909,8 +909,8 @@
             <div class="counter-content">
               <div class="counter-label">Total P&L</div>
               <div id="totalPnLValue" class="counter-value">0.0000</div>
-            </div>
-          </div>
+        </div>
+      </div>
 
           <!-- Today's Trade Count Counter -->
           <div id="todayTradeCounter" class="counter-card counter-success">
@@ -929,16 +929,16 @@
         </div>
         
         <div class="action-buttons">
-          <button onclick="exportCSV()" class="btn-export">Export</button>
-          <label for="importCSV" class="btn-import">Import<input id="importCSV" type="file" accept=".csv" style="display: none;" onchange="importCSVFile(event)" /></label>
-          <button onclick="showBulkPaste()" class="btn-bulk">Bulk Paste</button>
-          <button onclick="clearAllTrades()" class="btn-clear">Clear All</button>
+          <button class="btn-export">Export</button>
+          <label for="importCSV" class="btn-import">Import<input id="importCSV" type="file" accept=".csv" style="display: none;" /></label>
+          <button class="btn-bulk">Bulk Paste</button>
+          <button class="btn-clear">Clear All</button>
         </div>
       </div>
 
       <!-- Add Trade Toggle Button -->
       <div class="add-trade-toggle">
-        <button id="toggleAddTradeBtn" onclick="toggleAddTradeForm()" class="btn-primary">
+        <button id="toggleAddTradeBtn" class="btn-primary">
           <span id="toggleBtnText">➕ Add New Trade</span>
         </button>
       </div>
@@ -946,7 +946,7 @@
       <!-- Add Trade Form (Hidden by default) -->
       <div id="addTradeForm" class="add-trade-form">
         <h4>Add New Trade</h4>
-        <form id="tradeForm" onsubmit="addTrade(event)">
+        <form id="tradeForm">
           <div style="margin-bottom: 16px;">
             <label for="tradeInput" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Paste trade (tab-separated):</label>
             <div style="color: #9ca3af; font-size: 0.8rem; margin-bottom: 12px; line-height: 1.4;">
@@ -998,8 +998,8 @@
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
         <h3 style="color: #8b5cf6; font-size: 1.5rem; font-weight: 300; margin: 0;">Trading Schedule</h3>
         <div style="display: flex; gap: 12px;">
-          <button onclick="exportScheduleCSV()" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
-          <button onclick="clearCompletedSessions()" style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Clear Completed</button>
+          <button style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
+          <button style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Clear Completed</button>
         </div>
       </div>
 
@@ -1026,15 +1026,15 @@
       <!-- Schedule Form -->
       <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-bottom: 30px;">
         <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 500; margin-bottom: 20px;">Add New Session</h4>
-        <form id="scheduleForm" onsubmit="addScheduleEntry(event)">
+        <form id="scheduleForm">
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
             <div>
               <label for="scheduleStartDateTime" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Start Date & Time</label>
-              <input id="scheduleStartDateTime" type="text" required placeholder="2025-06-20 21:51:18" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;" onchange="autoDetectSession()" onblur="autoDetectSession()">
+              <input id="scheduleStartDateTime" type="text" required placeholder="2025-06-20 21:51:18" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
             </div>
             <div>
               <label for="scheduleEndDateTime" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">End Date & Time</label>
-              <input id="scheduleEndDateTime" type="text" required placeholder="2025-06-20 21:51:18" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;" onchange="autoDetectSession()" onblur="autoDetectSession()">
+              <input id="scheduleEndDateTime" type="text" required placeholder="2025-06-20 21:51:18" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
             </div>
             <div>
               <label for="scheduleSession" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Session Type</label>
@@ -1357,12 +1357,12 @@
       <div style="margin-top: 30px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px;">
         <h4 style="color: #8b5cf6; margin-bottom: 16px; font-weight: 500;">Quick Add Common Sessions</h4>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <button onclick="quickAddSession('London Open', '15:00', '17:00')" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟡 London Open (3PM-5PM)</button>
-          <button onclick="quickAddSession('London + NY Overlap', '20:00', '00:00')" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 London+NY Overlap (8PM-12AM)</button>
-          <button onclick="quickAddSession('New York Open', '21:00', '23:00')" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 NY Open (9PM-11PM)</button>
-          <button onclick="quickAddSession('NY Drift/Closing', '00:00', '02:00')" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 NY Drift (12AM-2AM)</button>
-          <button onclick="quickAddSession('Asian Session', '02:00', '10:00')" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🔵 Asian (2AM-10AM)</button>
-          <button onclick="quickAddSession('Pre-London', '10:00', '14:00')" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 Pre-London (10AM-2PM)</button>
+          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟡 London Open (3PM-5PM)</button>
+          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 London+NY Overlap (8PM-12AM)</button>
+          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 NY Open (9PM-11PM)</button>
+          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 NY Drift (12AM-2AM)</button>
+          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🔵 Asian (2AM-10AM)</button>
+          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 Pre-London (10AM-2PM)</button>
         </div>
       </div>
     </div>
@@ -1370,22 +1370,22 @@
 
   <div id="bulkPasteModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
     <div style="background:#222; padding:30px 20px 20px 20px; border-radius:10px; max-width:500px; width:95%; position:relative;">
-      <button onclick="hideBulkPaste()" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer;">&times;</button>
+      <button style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer;">&times;</button>
       <h3 style="color:#8b5cf6; margin-bottom:10px;">Bulk Paste Trades</h3>
       <div style="color:#d1d5db; font-size:0.95em; margin-bottom:8px;">Paste one or more tab-separated trades, one per line.<br>Format: Contracts, Filled Type, Filled/Total, Filled Price/Order Price, Fee Rate, Trading Fee, Trade Type, Order Type, Transaction ID, Transaction Time, <b>Risk Amount</b></div>
       <textarea id="bulkPasteInput" rows="8" style="width:100%; border-radius:6px; border:1px solid #8b5cf6; padding:10px; background:#18181b; color:#fff; margin-bottom:10px;"></textarea>
       <div id="bulkPasteError" style="color:#ef4444; font-size:0.95em; margin-bottom:8px; display:none;"></div>
       <div id="bulkPasteSummary" style="color:#10b981; font-size:0.95em; margin-bottom:8px; display:none;"></div>
-      <button onclick="submitBulkPaste()" style="background:#8b5cf6; color:#fff; border:none; border-radius:4px; padding:8px 20px; font-weight:bold; cursor:pointer;">Add Trades</button>
+      <button style="background:#8b5cf6; color:#fff; border:none; border-radius:4px; padding:8px 20px; font-weight:bold; cursor:pointer;">Add Trades</button>
     </div>
   </div>
 
   <!-- Edit Trade Modal -->
   <div id="editTradeModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
     <div style="background:#222; padding:30px 20px 20px 20px; border-radius:10px; max-width:600px; width:95%; position:relative;">
-      <button onclick="hideEditTrade()" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer;">&times;</button>
+      <button style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer;">&times;</button>
       <h3 style="color:#8b5cf6; margin-bottom:20px;">Edit Trade</h3>
-      <form id="editTradeForm" onsubmit="saveEditTrade(event)" style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+      <form id="editTradeForm" style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
         <div>
           <label for="editContracts" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Contracts</label>
           <input id="editContracts" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
@@ -1428,1242 +1428,17 @@
         </div>
         <div style="grid-column: 1 / -1; display:flex; gap:10px; margin-top:10px;">
           <button type="submit" style="background:#10b981; color:#fff; border:none; border-radius:4px; padding:10px 20px; font-weight:bold; cursor:pointer; flex:1;">Save Changes</button>
-          <button type="button" onclick="hideEditTrade()" style="background:#6b7280; color:#fff; border:none; border-radius:4px; padding:10px 20px; font-weight:bold; cursor:pointer; flex:1;">Cancel</button>
+          <button type="button" style="background:#6b7280; color:#fff; border:none; border-radius:4px; padding:10px 20px; font-weight:bold; cursor:pointer; flex:1;">Cancel</button>
         </div>
       </form>
     </div>
   </div>
 
-  <script>
-    // Simple tab switching function
-    function openTab(tabId, buttonElement) {
-      // Remove active class from all tabs and contents
-      const buttons = document.querySelectorAll('.tab-button');
-      const contents = document.querySelectorAll('.tab-content');
-      
-      buttons.forEach(btn => btn.classList.remove('active'));
-      contents.forEach(tab => tab.classList.remove('active'));
-      
-      // Add active class to selected tab and content
-      document.getElementById(tabId).classList.add('active');
-      if (buttonElement) {
-        buttonElement.classList.add('active');
-      }
-      // Save last active tab
-      localStorage.setItem('lastActiveTab', tabId);
-    }
-
-    // Toggle content sections
-    function toggleContent(el) {
-      // Close all other content sections first
-      const allContents = document.querySelectorAll('.content');
-      const allCollapsibles = document.querySelectorAll('.collapsible');
-      
-      allContents.forEach(content => {
-        if (content !== el.nextElementSibling) {
-          content.style.display = 'none';
-        }
-      });
-      
-      // Remove active class from all collapsibles
-      allCollapsibles.forEach(collapsible => {
-        collapsible.classList.remove('active');
-      });
-      
-      // Toggle the clicked content
-      const content = el.nextElementSibling;
-      if (content.style.display === 'block') {
-        content.style.display = 'none';
-        el.classList.remove('active');
-      } else {
-        content.style.display = 'block';
-        el.classList.add('active');
-      }
-    }
-
-    // Search functionality
-    function searchContent() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      const searchResults = document.getElementById('searchResults');
-      
-      if (searchTerm.length < 2) {
-        searchResults.style.display = 'none';
-        return;
-      }
-      
-      const results = [];
-      const collapsibles = document.querySelectorAll('.collapsible');
-      
-      collapsibles.forEach(collapsible => {
-        const title = collapsible.textContent.toLowerCase();
-        const content = collapsible.nextElementSibling.querySelector('.card').textContent.toLowerCase();
-        const tabContent = collapsible.closest('.tab-content');
-        const category = getCategoryName(tabContent.id);
-        
-        if (title.includes(searchTerm) || content.includes(searchTerm)) {
-          const preview = collapsible.nextElementSibling.querySelector('.card').textContent.substring(0, 150) + '...';
-          results.push({
-            title: collapsible.textContent,
-            category: category,
-            preview: preview,
-            tabId: tabContent.id,
-            element: collapsible
-          });
-        }
-      });
-      
-      displaySearchResults(results, searchTerm);
-    }
-    
-    function getCategoryName(tabId) {
-      const categoryMap = {
-        'structure': 'Market Structure',
-        'gaps': 'Fair Value Gaps',
-        'levels': 'EQH/EQL',
-        'candles': 'Candlestick Patterns',
-        'trend': 'Trend Indicators',
-        'momentum': 'Momentum Indicators',
-        'volatility': 'Volatility Indicators',
-        'volume': 'Volume Indicators'
-      };
-      return categoryMap[tabId] || 'Unknown';
-    }
-    
-    function displaySearchResults(results, searchTerm) {
-      const searchResults = document.getElementById('searchResults');
-      
-      if (results.length === 0) {
-        searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-title">No results found</div><div class="search-result-preview">Try different keywords or check spelling</div></div>';
-        searchResults.style.display = 'block';
-        return;
-      }
-      
-      let html = '';
-      results.slice(0, 8).forEach(result => {
-        const highlightedTitle = highlightText(result.title, searchTerm);
-        const highlightedPreview = highlightText(result.preview, searchTerm);
-        
-        html += `
-          <div class="search-result-item" onclick="navigateToResult('${result.tabId}', '${result.title}')">
-            <div class="search-result-title">${highlightedTitle}</div>
-            <div class="search-result-category">${result.category}</div>
-            <div class="search-result-preview">${highlightedPreview}</div>
-          </div>
-        `;
-      });
-      
-      if (results.length > 8) {
-        html += `<div class="search-result-item"><div class="search-result-preview">... and ${results.length - 8} more results</div></div>`;
-      }
-      
-      searchResults.innerHTML = html;
-      searchResults.style.display = 'block';
-    }
-    
-    function highlightText(text, searchTerm) {
-      const regex = new RegExp(`(${searchTerm})`, 'gi');
-      return text.replace(regex, '<span class="highlight">$1</span>');
-    }
-    
-    function navigateToResult(tabId, title) {
-      // Switch to the correct tab
-      const tabButton = document.querySelector(`[onclick*="'${tabId}'"]`);
-      if (tabButton) {
-        openTab(tabId, tabButton);
-      }
-      
-      // Find and expand the specific item
-      setTimeout(() => {
-        const collapsibles = document.querySelectorAll('.collapsible');
-        collapsibles.forEach(collapsible => {
-          if (collapsible.textContent === title) {
-            // Close all others first
-            const allContents = document.querySelectorAll('.content');
-            const allCollapsibles = document.querySelectorAll('.collapsible');
-            
-            allContents.forEach(content => {
-              content.style.display = 'none';
-            });
-            
-            allCollapsibles.forEach(coll => {
-              coll.classList.remove('active');
-            });
-            
-            // Open the target item
-            collapsible.classList.add('active');
-            collapsible.nextElementSibling.style.display = 'block';
-            
-            // Scroll to the item
-            collapsible.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        });
-      }, 100);
-      
-      // Clear search
-      document.getElementById('searchInput').value = '';
-      document.getElementById('searchResults').style.display = 'none';
-    }
-    
-    // Close search results when clicking outside
-    document.addEventListener('click', function(event) {
-      const searchResults = document.getElementById('searchResults');
-      const searchInput = document.getElementById('searchInput');
-      
-      if (!searchResults.contains(event.target) && !searchInput.contains(event.target)) {
-        searchResults.style.display = 'none';
-      }
-    });
-
-    // Trading History logic
-    const defaultTrades = [
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'151.650/Market',feeRate:'0.055%',tradingFee:'0.04170375',tradeType:'Close Long',orderType:'Market',transactionId:'421745f5',transactionTime:'2025-07-03 23:05:42'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'154.390/154.390',feeRate:'0.02%',tradingFee:'0.01543900',tradeType:'Open Long',orderType:'Limit',transactionId:'d57124de',transactionTime:'2025-07-03 21:52:49'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'153.470/Market',feeRate:'0.055%',tradingFee:'0.03376340',tradeType:'Close Short',orderType:'Market',transactionId:'26f7763a',transactionTime:'2025-07-03 21:31:35'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'152.790/152.790',feeRate:'0.02%',tradingFee:'0.01222320',tradeType:'Open Short',orderType:'Limit',transactionId:'23e5d61f',transactionTime:'2025-07-03 20:43:07'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.810/Market',feeRate:'0.055%',tradingFee:'0.17029100',tradeType:'Close Short',orderType:'Market',transactionId:'21ad4965',transactionTime:'2025-07-03 20:30:01'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.500/154.500',feeRate:'0.055%',tradingFee:'0.16995000',tradeType:'Open Short',orderType:'Limit',transactionId:'5d654d18',transactionTime:'2025-07-03 20:07:52'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'146.000/Market',feeRate:'0.055%',tradingFee:'0.40150000',tradeType:'Close Short',orderType:'Market',transactionId:'47faa02d',transactionTime:'2025-06-20 21:51:18'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'148.150/148.100',feeRate:'0.055%',tradingFee:'0.40741250',tradeType:'Open Short',orderType:'Limit',transactionId:'bcea1d95',transactionTime:'2025-06-20 20:15:55'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.500/Market',feeRate:'0.055%',tradingFee:'0.08002500',tradeType:'Close Short',orderType:'Market',transactionId:'966a573e',transactionTime:'2025-06-20 04:28:17'},
-      {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.440/145.370',feeRate:'0.055%',tradingFee:'0.07999200',tradeType:'Open Short',orderType:'Limit',transactionId:'a9552705',transactionTime:'2025-06-20 04:28:09'}
-    ];
-
-    function getTrades() {
-      const trades = localStorage.getItem('tradingHistory');
-      if (trades) {
-        const parsedTrades = JSON.parse(trades);
-        // Sort by transaction time in descending order (latest first)
-        return parsedTrades.sort((a, b) => {
-          const timeA = new Date(a.transactionTime);
-          const timeB = new Date(b.transactionTime);
-          return timeB - timeA; // Descending order
-        });
-      }
-      localStorage.setItem('tradingHistory', JSON.stringify(defaultTrades));
-      return [...defaultTrades].sort((a, b) => {
-        const timeA = new Date(a.transactionTime);
-        const timeB = new Date(b.transactionTime);
-        return timeB - timeA; // Descending order
-      });
-    }
-
-    function getTodayTradesCount() {
-      const trades = getTrades();
-      const today = new Date();
-      const todayString = today.toISOString().split('T')[0]; // YYYY-MM-DD format
-      
-      return trades.filter(trade => {
-        const tradeDate = new Date(trade.transactionTime);
-        const tradeDateString = tradeDate.toISOString().split('T')[0];
-        return tradeDateString === todayString;
-      }).length;
-    }
-    function saveTrades(trades) {
-      localStorage.setItem('tradingHistory', JSON.stringify(trades));
-    }
-    function renderTrades() {
-      const trades = getTrades();
-      const tbody = document.querySelector('#tradingHistoryTable tbody');
-      tbody.innerHTML = '';
-      let totalPnL = 0;
-      trades.forEach((trade, index) => {
-        const tr = document.createElement('tr');
-        tr.setAttribute('data-transaction-id', trade.transactionId);
-        tr.setAttribute('data-trade-type', /open/i.test(trade.tradeType) ? 'open' : (/close/i.test(trade.tradeType) ? 'close' : 'other'));
-        tr.classList.add('trade-row');
-        const pnl = calculatePnL(trade);
-        // Highlight open trades
-        if (/open/i.test(trade.tradeType)) {
-          tr.style.background = 'rgba(16, 185, 129, 0.10)'; // transparent green
-        }
-        const riskAmount = calculateRiskAmount(trade);
-        tr.innerHTML = `
-          <td style="text-align: center;">
-            <button onclick="editTrade(${index})" style="background:none; color:#8b5cf6; border:none; padding:2px 6px; margin-right:4px; cursor:pointer; font-size:0.8em;" title="Edit">✏️</button>
-            <button onclick="deleteTrade(${index})" style="background:none; color:#ef4444; border:none; padding:2px 6px; cursor:pointer; font-size:0.8em;" title="Delete">❌</button>
-          </td>
-          <td>${trade.contracts}</td>
-          <td>${trade.filledType}</td>
-          <td>${trade.filledTotal}</td>
-          <td>${trade.filledPriceOrderPrice}</td>
-          <td>${trade.feeRate}</td>
-          <td>${trade.tradingFee}</td>
-          <td class="trade-type-cell">${trade.tradeType}</td>
-          <td>${trade.orderType}</td>
-          <td>${trade.transactionId}</td>
-          <td>${trade.transactionTime}</td>
-          <td class="pnl-cell">${pnl}</td>
-          <td>${riskAmount}</td>
-        `;
-        tbody.appendChild(tr);
-        if (!isNaN(parseFloat(pnl))) totalPnL += parseFloat(pnl);
-        // Set PnL cell color
-        const pnlCell = tr.querySelector('.pnl-cell');
-        if (!isNaN(parseFloat(pnl))) {
-          if (parseFloat(pnl) > 0) pnlCell.style.color = '#10b981'; // green
-          else if (parseFloat(pnl) < 0) pnlCell.style.color = '#ef4444'; // red
-        }
-        // Set Trade Type cell color
-        const tradeTypeCell = tr.querySelector('.trade-type-cell');
-        if (/open/i.test(trade.tradeType)) tradeTypeCell.style.color = '#10b981'; // green
-        else if (/close/i.test(trade.tradeType)) tradeTypeCell.style.color = '#ef4444'; // red
-      });
-      // Add hover event listeners for row connection
-      setTimeout(() => {
-        const rows = document.querySelectorAll('.trade-row');
-        rows.forEach(row => {
-          row.addEventListener('mouseenter', function() {
-            highlightRelatedTrades(this);
-          });
-          row.addEventListener('mouseleave', function() {
-            clearTradeHighlights();
-          });
-        });
-      }, 10);
-      // Update total PnL counter
-      const totalPnLValue = document.getElementById('totalPnLValue');
-      const totalPnLCounter = document.getElementById('totalPnLCounter');
-      
-      if (totalPnLValue && totalPnLCounter) {
-        totalPnLValue.textContent = totalPnL.toFixed(4);
-        
-        // Update counter color and glow effect based on PnL
-        let color, glowColor, borderColor;
-        if (totalPnL > 0) {
-          color = '#10b981';
-          glowColor = 'rgba(16,185,129,0.3)';
-          borderColor = 'rgba(16,185,129,0.4)';
-        } else if (totalPnL < 0) {
-          color = '#ef4444';
-          glowColor = 'rgba(239,68,68,0.3)';
-          borderColor = 'rgba(239,68,68,0.4)';
-        } else {
-          color = '#ffffff';
-          glowColor = 'rgba(139,92,246,0.2)';
-          borderColor = 'rgba(139,92,246,0.2)';
-        }
-        
-        totalPnLValue.style.color = color;
-        totalPnLValue.style.textShadow = `0 0 10px ${glowColor}`;
-        totalPnLCounter.style.borderColor = borderColor;
-        
-        // Add animation effect
-        totalPnLCounter.style.transform = 'scale(1.02)';
-        setTimeout(() => {
-          totalPnLCounter.style.transform = 'scale(1)';
-        }, 200);
-      }
-
-      // Update today's trade count counter
-      const todayTradeValue = document.getElementById('todayTradeValue');
-      const todayTradeCounter = document.getElementById('todayTradeCounter');
-      
-      if (todayTradeValue && todayTradeCounter) {
-        const todayCount = getTodayTradesCount();
-        todayTradeValue.textContent = todayCount;
-        
-        // Add animation effect
-        todayTradeCounter.style.transform = 'scale(1.02)';
-        setTimeout(() => {
-          todayTradeCounter.style.transform = 'scale(1)';
-        }, 200);
-      }
-    }
-    function addTrade(e) {
-      e.preventDefault();
-      const input = document.getElementById('tradeInput');
-      const errorDiv = document.getElementById('tradeFormError');
-      errorDiv.style.display = 'none';
-      let value = input.value.trim();
-      // Split by tab or multiple spaces
-      let fields = value.split(/\t|\s{2,}/);
-      if (fields.length !== 10) {
-        errorDiv.textContent = 'Please enter exactly 10 tab-separated values.';
-        errorDiv.style.display = 'block';
-        return;
-      }
-      const trade = {
-        contracts: fields[0],
-        filledType: fields[1],
-        filledTotal: fields[2],
-        filledPriceOrderPrice: fields[3],
-        feeRate: fields[4],
-        tradingFee: fields[5],
-        tradeType: fields[6],
-        orderType: fields[7],
-        transactionId: fields[8],
-        transactionTime: fields[9]
-      };
-      const trades = getTrades();
-      trades.push(trade);
-      saveTrades(trades);
-      renderTrades();
-      input.value = '';
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      // Restore last active tab
-      const lastTab = localStorage.getItem('lastActiveTab');
-      if (lastTab && document.getElementById(lastTab)) {
-        const tabButton = Array.from(document.querySelectorAll('.tab-button')).find(btn => btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${lastTab}'`));
-        openTab(lastTab, tabButton);
-      }
-      renderTrades();
-      renderSchedule();
-      
-      // Set default datetime to current time in text format
-      const now = new Date();
-      const currentDateTime = now.getFullYear() + '-' + 
-        String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-        String(now.getDate()).padStart(2, '0') + ' ' + 
-        String(now.getHours()).padStart(2, '0') + ':' + 
-        String(now.getMinutes()).padStart(2, '0') + ':' + 
-        String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('scheduleStartDateTime').value = currentDateTime;
-      document.getElementById('scheduleEndDateTime').value = currentDateTime;
-    });
-
-    // Calculate Profit/Loss based on entry/exit, size, trade type, and fee
-    function calculatePnL(trade) {
-      // Parse size (first value in filledTotal)
-      let size = 0;
-      if (trade.filledTotal) {
-        size = parseFloat(trade.filledTotal.split('/')[0]);
-      }
-      // If tradeType contains 'Open', PnL is not applicable
-      if (/open/i.test(trade.tradeType)) return '-';
-      
-      // Find all matching open trades for this contract and trade type
-      const trades = getTrades();
-      const closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
-      let openTrades = [];
-      let totalOpenSize = 0;
-      
-      // Look for open trades after this close trade (since trades are sorted newest first)
-      for (let i = closeIndex + 1; i < trades.length; i++) {
-        const potentialOpen = trades[i];
-        if (
-          potentialOpen.contracts === trade.contracts &&
-          /open/i.test(potentialOpen.tradeType) &&
-          /short/i.test(potentialOpen.tradeType) === /short/i.test(trade.tradeType) // Match long/short direction
-        ) {
-          const openSize = parseFloat(potentialOpen.filledTotal.split('/')[0]);
-          openTrades.push({
-            trade: potentialOpen,
-            size: openSize
-          });
-          totalOpenSize += openSize;
-          
-          // Stop when we have enough open trades to match the close size
-          if (totalOpenSize >= size) {
-            break;
-          }
-        }
-      }
-      
-      // Check if we found enough open trades
-      if (openTrades.length === 0 || totalOpenSize < size) {
-        return '-';
-      }
-      
-      // Calculate weighted average entry price
-      let weightedEntryPrice = 0;
-      let totalOpenFee = 0;
-      let remainingSize = size;
-      
-      for (let openTradeInfo of openTrades) {
-        const openTrade = openTradeInfo.trade;
-        const openSize = openTradeInfo.size;
-        const entryPrice = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
-        const openFee = parseFloat(openTrade.tradingFee) || 0;
-        
-        // Use the smaller of remaining size or this open trade's size
-        const sizeToUse = Math.min(remainingSize, openSize);
-        const weight = sizeToUse / size;
-        
-        weightedEntryPrice += entryPrice * weight;
-        totalOpenFee += openFee * weight;
-        
-        remainingSize -= sizeToUse;
-        if (remainingSize <= 0) break;
-      }
-      
-      // Exit price from close trade
-      let exit = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
-      let closeFee = parseFloat(trade.tradingFee) || 0;
-      let totalFee = totalOpenFee + closeFee;
-      
-      if (isNaN(weightedEntryPrice) || isNaN(exit) || isNaN(size)) return '-';
-      
-      // Direction: Long or Short
-      let isLong = /long/i.test(trade.tradeType);
-      let isShort = /short/i.test(trade.tradeType);
-      let pnl = 0;
-      
-      if (isLong) {
-        pnl = (exit - weightedEntryPrice) * size - totalFee;
-      } else if (isShort) {
-        pnl = (weightedEntryPrice - exit) * size - totalFee;
-      } else {
-        return '-';
-      }
-      
-      return pnl.toFixed(4);
-    }
-
-    // Export trades as CSV
-    function exportCSV() {
-      const trades = getTrades();
-      const headers = ['Contracts','Filled Type','Filled/Total','Filled Price/Order Price','Fee Rate','Trading Fee','Trade Type','Order Type','Transaction ID','Transaction Time','Risk Amount'];
-      let csv = headers.join(',') + '\n';
-      trades.forEach(trade => {
-        let row = [
-          trade.contracts,
-          trade.filledType,
-          trade.filledTotal,
-          trade.filledPriceOrderPrice,
-          trade.feeRate,
-          trade.tradingFee,
-          trade.tradeType,
-          trade.orderType,
-          trade.transactionId,
-          trade.transactionTime,
-          calculateRiskAmount(trade)
-        ].map(v => '"' + (v ? v.replace(/"/g, '""') : '') + '"').join(',');
-        csv += row + '\n';
-      });
-      
-      // Generate filename with current date and time (without seconds)
-      const now = new Date();
-      const dateStr = now.toLocaleDateString('en-CA'); // YYYY-MM-DD format
-      const timeStr = now.toLocaleTimeString('en-US', { 
-        hour12: false, 
-        hour: '2-digit', 
-        minute: '2-digit' 
-      }).replace(':', '-'); // HH-MM format
-      const defaultFilename = `trading_history_${dateStr}_${timeStr}.csv`;
-      
-      let filename = prompt('Save as:', defaultFilename);
-      if (!filename) return;
-      if (!filename.toLowerCase().endsWith('.csv')) filename += '.csv';
-      const blob = new Blob([csv], {type: 'text/csv'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    // Import trades from CSV
-    function importCSVFile(event) {
-      const file = event.target.files[0];
-      const errorSpan = document.getElementById('importError');
-      errorSpan.style.display = 'none';
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const text = e.target.result;
-        const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
-        if (lines.length < 2) {
-          errorSpan.textContent = 'CSV file is empty or invalid.';
-          errorSpan.style.display = 'inline';
-          return;
-        }
-        const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
-        if (headers.length !== 11) {
-          errorSpan.textContent = 'CSV must have 11 columns (including Risk Amount).';
-          errorSpan.style.display = 'inline';
-          return;
-        }
-        const trades = getTrades();
-        let added = 0;
-        for (let i = 1; i < lines.length; i++) {
-          let row = lines[i];
-          // Handle quoted CSV
-          let values = [];
-          let inQuotes = false, value = '';
-          for (let c = 0; c < row.length; c++) {
-            let char = row[c];
-            if (char === '"') {
-              if (inQuotes && row[c+1] === '"') { value += '"'; c++; }
-              else inQuotes = !inQuotes;
-            } else if (char === ',' && !inQuotes) {
-              values.push(value); value = '';
-            } else {
-              value += char;
-            }
-          }
-          values.push(value);
-          if (values.length !== 11) continue;
-          const trade = {
-            contracts: values[0],
-            filledType: values[1],
-            filledTotal: values[2],
-            filledPriceOrderPrice: values[3],
-            feeRate: values[4],
-            tradingFee: values[5],
-            tradeType: values[6],
-            orderType: values[7],
-            transactionId: values[8],
-            transactionTime: values[9],
-            riskAmount: values[10]
-          };
-          // Prevent duplicate transactionId
-          if (!trades.some(t => t.transactionId === trade.transactionId)) {
-            trades.push(trade);
-            added++;
-          }
-        }
-        saveTrades(trades);
-        renderTrades();
-        if (added === 0) {
-          errorSpan.textContent = 'No new trades imported (duplicates skipped).';
-          errorSpan.style.display = 'inline';
-        }
-        event.target.value = '';
-      };
-      reader.readAsText(file);
-    }
-
-    // Bulk Paste logic
-    function showBulkPaste() {
-      document.getElementById('bulkPasteModal').style.display = 'flex';
-      document.getElementById('bulkPasteInput').value = '';
-      document.getElementById('bulkPasteError').style.display = 'none';
-      document.getElementById('bulkPasteSummary').style.display = 'none';
-    }
-    function hideBulkPaste() {
-      document.getElementById('bulkPasteModal').style.display = 'none';
-    }
-    function submitBulkPaste() {
-      const input = document.getElementById('bulkPasteInput').value.trim();
-      const errorDiv = document.getElementById('bulkPasteError');
-      const summaryDiv = document.getElementById('bulkPasteSummary');
-      errorDiv.style.display = 'none';
-      summaryDiv.style.display = 'none';
-      if (!input) {
-        errorDiv.textContent = 'Please paste at least one line.';
-        errorDiv.style.display = 'block';
-        return;
-      }
-      const lines = input.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
-      let added = 0, skipped = 0;
-      const trades = getTrades();
-      for (let line of lines) {
-        let fields = line.split(/\t/);
-        if (fields.length !== 10) { skipped++; continue; }
-        const trade = {
-          contracts: fields[0],
-          filledType: fields[1],
-          filledTotal: fields[2],
-          filledPriceOrderPrice: fields[3],
-          feeRate: fields[4],
-          tradingFee: fields[5],
-          tradeType: fields[6],
-          orderType: fields[7],
-          transactionId: fields[8],
-          transactionTime: fields[9]
-        };
-        if (!trades.some(t => t.transactionId === trade.transactionId)) {
-          trades.push(trade);
-          added++;
-        } else {
-          skipped++;
-        }
-      }
-      saveTrades(trades);
-      renderTrades();
-      summaryDiv.textContent = `Added ${added} trade(s), skipped ${skipped} (duplicates or invalid).`;
-      summaryDiv.style.display = 'block';
-      errorDiv.style.display = 'none';
-      if (added > 0) document.getElementById('bulkPasteInput').value = '';
-    }
-
-    // Auto-calculate risk amount for close trades
-    function calculateRiskAmount(trade) {
-      // Only for Close trades
-      if (!/close/i.test(trade.tradeType)) return '-';
-      
-      // Find all matching open trades for this contract and trade type
-      const trades = getTrades();
-      const closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
-      let openTrades = [];
-      let totalOpenSize = 0;
-      let size = parseFloat(trade.filledTotal.split('/')[0]);
-      
-      // Look for open trades after this close trade (since trades are sorted newest first)
-      for (let i = closeIndex + 1; i < trades.length; i++) {
-        const potentialOpen = trades[i];
-        if (
-          potentialOpen.contracts === trade.contracts &&
-          /open/i.test(potentialOpen.tradeType) &&
-          /short/i.test(potentialOpen.tradeType) === /short/i.test(trade.tradeType) // Match long/short direction
-        ) {
-          const openSize = parseFloat(potentialOpen.filledTotal.split('/')[0]);
-          openTrades.push({
-            trade: potentialOpen,
-            size: openSize
-          });
-          totalOpenSize += openSize;
-          
-          // Stop when we have enough open trades to match the close size
-          if (totalOpenSize >= size) {
-            break;
-          }
-        }
-      }
-      
-      // Check if we found enough open trades
-      if (openTrades.length === 0 || totalOpenSize < size) {
-        return '-';
-      }
-      
-      // Calculate weighted average entry price
-      let weightedEntryPrice = 0;
-      let remainingSize = size;
-      
-      for (let openTradeInfo of openTrades) {
-        const openTrade = openTradeInfo.trade;
-        const openSize = openTradeInfo.size;
-        const entryPrice = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
-        
-        // Use the smaller of remaining size or this open trade's size
-        const sizeToUse = Math.min(remainingSize, openSize);
-        const weight = sizeToUse / size;
-        
-        weightedEntryPrice += entryPrice * weight;
-        
-        remainingSize -= sizeToUse;
-        if (remainingSize <= 0) break;
-      }
-      
-      // Exit price from close trade
-      let exit = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
-      
-      if (isNaN(weightedEntryPrice) || isNaN(exit) || isNaN(size)) return '-';
-      
-      // Calculate risk amount (absolute difference between weighted entry and exit prices * size)
-      let risk = Math.abs(weightedEntryPrice - exit) * size;
-      return risk.toFixed(4);
-    }
-
-    // Edit and Delete Trade Functions
-    let editingTradeIndex = -1;
-
-    function editTrade(index) {
-      const trades = getTrades();
-      const trade = trades[index];
-      editingTradeIndex = index;
-      
-      // Populate the edit form
-      document.getElementById('editContracts').value = trade.contracts;
-      document.getElementById('editFilledType').value = trade.filledType;
-      document.getElementById('editFilledTotal').value = trade.filledTotal;
-      document.getElementById('editFilledPriceOrderPrice').value = trade.filledPriceOrderPrice;
-      document.getElementById('editFeeRate').value = trade.feeRate;
-      document.getElementById('editTradingFee').value = trade.tradingFee;
-      document.getElementById('editTradeType').value = trade.tradeType;
-      document.getElementById('editOrderType').value = trade.orderType;
-      document.getElementById('editTransactionId').value = trade.transactionId;
-      document.getElementById('editTransactionTime').value = trade.transactionTime;
-      
-      // Show the modal
-      document.getElementById('editTradeModal').style.display = 'flex';
-    }
-
-    function hideEditTrade() {
-      document.getElementById('editTradeModal').style.display = 'none';
-      editingTradeIndex = -1;
-    }
-
-    function saveEditTrade(event) {
-      event.preventDefault();
-      
-      if (editingTradeIndex === -1) return;
-      
-      const trades = getTrades();
-      
-      // Update the trade with new values
-      trades[editingTradeIndex] = {
-        contracts: document.getElementById('editContracts').value,
-        filledType: document.getElementById('editFilledType').value,
-        filledTotal: document.getElementById('editFilledTotal').value,
-        filledPriceOrderPrice: document.getElementById('editFilledPriceOrderPrice').value,
-        feeRate: document.getElementById('editFeeRate').value,
-        tradingFee: document.getElementById('editTradingFee').value,
-        tradeType: document.getElementById('editTradeType').value,
-        orderType: document.getElementById('editOrderType').value,
-        transactionId: document.getElementById('editTransactionId').value,
-        transactionTime: document.getElementById('editTransactionTime').value
-      };
-      
-      saveTrades(trades);
-      renderTrades();
-      hideEditTrade();
-    }
-
-    function deleteTrade(index) {
-      if (!confirm('Are you sure you want to delete this trade?')) return;
-      
-      const trades = getTrades();
-      trades.splice(index, 1);
-      saveTrades(trades);
-      renderTrades();
-    }
-
-    // Trading Schedule Functions
-    const defaultSchedule = [
-      {
-        id: '1',
-        date: '2025-01-15',
-        startTime: '08:00',
-        endTime: '12:00',
-        sessionType: 'London Open',
-        notes: 'Focus on major pairs',
-        status: 'Scheduled'
-      },
-      {
-        id: '2',
-        date: '2025-01-15',
-        startTime: '13:00',
-        endTime: '17:00',
-        sessionType: 'New York Open',
-        notes: 'High volatility expected',
-        status: 'Scheduled'
-      }
-    ];
-
-    function getSchedule() {
-      const schedule = localStorage.getItem('tradingSchedule');
-      if (schedule) return JSON.parse(schedule);
-      localStorage.setItem('tradingSchedule', JSON.stringify(defaultSchedule));
-      return [...defaultSchedule];
-    }
-
-    function saveSchedule(schedule) {
-      localStorage.setItem('tradingSchedule', JSON.stringify(schedule));
-    }
-
-    function renderSchedule() {
-      const schedule = getSchedule();
-      const tbody = document.querySelector('#scheduleTable tbody');
-      tbody.innerHTML = '';
-      
-      schedule.forEach((entry, index) => {
-        const tr = document.createElement('tr');
-        const duration = calculateDuration(entry.startTime, entry.endTime);
-        const statusColor = getStatusColor(entry.status);
-        const timeRange = `${entry.startTime} - ${entry.endTime}`;
-        
-        tr.innerHTML = `
-          <td style="text-align: center; padding: 12px;">
-            <button onclick="editScheduleEntry(${index})" style="background:none; color:#8b5cf6; border:none; padding:4px 8px; margin-right:4px; cursor:pointer; font-size:0.9em; border-radius:4px; transition: all 0.2s ease;" title="Edit">✏️</button>
-            <button onclick="deleteScheduleEntry(${index})" style="background:none; color:#ef4444; border:none; padding:4px 8px; cursor:pointer; font-size:0.9em; border-radius:4px; transition: all 0.2s ease;" title="Delete">❌</button>
-          </td>
-          <td style="padding: 12px; color: #d1d5db;">${formatDate(entry.date)}</td>
-          <td style="padding: 12px; color: #d1d5db;">${timeRange}</td>
-          <td style="padding: 12px; color: #9ca3af; font-size: 0.85rem;">${duration}</td>
-          <td style="padding: 12px; color: #d1d5db;">${entry.sessionType}</td>
-          <td style="padding: 12px; color: #9ca3af; font-size: 0.85rem;">${entry.notes || '-'}</td>
-          <td style="padding: 12px; color: ${statusColor}; font-weight: 500;">${entry.status}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-      
-      updateScheduleStats();
-    }
-
-    function calculateDuration(startTime, endTime) {
-      const start = new Date(`2000-01-01T${startTime}:00`);
-      const end = new Date(`2000-01-01T${endTime}:00`);
-      const diffMs = end - start;
-      const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-      const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-      return `${diffHours}h ${diffMinutes}m`;
-    }
-
-    function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      return date.toLocaleDateString('en-US', { 
-        weekday: 'short', 
-        month: 'short', 
-        day: 'numeric' 
-      });
-    }
-
-    function getStatusColor(status) {
-      switch(status) {
-        case 'Scheduled': return '#8b5cf6';
-        case 'In Progress': return '#f59e0b';
-        case 'Completed': return '#10b981';
-        case 'Cancelled': return '#ef4444';
-        default: return '#ffffff';
-      }
-    }
-
-    function updateScheduleStats() {
-      const schedule = getSchedule();
-      const total = schedule.length;
-      const completed = schedule.filter(s => s.status === 'Completed').length;
-      const scheduled = schedule.filter(s => s.status === 'Scheduled').length;
-      const inProgress = schedule.filter(s => s.status === 'In Progress').length;
-      
-      // Update stats cards
-      document.getElementById('totalSessions').textContent = total;
-      document.getElementById('scheduledSessions').textContent = scheduled;
-      document.getElementById('inProgressSessions').textContent = inProgress;
-      document.getElementById('completedSessions').textContent = completed;
-    }
-
-    function addScheduleEntry(event) {
-      event.preventDefault();
-      
-      const startDateTime = document.getElementById('scheduleStartDateTime').value;
-      const endDateTime = document.getElementById('scheduleEndDateTime').value;
-      
-      // Parse datetime inputs
-      let startDate, endDate;
-      
-      try {
-        if (startDateTime.includes('T')) {
-          startDate = new Date(startDateTime);
-        } else {
-          startDate = new Date(startDateTime.replace(' ', 'T'));
-        }
-        
-        if (endDateTime.includes('T')) {
-          endDate = new Date(endDateTime);
-        } else {
-          endDate = new Date(endDateTime.replace(' ', 'T'));
-        }
-        
-        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-          alert('Please enter valid datetime format: YYYY-MM-DD HH:MM:SS');
-          return;
-        }
-      } catch (e) {
-        alert('Please enter valid datetime format: YYYY-MM-DD HH:MM:SS');
-        return;
-      }
-      
-      const entry = {
-        id: Date.now().toString(),
-        date: startDate.toISOString().split('T')[0],
-        startTime: startDate.toTimeString().slice(0, 5),
-        endTime: endDate.toTimeString().slice(0, 5),
-        sessionType: document.getElementById('scheduleSession').value,
-        notes: document.getElementById('scheduleNotes').value,
-        status: document.getElementById('scheduleStatus').value
-      };
-      
-      const schedule = getSchedule();
-      schedule.unshift(entry);
-      saveSchedule(schedule);
-      renderSchedule();
-      
-      // Reset form
-      event.target.reset();
-      // Set default datetime to current time
-      const now = new Date();
-      const currentDateTime = now.getFullYear() + '-' + 
-        String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-        String(now.getDate()).padStart(2, '0') + ' ' + 
-        String(now.getHours()).padStart(2, '0') + ':' + 
-        String(now.getMinutes()).padStart(2, '0') + ':' + 
-        String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('scheduleStartDateTime').value = currentDateTime;
-      document.getElementById('scheduleEndDateTime').value = currentDateTime;
-    }
-
-    function autoDetectSession() {
-      const startDateTime = document.getElementById('scheduleStartDateTime').value;
-      const endDateTime = document.getElementById('scheduleEndDateTime').value;
-      
-      if (!startDateTime || !endDateTime) return;
-      
-      // Parse datetime strings (format: "2025-06-20 21:51:18")
-      let startDate, endDate;
-      
-      try {
-        // Handle different datetime formats
-        if (startDateTime.includes('T')) {
-          startDate = new Date(startDateTime);
-        } else {
-          // Convert "2025-06-20 21:51:18" to ISO format
-          startDate = new Date(startDateTime.replace(' ', 'T'));
-        }
-        
-        if (endDateTime.includes('T')) {
-          endDate = new Date(endDateTime);
-        } else {
-          endDate = new Date(endDateTime.replace(' ', 'T'));
-        }
-        
-        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-          return; // Invalid dates
-        }
-      } catch (e) {
-        return; // Invalid date format
-      }
-      
-      // Calculate duration
-      const durationMs = endDate - startDate;
-      if (durationMs < 0) return; // End time before start time
-      
-      const hours = Math.floor(durationMs / (1000 * 60 * 60));
-      const minutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
-      document.getElementById('scheduleDuration').value = `${hours}h ${minutes}m`;
-      
-      // Get hour in PH time
-      const startHour = startDate.getHours();
-      
-      // Auto-detect session type based on start time
-      let sessionType = '';
-      
-      if (startHour >= 15 && startHour < 17) {
-        sessionType = 'London Open';
-      } else if (startHour >= 20 && startHour < 24) {
-        sessionType = 'London + NY Overlap';
-      } else if (startHour >= 21 && startHour < 23) {
-        sessionType = 'New York Open';
-      } else if (startHour >= 0 && startHour < 2) {
-        sessionType = 'NY Drift/Closing';
-      } else if (startHour >= 2 && startHour < 10) {
-        sessionType = 'Asian Session';
-      } else if (startHour >= 10 && startHour < 14) {
-        sessionType = 'Pre-London';
-      } else {
-        sessionType = 'Custom';
-      }
-      
-      document.getElementById('scheduleSession').value = sessionType;
-    }
-
-    function quickAddSession(sessionType, startTime, endTime) {
-      const today = new Date().toISOString().split('T')[0];
-      const entry = {
-        id: Date.now().toString(),
-        date: today,
-        startTime: startTime,
-        endTime: endTime,
-        sessionType: sessionType,
-        notes: '',
-        status: 'Scheduled'
-      };
-      
-      const schedule = getSchedule();
-      schedule.unshift(entry);
-      saveSchedule(schedule);
-      renderSchedule();
-    }
-
-    function editScheduleEntry(index) {
-      const schedule = getSchedule();
-      const entry = schedule[index];
-      
-      // Create datetime strings in text format
-      const startDateTime = `${entry.date} ${entry.startTime}:00`;
-      const endDateTime = `${entry.date} ${entry.endTime}:00`;
-      
-      // Populate form with current values
-      document.getElementById('scheduleStartDateTime').value = startDateTime;
-      document.getElementById('scheduleEndDateTime').value = endDateTime;
-      document.getElementById('scheduleSession').value = entry.sessionType;
-      document.getElementById('scheduleNotes').value = entry.notes || '';
-      document.getElementById('scheduleStatus').value = entry.status;
-      
-      // Calculate and display duration
-      const startDate = new Date(startDateTime.replace(' ', 'T'));
-      const endDate = new Date(endDateTime.replace(' ', 'T'));
-      const durationMs = endDate - startDate;
-      const hours = Math.floor(durationMs / (1000 * 60 * 60));
-      const minutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
-      document.getElementById('scheduleDuration').value = `${hours}h ${minutes}m`;
-      
-      // Remove the old entry and add the updated one
-      schedule.splice(index, 1);
-      saveSchedule(schedule);
-      renderSchedule();
-    }
-
-    function deleteScheduleEntry(index) {
-      if (!confirm('Are you sure you want to delete this schedule entry?')) return;
-      
-      const schedule = getSchedule();
-      schedule.splice(index, 1);
-      saveSchedule(schedule);
-      renderSchedule();
-    }
-
-    function exportScheduleCSV() {
-      const schedule = getSchedule();
-      const headers = ['Date', 'Start Time', 'End Time', 'Duration', 'Session Type', 'Notes', 'Status'];
-      let csv = headers.join(',') + '\n';
-      
-      schedule.forEach(entry => {
-        const duration = calculateDuration(entry.startTime, entry.endTime);
-        let row = [
-          entry.date,
-          entry.startTime,
-          entry.endTime,
-          duration,
-          entry.sessionType,
-          entry.notes || '',
-          entry.status
-        ].map(v => '"' + (v ? v.replace(/"/g, '""') : '') + '"').join(',');
-        csv += row + '\n';
-      });
-      
-      // Generate filename with current date and time
-      const now = new Date();
-      const dateStr = now.toLocaleDateString('en-CA');
-      const timeStr = now.toLocaleTimeString('en-US', { 
-        hour12: false, 
-        hour: '2-digit', 
-        minute: '2-digit' 
-      }).replace(':', '-');
-      const filename = `trading_schedule_${dateStr}_${timeStr}.csv`;
-      
-      const blob = new Blob([csv], {type: 'text/csv'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    function clearAllTrades() {
-      if (!confirm('Are you sure you want to clear ALL trading history? This action cannot be undone.')) return;
-      
-      const trades = getTrades();
-      if (trades.length === 0) {
-        alert('No trades to clear.');
-        return;
-      }
-      
-      // Clear all trades
-      saveTrades([]);
-      renderTrades();
-      alert(`Cleared ${trades.length} trade(s) from history.`);
-    }
-
-    function clearCompletedSessions() {
-      if (!confirm('Are you sure you want to clear all completed sessions?')) return;
-      
-      const schedule = getSchedule();
-      const filtered = schedule.filter(entry => entry.status !== 'Completed');
-      saveSchedule(filtered);
-      renderSchedule();
-    }
-
-    // Highlight related open/close trades on hover
-    function highlightRelatedTrades(row) {
-      const trades = getTrades();
-      const transactionId = row.getAttribute('data-transaction-id');
-      const tradeType = row.getAttribute('data-trade-type');
-      // Find the trade object
-      const trade = trades.find(t => t.transactionId === transactionId);
-      if (!trade) return;
-      // For close: highlight all matching open trades used for PnL
-      // For open: highlight all close trades that use this open
-      const rows = document.querySelectorAll('.trade-row');
-      if (tradeType === 'close') {
-        // Find all open trades used for this close
-        let size = parseFloat(trade.filledTotal.split('/')[0]);
-        let closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
-        let openIds = [];
-        let totalOpenSize = 0;
-        for (let i = closeIndex + 1; i < trades.length; i++) {
-          const potentialOpen = trades[i];
-          if (
-            potentialOpen.contracts === trade.contracts &&
-            /open/i.test(potentialOpen.tradeType) &&
-            /short/i.test(potentialOpen.tradeType) === /short/i.test(trade.tradeType)
-          ) {
-            const openSize = parseFloat(potentialOpen.filledTotal.split('/')[0]);
-            openIds.push(potentialOpen.transactionId);
-            totalOpenSize += openSize;
-            if (totalOpenSize >= size) break;
-          }
-        }
-        // Highlight this row and all openIds
-        rows.forEach(r => {
-          if (r.getAttribute('data-transaction-id') === transactionId || openIds.includes(r.getAttribute('data-transaction-id'))) {
-            r.classList.add('trade-row-highlight');
-          }
-        });
-      } else if (tradeType === 'open') {
-        // Find all close trades that use this open
-        let openIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
-        let openTrade = trades[openIndex];
-        let openSize = parseFloat(openTrade.filledTotal.split('/')[0]);
-        // Scan all close trades before this open
-        for (let i = 0; i < openIndex; i++) {
-          const closeTrade = trades[i];
-          if (
-            /close/i.test(closeTrade.tradeType) &&
-            closeTrade.contracts === openTrade.contracts &&
-            /short/i.test(closeTrade.tradeType) === /short/i.test(openTrade.tradeType)
-          ) {
-            // See if this open is part of the openIds for this close
-            let size = parseFloat(closeTrade.filledTotal.split('/')[0]);
-            let totalOpenSize = 0;
-            let found = false;
-            for (let j = i + 1; j < trades.length; j++) {
-              const potentialOpen = trades[j];
-              if (
-                potentialOpen.contracts === closeTrade.contracts &&
-                /open/i.test(potentialOpen.tradeType) &&
-                /short/i.test(potentialOpen.tradeType) === /short/i.test(closeTrade.tradeType)
-              ) {
-                totalOpenSize += parseFloat(potentialOpen.filledTotal.split('/')[0]);
-                if (potentialOpen.transactionId === openTrade.transactionId) found = true;
-                if (totalOpenSize >= size) break;
-              }
-            }
-            if (found) {
-              // Highlight this open and the close
-              rows.forEach(r => {
-                if (r.getAttribute('data-transaction-id') === closeTrade.transactionId || r.getAttribute('data-transaction-id') === openTrade.transactionId) {
-                  r.classList.add('trade-row-highlight');
-                }
-              });
-            }
-          }
-        }
-      }
-    }
-    function clearTradeHighlights() {
-      document.querySelectorAll('.trade-row-highlight').forEach(r => r.classList.remove('trade-row-highlight'));
-    }
-
-    // Toggle Add Trade Form
-    function toggleAddTradeForm() {
-      const form = document.getElementById('addTradeForm');
-      const btn = document.getElementById('toggleAddTradeBtn');
-      const btnText = document.getElementById('toggleBtnText');
-      
-      if (form.style.display === 'none' || form.style.display === '') {
-        // Show form
-        form.style.display = 'block';
-        form.style.animation = 'slideDown 0.3s ease-out forwards';
-        btnText.textContent = '➖ Hide Add Trade';
-        btn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
-      } else {
-        // Hide form
-        form.style.animation = 'slideUp 0.3s ease-out forwards';
-        setTimeout(() => {
-          form.style.display = 'none';
-        }, 300);
-        btnText.textContent = '➕ Add New Trade';
-        btn.style.background = 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)';
-      }
-    }
-  </script>
+  <script src="js/main.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/trading.js"></script>
+  <script src="js/trade-actions.js"></script>
+  <script src="js/schedule.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Position Size Calculator</title>
+  <style>
+    :root {
+      --bg-color: #181a20;
+      --surface-color: #23272f;
+      --primary-color: #bb86fc;
+      --primary-hover: #9a67ea;
+      --text-color: #e0e0e0;
+      --muted-text: #888;
+      --border-radius: 14px;
+      --transition-speed: 0.3s;
+      --shadow: 0 4px 24px rgba(0,0,0,0.7);
+      --input-bg: #23272f;
+      --input-border: #333;
+      --input-focus: #bb86fc;
+      --result-bg: #20232a;
+      --result-border: #333;
+      --result-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      --green: #27c46a;
+      --red: #ff4d4f;
+      --violet: #bb86fc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', 'Montserrat', 'Poppins', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+      overflow-y: auto;
+      transition: background var(--transition-speed), color var(--transition-speed);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .container {
+      background: var(--surface-color);
+      padding: 2rem 1rem;
+      border-radius: var(--border-radius);
+      margin: 0;
+      box-shadow: var(--shadow);
+      border: 1px solid #23242a;
+      width: 100vw;
+      min-height: 60vh;
+      max-width: none;
+      min-width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      width: 100%;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: row;
+      gap: 0.8rem;
+      width: 100%;
+      align-items: flex-end;
+    }
+
+    .form-group {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    input, select, button {
+      min-height: 44px;
+      height: 44px;
+      align-self: stretch;
+    }
+    
+    input, select {
+      cursor: text;
+    }
+    
+    button {
+      cursor: pointer;
+    }
+    
+    /* Additional cursor improvements */
+    .result-info[id] {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .result-info[id]:hover {
+      background: rgba(36,36,36,0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-color: var(--primary-color);
+    }
+    
+    .result-info[id]:hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(187, 134, 252, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .result-info[id]:hover::before {
+      left: 100%;
+    }
+    
+    .position-switch {
+      cursor: pointer;
+    }
+    
+    .switch-option {
+      cursor: pointer;
+    }
+    
+    .custom-spinner-btn {
+      cursor: pointer;
+    }
+    
+    /* Disable text selection on clickable elements */
+    .position-switch, .switch-option, .result-info[id], button {
+      user-select: none;
+    }
+
+    input, select {
+      margin-bottom: 0;
+    }
+
+    input {
+      background: var(--input-bg);
+      color: var(--text-color);
+      border: 1.5px solid var(--input-border);
+      padding: 0.85rem 1rem;
+      border-radius: var(--border-radius);
+      width: 100%;
+      font-size: 0.9rem;
+      transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+      outline: none;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+    }
+
+    input:hover, select:hover {
+      border-color: var(--primary-hover);
+    }
+
+    input:focus, select:focus {
+      border-color: var(--input-focus);
+      box-shadow: 0 0 0 2px #bb86fc33;
+    }
+
+    select, button {
+      border-radius: 22px !important;
+      box-shadow: none !important;
+      border: none;
+    }
+
+    button {
+      background: linear-gradient(90deg, var(--primary-color) 60%, var(--primary-hover) 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0 1.2rem;
+      transition: background var(--transition-speed), transform var(--transition-speed), filter var(--transition-speed);
+      outline: none;
+      min-width: 90px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 22px;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, var(--primary-hover) 60%, var(--primary-color) 100%);
+      filter: brightness(1.08);
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    button:focus {
+      outline: 2px solid var(--primary-hover);
+      outline-offset: 2px;
+    }
+
+    h2 {
+      color: #bb86fc;
+      margin-bottom: 2.2rem;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    label {
+      color: var(--muted-text);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      display: block;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      padding-left: 0.2rem;
+    }
+
+    label[for="entryPrice"], label[for="stopLossPrice"], label[for="targetPrice"], 
+    label[for="riskPercent"], label[for="accountBalance"], label[for="leverage"], label[for="coin"] {
+      color: #fff;
+      font-size: 0.6rem;
+      margin-bottom: 0.13rem;
+      display: block;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      line-height: 1.7;
+    }
+
+    .results {
+      margin-top: 0.7rem;
+      background: var(--result-bg);
+      border-radius: var(--border-radius);
+      border: 1.5px solid var(--result-border);
+      box-shadow: var(--result-shadow);
+      padding: 1.2rem;
+      color: var(--text-color);
+      font-size: 1rem;
+      animation: fadeIn 0.5s;
+      word-break: break-word;
+      width: 100%;
+      max-width: 100vw;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+      min-height: unset;
+    }
+
+    .result-item {
+      background: rgba(36,36,36,0.85);
+      border-radius: 10px;
+      padding: 0.5rem 0.7rem;
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      word-break: break-word;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      border: 1px solid var(--result-border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-family: 'Inter', 'Montserrat', 'Poppins', 'Segoe UI', Arial, sans-serif;
+      gap: 0.5rem;
+    }
+
+    .result-info {
+      background: rgba(36,36,36,0.85);
+      border-radius: 10px;
+      padding: 0.5rem 0.7rem;
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      word-break: break-word;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      border: 1px solid var(--result-border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-family: 'Inter', 'Montserrat', 'Poppins', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .result-item strong {
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-family: 'Inter', 'Montserrat', 'Poppins', 'Segoe UI', Arial, sans-serif;
+    }
+
+    .result-info strong {
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-family: 'Inter', 'Montserrat', 'Poppins', 'Segoe UI', Arial, sans-serif;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    h1, h2, h3, h4, h5 {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    input[type="number"] {
+      width: 70%;
+      min-width: 120px;
+    }
+
+    button#calculateBtn {
+      width: 200px;
+      min-width: 140px;
+      max-width: 240px;
+      align-self: flex-end;
+      padding-left: 0;
+      padding-right: 0;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      font-family: 'Inter', 'Montserrat', 'Poppins', 'Segoe UI', Arial, sans-serif;
+      font-size: clamp(0.48rem, 1vw, 0.58rem);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .position-switch {
+      width: 36%;
+      min-width: 140px;
+      max-width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 44px;
+      background: #23272f;
+      border-radius: 22px;
+      box-shadow: 0 4px 24px 0 rgba(39, 196, 106, 0.18), 0 2px 12px 0 rgba(0,0,0,0.22);
+      border: 2px solid var(--green);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      font-family: 'Inter', 'Montserrat', 'Poppins', 'Segoe UI', Arial, sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: border 0.2s, box-shadow 0.2s;
+      margin-bottom: 0;
+      align-self: flex-end;
+    }
+    
+    .position-switch.short {
+      border: 2px solid var(--red);
+    }
+    
+    .switch-option {
+      flex: 1 1 0;
+      text-align: center;
+      padding: 0.5rem 0;
+      border-radius: 22px;
+      transition: background 0.2s, color 0.2s;
+      color: #888;
+      background: none;
+      font-weight: 500;
+      cursor: pointer;
+      z-index: 1;
+      font-size: 0.8rem;
+    }
+    
+    .switch-option.active-long {
+      color: var(--green);
+      background: none;
+      font-weight: 700;
+    }
+    
+    .switch-option.active-short {
+      color: var(--red);
+      background: none;
+      font-weight: 700;
+    }
+
+    .input-prefix-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .input-prefix {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 1rem;
+      pointer-events: none;
+      z-index: 2;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    
+    .input-prefix-container input[type="number"] {
+      padding-left: 2.1rem;
+      text-transform: none;
+    }
+
+    .input-suffix-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .input-suffix {
+      padding-right: 1.5rem;
+    }
+    
+    .input-suffix-x {
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--violet);
+      font-weight: 600;
+      pointer-events: none;
+      font-size: 1rem;
+      z-index: 2;
+    }
+
+    .custom-number-input {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .custom-number-input input[type="number"] {
+      width: 100%;
+      padding-right: 1.1rem;
+      height: 44px;
+    }
+    
+    .custom-spinner {
+      position: absolute;
+      right: 0.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.04rem;
+      z-index: 3;
+      height: 16px;
+      justify-content: center;
+    }
+    
+    .custom-spinner-btn {
+      border: none;
+      background: #23242a;
+      padding: 0;
+      cursor: pointer;
+      color: #444;
+      font-size: 0.2125rem;
+      line-height: 1;
+      transition: color 0.2s, background 0.2s;
+      border-radius: 4px;
+      width: 0.3rem;
+      height: 0.275rem;
+      min-width: 32px;
+      min-height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      box-shadow: none;
+    }
+    
+    .custom-spinner-btn:hover {
+      color: var(--violet);
+      background: #181a20;
+    }
+
+    /* Hide default spinner */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    /* Color classes */
+    .entry-violet { color: var(--violet) !important; }
+    .stoploss-red { color: var(--red) !important; }
+    .target-green { color: var(--green) !important; }
+    .purple-label-input { color: var(--violet) !important; }
+
+    /* Star button styles */
+    .star-btn {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+      margin: 0;
+      transition: color 0.2s;
+      min-width: unset;
+      width: auto;
+      height: auto;
+      min-height: auto;
+      border-radius: 0;
+      text-transform: none;
+      letter-spacing: normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      opacity: 0.7;
+      transform: scale(1);
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    
+    .star-btn:hover {
+      color: #ffd700;
+      background: none;
+      transform: none;
+      filter: none;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    
+    .star-btn.starred {
+      color: #ffd700;
+      opacity: 1;
+      filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.3));
+    }
+    
+    .star-btn.starred:hover {
+      color: #888;
+      opacity: 0.8;
+      transform: scale(0.95);
+      filter: none;
+    }
+
+    .star-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+    
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #ff4d4f;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+      margin: 0;
+      transition: color 0.2s;
+      min-width: unset;
+      width: auto;
+      height: auto;
+      min-height: auto;
+      border-radius: 0;
+      text-transform: none;
+      letter-spacing: normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      opacity: 0.7;
+      transform: scale(1);
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    
+    .delete-btn:hover {
+      color: #ff7875;
+      background: none;
+      transform: none;
+      filter: none;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .form {
+        max-width: 100vw;
+        padding: 0;
+      }
+      .form-row {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch;
+      }
+      #coin,
+      .position-switch,
+      .form-row > .form-group,
+      .form-row > input[type="number"],
+      .form-row > select,
+      button#calculateBtn {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        align-self: stretch;
+      }
+      .form-row[style*="flex:0.3"] {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+      .results {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.7rem 0.3rem;
+        font-size: 0.95rem;
+        gap: 0.5rem;
+      }
+      .result-item {
+        font-size: 0.95rem;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0.6rem 0.7rem;
+      }
+      .result-item strong {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0.5rem 0.1rem;
+        max-width: 100vw;
+      }
+      .form {
+        gap: 0.8rem;
+      }
+      .form-row {
+        gap: 0.8rem;
+      }
+      .form-row[style*="flex:0.3"] {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+      .results {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.5rem 0.1rem;
+        font-size: 1rem;
+        gap: 0.3rem;
+      }
+      .result-item {
+        font-size: 1rem;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0.5rem 0.3rem;
+      }
+      .result-item strong {
+        font-size: 1rem;
+      }
+      button#calculateBtn {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        font-size: 1.1rem;
+        padding: 1.1rem 0;
+        align-self: stretch;
+      }
+      .custom-spinner-btn {
+        min-width: 0.12rem;
+        min-height: 0.12rem;
+        width: 0.18rem;
+        height: 0.15rem;
+        font-size: 0.13rem;
+      }
+    }
+
+    @media (min-width: 900px), (orientation: landscape) {
+      .form {
+        flex-direction: row;
+        gap: 0.8rem;
+        width: 100%;
+      }
+      .form-row {
+        flex-direction: row;
+        gap: 0.8rem;
+        width: 100%;
+      }
+      .form-group, #coin, #entryPrice, #stopLossPrice, #targetPrice, 
+      #riskPercent, #accountBalance, #leverage, #positionType, #calculateBtn {
+        width: 100%;
+        min-width: 0;
+      }
+      #results {
+        width: 100%;
+      }
+      #coin {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+        display: block;
+        margin-bottom: 0;
+        flex: none;
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Crypto Position Size Calculator</h2>
+
+    <form class="form" id="calcForm" autocomplete="off">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="coin" class="entry-violet">Coin:</label>
+          <input type="text" id="coin" placeholder="e.g. BTC, ETH, SOL">
+        </div>
+        <div class="position-switch" id="positionSwitch">
+          <div class="switch-bg"></div>
+          <div class="switch-option active-long" id="switchLong">Long</div>
+          <div class="switch-option" id="switchShort">Short</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="entryPrice" class="entry-violet">Entry Price:</label>
+          <div class="input-prefix-container">
+            <span class="input-prefix">$</span>
+            <div class="custom-number-input">
+              <input type="number" id="entryPrice" step="0.01" required class="entry-violet">
+              <span class="custom-spinner">
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('entryPrice', 1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 6L5 2L9 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('entryPrice', -1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="stopLossPrice" class="stoploss-red">Stop Loss Price:</label>
+          <div class="input-prefix-container">
+            <span class="input-prefix">$</span>
+            <div class="custom-number-input">
+              <input type="number" id="stopLossPrice" step="0.01" required class="stoploss-red">
+              <span class="custom-spinner">
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('stopLossPrice', 1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 6L5 2L9 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('stopLossPrice', -1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="targetPrice" class="target-green">Target Price:</label>
+          <div class="input-prefix-container">
+            <span class="input-prefix">$</span>
+            <div class="custom-number-input">
+              <input type="number" id="targetPrice" step="0.01" required class="target-green">
+              <span class="custom-spinner">
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('targetPrice', 1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 6L5 2L9 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('targetPrice', -1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="riskPercent" class="purple-label-input">Risk % per Trade:</label>
+          <div class="custom-number-input">
+            <input type="number" id="riskPercent" value="1" step="0.1" required class="purple-label-input">
+            <span class="custom-spinner">
+              <button type="button" class="custom-spinner-btn" onclick="customSpin('riskPercent', 1, 0.1)">
+                <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 6L5 2L9 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" class="custom-spinner-btn" onclick="customSpin('riskPercent', -1, 0.1)">
+                <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="accountBalance" class="purple-label-input">Account Balance:</label>
+          <div class="input-prefix-container">
+            <span class="input-prefix">$</span>
+            <div class="custom-number-input">
+              <input type="number" id="accountBalance" value="100" step="0.01" required class="purple-label-input">
+              <span class="custom-spinner">
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('accountBalance', 1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 6L5 2L9 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+                <button type="button" class="custom-spinner-btn" onclick="customSpin('accountBalance', -1, 0.01)">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="leverage" class="purple-label-input">Leverage (e.g. 5 for 5x):</label>
+          <div class="custom-number-input">
+            <input type="number" id="leverage" value="100" step="1" min="1" required class="purple-label-input input-suffix">
+            <span class="input-suffix-x">x</span>
+            <span class="custom-spinner">
+              <button type="button" class="custom-spinner-btn" onclick="customSpin('leverage', 1, 1)">
+                <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 6L5 2L9 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" class="custom-spinner-btn" onclick="customSpin('leverage', -1, 1)">
+                <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-row" style="display:flex; gap:1rem; flex:0.3; min-width:120px; max-width:200px; width:100%; box-sizing:border-box;">
+        <div class="form-group" style="flex:1;">
+          <label for="quantity" class="purple-label-input" style="color:#fff; font-size:0.6rem; margin-bottom:0.13rem; display:block; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; line-height:1.7;">Quantity (optional):</label>
+          <div class="custom-number-input">
+            <input type="number" id="quantity" step="0.0001" class="purple-label-input">
+            <span class="custom-spinner">
+              <button type="button" class="custom-spinner-btn" onclick="customSpin('quantity', 1, 0.0001)">
+                <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 6L5 2L9 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" class="custom-spinner-btn" onclick="customSpin('quantity', -1, 0.0001)">
+                <svg width="10" height="7" viewBox="0 0 10 7"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <button id="calculateBtn">Calculate</button>
+    </form>
+    <div class="results" id="results"></div>
+    <div style="display:flex; gap:0.7rem; justify-content:flex-start; align-items:flex-start; margin:0; padding:0; width:100%; max-width:100vw; box-sizing:border-box;">
+      <button id="downloadLogBtn" style="background:none; border:none; color:#bb86fc; text-decoration:underline; font-size:0.68rem; padding:0; margin:0; cursor:pointer; min-width:unset; width:auto; align-self:flex-start;">Download Logs</button>
+      <button id="clearLogBtn" style="background:none; border:none; color:#ff4d4f; text-decoration:underline; font-size:0.68rem; padding:0; margin:0; cursor:pointer; min-width:unset; width:auto; align-self:flex-start;">Clear Logs</button>
+    </div>
+    <div class="results" id="logResults" style="margin-top:0.5rem; flex-direction:column; align-items:stretch; font-size:0.9rem;"></div>
+  </div>
+
+  <script>
+    // DEBUG: Log script start
+    console.log('Script loaded');
+
+    // Cache DOM lookups
+    const positionSwitch = document.getElementById('positionSwitch');
+    const switchLong = document.getElementById('switchLong');
+    const switchShort = document.getElementById('switchShort');
+    const coinInput = document.getElementById('coin');
+    const entryInput = document.getElementById('entryPrice');
+    const stopInput = document.getElementById('stopLossPrice');
+    const targetInput = document.getElementById('targetPrice');
+    const balanceInput = document.getElementById('accountBalance');
+    const riskPctInput = document.getElementById('riskPercent');
+    const leverageInput = document.getElementById('leverage');
+    const quantityInput = document.getElementById('quantity');
+    const resultsDiv = document.getElementById('results');
+    const logDiv = document.getElementById('logResults');
+    const downloadLogBtn = document.getElementById('downloadLogBtn');
+    const clearLogBtn = document.getElementById('clearLogBtn');
+
+    let positionTypeValue = 'long';
+
+    function updateSwitchUI() {
+      if (positionTypeValue === 'long') {
+        positionSwitch.classList.remove('short');
+        switchLong.classList.add('active-long');
+        switchShort.classList.remove('active-short');
+      } else {
+        positionSwitch.classList.add('short');
+        switchLong.classList.remove('active-long');
+        switchShort.classList.add('active-short');
+      }
+    }
+
+    switchLong.addEventListener('click', function() {
+      positionTypeValue = 'long';
+      updateSwitchUI();
+    });
+    switchShort.addEventListener('click', function() {
+      positionTypeValue = 'short';
+      updateSwitchUI();
+    });
+    updateSwitchUI();
+
+    // Logs
+    let logArr = [];
+    function getPHTimeString() {
+      const now = new Date();
+      // Convert to UTC+8 (Philippine Time)
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const phTime = new Date(utc + (3600000 * 8));
+      const military = phTime.toLocaleString('en-US', { hour12: false });
+      const ampm = phTime.toLocaleString('en-US', { hour12: true });
+      return `${military} (${ampm})`;
+    }
+    function restoreLogs() {
+      const savedLogs = localStorage.getItem('psc_logs');
+      if (savedLogs) {
+        try {
+          logArr = JSON.parse(savedLogs);
+        } catch (e) {
+          logArr = [];
+        }
+      }
+    }
+    function saveLogs() {
+      localStorage.setItem('psc_logs', JSON.stringify(logArr));
+    }
+    function displayLogs() {
+      if (!logDiv) {
+        console.error('logDiv is null!');
+        return;
+      }
+      if (!logArr) {
+        console.error('logArr is undefined!');
+        return;
+      }
+      console.log('Displaying logs:', logArr);
+      logDiv.innerHTML = logArr.map((l, index) => `
+        <div class="result-item" style="margin-bottom:0.3rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-right: 0.5rem; align-items: center;">
+            <button class="star-btn ${l.starred ? 'starred' : ''}" onclick="toggleStar(${index})" title="${l.starred ? 'Unstar trade' : 'Star trade'}">
+              ${l.starred ? 
+                '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>' : 
+                '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
+              }
+            </button>
+            <button class="delete-btn" onclick="deleteLog(${index})" title="Delete trade">
+              ✕
+            </button>
+          </div>
+          <div style="flex: 1;">
+            <strong>[${l.date}]</strong><br>
+            <span style="color: #888; font-size: 0.8rem;">Coin: <span style="color: #fff;">${l.coin ?? ''}</span>, Entry: <span style="color: #fff;">$${l.entry ?? ''}</span>, Stop: <span style="color: #fff;">$${l.stop ?? ''}</span>, Target: <span style="color: #fff;">$${l.target ?? ''}</span>, Qty: <span style="color: #fff;">${l.qty !== undefined ? (Number(l.qty) % 1 === 0 ? Number(l.qty).toString() : Number(l.qty).toFixed(4)) : ''}</span>, Risk %: <span style="color: #fff;">${l.riskPct !== undefined ? Number(l.riskPct).toFixed(2) : ''}%</span>, Risk Amount: <span style="color: #fff;">$${l.riskAmount !== undefined ? Number(l.riskAmount).toFixed(2) : ''}</span>, Risk/coin: <span style="color: #fff;">$${l.riskPerCoin !== undefined ? Number(l.riskPerCoin).toFixed(2) : 'N/A'}</span>, Leverage: <span style="color: #fff;">${l.leverage ?? ''}x</span>, Pos: <span style="color: #fff;">${l.positionType ?? ''}</span>, PnL: <span style="color: #fff;">${l.pnlPercent !== undefined ? Number(l.pnlPercent).toFixed(2) : ''}%</span>, Net Profit: <span style="color: #fff;">$${l.totalProfit !== undefined ? Number(l.totalProfit).toFixed(2) : ''}</span>, Fees: <span style="color: #fff;">$${l.totalFees !== undefined ? Number(l.totalFees).toFixed(2) : ''}</span>, Margin: <span style="color: #fff;">$${l.margin !== undefined ? Number(l.margin).toFixed(2) : ''}</span>, Liq: <span style="color: #fff;">$${l.liquidationPrice !== undefined ? Number(l.liquidationPrice).toFixed(2) : ''}</span></span>
+          </div>
+        </div>
+      `).join('');
+    }
+    restoreLogs();
+    window.addEventListener('DOMContentLoaded', function() {
+      displayLogs();
+      // Scroll to top of page on load
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    });
+    
+    // Also scroll to top when page is fully loaded
+    window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    });
+
+    // Clear logs
+    clearLogBtn.addEventListener('click', function() {
+      if (confirm('Are you sure you want to clear all logs?')) {
+        logArr = [];
+        saveLogs();
+        displayLogs();
+      }
+    });
+
+    // Calculate button logic
+    function handleCalculate(e) {
+      if (e) e.preventDefault();
+      console.log('Calculate button clicked');
+      const coin = coinInput.value.trim().toUpperCase();
+      const entry = parseFloat(entryInput.value);
+      const stop = parseFloat(stopInput.value);
+      const target = parseFloat(targetInput.value);
+      const balance = parseFloat(balanceInput.value);
+      const riskPct = parseFloat(riskPctInput.value);
+      const leverage = parseFloat(leverageInput.value);
+      const quantityVal = quantityInput.value;
+
+      if (isNaN(entry) || isNaN(stop) || isNaN(target) || isNaN(balance) || isNaN(riskPct) || isNaN(leverage)) {
+        resultsDiv.innerHTML = "<p style='color:#ff6b6b'><strong>Error:</strong> Please enter valid values in all fields.</p>";
+        return;
+      }
+      if (entry === stop) {
+        resultsDiv.innerHTML = "<p style='color:#ff6b6b'><strong>Error:</strong> Entry and stop-loss cannot be the same.</p>";
+        return;
+      }
+      // Auto-select position type
+      if (entry < target) {
+        positionTypeValue = 'long';
+        updateSwitchUI();
+      } else if (entry > target) {
+        positionTypeValue = 'short';
+        updateSwitchUI();
+      }
+      let qty;
+      let riskPerCoin;
+      let riskPctToDisplay = riskPct;
+      let riskAmountDisplay;
+      if (quantityVal && !isNaN(parseFloat(quantityVal))) {
+        qty = parseFloat(quantityVal);
+        // Recompute riskAmount based on qty and stop/entry
+        riskAmountDisplay = qty * Math.abs(entry - stop);
+        // Recompute risk % per trade
+        riskPctToDisplay = (riskAmountDisplay / balance) * 100;
+        // Recompute riskPerCoin based on riskAmount and qty
+        riskPerCoin = riskAmountDisplay / qty;
+      } else {
+        riskPerCoin = Math.abs(entry - stop);
+        riskAmountDisplay = (riskPct / 100) * balance;
+        qty = riskAmountDisplay / riskPerCoin;
+      }
+      const margin = (qty * entry) / leverage;
+      
+      // Fee calculations
+      const entryFee = (qty * entry) * 0.0002; // 0.02% entry fee
+      const exitFee = (qty * target) * 0.00055; // 0.055% exit fee
+      const totalFees = entryFee + exitFee;
+      
+      let profitPerCoin;
+      if (positionTypeValue === "long") {
+        profitPerCoin = target - entry;
+      } else {
+        profitPerCoin = entry - target;
+      }
+      const grossProfit = profitPerCoin * qty;
+      const totalProfit = grossProfit - totalFees;
+      const grossPnlPercent = (profitPerCoin / entry) * 100;
+      const netPnlPercent = (totalProfit / margin) * 100;
+      let liquidationPrice;
+      const maintenanceMarginRate = 0.005; // 0.5%
+      if (positionTypeValue === "long") {
+        liquidationPrice = entry * (1 - (1 / leverage) + maintenanceMarginRate);
+      } else {
+        liquidationPrice = entry * (1 + (1 / leverage) - maintenanceMarginRate);
+      }
+      resultsDiv.innerHTML = `
+        <div class="result-info"><strong>Coin:</strong> ${coin || '(none)'}</div>
+        <div class="result-info" id="riskAmount" style="cursor: pointer;"><strong>Risk Amount:</strong> $${riskAmountDisplay.toFixed(2)}</div>
+        <div class="result-info" id="riskPerCoin" style="display: none;"><strong>Risk per Coin:</strong> $${riskPerCoin.toFixed(2)}</div>
+        <div class="result-info" id="riskPercent" style="display: none;"><strong>Risk % per Trade:</strong> ${riskPctToDisplay.toFixed(2)}%</div>
+        <div class="result-info"><strong>Quantity (${coin || ''}):</strong> ${qty.toFixed(4)}</div>
+        <div class="result-info"><strong>Margin Needed (with leverage):</strong> $${margin.toFixed(2)}</div>
+        <div class="result-info" id="totalFees" style="cursor: pointer;"><strong>Total Fees:</strong> $${totalFees.toFixed(2)}</div>
+        <div class="result-info" id="entryFee" style="display: none;"><strong>Entry Fee (0.02%):</strong> $${entryFee.toFixed(2)}</div>
+        <div class="result-info" id="exitFee" style="display: none;"><strong>Exit Fee (0.055%):</strong> $${exitFee.toFixed(2)}</div>
+        <div class="result-info" id="netProfit" style="cursor: pointer;"><strong>Net Profit (after fees):</strong> $${totalProfit.toFixed(2)}</div>
+        <div class="result-info" id="grossProfit" style="display: none;"><strong>Gross Profit:</strong> $${grossProfit.toFixed(2)}</div>
+        <div class="result-info"><strong>Profit % (PnL):</strong> ${netPnlPercent.toFixed(2)}%</div>
+        <div class="result-info"><strong>Estimated Liquidation Price:</strong> $${liquidationPrice.toFixed(2)}</div>
+      `;
+      console.log('Results:', resultsDiv.innerHTML);
+      
+      // Add click event for total fees toggle
+      const totalFeesElement = document.getElementById('totalFees');
+      if (totalFeesElement) {
+        totalFeesElement.addEventListener('click', function() {
+          const entryFeeElement = document.getElementById('entryFee');
+          const exitFeeElement = document.getElementById('exitFee');
+          
+          if (entryFeeElement && exitFeeElement) {
+            const isHidden = entryFeeElement.style.display === 'none';
+            entryFeeElement.style.display = isHidden ? 'flex' : 'none';
+            exitFeeElement.style.display = isHidden ? 'flex' : 'none';
+          }
+        });
+      }
+      
+      // Add click event for risk amount toggle
+      const riskAmountElement = document.getElementById('riskAmount');
+      if (riskAmountElement) {
+        riskAmountElement.addEventListener('click', function() {
+          const riskPerCoinElement = document.getElementById('riskPerCoin');
+          const riskPercentElement = document.getElementById('riskPercent');
+          
+          if (riskPerCoinElement && riskPercentElement) {
+            const isHidden = riskPerCoinElement.style.display === 'none';
+            riskPerCoinElement.style.display = isHidden ? 'flex' : 'none';
+            riskPercentElement.style.display = isHidden ? 'flex' : 'none';
+          }
+        });
+      }
+      
+      // Add click event for net profit toggle
+      const netProfitElement = document.getElementById('netProfit');
+      if (netProfitElement) {
+        netProfitElement.addEventListener('click', function() {
+          const grossProfitElement = document.getElementById('grossProfit');
+          
+          if (grossProfitElement) {
+            const isHidden = grossProfitElement.style.display === 'none';
+            grossProfitElement.style.display = isHidden ? 'flex' : 'none';
+          }
+        });
+      }
+      
+      // Log calculation
+      const logEntry = {
+        date: getPHTimeString(),
+        coin: coin || '(none)',
+        entry, stop, target, balance, riskPct: riskPctToDisplay, leverage, qty, margin, totalProfit, pnlPercent: netPnlPercent, liquidationPrice, positionType: positionTypeValue, riskAmount: riskAmountDisplay, riskPerCoin, entryFee, exitFee, totalFees, grossProfit, starred: false
+      };
+      console.log('Logging:', logEntry);
+      logArr.unshift(logEntry);
+      saveLogs();
+      displayLogs();
+    }
+
+    document.getElementById("calculateBtn").addEventListener("click", handleCalculate);
+    document.getElementById("calcForm").addEventListener("submit", handleCalculate);
+
+    // Numeric input validation - prevents letters and allows only numbers and decimal
+    function enforceNumericInput(e) {
+      const input = e.target;
+      let value = input.value;
+      const cursorPosition = input.selectionStart;
+      const originalLength = value.length;
+      // Remove all non-numeric except one decimal point
+      value = value.replace(/[^\d.]/g, '');
+      // Only allow one decimal point
+      const parts = value.split('.');
+      if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+      }
+      // Handle decimal point at the beginning
+      if (value.startsWith('.')) {
+        value = '0' + value;
+      }
+      // Prevent multiple leading zeros (but allow 0.xxx)
+      if (value.length > 1 && value.startsWith('0') && value[1] !== '.') {
+        value = value.replace(/^0+/, '');
+      }
+      // Only update if value actually changed
+      if (input.value !== value) {
+        input.value = value;
+        // Calculate new cursor position
+        let newCursorPosition = cursorPosition;
+        const newLength = value.length;
+        // If we added a leading zero for decimal, adjust cursor
+        if (value.startsWith('0.') && !input.value.startsWith('0.')) {
+          newCursorPosition = cursorPosition + 1;
+        }
+        // If we removed leading zeros, adjust cursor
+        else if (newLength < originalLength) {
+          const removedChars = originalLength - newLength;
+          newCursorPosition = Math.max(0, cursorPosition - removedChars);
+        }
+        // Ensure cursor doesn't go beyond the value length
+        newCursorPosition = Math.min(newCursorPosition, value.length);
+        // Set cursor position
+        setTimeout(() => {
+          input.setSelectionRange(newCursorPosition, newCursorPosition);
+        }, 0);
+      }
+    }
+
+    // Coin input validation - allows only letters and numbers, no special characters
+    function enforceCoinInput(e) {
+      const input = e.target;
+      let value = input.value;
+      const cursorPosition = input.selectionStart;
+      const originalLength = value.length;
+      // Remove all non-alphanumeric characters
+      value = value.replace(/[^a-zA-Z0-9]/g, '');
+      // Convert to uppercase
+      value = value.toUpperCase();
+      // Only update if value actually changed
+      if (input.value !== value) {
+        input.value = value;
+        // Calculate new cursor position
+        let newCursorPosition = cursorPosition;
+        const newLength = value.length;
+        // If we removed characters, adjust cursor
+        if (newLength < originalLength) {
+          const removedChars = originalLength - newLength;
+          newCursorPosition = Math.max(0, cursorPosition - removedChars);
+        }
+        // Ensure cursor doesn't go beyond the value length
+        newCursorPosition = Math.min(newCursorPosition, value.length);
+        // Set cursor position
+        setTimeout(() => {
+          input.setSelectionRange(newCursorPosition, newCursorPosition);
+        }, 0);
+      }
+    }
+
+    // Custom spinner function (generalized)
+    function customSpin(id, direction, stepOverride) {
+      const input = document.getElementById(id);
+      let value = parseFloat(input.value) || 0;
+      // Use input's step attribute for precision if not overridden
+      let step = stepOverride;
+      if (!step) {
+        step = parseFloat(input.getAttribute('step')) || 1;
+      }
+      value += direction * step;
+      // Determine decimal places
+      let decimals = 0;
+      if (step.toString().includes('.')) {
+        decimals = step.toString().split('.')[1].length;
+      }
+      input.value = value.toFixed(decimals);
+      input.dispatchEvent(new Event('input'));
+    }
+
+    // Prevent non-numeric keys from being typed in number fields
+    function preventNonNumericKeys(e) {
+      const allowedKeys = [
+        'Backspace', 'Delete', 'Tab', 'Escape', 'Enter',
+        'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
+        'Home', 'End', 'PageUp', 'PageDown'
+      ];
+      if (allowedKeys.includes(e.key)) {
+        return true;
+      }
+      if (/[^\d.]/.test(e.key)) {
+        e.preventDefault();
+        return false;
+      }
+      // Prevent multiple decimal points
+      if (e.key === '.' && e.target.value.includes('.')) {
+        e.preventDefault();
+        return false;
+      }
+      return true;
+    }
+
+    // Apply numeric input enforcement to all number fields
+    const numberInputs = [entryInput, stopInput, targetInput, riskPctInput, balanceInput, leverageInput, quantityInput];
+    numberInputs.forEach(element => {
+      if (element) {
+        element.addEventListener('input', enforceNumericInput);
+        element.addEventListener('keydown', preventNonNumericKeys);
+      }
+    });
+
+    // Apply coin input validation
+    coinInput.addEventListener('input', enforceCoinInput);
+
+    // Restore last input values from localStorage
+    window.addEventListener('DOMContentLoaded', function() {
+      const fields = [coinInput, entryInput, stopInput, targetInput, riskPctInput, balanceInput, leverageInput, quantityInput];
+      const fieldIds = ['coin', 'entryPrice', 'stopLossPrice', 'targetPrice', 'riskPercent', 'accountBalance', 'leverage', 'quantity'];
+      fields.forEach((el, idx) => {
+        const saved = localStorage.getItem('psc_' + fieldIds[idx]);
+        if (el && saved !== null) {
+          el.value = saved;
+        }
+      });
+      // Restore position type
+      const savedType = localStorage.getItem('psc_positionType');
+      if (savedType === 'short') {
+        positionTypeValue = 'short';
+        updateSwitchUI();
+      }
+    });
+    // Save input values to localStorage on change
+    const fields = [coinInput, entryInput, stopInput, targetInput, riskPctInput, balanceInput, leverageInput, quantityInput];
+    const fieldIds = ['coin', 'entryPrice', 'stopLossPrice', 'targetPrice', 'riskPercent', 'accountBalance', 'leverage', 'quantity'];
+    fields.forEach((el, idx) => {
+      if (el) {
+        el.addEventListener('input', function() {
+          localStorage.setItem('psc_' + fieldIds[idx], el.value);
+        });
+      }
+    });
+    // Save position type
+    switchLong.addEventListener('click', function() {
+      localStorage.setItem('psc_positionType', 'long');
+    });
+    switchShort.addEventListener('click', function() {
+      localStorage.setItem('psc_positionType', 'short');
+    });
+    // Auto-select position type on entry/target price change
+    entryInput.addEventListener('input', function() {
+      const entry = parseFloat(entryInput.value);
+      const target = parseFloat(targetInput.value);
+      if (!isNaN(entry) && !isNaN(target)) {
+        if (entry < target) {
+          positionTypeValue = 'long';
+          updateSwitchUI();
+        } else if (entry > target) {
+          positionTypeValue = 'short';
+          updateSwitchUI();
+        }
+      }
+    });
+    targetInput.addEventListener('input', function() {
+      const entry = parseFloat(entryInput.value);
+      const target = parseFloat(targetInput.value);
+      if (!isNaN(entry) && !isNaN(target)) {
+        if (entry < target) {
+          positionTypeValue = 'long';
+          updateSwitchUI();
+        } else if (entry > target) {
+          positionTypeValue = 'short';
+          updateSwitchUI();
+        }
+      }
+    });
+    // Download log as file
+    downloadLogBtn.addEventListener('click', function() {
+      if (logArr.length === 0) {
+        alert('No logs to download.');
+        return;
+      }
+      
+      // Generate timestamp for filename using local time
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const timestamp = `${year}-${month}-${day}_${hours}-${minutes}`;
+      
+      const header = ['Date (24hr + 12hr)','Coin','Entry','Stop','Target','Qty','Risk %','Risk/coin','Leverage','Position','PnL %','Profit','Margin','Liq Price'].join(',');
+      const rows = logArr.map(l => [
+        '"' + l.date + '"',
+        l.coin,
+        l.entry,
+        l.stop,
+        l.target,
+        l.qty.toFixed(4),
+        l.riskPct.toFixed(2),
+        l.riskPerCoin.toFixed(2),
+        l.leverage,
+        l.positionType,
+        l.pnlPercent.toFixed(2),
+        l.totalProfit.toFixed(2),
+        l.margin.toFixed(2),
+        l.liquidationPrice.toFixed(2)
+      ].join(','));
+      const csv = [header, ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `position_calculator_logs_${timestamp}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 0);
+    });
+
+    // Always scroll to top on page load, but do not focus h2
+    window.addEventListener('DOMContentLoaded', function() {
+      window.scrollTo(0, 0);
+    });
+
+    // Toggle star for a trade
+    function toggleStar(index) {
+      if (logArr[index]) {
+        logArr[index].starred = !logArr[index].starred;
+        saveLogs();
+        displayLogs();
+      }
+    }
+    
+    function deleteLog(index) {
+      if (logArr[index] && confirm('Are you sure you want to delete this trade?')) {
+        logArr.splice(index, 1);
+        saveLogs();
+        displayLogs();
+      }
+    }
+  </script>
+</body>
+</html>

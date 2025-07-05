@@ -213,7 +213,11 @@ function calculateRiskAmount(trade) {
 function renderTrades() {
   const trades = getTrades();
   const tbody = document.querySelector('#tradingHistoryTable tbody');
+  const mobileContainer = document.querySelector('.trading-table-mobile');
+  
   tbody.innerHTML = '';
+  if (mobileContainer) mobileContainer.innerHTML = '';
+  
   let totalPnL = 0;
   
   trades.forEach((trade, index) => {
@@ -248,6 +252,73 @@ function renderTrades() {
       <td>${riskAmount}</td>
     `;
     tbody.appendChild(tr);
+    
+    // Generate mobile card
+    if (mobileContainer) {
+      const card = document.createElement('div');
+      card.className = `trade-card ${/open/i.test(trade.tradeType) ? 'open' : ''}`;
+      card.setAttribute('data-transaction-id', trade.transactionId);
+      card.setAttribute('data-trade-type', /open/i.test(trade.tradeType) ? 'open' : (/close/i.test(trade.tradeType) ? 'close' : 'other'));
+      card.classList.add('trade-row');
+      
+      const tradeTypeClass = /open/i.test(trade.tradeType) ? 'open' : 'close';
+      const pnlClass = !isNaN(parseFloat(pnl)) ? (parseFloat(pnl) > 0 ? 'positive' : parseFloat(pnl) < 0 ? 'negative' : 'neutral') : 'neutral';
+      
+      card.innerHTML = `
+        <div class="trade-header">
+          <div class="trade-contract">${trade.contracts}</div>
+          <div class="trade-type ${tradeTypeClass}">${trade.tradeType}</div>
+          <div class="trade-actions">
+            <button data-action="edit" data-index="${index}" class="edit" title="Edit">✏️</button>
+            <button data-action="delete" data-index="${index}" class="delete" title="Delete">❌</button>
+          </div>
+        </div>
+        <div class="trade-details">
+          <div class="trade-detail">
+            <div class="trade-detail-label">Filled Type</div>
+            <div class="trade-detail-value">${trade.filledType}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Filled/Total</div>
+            <div class="trade-detail-value">${trade.filledTotal}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Price</div>
+            <div class="trade-detail-value">${trade.filledPriceOrderPrice}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Fee Rate</div>
+            <div class="trade-detail-value">${trade.feeRate}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Trading Fee</div>
+            <div class="trade-detail-value">${trade.tradingFee}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Order Type</div>
+            <div class="trade-detail-value">${trade.orderType}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Transaction ID</div>
+            <div class="trade-detail-value">${trade.transactionId}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Time</div>
+            <div class="trade-detail-value">${trade.transactionTime}</div>
+          </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">Risk Amount</div>
+            <div class="trade-detail-value">${riskAmount}</div>
+          </div>
+        </div>
+        <div class="trade-pnl">
+          <div class="trade-pnl-label">Profit/Loss</div>
+          <div class="trade-pnl-value ${pnlClass}">${pnl}</div>
+        </div>
+      `;
+      mobileContainer.appendChild(card);
+    }
+    
     if (!isNaN(parseFloat(pnl))) totalPnL += parseFloat(pnl);
     
     // Set PnL cell color

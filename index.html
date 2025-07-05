@@ -297,20 +297,15 @@
   </div>
   
   <div class="tabs">
-    <button class="tab-button active" onclick="openTab('structure', this)">Market Structure</button>
-    <button class="tab-button" onclick="openTab('gaps', this)">Fair Value Gaps</button>
-    <button class="tab-button" onclick="openTab('levels', this)">EQH/EQL</button>
-    <button class="tab-button" onclick="openTab('candles', this)">Candlestick Patterns</button>
-    <button class="tab-button" onclick="openTab('trend', this)">Trend Indicators</button>
-    <button class="tab-button" onclick="openTab('momentum', this)">Momentum Indicators</button>
-    <button class="tab-button" onclick="openTab('volatility', this)">Volatility Indicators</button>
-    <button class="tab-button" onclick="openTab('volume', this)">Volume Indicators</button>
+    <button class="tab-button active" onclick="openTab('knowledge-base', this)">Knowledge Base</button>
     <button class="tab-button" onclick="openTab('trading-history', this)">Trading History</button>
     <button class="tab-button" onclick="openTab('trading-schedule', this)">Trading Schedule</button>
   </div>
 
-  <div id="structure" class="tab-content active">
+  <div id="knowledge-base" class="tab-content active">
+    <!-- Market Structure Section -->
     <div class="section">
+      <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">🏗️ Market Structure</h3>
       <div class="collapsible" onclick="toggleContent(this)">Break of Structure (BoS)</div>
       <div class="content">
         <div class="card">Occurs when price closes above/below a significant high/low, confirming trend continuation or reversal.</div>
@@ -320,19 +315,19 @@
         <div class="card">Signals a shift in market structure from bullish to bearish or vice versa. Often marks the start of a new trend.</div>
       </div>
     </div>
-  </div>
 
-  <div id="gaps" class="tab-content">
+    <!-- Fair Value Gaps Section -->
     <div class="section">
+      <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">⚡ Fair Value Gaps</h3>
       <div class="collapsible" onclick="toggleContent(this)">Fair Value Gap (FVG)</div>
       <div class="content">
         <div class="card">A price imbalance or inefficiency between candles, often revisited by price. Used for entries or exits.</div>
       </div>
     </div>
-  </div>
 
-  <div id="levels" class="tab-content">
+    <!-- EQH/EQL Section -->
     <div class="section">
+      <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">📊 EQH/EQL</h3>
       <div class="collapsible" onclick="toggleContent(this)">Equal Highs (EQH)</div>
       <div class="content">
         <div class="card">Indicates potential liquidity above resistance. Price may hunt these levels before reversing.</div>
@@ -353,9 +348,8 @@
         <div class="card">A swing low with multiple tests and little bounce. Likely to be broken.</div>
       </div>
     </div>
-  </div>
 
-  <div id="candles" class="tab-content">
+    <!-- Candlestick Patterns Section -->
     <div class="section">
       <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">🟢 Bullish Patterns</h3>
       
@@ -715,9 +709,8 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="trend" class="tab-content">
+    <!-- Trend Indicators Section -->
     <div class="section">
       <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem;">📈 Trend Direction Indicators</h3>
       
@@ -773,6 +766,184 @@
         </div>
       </div>
     </div>
+
+    <!-- Momentum Indicators Section -->
+    <div class="section">
+      <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">⚡ Momentum & Oscillator Indicators</h3>
+      
+      <div class="collapsible" onclick="toggleContent(this)">RSI (Relative Strength Index)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Measures speed and magnitude of price changes.<br><br>
+          <strong>Overbought:</strong> RSI > 70 indicates potential reversal down.<br><br>
+          <strong>Oversold:</strong> RSI < 30 indicates potential reversal up.<br><br>
+          <strong>Divergence:</strong> Price makes new high/low but RSI doesn't = reversal signal.<br><br>
+          <strong>Settings:</strong> Default 14 periods, can use 9 for faster signals.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">Stochastic Oscillator</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> %K line (current price vs range), %D line (3-period SMA of %K).<br><br>
+          <strong>Overbought:</strong> Above 80, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below 20, potential reversal up.<br><br>
+          <strong>Bullish Signal:</strong> %K crosses above %D in oversold area.<br><br>
+          <strong>Bearish Signal:</strong> %K crosses below %D in overbought area.<br><br>
+          <strong>Settings:</strong> Default 14,3,3 (periods, %K smoothing, %D smoothing).
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">Williams %R</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Momentum oscillator measuring overbought/oversold levels.<br><br>
+          <strong>Range:</strong> 0 to -100 (inverted scale).<br><br>
+          <strong>Overbought:</strong> Above -20, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below -80, potential reversal up.<br><br>
+          <strong>Signal:</strong> Exit overbought/oversold zones.<br><br>
+          <strong>Settings:</strong> Default 14 periods.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">CCI (Commodity Channel Index)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Identifies cyclical trends and overbought/oversold conditions.<br><br>
+          <strong>Range:</strong> Typically ±100, but can extend beyond.<br><br>
+          <strong>Overbought:</strong> Above +100, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below -100, potential reversal up.<br><br>
+          <strong>Zero Line:</strong> Crossing above/below zero indicates trend change.<br><br>
+          <strong>Settings:</strong> Default 20 periods.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">MFI (Money Flow Index)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Volume-weighted RSI, combines price and volume.<br><br>
+          <strong>Range:</strong> 0 to 100.<br><br>
+          <strong>Overbought:</strong> Above 80, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below 20, potential reversal up.<br><br>
+          <strong>Divergence:</strong> Price/volume divergence signals reversal.<br><br>
+          <strong>Settings:</strong> Default 14 periods.
+        </div>
+      </div>
+    </div>
+
+    <!-- Volatility Indicators Section -->
+    <div class="section">
+      <h3 style="color: #f59e0b; margin-bottom: 15px; font-size: 1.3rem;">📊 Volatility & Range Indicators</h3>
+      
+      <div class="collapsible" onclick="toggleContent(this)">Bollinger Bands</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> Middle band (20 SMA), Upper/Lower bands (±2 standard deviations).<br><br>
+          <strong>Squeeze:</strong> Bands contract = low volatility, expansion coming.<br><br>
+          <strong>Expansion:</strong> Bands widen = high volatility, trend continuation.<br><br>
+          <strong>Support/Resistance:</strong> Price often bounces off bands.<br><br>
+          <strong>Breakout:</strong> Price breaking bands = strong momentum.<br><br>
+          <strong>Settings:</strong> Default 20 periods, 2 standard deviations.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">ATR (Average True Range)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Measures market volatility, not direction.<br><br>
+          <strong>High ATR:</strong> High volatility, larger price movements expected.<br><br>
+          <strong>Low ATR:</strong> Low volatility, smaller price movements expected.<br><br>
+          <strong>Stop Loss:</strong> Use ATR multiplier for dynamic stop placement.<br><br>
+          <strong>Position Sizing:</strong> Higher ATR = smaller position size.<br><br>
+          <strong>Settings:</strong> Default 14 periods.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">Keltner Channel</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> Middle line (20 EMA), Upper/Lower bands (ATR multiplier).<br><br>
+          <strong>Trend Following:</strong> Price staying within channels indicates trend.<br><br>
+          <strong>Breakout:</strong> Price breaking channels = potential trend change.<br><br>
+          <strong>Mean Reversion:</strong> Price returning to middle line.<br><br>
+          <strong>Settings:</strong> Default 20 EMA, 2 ATR multiplier.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">Donchian Channel</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> Upper (highest high), Lower (lowest low), Middle (average).<br><br>
+          <strong>Breakout Trading:</strong> Price breaking upper/lower channels.<br><br>
+          <strong>Range Trading:</strong> Price bouncing between channels.<br><br>
+          <strong>Trend Strength:</strong> Channel width indicates volatility.<br><br>
+          <strong>Settings:</strong> Default 20 periods.
+        </div>
+      </div>
+    </div>
+
+    <!-- Volume Indicators Section -->
+    <div class="section">
+      <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 1.3rem;">📈 Volume & Market Structure</h3>
+      
+      <div class="collapsible" onclick="toggleContent(this)">Volume Analysis</div>
+      <div class="content">
+        <div class="card">
+          <strong>High Volume:</strong> Confirms price movement, shows strong conviction.<br><br>
+          <strong>Low Volume:</strong> Weak conviction, potential reversal.<br><br>
+          <strong>Volume Divergence:</strong> Price up but volume down = weak move.<br><br>
+          <strong>Volume Climax:</strong> Extremely high volume often marks tops/bottoms.<br><br>
+          <strong>On-Balance Volume (OBV):</strong> Cumulative volume indicator for trend confirmation.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">VWAP (Volume Weighted Average Price)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Average price weighted by volume, fair value indicator.<br><br>
+          <strong>Bullish:</strong> Price above VWAP, especially with volume.<br><br>
+          <strong>Bearish:</strong> Price below VWAP, especially with volume.<br><br>
+          <strong>Support/Resistance:</strong> VWAP often acts as dynamic level.<br><br>
+          <strong>Best Used:</strong> Intraday trading and institutional analysis.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">Accumulation/Distribution Line</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Measures buying/selling pressure based on price and volume.<br><br>
+          <strong>Accumulation:</strong> Line rising = smart money buying.<br><br>
+          <strong>Distribution:</strong> Line falling = smart money selling.<br><br>
+          <strong>Divergence:</strong> Price vs A/D line divergence signals reversal.<br><br>
+          <strong>Confirmation:</strong> A/D line confirming price trend.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">Chaikin Money Flow</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Volume-weighted average of accumulation/distribution.<br><br>
+          <strong>Range:</strong> -1 to +1.<br><br>
+          <strong>Bullish:</strong> Above +0.25, strong buying pressure.<br><br>
+          <strong>Bearish:</strong> Below -0.25, strong selling pressure.<br><br>
+          <strong>Neutral:</strong> Between -0.25 and +0.25.<br><br>
+          <strong>Settings:</strong> Default 20 periods.
+        </div>
+      </div>
+
+      <div class="collapsible" onclick="toggleContent(this)">Volume Profile</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Shows volume at different price levels.<br><br>
+          <strong>Value Area:</strong> 70% of volume occurs here, key support/resistance.<br><br>
+          <strong>Point of Control:</strong> Price level with highest volume.<br><br>
+          <strong>High Volume Nodes:</strong> Strong support/resistance areas.<br><br>
+          <strong>Low Volume Nodes:</strong> Weak areas, price moves through quickly.<br><br>
+          <strong>Best Used:</strong> Swing trading and position sizing.
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div id="momentum" class="tab-content">

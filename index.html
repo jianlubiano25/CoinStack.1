@@ -4,336 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crypto Trading Analysis</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      background: linear-gradient(135deg, #15151e 0%, #23233a 100%);
-      color: #f3f4f6;
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      line-height: 1.6;
-    }
-    header {
-      padding: 32px 0 20px 0;
-      background: none;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -1px;
-      color: #a78bfa;
-      border-bottom: none;
-    }
-    .tabs {
-      display: flex;
-      background: none;
-      border-bottom: 1px solid rgba(139,92,246,0.08);
-      flex-wrap: wrap;
-      margin-bottom: 0;
-    }
-    .tab-button {
-      flex: 1 1 auto;
-      padding: 14px 0;
-      text-align: center;
-      cursor: pointer;
-      background: none;
-      color: #bdbdfc;
-      border: none;
-      border-bottom: 2px solid transparent;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.2s, border 0.2s;
-    }
-    .tab-button:hover {
-      color: #8b5cf6;
-      background: none;
-    }
-    .tab-button.active {
-      color: #8b5cf6;
-      border-bottom: 2px solid #8b5cf6;
-      background: none;
-    }
-    .tab-content {
-      display: none;
-      padding: 32px 32px 0 32px;
-      background: none;
-      min-height: 60vh;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    .section {
-      margin-bottom: 32px;
-    }
-    .section h3 {
-      color: #a78bfa;
-      margin-bottom: 16px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.2px;
-    }
-    .card {
-      background: rgba(255,255,255,0.02);
-      padding: 18px 20px;
-      border-radius: 12px;
-      margin-bottom: 10px;
-      border: none;
-      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.04);
-    }
-    .collapsible {
-      cursor: pointer;
-      padding: 14px 18px;
-      background: rgba(139,92,246,0.04);
-      border-radius: 8px;
-      margin-top: 8px;
-      color: #8b5cf6;
-      font-weight: 500;
-      border: none;
-      font-size: 1rem;
-      transition: background 0.2s;
-    }
-    .collapsible:hover, .collapsible.active {
-      background: rgba(139,92,246,0.12);
-    }
-    .content {
-      padding: 0 12px;
-      display: none;
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-    .content img {
-      max-width: 100%;
-      margin-top: 12px;
-      border-radius: 8px;
-      height: auto;
-    }
-    /* Modern minimalist input/button */
-    input, select, textarea, button {
-      font-family: inherit;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid rgba(139,92,246,0.12);
-      background: rgba(255,255,255,0.03);
-      color: #f3f4f6;
-      padding: 10px 14px;
-      outline: none;
-      transition: border 0.2s, box-shadow 0.2s;
-    }
-    input:focus, select:focus, textarea:focus {
-      border: 1.5px solid #8b5cf6;
-      box-shadow: 0 0 0 2px rgba(139,92,246,0.08);
-    }
-    button {
-      cursor: pointer;
-      border: none;
-      background: linear-gradient(90deg, #8b5cf6 0%, #6366f1 100%);
-      color: #fff;
-      font-weight: 600;
-      padding: 10px 20px;
-      margin: 0 2px;
-      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.08);
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    button:hover {
-      background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%);
-      box-shadow: 0 4px 16px 0 rgba(139,92,246,0.12);
-    }
-    /* Compact minimalist table */
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: rgba(255,255,255,0.01);
-      border-radius: 12px;
-      overflow: hidden;
-      font-size: 0.85rem;
-      margin: 0;
-      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.04);
-    }
-    th, td {
-      padding: 6px 8px;
-      text-align: left;
-      border-bottom: 1px solid rgba(139,92,246,0.06);
-      vertical-align: middle;
-      line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    th {
-      background: rgba(139,92,246,0.04);
-      color: #a78bfa;
-      font-weight: 600;
-      font-size: 0.88rem;
-      border-bottom: 2px solid rgba(139,92,246,0.10);
-      padding: 8px 8px;
-    }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    tr {
-      transition: background 0.2s;
-      height: 32px;
-    }
-    tr:hover {
-      background: rgba(139,92,246,0.06);
-    }
-    /* Responsive table adjustments */
-    @media (max-width: 1200px) {
-      table, th, td {
-        font-size: 0.8rem;
-      }
-      th, td {
-        padding: 5px 6px;
-      }
-      th {
-        font-size: 0.82rem;
-        padding: 6px 6px;
-      }
-    }
-    @media (max-width: 900px) {
-      table, th, td {
-        font-size: 0.75rem;
-      }
-      th, td {
-        padding: 4px 5px;
-      }
-      th {
-        font-size: 0.78rem;
-        padding: 5px 5px;
-      }
-    }
-    @media (max-width: 600px) {
-      .tabs {
-        flex-direction: column;
-      }
-      .tab-content {
-        padding: 8px 2vw 0 2vw;
-      }
-      table, th, td {
-        font-size: 0.7rem;
-      }
-      th, td {
-        padding: 3px 4px;
-      }
-      th {
-        font-size: 0.72rem;
-        padding: 4px 4px;
-      }
-    }
-    /* Remove max-width and margin from search bar container */
-    .search-bar-container {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    .trade-row-highlight {
-      background: rgba(139,92,246,0.13) !important;
-      border-left: 4px solid #8b5cf6 !important;
-      transition: background 0.2s, border 0.2s;
-      animation: embossHighlight 0.3s ease-out forwards;
-      box-shadow: 
-        inset 2px 2px 4px rgba(255,255,255,0.1),
-        inset -2px -2px 4px rgba(0,0,0,0.2),
-        0 4px 8px rgba(139,92,246,0.15);
-      transform: translateY(-1px);
-    }
-    @keyframes embossHighlight {
-      0% {
-        box-shadow: 
-          inset 0px 0px 0px rgba(255,255,255,0),
-          inset 0px 0px 0px rgba(0,0,0,0),
-          0 0px 0px rgba(139,92,246,0);
-        transform: translateY(0px);
-        opacity: 0.7;
-      }
-      50% {
-        box-shadow: 
-          inset 1px 1px 2px rgba(255,255,255,0.05),
-          inset -1px -1px 2px rgba(0,0,0,0.1),
-          0 2px 4px rgba(139,92,246,0.1);
-        transform: translateY(-0.5px);
-        opacity: 0.85;
-      }
-      100% {
-        box-shadow: 
-          inset 2px 2px 4px rgba(255,255,255,0.1),
-          inset -2px -2px 4px rgba(0,0,0,0.2),
-          0 4px 8px rgba(139,92,246,0.15);
-        transform: translateY(-1px);
-        opacity: 1;
-      }
-    }
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-        max-height: 0;
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 500px;
-      }
-    }
-    
-    @keyframes slideUp {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 500px;
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-20px);
-        max-height: 0;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <header>Crypto Trading Analysis Dashboard</header>
+  <header>
+    <svg width="32" height="32" viewBox="0 0 32 32" style="display: inline-block; margin-right: 12px; vertical-align: middle;">
+      <!-- Coin Stack Logo -->
+      <defs>
+        <linearGradient id="coinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="coinShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+        </linearGradient>
+      </defs>
+      
+      <!-- Bottom coin (shadow) -->
+      <ellipse cx="16" cy="24" rx="10" ry="3" fill="url(#coinShadow)" opacity="0.4"/>
+      
+      <!-- Middle coin -->
+      <ellipse cx="16" cy="18" rx="9" ry="2.5" fill="url(#coinGradient)" opacity="0.8"/>
+      
+      <!-- Top coin -->
+      <ellipse cx="16" cy="12" rx="8" ry="2" fill="url(#coinGradient)"/>
+      
+      <!-- Coin center details -->
+      <circle cx="16" cy="12" r="2" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.8"/>
+      <circle cx="16" cy="18" r="1.5" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.6"/>
+      
+      <!-- Sparkle effect -->
+      <circle cx="12" cy="8" r="0.8" fill="#ffffff" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="20" cy="6" r="0.6" fill="#ffffff" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    CoinStack
+  </header>
   
-  <div style="padding: 20px; background-color: rgba(30, 30, 30, 0.8); border-bottom: 1px solid rgba(139, 92, 246, 0.3);">
-    <div style="max-width: 600px; margin: 0 auto;">
-      <div style="position: relative;">
+  <div class="search-container">
+    <div class="search-input-container">
+      <div class="position-relative">
         <input 
           type="text" 
           id="searchInput" 
+          class="search-input"
           placeholder="Search technical indicators, patterns, or concepts..." 
-          style="
-            width: 100%;
-            padding: 15px 20px;
-            padding-left: 50px;
-            border: 2px solid rgba(139, 92, 246, 0.3);
-            border-radius: 25px;
-            background: rgba(0, 0, 0, 0.4);
-            color: #ffffff;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s ease;
-          "
           onkeyup="searchContent()"
         >
-        <div style="
-          position: absolute;
-          left: 15px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: #8b5cf6;
-          font-size: 18px;
-        ">🔍</div>
+        <div class="search-icon">🔍</div>
       </div>
-      <div id="searchResults" style="
-        margin-top: 10px;
-        max-height: 300px;
-        overflow-y: auto;
-        display: none;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
-        border: 1px solid rgba(139, 92, 246, 0.2);
-      "></div>
+      <div id="searchResults" class="search-results"></div>
     </div>
   </div>
   
@@ -1170,132 +894,58 @@
   <div id="trading-history" class="tab-content">
     <div class="section">
       <!-- Header -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-        <div style="display: flex; align-items: center; gap: 20px;">
+      <div class="trading-header">
+        <div class="trading-stats">
           
           <!-- Total PnL Counter -->
-          <div id="totalPnLCounter" style="
-            background: linear-gradient(135deg, rgba(17,24,39,0.8) 0%, rgba(0,0,0,0.4) 100%);
-            border: 1px solid rgba(139,92,246,0.2);
-            border-radius: 12px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 200px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-          ">
+          <div id="totalPnLCounter" class="counter-card">
             <!-- Background glow effect -->
-            <div style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              background: radial-gradient(circle at 30% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
-              pointer-events: none;
-            "></div>
+            <div class="counter-glow"></div>
             
             <!-- Icon -->
-            <div style="
-              color: #8b5cf6;
-              font-size: 1.2rem;
-              z-index: 1;
-              position: relative;
-            ">💰</div>
+            <div class="counter-icon">💰</div>
             
             <!-- Content -->
-            <div style="z-index: 1; position: relative;">
-              <div style="
-                color: #9ca3af;
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 2px;
-              ">Total P&L</div>
-              <div id="totalPnLValue" style="
-                color: #ffffff;
-                font-size: 1.1rem;
-                font-weight: 700;
-                font-family: 'Courier New', monospace;
-                text-shadow: 0 0 10px rgba(255,255,255,0.3);
-              ">0.0000</div>
+            <div class="counter-content">
+              <div class="counter-label">Total P&L</div>
+              <div id="totalPnLValue" class="counter-value">0.0000</div>
             </div>
           </div>
 
           <!-- Today's Trade Count Counter -->
-          <div id="todayTradeCounter" style="
-            background: linear-gradient(135deg, rgba(17,24,39,0.8) 0%, rgba(0,0,0,0.4) 100%);
-            border: 1px solid rgba(16,185,129,0.2);
-            border-radius: 12px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 180px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-          ">
+          <div id="todayTradeCounter" class="counter-card counter-success">
             <!-- Background glow effect -->
-            <div style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              background: radial-gradient(circle at 30% 50%, rgba(16,185,129,0.1) 0%, transparent 50%);
-              pointer-events: none;
-            "></div>
+            <div class="counter-glow counter-glow-success"></div>
             
             <!-- Icon -->
-            <div style="
-              color: #10b981;
-              font-size: 1.2rem;
-              z-index: 1;
-              position: relative;
-            ">📊</div>
+            <div class="counter-icon counter-icon-success">📊</div>
             
             <!-- Content -->
-            <div style="z-index: 1; position: relative;">
-              <div style="
-                color: #9ca3af;
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 2px;
-              ">Today's Trades</div>
-              <div id="todayTradeValue" style="
-                color: #10b981;
-                font-size: 1.1rem;
-                font-weight: 700;
-                font-family: 'Courier New', monospace;
-                text-shadow: 0 0 10px rgba(16,185,129,0.3);
-              ">0</div>
+            <div class="counter-content">
+              <div class="counter-label">Today's Trades</div>
+              <div id="todayTradeValue" class="counter-value counter-value-success">0</div>
             </div>
           </div>
         </div>
         
-        <div style="display: flex; gap: 12px;">
-          <button onclick="exportCSV()" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
-          <label for="importCSV" style="background: rgba(139,92,246,0.1); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease; margin-bottom: 0;">Import<input id="importCSV" type="file" accept=".csv" style="display: none;" onchange="importCSVFile(event)" /></label>
-          <button onclick="showBulkPaste()" style="background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Bulk Paste</button>
-          <button onclick="clearAllTrades()" style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Clear All</button>
+        <div class="action-buttons">
+          <button onclick="exportCSV()" class="btn-export">Export</button>
+          <label for="importCSV" class="btn-import">Import<input id="importCSV" type="file" accept=".csv" style="display: none;" onchange="importCSVFile(event)" /></label>
+          <button onclick="showBulkPaste()" class="btn-bulk">Bulk Paste</button>
+          <button onclick="clearAllTrades()" class="btn-clear">Clear All</button>
         </div>
       </div>
 
       <!-- Add Trade Toggle Button -->
-      <div style="margin-bottom: 20px;">
-        <button id="toggleAddTradeBtn" onclick="toggleAddTradeForm()" style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(139,92,246,0.3);">
+      <div class="add-trade-toggle">
+        <button id="toggleAddTradeBtn" onclick="toggleAddTradeForm()" class="btn-primary">
           <span id="toggleBtnText">➕ Add New Trade</span>
         </button>
       </div>
 
       <!-- Add Trade Form (Hidden by default) -->
-      <div id="addTradeForm" style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-bottom: 30px; display: none; animation: slideDown 0.3s ease-out;">
-        <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 500; margin-bottom: 20px;">Add New Trade</h4>
+      <div id="addTradeForm" class="add-trade-form">
+        <h4>Add New Trade</h4>
         <form id="tradeForm" onsubmit="addTrade(event)">
           <div style="margin-bottom: 16px;">
             <label for="tradeInput" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Paste trade (tab-separated):</label>
@@ -1310,27 +960,27 @@
       </div>
 
       <!-- Trading Table -->
-      <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; overflow: hidden;">
-        <div style="padding: 20px; border-bottom: 1px solid rgba(139,92,246,0.1);">
-          <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 500; margin: 0;">Trade Records</h4>
+      <div class="trading-table-container">
+        <div class="trading-table-header">
+          <h4>Trade Records</h4>
         </div>
-        <div style="overflow-x: auto;">
-          <table id="tradingHistoryTable" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+        <div class="trading-table-wrapper">
+          <table id="tradingHistoryTable">
             <thead>
-              <tr style="background: rgba(139,92,246,0.05);">
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1); width: 60px;">Actions</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Contracts</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Filled Type</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Filled/Total</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Filled Price/Order Price</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Fee Rate</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Trading Fee</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Trade Type</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Order Type</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Transaction ID</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Transaction Time</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Profit/Loss</th>
-                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Risk Amount</th>
+              <tr>
+                <th style="width: 60px;">Actions</th>
+                <th>Contracts</th>
+                <th>Filled Type</th>
+                <th>Filled/Total</th>
+                <th>Filled Price/Order Price</th>
+                <th>Fee Rate</th>
+                <th>Trading Fee</th>
+                <th>Trade Type</th>
+                <th>Order Type</th>
+                <th>Transaction ID</th>
+                <th>Transaction Time</th>
+                <th>Profit/Loss</th>
+                <th>Risk Amount</th>
               </tr>
             </thead>
             <tbody></tbody>

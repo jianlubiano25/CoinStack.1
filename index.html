@@ -10,243 +10,284 @@
     }
     body {
       margin: 0;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #15151e 0%, #23233a 100%);
+      color: #f3f4f6;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
     }
     header {
-      padding: 20px;
-      background-color: rgba(30, 30, 30, 0.8);
+      padding: 32px 0 20px 0;
+      background: none;
       text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 2px solid #8b5cf6;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #a78bfa;
+      border-bottom: none;
     }
     .tabs {
       display: flex;
-      background-color: rgba(30, 30, 30, 0.8);
-      border-bottom: 2px solid #333;
+      background: none;
+      border-bottom: 1px solid rgba(139,92,246,0.08);
       flex-wrap: wrap;
+      margin-bottom: 0;
     }
     .tab-button {
       flex: 1 1 auto;
-      padding: 15px;
+      padding: 14px 0;
       text-align: center;
       cursor: pointer;
-      background-color: rgba(30, 30, 30, 0.8);
-      color: #bbb;
+      background: none;
+      color: #bdbdfc;
       border: none;
-      transition: all 0.3s ease;
-      min-width: 100px;
+      border-bottom: 2px solid transparent;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s, border 0.2s;
     }
     .tab-button:hover {
-      background-color: rgba(139, 92, 246, 0.1);
       color: #8b5cf6;
+      background: none;
     }
     .tab-button.active {
-      background-color: rgba(139, 92, 246, 0.2);
       color: #8b5cf6;
       border-bottom: 2px solid #8b5cf6;
+      background: none;
     }
     .tab-content {
       display: none;
-      padding: 20px;
-      background-color: rgba(24, 24, 24, 0.9);
+      padding: 32px 32px 0 32px;
+      background: none;
+      min-height: 60vh;
     }
     .tab-content.active {
       display: block;
     }
     .section {
-      margin-bottom: 20px;
+      margin-bottom: 32px;
     }
     .section h3 {
-      color: #8b5cf6;
-      margin-bottom: 10px;
-      cursor: pointer;
+      color: #a78bfa;
+      margin-bottom: 16px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.2px;
     }
     .card {
-      background-color: rgba(36, 36, 36, 0.8);
-      padding: 15px;
-      border-radius: 8px;
+      background: rgba(255,255,255,0.02);
+      padding: 18px 20px;
+      border-radius: 12px;
       margin-bottom: 10px;
-      border: 1px solid rgba(139, 92, 246, 0.2);
+      border: none;
+      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.04);
     }
     .collapsible {
       cursor: pointer;
-      padding: 15px;
-      background-color: rgba(42, 42, 42, 0.8);
+      padding: 14px 18px;
+      background: rgba(139,92,246,0.04);
       border-radius: 8px;
-      margin-top: 10px;
+      margin-top: 8px;
       color: #8b5cf6;
-      font-weight: bold;
-      border: 1px solid rgba(139, 92, 246, 0.2);
-      transition: all 0.3s ease;
+      font-weight: 500;
+      border: none;
+      font-size: 1rem;
+      transition: background 0.2s;
     }
-    .collapsible:hover {
-      background-color: rgba(139, 92, 246, 0.1);
-      transform: translateY(-2px);
-    }
-    .collapsible.active {
-      background-color: rgba(139, 92, 246, 0.2);
-      border-color: rgba(139, 92, 246, 0.5);
-      box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+    .collapsible:hover, .collapsible.active {
+      background: rgba(139,92,246,0.12);
     }
     .content {
-      padding: 0 10px;
+      padding: 0 12px;
       display: none;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .content img {
       max-width: 100%;
-      margin-top: 10px;
-      border-radius: 6px;
+      margin-top: 12px;
+      border-radius: 8px;
       height: auto;
     }
-    .candlestick-diagram {
-      width: 100%;
-      max-width: 400px;
-      height: 200px;
-      margin: 15px auto;
-      background: rgba(0, 0, 0, 0.3);
+    /* Modern minimalist input/button */
+    input, select, textarea, button {
+      font-family: inherit;
+      font-size: 1rem;
       border-radius: 8px;
-      padding: 20px;
-      border: 1px solid rgba(139, 92, 246, 0.3);
+      border: 1px solid rgba(139,92,246,0.12);
+      background: rgba(255,255,255,0.03);
+      color: #f3f4f6;
+      padding: 10px 14px;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
     }
-    .candlestick-grid {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(4, 1fr);
-      gap: 2px;
-      align-items: end;
+    input:focus, select:focus, textarea:focus {
+      border: 1.5px solid #8b5cf6;
+      box-shadow: 0 0 0 2px rgba(139,92,246,0.08);
     }
-    .candle {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      height: 100%;
-    }
-    .candle-body {
-      width: 80%;
-      border-radius: 2px;
-      position: relative;
-    }
-    .candle-wick {
-      width: 2px;
-      background: #8b5cf6;
-      margin: 0 auto;
-    }
-    .candle-bullish {
-      background: #10b981;
-      border: 1px solid #059669;
-    }
-    .candle-bearish {
-      background: #ef4444;
-      border: 1px solid #dc2626;
-    }
-    .candle-doji {
-      background: #8b5cf6;
-      border: 1px solid #a855f7;
-      height: 4px;
-    }
-    .candle-small {
-      height: 20%;
-    }
-    .candle-medium {
-      height: 40%;
-    }
-    .candle-large {
-      height: 80%;
-    }
-    .candle-hammer {
-      height: 60%;
-    }
-    .candle-hammer .candle-wick {
-      height: 80%;
-    }
-    .candle-shooting-star {
-      height: 30%;
-    }
-    .candle-shooting-star .candle-wick {
-      height: 70%;
-    }
-    .candle-inverted-hammer {
-      height: 30%;
-    }
-    .candle-inverted-hammer .candle-wick {
-      height: 70%;
-    }
-    .candle-hanging-man {
-      height: 60%;
-    }
-    .candle-hanging-man .candle-wick {
-      height: 80%;
-    }
-    .candle-spinning-top {
-      height: 15%;
-      background: #8b5cf6;
-      border: 1px solid #a855f7;
-    }
-    .candle-spinning-top .candle-wick {
-      height: 60%;
-    }
-    
-    /* Search Styles */
-    #searchInput:focus {
-      border-color: #8b5cf6;
-      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-    }
-    
-    .search-result-item {
-      padding: 12px 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    button {
       cursor: pointer;
-      transition: all 0.3s ease;
-      color: #ffffff;
+      border: none;
+      background: linear-gradient(90deg, #8b5cf6 0%, #6366f1 100%);
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 20px;
+      margin: 0 2px;
+      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.08);
+      transition: background 0.2s, box-shadow 0.2s;
     }
-    
-    .search-result-item:hover {
-      background: rgba(139, 92, 246, 0.1);
-      color: #8b5cf6;
+    button:hover {
+      background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%);
+      box-shadow: 0 4px 16px 0 rgba(139,92,246,0.12);
     }
-    
-    .search-result-item:last-child {
+    /* Compact minimalist table */
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: rgba(255,255,255,0.01);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 0.85rem;
+      margin: 0;
+      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.04);
+    }
+    th, td {
+      padding: 6px 8px;
+      text-align: left;
+      border-bottom: 1px solid rgba(139,92,246,0.06);
+      vertical-align: middle;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    th {
+      background: rgba(139,92,246,0.04);
+      color: #a78bfa;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border-bottom: 2px solid rgba(139,92,246,0.10);
+      padding: 8px 8px;
+    }
+    tr:last-child td {
       border-bottom: none;
     }
-    
-    .search-result-title {
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: #8b5cf6;
+    tr {
+      transition: background 0.2s;
+      height: 32px;
     }
-    
-    .search-result-category {
-      font-size: 12px;
-      color: #9ca3af;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    tr:hover {
+      background: rgba(139,92,246,0.06);
     }
-    
-    .search-result-preview {
-      font-size: 14px;
-      color: #d1d5db;
-      margin-top: 5px;
-      line-height: 1.4;
+    /* Responsive table adjustments */
+    @media (max-width: 1200px) {
+      table, th, td {
+        font-size: 0.8rem;
+      }
+      th, td {
+        padding: 5px 6px;
+      }
+      th {
+        font-size: 0.82rem;
+        padding: 6px 6px;
+      }
     }
-    
-    .highlight {
-      background: rgba(139, 92, 246, 0.3);
-      color: #ffffff;
-      padding: 2px 4px;
-      border-radius: 3px;
+    @media (max-width: 900px) {
+      table, th, td {
+        font-size: 0.75rem;
+      }
+      th, td {
+        padding: 4px 5px;
+      }
+      th {
+        font-size: 0.78rem;
+        padding: 5px 5px;
+      }
     }
-    
     @media (max-width: 600px) {
       .tabs {
         flex-direction: column;
+      }
+      .tab-content {
+        padding: 8px 2vw 0 2vw;
+      }
+      table, th, td {
+        font-size: 0.7rem;
+      }
+      th, td {
+        padding: 3px 4px;
+      }
+      th {
+        font-size: 0.72rem;
+        padding: 4px 4px;
+      }
+    }
+    /* Remove max-width and margin from search bar container */
+    .search-bar-container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .trade-row-highlight {
+      background: rgba(139,92,246,0.13) !important;
+      border-left: 4px solid #8b5cf6 !important;
+      transition: background 0.2s, border 0.2s;
+      animation: embossHighlight 0.3s ease-out forwards;
+      box-shadow: 
+        inset 2px 2px 4px rgba(255,255,255,0.1),
+        inset -2px -2px 4px rgba(0,0,0,0.2),
+        0 4px 8px rgba(139,92,246,0.15);
+      transform: translateY(-1px);
+    }
+    @keyframes embossHighlight {
+      0% {
+        box-shadow: 
+          inset 0px 0px 0px rgba(255,255,255,0),
+          inset 0px 0px 0px rgba(0,0,0,0),
+          0 0px 0px rgba(139,92,246,0);
+        transform: translateY(0px);
+        opacity: 0.7;
+      }
+      50% {
+        box-shadow: 
+          inset 1px 1px 2px rgba(255,255,255,0.05),
+          inset -1px -1px 2px rgba(0,0,0,0.1),
+          0 2px 4px rgba(139,92,246,0.1);
+        transform: translateY(-0.5px);
+        opacity: 0.85;
+      }
+      100% {
+        box-shadow: 
+          inset 2px 2px 4px rgba(255,255,255,0.1),
+          inset -2px -2px 4px rgba(0,0,0,0.2),
+          0 4px 8px rgba(139,92,246,0.15);
+        transform: translateY(-1px);
+        opacity: 1;
+      }
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+      }
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
       }
     }
   </style>
@@ -1130,16 +1171,130 @@
     <div class="section">
       <!-- Header -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-        <h3 style="color: #8b5cf6; font-size: 1.5rem; font-weight: 300; margin: 0;">📒 Trading History</h3>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          
+          <!-- Total PnL Counter -->
+          <div id="totalPnLCounter" style="
+            background: linear-gradient(135deg, rgba(17,24,39,0.8) 0%, rgba(0,0,0,0.4) 100%);
+            border: 1px solid rgba(139,92,246,0.2);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          ">
+            <!-- Background glow effect -->
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: radial-gradient(circle at 30% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
+              pointer-events: none;
+            "></div>
+            
+            <!-- Icon -->
+            <div style="
+              color: #8b5cf6;
+              font-size: 1.2rem;
+              z-index: 1;
+              position: relative;
+            ">💰</div>
+            
+            <!-- Content -->
+            <div style="z-index: 1; position: relative;">
+              <div style="
+                color: #9ca3af;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 2px;
+              ">Total P&L</div>
+              <div id="totalPnLValue" style="
+                color: #ffffff;
+                font-size: 1.1rem;
+                font-weight: 700;
+                font-family: 'Courier New', monospace;
+                text-shadow: 0 0 10px rgba(255,255,255,0.3);
+              ">0.0000</div>
+            </div>
+          </div>
+
+          <!-- Today's Trade Count Counter -->
+          <div id="todayTradeCounter" style="
+            background: linear-gradient(135deg, rgba(17,24,39,0.8) 0%, rgba(0,0,0,0.4) 100%);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 180px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          ">
+            <!-- Background glow effect -->
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: radial-gradient(circle at 30% 50%, rgba(16,185,129,0.1) 0%, transparent 50%);
+              pointer-events: none;
+            "></div>
+            
+            <!-- Icon -->
+            <div style="
+              color: #10b981;
+              font-size: 1.2rem;
+              z-index: 1;
+              position: relative;
+            ">📊</div>
+            
+            <!-- Content -->
+            <div style="z-index: 1; position: relative;">
+              <div style="
+                color: #9ca3af;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 2px;
+              ">Today's Trades</div>
+              <div id="todayTradeValue" style="
+                color: #10b981;
+                font-size: 1.1rem;
+                font-weight: 700;
+                font-family: 'Courier New', monospace;
+                text-shadow: 0 0 10px rgba(16,185,129,0.3);
+              ">0</div>
+            </div>
+          </div>
+        </div>
+        
         <div style="display: flex; gap: 12px;">
           <button onclick="exportCSV()" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
           <label for="importCSV" style="background: rgba(139,92,246,0.1); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease; margin-bottom: 0;">Import<input id="importCSV" type="file" accept=".csv" style="display: none;" onchange="importCSVFile(event)" /></label>
           <button onclick="showBulkPaste()" style="background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Bulk Paste</button>
+          <button onclick="clearAllTrades()" style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Clear All</button>
         </div>
       </div>
 
-      <!-- Add Trade Form -->
-      <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-bottom: 30px;">
+      <!-- Add Trade Toggle Button -->
+      <div style="margin-bottom: 20px;">
+        <button id="toggleAddTradeBtn" onclick="toggleAddTradeForm()" style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(139,92,246,0.3);">
+          <span id="toggleBtnText">➕ Add New Trade</span>
+        </button>
+      </div>
+
+      <!-- Add Trade Form (Hidden by default) -->
+      <div id="addTradeForm" style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-bottom: 30px; display: none; animation: slideDown 0.3s ease-out;">
         <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 500; margin-bottom: 20px;">Add New Trade</h4>
         <form id="tradeForm" onsubmit="addTrade(event)">
           <div style="margin-bottom: 16px;">
@@ -1183,8 +1338,7 @@
         </div>
       </div>
 
-      <!-- Total PnL Display -->
-      <div id="totalPnL" style="margin-top: 20px; padding: 16px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 8px; text-align: center; font-size: 1.1rem; font-weight: 600;"></div>
+
     </div>
   </div>
 
@@ -1826,9 +1980,33 @@
 
     function getTrades() {
       const trades = localStorage.getItem('tradingHistory');
-      if (trades) return JSON.parse(trades);
+      if (trades) {
+        const parsedTrades = JSON.parse(trades);
+        // Sort by transaction time in descending order (latest first)
+        return parsedTrades.sort((a, b) => {
+          const timeA = new Date(a.transactionTime);
+          const timeB = new Date(b.transactionTime);
+          return timeB - timeA; // Descending order
+        });
+      }
       localStorage.setItem('tradingHistory', JSON.stringify(defaultTrades));
-      return [...defaultTrades];
+      return [...defaultTrades].sort((a, b) => {
+        const timeA = new Date(a.transactionTime);
+        const timeB = new Date(b.transactionTime);
+        return timeB - timeA; // Descending order
+      });
+    }
+
+    function getTodayTradesCount() {
+      const trades = getTrades();
+      const today = new Date();
+      const todayString = today.toISOString().split('T')[0]; // YYYY-MM-DD format
+      
+      return trades.filter(trade => {
+        const tradeDate = new Date(trade.transactionTime);
+        const tradeDateString = tradeDate.toISOString().split('T')[0];
+        return tradeDateString === todayString;
+      }).length;
     }
     function saveTrades(trades) {
       localStorage.setItem('tradingHistory', JSON.stringify(trades));
@@ -1840,6 +2018,9 @@
       let totalPnL = 0;
       trades.forEach((trade, index) => {
         const tr = document.createElement('tr');
+        tr.setAttribute('data-transaction-id', trade.transactionId);
+        tr.setAttribute('data-trade-type', /open/i.test(trade.tradeType) ? 'open' : (/close/i.test(trade.tradeType) ? 'close' : 'other'));
+        tr.classList.add('trade-row');
         const pnl = calculatePnL(trade);
         // Highlight open trades
         if (/open/i.test(trade.tradeType)) {
@@ -1877,11 +2058,66 @@
         if (/open/i.test(trade.tradeType)) tradeTypeCell.style.color = '#10b981'; // green
         else if (/close/i.test(trade.tradeType)) tradeTypeCell.style.color = '#ef4444'; // red
       });
-      // Show total PnL below table
-      const totalPnLElem = document.getElementById('totalPnL');
-      let color = totalPnL > 0 ? '#10b981' : (totalPnL < 0 ? '#ef4444' : '#fff');
-      totalPnLElem.textContent = `Total Profit/Loss: ${totalPnL.toFixed(4)}`;
-      totalPnLElem.style.color = color;
+      // Add hover event listeners for row connection
+      setTimeout(() => {
+        const rows = document.querySelectorAll('.trade-row');
+        rows.forEach(row => {
+          row.addEventListener('mouseenter', function() {
+            highlightRelatedTrades(this);
+          });
+          row.addEventListener('mouseleave', function() {
+            clearTradeHighlights();
+          });
+        });
+      }, 10);
+      // Update total PnL counter
+      const totalPnLValue = document.getElementById('totalPnLValue');
+      const totalPnLCounter = document.getElementById('totalPnLCounter');
+      
+      if (totalPnLValue && totalPnLCounter) {
+        totalPnLValue.textContent = totalPnL.toFixed(4);
+        
+        // Update counter color and glow effect based on PnL
+        let color, glowColor, borderColor;
+        if (totalPnL > 0) {
+          color = '#10b981';
+          glowColor = 'rgba(16,185,129,0.3)';
+          borderColor = 'rgba(16,185,129,0.4)';
+        } else if (totalPnL < 0) {
+          color = '#ef4444';
+          glowColor = 'rgba(239,68,68,0.3)';
+          borderColor = 'rgba(239,68,68,0.4)';
+        } else {
+          color = '#ffffff';
+          glowColor = 'rgba(139,92,246,0.2)';
+          borderColor = 'rgba(139,92,246,0.2)';
+        }
+        
+        totalPnLValue.style.color = color;
+        totalPnLValue.style.textShadow = `0 0 10px ${glowColor}`;
+        totalPnLCounter.style.borderColor = borderColor;
+        
+        // Add animation effect
+        totalPnLCounter.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          totalPnLCounter.style.transform = 'scale(1)';
+        }, 200);
+      }
+
+      // Update today's trade count counter
+      const todayTradeValue = document.getElementById('todayTradeValue');
+      const todayTradeCounter = document.getElementById('todayTradeCounter');
+      
+      if (todayTradeValue && todayTradeCounter) {
+        const todayCount = getTodayTradesCount();
+        todayTradeValue.textContent = todayCount;
+        
+        // Add animation effect
+        todayTradeCounter.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          todayTradeCounter.style.transform = 'scale(1)';
+        }, 200);
+      }
     }
     function addTrade(e) {
       e.preventDefault();
@@ -1909,7 +2145,7 @@
         transactionTime: fields[9]
       };
       const trades = getTrades();
-      trades.unshift(trade);
+      trades.push(trade);
       saveTrades(trades);
       renderTrades();
       input.value = '';
@@ -1945,40 +2181,82 @@
       }
       // If tradeType contains 'Open', PnL is not applicable
       if (/open/i.test(trade.tradeType)) return '-';
-      // Find the matching open trade for this contract and size before this close
+      
+      // Find all matching open trades for this contract and trade type
       const trades = getTrades();
       const closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
-      let openTrade = null;
+      let openTrades = [];
+      let totalOpenSize = 0;
+      
+      // Look for open trades after this close trade (since trades are sorted newest first)
       for (let i = closeIndex + 1; i < trades.length; i++) {
+        const potentialOpen = trades[i];
         if (
-          trades[i].contracts === trade.contracts &&
-          /open/i.test(trades[i].tradeType) &&
-          trades[i].filledTotal === trade.filledTotal
+          potentialOpen.contracts === trade.contracts &&
+          /open/i.test(potentialOpen.tradeType) &&
+          /short/i.test(potentialOpen.tradeType) === /short/i.test(trade.tradeType) // Match long/short direction
         ) {
-          openTrade = trades[i];
-          break;
+          const openSize = parseFloat(potentialOpen.filledTotal.split('/')[0]);
+          openTrades.push({
+            trade: potentialOpen,
+            size: openSize
+          });
+          totalOpenSize += openSize;
+          
+          // Stop when we have enough open trades to match the close size
+          if (totalOpenSize >= size) {
+            break;
+          }
         }
       }
-      if (!openTrade) return '-';
-      // Entry price from open, exit price from close - always use filled price (first part before "/")
-      let entry = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
+      
+      // Check if we found enough open trades
+      if (openTrades.length === 0 || totalOpenSize < size) {
+        return '-';
+      }
+      
+      // Calculate weighted average entry price
+      let weightedEntryPrice = 0;
+      let totalOpenFee = 0;
+      let remainingSize = size;
+      
+      for (let openTradeInfo of openTrades) {
+        const openTrade = openTradeInfo.trade;
+        const openSize = openTradeInfo.size;
+        const entryPrice = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
+        const openFee = parseFloat(openTrade.tradingFee) || 0;
+        
+        // Use the smaller of remaining size or this open trade's size
+        const sizeToUse = Math.min(remainingSize, openSize);
+        const weight = sizeToUse / size;
+        
+        weightedEntryPrice += entryPrice * weight;
+        totalOpenFee += openFee * weight;
+        
+        remainingSize -= sizeToUse;
+        if (remainingSize <= 0) break;
+      }
+      
+      // Exit price from close trade
       let exit = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
-      if (isNaN(entry) || isNaN(exit) || isNaN(size)) return '-';
-      // Trading fees (from both open and close trades)
-      let openFee = parseFloat(openTrade.tradingFee) || 0;
       let closeFee = parseFloat(trade.tradingFee) || 0;
-      let totalFee = openFee + closeFee;
+      let totalFee = totalOpenFee + closeFee;
+      
+      if (isNaN(weightedEntryPrice) || isNaN(exit) || isNaN(size)) return '-';
+      
       // Direction: Long or Short
       let isLong = /long/i.test(trade.tradeType);
       let isShort = /short/i.test(trade.tradeType);
       let pnl = 0;
+      
       if (isLong) {
-        pnl = (exit - entry) * size - totalFee;
+        pnl = (exit - weightedEntryPrice) * size - totalFee;
       } else if (isShort) {
-        pnl = (entry - exit) * size - totalFee;
+        pnl = (weightedEntryPrice - exit) * size - totalFee;
       } else {
         return '-';
       }
+      
       return pnl.toFixed(4);
     }
 
@@ -2084,7 +2362,7 @@
           };
           // Prevent duplicate transactionId
           if (!trades.some(t => t.transactionId === trade.transactionId)) {
-            trades.unshift(trade);
+            trades.push(trade);
             added++;
           }
         }
@@ -2139,7 +2417,7 @@
           transactionTime: fields[9]
         };
         if (!trades.some(t => t.transactionId === trade.transactionId)) {
-          trades.unshift(trade);
+          trades.push(trade);
           added++;
         } else {
           skipped++;
@@ -2158,34 +2436,66 @@
       // Only for Close trades
       if (!/close/i.test(trade.tradeType)) return '-';
       
-      // Find matching open trade
+      // Find all matching open trades for this contract and trade type
       const trades = getTrades();
       const closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
-      let openTrade = null;
+      let openTrades = [];
+      let totalOpenSize = 0;
+      let size = parseFloat(trade.filledTotal.split('/')[0]);
       
-      // Since trades are ordered newest first, look for the open trade AFTER the close trade
+      // Look for open trades after this close trade (since trades are sorted newest first)
       for (let i = closeIndex + 1; i < trades.length; i++) {
+        const potentialOpen = trades[i];
         if (
-          trades[i].contracts === trade.contracts &&
-          /open/i.test(trades[i].tradeType) &&
-          trades[i].filledTotal === trade.filledTotal
+          potentialOpen.contracts === trade.contracts &&
+          /open/i.test(potentialOpen.tradeType) &&
+          /short/i.test(potentialOpen.tradeType) === /short/i.test(trade.tradeType) // Match long/short direction
         ) {
-          openTrade = trades[i];
-          break;
+          const openSize = parseFloat(potentialOpen.filledTotal.split('/')[0]);
+          openTrades.push({
+            trade: potentialOpen,
+            size: openSize
+          });
+          totalOpenSize += openSize;
+          
+          // Stop when we have enough open trades to match the close size
+          if (totalOpenSize >= size) {
+            break;
+          }
         }
       }
       
-      if (!openTrade) return '-';
+      // Check if we found enough open trades
+      if (openTrades.length === 0 || totalOpenSize < size) {
+        return '-';
+      }
       
-      // Parse prices and size - always use filled price (first part before "/")
-      let entry = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
+      // Calculate weighted average entry price
+      let weightedEntryPrice = 0;
+      let remainingSize = size;
+      
+      for (let openTradeInfo of openTrades) {
+        const openTrade = openTradeInfo.trade;
+        const openSize = openTradeInfo.size;
+        const entryPrice = parseFloat(openTrade.filledPriceOrderPrice.split('/')[0]);
+        
+        // Use the smaller of remaining size or this open trade's size
+        const sizeToUse = Math.min(remainingSize, openSize);
+        const weight = sizeToUse / size;
+        
+        weightedEntryPrice += entryPrice * weight;
+        
+        remainingSize -= sizeToUse;
+        if (remainingSize <= 0) break;
+      }
+      
+      // Exit price from close trade
       let exit = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
-      let size = parseFloat(trade.filledTotal.split('/')[0]);
       
-      if (isNaN(entry) || isNaN(exit) || isNaN(size)) return '-';
+      if (isNaN(weightedEntryPrice) || isNaN(exit) || isNaN(size)) return '-';
       
-      // Calculate risk amount (absolute difference between entry and exit prices * size)
-      let risk = Math.abs(entry - exit) * size;
+      // Calculate risk amount (absolute difference between weighted entry and exit prices * size)
+      let risk = Math.abs(weightedEntryPrice - exit) * size;
       return risk.toFixed(4);
     }
 
@@ -2577,6 +2887,21 @@
       URL.revokeObjectURL(url);
     }
 
+    function clearAllTrades() {
+      if (!confirm('Are you sure you want to clear ALL trading history? This action cannot be undone.')) return;
+      
+      const trades = getTrades();
+      if (trades.length === 0) {
+        alert('No trades to clear.');
+        return;
+      }
+      
+      // Clear all trades
+      saveTrades([]);
+      renderTrades();
+      alert(`Cleared ${trades.length} trade(s) from history.`);
+    }
+
     function clearCompletedSessions() {
       if (!confirm('Are you sure you want to clear all completed sessions?')) return;
       
@@ -2584,6 +2909,110 @@
       const filtered = schedule.filter(entry => entry.status !== 'Completed');
       saveSchedule(filtered);
       renderSchedule();
+    }
+
+    // Highlight related open/close trades on hover
+    function highlightRelatedTrades(row) {
+      const trades = getTrades();
+      const transactionId = row.getAttribute('data-transaction-id');
+      const tradeType = row.getAttribute('data-trade-type');
+      // Find the trade object
+      const trade = trades.find(t => t.transactionId === transactionId);
+      if (!trade) return;
+      // For close: highlight all matching open trades used for PnL
+      // For open: highlight all close trades that use this open
+      const rows = document.querySelectorAll('.trade-row');
+      if (tradeType === 'close') {
+        // Find all open trades used for this close
+        let size = parseFloat(trade.filledTotal.split('/')[0]);
+        let closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
+        let openIds = [];
+        let totalOpenSize = 0;
+        for (let i = closeIndex + 1; i < trades.length; i++) {
+          const potentialOpen = trades[i];
+          if (
+            potentialOpen.contracts === trade.contracts &&
+            /open/i.test(potentialOpen.tradeType) &&
+            /short/i.test(potentialOpen.tradeType) === /short/i.test(trade.tradeType)
+          ) {
+            const openSize = parseFloat(potentialOpen.filledTotal.split('/')[0]);
+            openIds.push(potentialOpen.transactionId);
+            totalOpenSize += openSize;
+            if (totalOpenSize >= size) break;
+          }
+        }
+        // Highlight this row and all openIds
+        rows.forEach(r => {
+          if (r.getAttribute('data-transaction-id') === transactionId || openIds.includes(r.getAttribute('data-transaction-id'))) {
+            r.classList.add('trade-row-highlight');
+          }
+        });
+      } else if (tradeType === 'open') {
+        // Find all close trades that use this open
+        let openIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
+        let openTrade = trades[openIndex];
+        let openSize = parseFloat(openTrade.filledTotal.split('/')[0]);
+        // Scan all close trades before this open
+        for (let i = 0; i < openIndex; i++) {
+          const closeTrade = trades[i];
+          if (
+            /close/i.test(closeTrade.tradeType) &&
+            closeTrade.contracts === openTrade.contracts &&
+            /short/i.test(closeTrade.tradeType) === /short/i.test(openTrade.tradeType)
+          ) {
+            // See if this open is part of the openIds for this close
+            let size = parseFloat(closeTrade.filledTotal.split('/')[0]);
+            let totalOpenSize = 0;
+            let found = false;
+            for (let j = i + 1; j < trades.length; j++) {
+              const potentialOpen = trades[j];
+              if (
+                potentialOpen.contracts === closeTrade.contracts &&
+                /open/i.test(potentialOpen.tradeType) &&
+                /short/i.test(potentialOpen.tradeType) === /short/i.test(closeTrade.tradeType)
+              ) {
+                totalOpenSize += parseFloat(potentialOpen.filledTotal.split('/')[0]);
+                if (potentialOpen.transactionId === openTrade.transactionId) found = true;
+                if (totalOpenSize >= size) break;
+              }
+            }
+            if (found) {
+              // Highlight this open and the close
+              rows.forEach(r => {
+                if (r.getAttribute('data-transaction-id') === closeTrade.transactionId || r.getAttribute('data-transaction-id') === openTrade.transactionId) {
+                  r.classList.add('trade-row-highlight');
+                }
+              });
+            }
+          }
+        }
+      }
+    }
+    function clearTradeHighlights() {
+      document.querySelectorAll('.trade-row-highlight').forEach(r => r.classList.remove('trade-row-highlight'));
+    }
+
+    // Toggle Add Trade Form
+    function toggleAddTradeForm() {
+      const form = document.getElementById('addTradeForm');
+      const btn = document.getElementById('toggleAddTradeBtn');
+      const btnText = document.getElementById('toggleBtnText');
+      
+      if (form.style.display === 'none' || form.style.display === '') {
+        // Show form
+        form.style.display = 'block';
+        form.style.animation = 'slideDown 0.3s ease-out forwards';
+        btnText.textContent = '➖ Hide Add Trade';
+        btn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+      } else {
+        // Hide form
+        form.style.animation = 'slideUp 0.3s ease-out forwards';
+        setTimeout(() => {
+          form.style.display = 'none';
+        }, 300);
+        btnText.textContent = '➕ Add New Trade';
+        btn.style.background = 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)';
+      }
     }
   </script>
 </body>

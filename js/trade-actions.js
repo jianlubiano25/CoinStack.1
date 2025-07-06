@@ -220,52 +220,35 @@ function submitBulkPaste() {
 
 // Toggle Add Trade Form
 function toggleAddTradeForm() {
-  console.log('toggleAddTradeForm called');
   const form = document.getElementById('addTradeForm');
   const btn = document.getElementById('toggleAddTradeBtn');
   const btnText = document.getElementById('toggleBtnText');
   
-  console.log('Form found:', form);
-  console.log('Button found:', btn);
-  console.log('Button text found:', btnText);
-  console.log('Current form display:', form.style.display);
+  if (!form || !btn || !btnText) {
+    console.error('Required elements not found');
+    return;
+  }
   
-  if (form.style.display === 'none' || form.style.display === '') {
-    console.log('Showing form...');
+  const isHidden = form.style.display === 'none' || form.style.display === '';
+  
+  if (isHidden) {
     // Show form
     form.style.display = 'block';
-    form.style.opacity = '0';
-    form.style.transform = 'translateY(-20px)';
-    form.style.maxHeight = '0';
-    
-    // Force reflow
-    form.offsetHeight;
-    
-    // Animate in
-    form.style.transition = 'all 0.3s ease-out';
     form.style.opacity = '1';
     form.style.transform = 'translateY(0)';
     form.style.maxHeight = '500px';
     
     btnText.textContent = '➖ Hide Add Trade';
     btn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
-    console.log('Form should now be visible');
   } else {
-    console.log('Hiding form...');
     // Hide form
-    form.style.transition = 'all 0.3s ease-out';
+    form.style.display = 'none';
     form.style.opacity = '0';
     form.style.transform = 'translateY(-20px)';
     form.style.maxHeight = '0';
     
-    setTimeout(() => {
-      form.style.display = 'none';
-      form.style.transition = '';
-    }, 300);
-    
     btnText.textContent = '➕ Add New Trade';
     btn.style.background = 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)';
-    console.log('Form should now be hidden');
   }
 }
 

@@ -1516,7 +1516,6 @@
         
         <div class="action-buttons">
           <button class="btn-export">Export</button>
-          <label for="importCSV" class="btn-import">Import<input id="importCSV" type="file" accept=".csv" style="display: none;" onchange="importCSV(event)" /></label>
           <button class="btn-bulk">Bulk Paste</button>
           <button class="btn-clear">Clear All</button>
         </div>
@@ -1525,7 +1524,7 @@
 
       <!-- Add Trade Toggle Button -->
       <div class="add-trade-toggle">
-        <button id="toggleAddTradeBtn" class="btn-primary">
+        <button id="toggleAddTradeBtn" class="btn-primary" onclick="if(typeof toggleAddTradeForm === 'function') { toggleAddTradeForm(); } else { console.error('toggleAddTradeForm not available'); }">
           <span id="toggleBtnText">➕ Add New Trade</span>
         </button>
       </div>
@@ -2033,117 +2032,7 @@
   <script src="js/schedule.js"></script>
   <script src="js/index.js"></script>
   
-  <!-- Clean inline CSV import function -->
-  <script>
-    function importCSV(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      
-      if (!file.name.toLowerCase().endsWith('.csv')) {
-        alert('Please select a CSV file');
-        return;
-      }
-      
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const csvContent = e.target.result;
-          const lines = csvContent.split('\n').filter(line => line.trim() !== '');
-          
-          if (lines.length < 2) {
-            alert('CSV file must contain at least a header and one data row');
-            return;
-          }
-          
-          // Parse header
-          const header = lines[0].split(',').map(field => field.trim());
-          
-          // Validate header - accept 10 or 11 columns
-          if (header.length < 10 || header.length > 11) {
-            alert(`Expected 10 or 11 columns, found ${header.length}. Please check the CSV format.`);
-            return;
-          }
-          
-          const hasRiskAmount = header.length === 11;
-          const newTrades = [];
-          const errors = [];
-          
-          // Parse data rows
-          for (let i = 1; i < lines.length; i++) {
-            try {
-              const row = lines[i].split(',').map(field => field.trim());
-              
-              if (row.length !== header.length) {
-                errors.push(`Row ${i + 1}: Expected ${header.length} columns, found ${row.length}`);
-                continue;
-              }
-              
-              const trade = {
-                contracts: row[0],
-                filledType: row[1],
-                filledTotal: row[2],
-                filledPriceOrderPrice: row[3],
-                feeRate: row[4],
-                tradingFee: row[5],
-                tradeType: row[6],
-                orderType: row[7],
-                transactionId: row[8],
-                transactionTime: row[9],
-                riskAmount: hasRiskAmount ? (row[10] || '-') : '-'
-              };
-              
-              // Basic validation
-              if (!trade.contracts || !trade.transactionId || !trade.transactionTime) {
-                errors.push(`Row ${i + 1}: Missing required fields`);
-                continue;
-              }
-              
-              newTrades.push(trade);
-            } catch (rowError) {
-              errors.push(`Row ${i + 1}: ${rowError.message}`);
-            }
-          }
-          
-          if (errors.length > 0) {
-            alert(`Import completed with ${errors.length} errors:\n${errors.slice(0, 5).join('\n')}${errors.length > 5 ? '\n... and ' + (errors.length - 5) + ' more errors' : ''}`);
-          }
-          
-          if (newTrades.length > 0) {
-            // Add new trades to existing trades
-            const existingTrades = window.getTrades();
-            const allTrades = [...existingTrades, ...newTrades];
-            window.saveTrades(allTrades);
-            window.renderTrades();
-            
-            // Switch to trading history tab
-            const tradingHistoryTab = document.querySelector('[data-tab="trading-history"]');
-            const tradingHistoryContent = document.getElementById('trading-history');
-            
-            if (tradingHistoryTab && tradingHistoryContent) {
-              document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-              document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-              tradingHistoryTab.classList.add('active');
-              tradingHistoryContent.classList.add('active');
-            }
-            
-            alert(`Successfully imported ${newTrades.length} trades${errors.length > 0 ? ` (${errors.length} errors)` : ''}`);
-          } else {
-            alert('No valid trades found in the CSV file');
-          }
-          
-        } catch (error) {
-          alert(`Error reading CSV file: ${error.message}`);
-        }
-      };
-      
-      reader.onerror = function() {
-        alert('Error reading the file');
-      };
-      
-      reader.readAsText(file);
-      event.target.value = ''; // Reset file input
-    }
-  </script>
+
   
 
   

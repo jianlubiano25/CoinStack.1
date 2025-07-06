@@ -1,6 +1,35 @@
-# CoinStack - Crypto Trading Analysis Dashboard
+# CoinStack - Crypto Trading Analysis Platform
 
-A modern, responsive crypto trading analysis dashboard with advanced features for tracking trades, analyzing patterns, and managing trading schedules.
+A comprehensive web-based platform for crypto trading analysis, featuring technical indicators, trading history management, and advanced trading tools.
+
+## Features
+
+- **Knowledge Base**: Comprehensive trading patterns, indicators, and market psychology guides
+- **Trading History**: Import, export, and manage your trading records with CSV support
+- **Trading Schedule**: Plan and track your trading sessions with session-based analytics
+- **Trading Tools**: Position calculator and other essential trading utilities
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+## Recent Updates
+
+- ✅ Added profit/loss column to CSV export functionality
+- ✅ Enhanced trading statistics with total trade counter
+- ✅ Improved trading schedule management
+- ✅ Added comprehensive knowledge base with patterns and indicators
+
+## Quick Start
+
+1. Clone the repository
+2. Open `index.html` in your browser
+3. Start exploring the trading analysis features
+
+## Deployment Status
+
+This repository is configured for automatic deployment to GitHub Pages. The latest version should be available at: https://jianlubiano25.github.io/CoinStack.1/
+
+---
+
+*Last updated: July 6, 2025*
 
 ## 🚀 Features
 
@@ -133,38 +162,3 @@ Consistent spacing system using CSS variables:
 --spacing-lg: 24px;
 --spacing-xl: 32px;
 ```
-
-## 📱 Responsive Design
-
-The application is fully responsive with breakpoints at:
-- **Desktop**: 1200px and up
-- **Tablet**: 768px to 1199px
-- **Mobile Large**: 600px to 767px
-- **Mobile Small**: 480px and below
-
-## 🔧 Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-For questions or support, please open an issue on the GitHub repository.
-
----
-
-**CoinStack** - Making crypto trading analysis simple and beautiful. 

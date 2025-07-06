@@ -48,6 +48,154 @@ function getTodayTradesCount() {
   }).length;
 }
 
+// Get detailed trade statistics per pair
+function getTradeStatsPerPair() {
+  const trades = getTrades();
+  const stats = {};
+  
+  trades.forEach(trade => {
+    const pair = trade.contracts;
+    if (!stats[pair]) {
+      stats[pair] = {
+        total: 0,
+        open: 0,
+        close: 0,
+        long: 0,
+        short: 0,
+        openLong: 0,
+        openShort: 0,
+        closeLong: 0,
+        closeShort: 0
+      };
+    }
+    
+    stats[pair].total++;
+    
+    // Count open/close trades
+    if (/open/i.test(trade.tradeType)) {
+      stats[pair].open++;
+      if (/long/i.test(trade.tradeType)) {
+        stats[pair].openLong++;
+        stats[pair].long++;
+      } else if (/short/i.test(trade.tradeType)) {
+        stats[pair].openShort++;
+        stats[pair].short++;
+      }
+    } else if (/close/i.test(trade.tradeType)) {
+      stats[pair].close++;
+      if (/long/i.test(trade.tradeType)) {
+        stats[pair].closeLong++;
+        stats[pair].long++;
+      } else if (/short/i.test(trade.tradeType)) {
+        stats[pair].closeShort++;
+        stats[pair].short++;
+      }
+    }
+  });
+  
+  return stats;
+}
+
+// Count connected trades (open/close pairs as 1 trade)
+function countConnectedTrades() {
+  const trades = getTrades();
+  const connectedTrades = new Set();
+  const tradePairs = {};
+  
+  // Group trades by contract and direction
+  trades.forEach(trade => {
+    const pair = trade.contracts;
+    const isLong = /long/i.test(trade.tradeType);
+    const isShort = /short/i.test(trade.tradeType);
+    const isOpen = /open/i.test(trade.tradeType);
+    const isClose = /close/i.test(trade.tradeType);
+    
+    if (!tradePairs[pair]) {
+      tradePairs[pair] = { long: [], short: [] };
+    }
+    
+    if (isLong && isOpen) {
+      tradePairs[pair].long.push({ type: 'open', trade });
+    } else if (isLong && isClose) {
+      tradePairs[pair].long.push({ type: 'close', trade });
+    } else if (isShort && isOpen) {
+      tradePairs[pair].short.push({ type: 'open', trade });
+    } else if (isShort && isClose) {
+      tradePairs[pair].short.push({ type: 'close', trade });
+    }
+  });
+  
+  // Count connected trades
+  let connectedCount = 0;
+  let longCount = 0;
+  let shortCount = 0;
+  
+  Object.keys(tradePairs).forEach(pair => {
+    const pairData = tradePairs[pair];
+    
+    // Count long trades
+    if (pairData.long.length > 0) {
+      const openLongs = pairData.long.filter(t => t.type === 'open').length;
+      const closeLongs = pairData.long.filter(t => t.type === 'close').length;
+      const longTrades = Math.min(openLongs, closeLongs);
+      longCount += longTrades;
+      connectedCount += longTrades;
+    }
+    
+    // Count short trades
+    if (pairData.short.length > 0) {
+      const openShorts = pairData.short.filter(t => t.type === 'open').length;
+      const closeShorts = pairData.short.filter(t => t.type === 'close').length;
+      const shortTrades = Math.min(openShorts, closeShorts);
+      shortCount += shortTrades;
+      connectedCount += shortTrades;
+    }
+  });
+  
+  return { connectedCount, longCount, shortCount };
+}
+
+// Get total trade statistics
+function getTotalTradeStats() {
+  const trades = getTrades();
+  const stats = {
+    total: trades.length,
+    open: 0,
+    close: 0,
+    long: 0,
+    short: 0,
+    openLong: 0,
+    openShort: 0,
+    closeLong: 0,
+    closeShort: 0
+  };
+  
+  trades.forEach(trade => {
+    // Count open/close trades
+    if (/open/i.test(trade.tradeType)) {
+      stats.open++;
+      if (/long/i.test(trade.tradeType)) {
+        stats.openLong++;
+        stats.long++;
+      } else if (/short/i.test(trade.tradeType)) {
+        stats.openShort++;
+        stats.short++;
+      }
+    } else if (/close/i.test(trade.tradeType)) {
+      stats.close++;
+      if (/long/i.test(trade.tradeType)) {
+        stats.closeLong++;
+        stats.long++;
+      } else if (/short/i.test(trade.tradeType)) {
+        stats.closeShort++;
+        stats.short++;
+      }
+    }
+  });
+  
+  return stats;
+}
+
 // Save trades to localStorage
 function saveTrades(trades) {
   localStorage.setItem('tradingHistory', JSON.stringify(trades));
@@ -409,6 +557,8 @@ function updateTotalPnLCounter(totalPnL) {
   }
 }
 
+
+
 // Update today's trade count counter
 function updateTodayTradeCounter() {
   const todayTradeValue = document.getElementById('todayTradeValue');
@@ -432,9 +582,19 @@ function updateTotalTradeCounter() {
   const totalTradeCounter = document.getElementById('totalTradeCounter');
   
   if (totalTradeValue && totalTradeCounter) {
-    const trades = getTrades();
-    const totalCount = trades.length;
-    totalTradeValue.textContent = totalCount;
+    const { connectedCount, longCount, shortCount } = countConnectedTrades();
+    const stats = getTotalTradeStats();
+    
+    totalTradeValue.textContent = connectedCount;
+    
+    // Add detailed stats as tooltip
+    const tooltipText = `Connected Trades: ${connectedCount}
+Long Trades: ${longCount}
+Short Trades: ${shortCount}
+Total Transactions: ${stats.total}
+Open: ${stats.open}, Close: ${stats.close}`;
+    
+    totalTradeCounter.title = tooltipText;
     
     // Add animation effect
     totalTradeCounter.style.transform = 'scale(1.02)';
@@ -502,10 +662,13 @@ function addTrade(e) {
 
 
 
+
+
 // Export functions for use in other modules
 window.getTrades = getTrades;
 window.saveTrades = saveTrades;
 window.renderTrades = renderTrades;
 window.addTrade = addTrade;
 window.calculatePnL = calculatePnL;
-window.calculateRiskAmount = calculateRiskAmount; 
+window.calculateRiskAmount = calculateRiskAmount;
+window.toggleTradeStatistics = toggleTradeStatistics; 

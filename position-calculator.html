@@ -1090,19 +1090,31 @@
       }
       const margin = (qty * entry) / leverage;
       
-      // Fee calculations
-      const entryFee = (qty * entry) * 0.0002; // 0.02% entry fee
-      const exitFee = (qty * target) * 0.00055; // 0.055% exit fee
+      // Fee calculations - using same logic as trading records
+      // Default fee rate of 0.02% (matches typical trading fees)
+      // Note: This can be adjusted to match your actual trading fee structure
+      const feeRate = 0.0002; // 0.02% - same as trading records calculation
+      const entryFee = (qty * entry) * feeRate;
+      const exitFee = (qty * target) * feeRate;
       const totalFees = entryFee + exitFee;
       
+      // P&L calculation - using same logic as trading records
+      let pnl = 0;
+      if (positionTypeValue === "long") {
+        pnl = (target - entry) * qty - totalFees;
+      } else {
+        pnl = (entry - target) * qty - totalFees;
+      }
+      const totalProfit = pnl;
+      const grossProfit = pnl + totalFees; // Reconstruct gross profit for display
+      
+      // Calculate percentages
       let profitPerCoin;
       if (positionTypeValue === "long") {
         profitPerCoin = target - entry;
       } else {
         profitPerCoin = entry - target;
       }
-      const grossProfit = profitPerCoin * qty;
-      const totalProfit = grossProfit - totalFees;
       const grossPnlPercent = (profitPerCoin / entry) * 100;
       const netPnlPercent = (totalProfit / margin) * 100;
       let liquidationPrice;

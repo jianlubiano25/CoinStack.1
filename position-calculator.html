@@ -1090,12 +1090,12 @@
       }
       const margin = (qty * entry) / leverage;
       
-      // Fee calculations - using same logic as trading records
-      // Default fee rate of 0.02% (matches typical trading fees)
-      // Note: This can be adjusted to match your actual trading fee structure
-      const feeRate = 0.0002; // 0.02% - same as trading records calculation
-      const entryFee = (qty * entry) * feeRate;
-      const exitFee = (qty * target) * feeRate;
+      // Fee calculations - using different rates for entry and exit
+      // Entry fee: 0.02%, Exit fee: 0.055%
+      const entryFeeRate = 0.0002; // 0.02%
+      const exitFeeRate = 0.00055; // 0.055%
+      const entryFee = (qty * entry) * entryFeeRate;
+      const exitFee = (qty * target) * exitFeeRate;
       const totalFees = entryFee + exitFee;
       
       // P&L calculation - using same logic as trading records

@@ -153,7 +153,172 @@ function exportCSV() {
   console.log(`Exported ${trades.length} trades to ${filename}`);
 }
 
-// Import trades from CSV - This function is now handled in trading.js
+// Import trades from CSV
+function importCSV() {
+  const fileInput = document.getElementById('importCSV');
+  if (!fileInput) {
+    console.error('Import file input not found');
+    return;
+  }
+  
+  fileInput.click();
+}
+
+// Handle CSV file selection and processing
+function handleCSVImport(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  // Reset file input
+  event.target.value = '';
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const csvContent = e.target.result;
+    processCSVContent(csvContent, file.name);
+  };
+  
+  reader.onerror = function() {
+    alert('Error reading file. Please try again.');
+  };
+  
+  reader.readAsText(file);
+}
+
+// Process CSV content and import trades
+function processCSVContent(csvContent, filename) {
+  const lines = csvContent.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+  
+  if (lines.length < 2) {
+    alert('CSV file must contain at least a header row and one data row.');
+    return;
+  }
+  
+  // Parse header row
+  const headerRow = lines[0];
+  const headers = parseCSVRow(headerRow);
+  
+  // Validate required headers
+  const requiredHeaders = [
+    'Contracts', 'Filled Type', 'Filled/Total', 'Filled Price/Order Price',
+    'Fee Rate', 'Trading Fee', 'Trade Type', 'Order Type', 'Transaction ID',
+    'Transaction Time'
+  ];
+  
+  const missingHeaders = requiredHeaders.filter(header => 
+    !headers.some(h => h.toLowerCase() === header.toLowerCase())
+  );
+  
+  if (missingHeaders.length > 0) {
+    alert(`Missing required headers: ${missingHeaders.join(', ')}\n\nRequired format:\n${requiredHeaders.join(', ')}\n\nOptional: Risk Amount`);
+    return;
+  }
+  
+  // Process data rows
+  const existingTrades = getTrades();
+  let added = 0, skipped = 0, errors = 0;
+  const newTrades = [];
+  
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line.trim()) continue;
+    
+    try {
+      const fields = parseCSVRow(line);
+      
+      // Map fields to trade object based on header positions
+      const trade = {
+        contracts: getFieldByHeader(fields, headers, 'Contracts'),
+        filledType: getFieldByHeader(fields, headers, 'Filled Type'),
+        filledTotal: getFieldByHeader(fields, headers, 'Filled/Total'),
+        filledPriceOrderPrice: getFieldByHeader(fields, headers, 'Filled Price/Order Price'),
+        feeRate: getFieldByHeader(fields, headers, 'Fee Rate'),
+        tradingFee: getFieldByHeader(fields, headers, 'Trading Fee'),
+        tradeType: getFieldByHeader(fields, headers, 'Trade Type'),
+        orderType: getFieldByHeader(fields, headers, 'Order Type'),
+        transactionId: getFieldByHeader(fields, headers, 'Transaction ID'),
+        transactionTime: getFieldByHeader(fields, headers, 'Transaction Time'),
+        riskAmount: getFieldByHeader(fields, headers, 'Risk Amount') || '-'
+      };
+      
+      // Validate required fields
+      if (!trade.transactionId || !trade.contracts || !trade.tradeType) {
+        errors++;
+        continue;
+      }
+      
+      // Check for duplicates
+      if (existingTrades.some(t => t.transactionId === trade.transactionId)) {
+        skipped++;
+        continue;
+      }
+      
+      newTrades.push(trade);
+      added++;
+      
+    } catch (error) {
+      console.error(`Error processing line ${i + 1}:`, error);
+      errors++;
+    }
+  }
+  
+  // Add new trades to existing ones
+  if (newTrades.length > 0) {
+    existingTrades.push(...newTrades);
+    saveTrades(existingTrades);
+    renderTrades();
+  }
+  
+  // Show import summary
+  const summary = `Import Complete: ${filename}\n\n` +
+    `✅ Added: ${added} trade(s)\n` +
+    `⏭️ Skipped: ${skipped} duplicate(s)\n` +
+    `❌ Errors: ${errors} invalid row(s)\n\n` +
+    `Total trades in database: ${existingTrades.length}`;
+  
+  alert(summary);
+  
+  console.log(`CSV Import: Added ${added}, Skipped ${skipped}, Errors ${errors}`);
+}
+
+// Parse CSV row (handles quoted fields with commas)
+function parseCSVRow(row) {
+  const fields = [];
+  let current = '';
+  let inQuotes = false;
+  
+  for (let i = 0; i < row.length; i++) {
+    const char = row[i];
+    
+    if (char === '"') {
+      if (inQuotes && row[i + 1] === '"') {
+        // Escaped quote
+        current += '"';
+        i++; // Skip next quote
+      } else {
+        // Toggle quote state
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      // Field separator
+      fields.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  
+  // Add last field
+  fields.push(current.trim());
+  
+  return fields;
+}
+
+// Get field value by header name (case-insensitive)
+function getFieldByHeader(fields, headers, headerName) {
+  const index = headers.findIndex(h => h.toLowerCase() === headerName.toLowerCase());
+  return index >= 0 && index < fields.length ? fields[index] : '';
+}
 
 // Bulk Paste functionality
 function showBulkPaste() {
@@ -344,13 +509,21 @@ function clearTradeHighlights() {
 }
 
 // Export functions for use in other modules
+window.getTrades = getTrades;
+window.saveTrades = saveTrades;
+window.renderTrades = renderTrades;
+window.addTrade = addTrade;
 window.editTrade = editTrade;
 window.hideEditTrade = hideEditTrade;
 window.saveEditTrade = saveEditTrade;
 window.deleteTrade = deleteTrade;
 window.clearAllTrades = clearAllTrades;
 window.exportCSV = exportCSV;
-// importCSVFile is exported from trading.js
+window.importCSV = importCSV;
+window.handleCSVImport = handleCSVImport;
+window.processCSVContent = processCSVContent;
+window.parseCSVRow = parseCSVRow;
+window.getFieldByHeader = getFieldByHeader;
 window.showBulkPaste = showBulkPaste;
 window.hideBulkPaste = hideBulkPaste;
 window.submitBulkPaste = submitBulkPaste;

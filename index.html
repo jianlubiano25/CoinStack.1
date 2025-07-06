@@ -1515,7 +1515,8 @@
         </div>
         
         <div class="action-buttons">
-          <button class="btn-export">Export</button>
+          <button id="exportTradesBtn" class="btn-export">Export</button>
+          <button id="importTradesBtn" class="btn-import">Import</button>
           <button class="btn-bulk">Bulk Paste</button>
           <button class="btn-clear">Clear All</button>
         </div>
@@ -1579,7 +1580,8 @@
         </div>
       </div>
 
-
+      <!-- Hidden file input for CSV import -->
+      <input type="file" id="importCSV" accept=".csv" style="display: none;" />
     </div>
   </div>
 
@@ -1589,7 +1591,7 @@
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
         <h3 style="color: #8b5cf6; font-size: 1.5rem; font-weight: 300; margin: 0;">Trading Schedule</h3>
         <div style="display: flex; gap: 12px;">
-          <button style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
+          <button id="exportScheduleBtn" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
           <button style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Clear Completed</button>
         </div>
       </div>

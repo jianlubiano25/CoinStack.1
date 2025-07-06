@@ -93,25 +93,43 @@ function setupSearchListeners() {
 
 // Setup trading event listeners
 function setupTradingListeners() {
-  // Export button
-  const exportBtn = document.querySelector('.btn-export');
+  // Export button - use specific ID
+  const exportBtn = document.getElementById('exportTradesBtn');
   if (exportBtn) {
-    exportBtn.addEventListener('click', function() {
+    // Remove any existing event listeners to prevent duplicates
+    exportBtn.replaceWith(exportBtn.cloneNode(true));
+    const newExportBtn = document.getElementById('exportTradesBtn');
+    
+    newExportBtn.addEventListener('click', function() {
       if (typeof exportCSV === 'function') {
         exportCSV();
       }
     });
   }
   
-  // Import button
-  const importBtn = document.querySelector('.btn-import');
+  // Import button - use specific ID
+  const importBtn = document.getElementById('importTradesBtn');
   if (importBtn) {
-    importBtn.addEventListener('click', function() {
-      document.getElementById('importCSV').click();
+    // Remove any existing event listeners to prevent duplicates
+    importBtn.replaceWith(importBtn.cloneNode(true));
+    const newImportBtn = document.getElementById('importTradesBtn');
+    
+    newImportBtn.addEventListener('click', function() {
+      if (typeof importCSV === 'function') {
+        importCSV();
+      }
     });
   }
   
-
+  // CSV file input event listener
+  const csvFileInput = document.getElementById('importCSV');
+  if (csvFileInput) {
+    csvFileInput.addEventListener('change', function(event) {
+      if (typeof handleCSVImport === 'function') {
+        handleCSVImport(event);
+      }
+    });
+  }
   
   // Bulk paste button
   const bulkBtn = document.querySelector('.btn-bulk');
@@ -326,10 +344,14 @@ function setupScheduleListeners() {
     });
   });
   
-  // Export schedule button
-  const exportScheduleBtn = document.querySelector('button[style*="background: rgba(16,185,129,0.1)"]');
+  // Export schedule button - use specific ID
+  const exportScheduleBtn = document.getElementById('exportScheduleBtn');
   if (exportScheduleBtn) {
-    exportScheduleBtn.addEventListener('click', function() {
+    // Remove any existing event listeners to prevent duplicates
+    exportScheduleBtn.replaceWith(exportScheduleBtn.cloneNode(true));
+    const newExportScheduleBtn = document.getElementById('exportScheduleBtn');
+    
+    newExportScheduleBtn.addEventListener('click', function() {
       if (typeof exportScheduleCSV === 'function') {
         exportScheduleCSV();
       }

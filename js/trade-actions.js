@@ -98,7 +98,7 @@ function exportCSV() {
   const headers = [
     'Contracts', 'Filled Type', 'Filled/Total', 'Filled Price/Order Price',
     'Fee Rate', 'Trading Fee', 'Trade Type', 'Order Type', 'Transaction ID',
-    'Transaction Time', 'Risk Amount'
+    'Transaction Time', 'Risk Amount', 'Profit/Loss'
   ];
   
   // Create CSV content
@@ -116,7 +116,8 @@ function exportCSV() {
       trade.orderType || '',
       trade.transactionId || '',
       trade.transactionTime || '',
-      trade.riskAmount || calculateRiskAmount(trade) || ''
+      trade.riskAmount || calculateRiskAmount(trade) || '',
+      trade.profitLoss || calculatePnL(trade) || ''
     ];
     
     // Escape fields that contain commas or quotes

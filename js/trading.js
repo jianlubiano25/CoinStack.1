@@ -3,16 +3,16 @@
 
 // Default trades data
 const defaultTrades = [
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'151.650/Market',feeRate:'0.055%',tradingFee:'0.04170375',tradeType:'Close Long',orderType:'Market',transactionId:'421745f5',transactionTime:'2025-07-03 23:05:42'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'154.390/154.390',feeRate:'0.02%',tradingFee:'0.01543900',tradeType:'Open Long',orderType:'Limit',transactionId:'d57124de',transactionTime:'2025-07-03 21:52:49'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'153.470/Market',feeRate:'0.055%',tradingFee:'0.03376340',tradeType:'Close Short',orderType:'Market',transactionId:'26f7763a',transactionTime:'2025-07-03 21:31:35'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'152.790/152.790',feeRate:'0.02%',tradingFee:'0.01222320',tradeType:'Open Short',orderType:'Limit',transactionId:'23e5d61f',transactionTime:'2025-07-03 20:43:07'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.810/Market',feeRate:'0.055%',tradingFee:'0.17029100',tradeType:'Close Short',orderType:'Market',transactionId:'21ad4965',transactionTime:'2025-07-03 20:30:01'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.500/154.500',feeRate:'0.055%',tradingFee:'0.16995000',tradeType:'Open Short',orderType:'Limit',transactionId:'5d654d18',transactionTime:'2025-07-03 20:07:52'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'146.000/Market',feeRate:'0.055%',tradingFee:'0.40150000',tradeType:'Close Short',orderType:'Market',transactionId:'47faa02d',transactionTime:'2025-06-20 21:51:18'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'148.150/148.100',feeRate:'0.055%',tradingFee:'0.40741250',tradeType:'Open Short',orderType:'Limit',transactionId:'bcea1d95',transactionTime:'2025-06-20 20:15:55'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.500/Market',feeRate:'0.055%',tradingFee:'0.08002500',tradeType:'Close Short',orderType:'Market',transactionId:'966a573e',transactionTime:'2025-06-20 04:28:17'},
-  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.440/145.370',feeRate:'0.055%',tradingFee:'0.07999200',tradeType:'Open Short',orderType:'Limit',transactionId:'a9552705',transactionTime:'2025-06-20 04:28:09'}
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'151.650/Market',feeRate:'0.055%',tradingFee:'0.04170375',tradeType:'Close Long',orderType:'Market',transactionId:'421745f5',transactionTime:'2025-07-03 23:05:42',riskAmount:'1.3700'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.5/0.5',filledPriceOrderPrice:'154.390/154.390',feeRate:'0.02%',tradingFee:'0.01543900',tradeType:'Open Long',orderType:'Limit',transactionId:'d57124de',transactionTime:'2025-07-03 21:52:49',riskAmount:'-'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'153.470/Market',feeRate:'0.055%',tradingFee:'0.03376340',tradeType:'Close Short',orderType:'Market',transactionId:'26f7763a',transactionTime:'2025-07-03 21:31:35',riskAmount:'0.2720'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'0.4/0.4',filledPriceOrderPrice:'152.790/152.790',feeRate:'0.02%',tradingFee:'0.01222320',tradeType:'Open Short',orderType:'Limit',transactionId:'23e5d61f',transactionTime:'2025-07-03 20:43:07',riskAmount:'-'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.810/Market',feeRate:'0.055%',tradingFee:'0.17029100',tradeType:'Close Short',orderType:'Market',transactionId:'21ad4965',transactionTime:'2025-07-03 20:30:01',riskAmount:'0.6200'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'2.0/2.0',filledPriceOrderPrice:'154.500/154.500',feeRate:'0.055%',tradingFee:'0.16995000',tradeType:'Open Short',orderType:'Limit',transactionId:'5d654d18',transactionTime:'2025-07-03 20:07:52',riskAmount:'-'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'146.000/Market',feeRate:'0.055%',tradingFee:'0.40150000',tradeType:'Close Short',orderType:'Market',transactionId:'47faa02d',transactionTime:'2025-06-20 21:51:18',riskAmount:'10.7500'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'5.0/5.0',filledPriceOrderPrice:'148.150/148.100',feeRate:'0.055%',tradingFee:'0.40741250',tradeType:'Open Short',orderType:'Limit',transactionId:'bcea1d95',transactionTime:'2025-06-20 20:15:55',riskAmount:'-'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.500/Market',feeRate:'0.055%',tradingFee:'0.08002500',tradeType:'Close Short',orderType:'Market',transactionId:'966a573e',transactionTime:'2025-06-20 04:28:17',riskAmount:'0.0600'},
+  {contracts:'SOLUSDT',filledType:'Trade',filledTotal:'1.0/1.0',filledPriceOrderPrice:'145.440/145.370',feeRate:'0.055%',tradingFee:'0.07999200',tradeType:'Open Short',orderType:'Limit',transactionId:'a9552705',transactionTime:'2025-06-20 04:28:09',riskAmount:'-'}
 ];
 
 // Get trades from localStorage
@@ -146,6 +146,12 @@ function calculateRiskAmount(trade) {
   // Only for Close trades
   if (!/close/i.test(trade.tradeType)) return '-';
   
+  // If risk amount is already provided in the trade data, use it
+  if (trade.riskAmount && trade.riskAmount !== '-' && trade.riskAmount !== '') {
+    return trade.riskAmount;
+  }
+  
+  // Otherwise, compute it from the trade data
   // Find all matching open trades for this contract and trade type
   const trades = getTrades();
   const closeIndex = trades.findIndex(t => t.transactionId === trade.transactionId);
@@ -211,9 +217,19 @@ function calculateRiskAmount(trade) {
 
 // Render trades table
 function renderTrades() {
+  console.log('renderTrades called');
   const trades = getTrades();
+  console.log('Trades to render:', trades);
   const tbody = document.querySelector('#tradingHistoryTable tbody');
   const mobileContainer = document.querySelector('.trading-table-mobile');
+  
+  console.log('Table body found:', tbody);
+  console.log('Mobile container found:', mobileContainer);
+  
+  if (!tbody) {
+    console.error('Table body not found!');
+    return;
+  }
   
   tbody.innerHTML = '';
   if (mobileContainer) mobileContainer.innerHTML = '';
@@ -409,17 +425,28 @@ function updateTodayTradeCounter() {
 
 // Add new trade
 function addTrade(e) {
+  console.log('addTrade function called');
   e.preventDefault();
   const input = document.getElementById('tradeInput');
   const errorDiv = document.getElementById('tradeFormError');
+  
+  console.log('Input found:', input);
+  console.log('Error div found:', errorDiv);
+  
   errorDiv.style.display = 'none';
   let value = input.value.trim();
   
+  console.log('Input value:', value);
+  
   // Split by tab or multiple spaces
   let fields = value.split(/\t|\s{2,}/);
-  if (fields.length !== 10) {
-    errorDiv.textContent = 'Please enter exactly 10 tab-separated values.';
+  console.log('Parsed fields:', fields);
+  console.log('Number of fields:', fields.length);
+  
+  if (fields.length < 10 || fields.length > 11) {
+    errorDiv.textContent = 'Please enter 10-11 tab-separated values (Risk Amount is optional).';
     errorDiv.style.display = 'block';
+    console.log('Validation failed - wrong number of fields');
     return;
   }
   
@@ -433,15 +460,26 @@ function addTrade(e) {
     tradeType: fields[6],
     orderType: fields[7],
     transactionId: fields[8],
-    transactionTime: fields[9]
+    transactionTime: fields[9],
+    riskAmount: fields[10] || '-' // Optional risk amount field
   };
   
+  console.log('Created trade object:', trade);
+  
   const trades = getTrades();
+  console.log('Current trades:', trades);
+  
   trades.push(trade);
   saveTrades(trades);
   renderTrades();
   input.value = '';
+  
+  console.log('Trade added successfully');
 }
+
+
+
+
 
 // Export functions for use in other modules
 window.getTrades = getTrades;

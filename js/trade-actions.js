@@ -88,137 +88,72 @@ function clearAllTrades() {
 // Export trades as CSV
 function exportCSV() {
   const trades = getTrades();
-  const headers = ['Contracts','Filled Type','Filled/Total','Filled Price/Order Price','Fee Rate','Trading Fee','Trade Type','Order Type','Transaction ID','Transaction Time','Risk Amount'];
-  let csv = headers.join(',') + '\n';
+  
+  if (trades.length === 0) {
+    alert('No trades to export');
+    return;
+  }
+  
+  // Define CSV headers (matching import format exactly)
+  const headers = [
+    'Contracts', 'Filled Type', 'Filled/Total', 'Filled Price/Order Price',
+    'Fee Rate', 'Trading Fee', 'Trade Type', 'Order Type', 'Transaction ID',
+    'Transaction Time', 'Risk Amount'
+  ];
+  
+  // Create CSV content
+  let csvContent = headers.join(',') + '\n';
   
   trades.forEach(trade => {
-    let row = [
-      trade.contracts,
-      trade.filledType,
-      trade.filledTotal,
-      trade.filledPriceOrderPrice,
-      trade.feeRate,
-      trade.tradingFee,
-      trade.tradeType,
-      trade.orderType,
-      trade.transactionId,
-      trade.transactionTime,
-      calculateRiskAmount(trade)
-    ].map(v => '"' + (v ? v.replace(/"/g, '""') : '') + '"').join(',');
-    csv += row + '\n';
+    const row = [
+      trade.contracts || '',
+      trade.filledType || '',
+      trade.filledTotal || '',
+      trade.filledPriceOrderPrice || '',
+      trade.feeRate || '',
+      trade.tradingFee || '',
+      trade.tradeType || '',
+      trade.orderType || '',
+      trade.transactionId || '',
+      trade.transactionTime || '',
+      trade.riskAmount || calculateRiskAmount(trade) || ''
+    ];
+    
+    // Escape fields that contain commas or quotes
+    const escapedRow = row.map(field => {
+      if (field.includes(',') || field.includes('"') || field.includes('\n')) {
+        return '"' + field.replace(/"/g, '""') + '"';
+      }
+      return field;
+    });
+    
+    csvContent += escapedRow.join(',') + '\n';
   });
   
-  // Generate filename with current date and time (without seconds)
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-CA'); // YYYY-MM-DD format
-  const timeStr = now.toLocaleTimeString('en-US', { 
-    hour12: false, 
-    hour: '2-digit', 
-    minute: '2-digit' 
-  }).replace(':', '-'); // HH-MM format
-  const defaultFilename = `trading_history_${dateStr}_${timeStr}.csv`;
+  // Generate filename with current date
+  const dateStr = new Date().toISOString().split('T')[0];
+  const defaultFilename = `trading_history_${dateStr}.csv`;
   
   let filename = prompt('Save as:', defaultFilename);
   if (!filename) return;
   if (!filename.toLowerCase().endsWith('.csv')) filename += '.csv';
   
-  const blob = new Blob([csv], {type: 'text/csv'});
+  // Create and download the file
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
   URL.revokeObjectURL(url);
+  
+  console.log(`Exported ${trades.length} trades to ${filename}`);
 }
 
-// Import trades from CSV
-function importCSVFile(event) {
-  const file = event.target.files[0];
-  const errorSpan = document.getElementById('importError');
-  if (errorSpan) errorSpan.style.display = 'none';
-  if (!file) return;
-  
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const text = e.target.result;
-    const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
-    
-    if (lines.length < 2) {
-      if (errorSpan) {
-        errorSpan.textContent = 'CSV file is empty or invalid.';
-        errorSpan.style.display = 'inline';
-      }
-      return;
-    }
-    
-    const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
-    if (headers.length !== 11) {
-      if (errorSpan) {
-        errorSpan.textContent = 'CSV must have 11 columns (including Risk Amount).';
-        errorSpan.style.display = 'inline';
-      }
-      return;
-    }
-    
-    const trades = getTrades();
-    let added = 0;
-    
-    for (let i = 1; i < lines.length; i++) {
-      let row = lines[i];
-      // Handle quoted CSV
-      let values = [];
-      let inQuotes = false, value = '';
-      
-      for (let c = 0; c < row.length; c++) {
-        let char = row[c];
-        if (char === '"') {
-          if (inQuotes && row[c+1] === '"') { value += '"'; c++; }
-          else inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-          values.push(value); value = '';
-        } else {
-          value += char;
-        }
-      }
-      values.push(value);
-      
-      if (values.length !== 11) continue;
-      
-      const trade = {
-        contracts: values[0],
-        filledType: values[1],
-        filledTotal: values[2],
-        filledPriceOrderPrice: values[3],
-        feeRate: values[4],
-        tradingFee: values[5],
-        tradeType: values[6],
-        orderType: values[7],
-        transactionId: values[8],
-        transactionTime: values[9],
-        riskAmount: values[10]
-      };
-      
-      // Prevent duplicate transactionId
-      if (!trades.some(t => t.transactionId === trade.transactionId)) {
-        trades.push(trade);
-        added++;
-      }
-    }
-    
-    saveTrades(trades);
-    renderTrades();
-    
-    if (added === 0 && errorSpan) {
-      errorSpan.textContent = 'No new trades imported (duplicates skipped).';
-      errorSpan.style.display = 'inline';
-    }
-    
-    event.target.value = '';
-  };
-  reader.readAsText(file);
-}
+// Import trades from CSV - This function is now handled in trading.js
 
 // Bulk Paste functionality
 function showBulkPaste() {
@@ -251,7 +186,7 @@ function submitBulkPaste() {
   
   for (let line of lines) {
     let fields = line.split(/\t/);
-    if (fields.length !== 10) { skipped++; continue; }
+    if (fields.length < 10 || fields.length > 11) { skipped++; continue; }
     
     const trade = {
       contracts: fields[0],
@@ -263,7 +198,8 @@ function submitBulkPaste() {
       tradeType: fields[6],
       orderType: fields[7],
       transactionId: fields[8],
-      transactionTime: fields[9]
+      transactionTime: fields[9],
+      riskAmount: fields.length === 11 ? fields[10] : '-'
     };
     
     if (!trades.some(t => t.transactionId === trade.transactionId)) {
@@ -284,24 +220,52 @@ function submitBulkPaste() {
 
 // Toggle Add Trade Form
 function toggleAddTradeForm() {
+  console.log('toggleAddTradeForm called');
   const form = document.getElementById('addTradeForm');
   const btn = document.getElementById('toggleAddTradeBtn');
   const btnText = document.getElementById('toggleBtnText');
   
+  console.log('Form found:', form);
+  console.log('Button found:', btn);
+  console.log('Button text found:', btnText);
+  console.log('Current form display:', form.style.display);
+  
   if (form.style.display === 'none' || form.style.display === '') {
+    console.log('Showing form...');
     // Show form
     form.style.display = 'block';
-    form.style.animation = 'slideDown 0.3s ease-out forwards';
+    form.style.opacity = '0';
+    form.style.transform = 'translateY(-20px)';
+    form.style.maxHeight = '0';
+    
+    // Force reflow
+    form.offsetHeight;
+    
+    // Animate in
+    form.style.transition = 'all 0.3s ease-out';
+    form.style.opacity = '1';
+    form.style.transform = 'translateY(0)';
+    form.style.maxHeight = '500px';
+    
     btnText.textContent = '➖ Hide Add Trade';
     btn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+    console.log('Form should now be visible');
   } else {
+    console.log('Hiding form...');
     // Hide form
-    form.style.animation = 'slideUp 0.3s ease-out forwards';
+    form.style.transition = 'all 0.3s ease-out';
+    form.style.opacity = '0';
+    form.style.transform = 'translateY(-20px)';
+    form.style.maxHeight = '0';
+    
     setTimeout(() => {
       form.style.display = 'none';
+      form.style.transition = '';
     }, 300);
+    
     btnText.textContent = '➕ Add New Trade';
     btn.style.background = 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)';
+    console.log('Form should now be hidden');
   }
 }
 
@@ -403,7 +367,7 @@ window.saveEditTrade = saveEditTrade;
 window.deleteTrade = deleteTrade;
 window.clearAllTrades = clearAllTrades;
 window.exportCSV = exportCSV;
-window.importCSVFile = importCSVFile;
+// importCSVFile is exported from trading.js
 window.showBulkPaste = showBulkPaste;
 window.hideBulkPaste = hideBulkPaste;
 window.submitBulkPaste = submitBulkPaste;

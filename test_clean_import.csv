@@ -1,0 +1,4 @@
+Contracts,Filled Type,Filled/Total,Filled Price/Order Price,Fee Rate,Trading Fee,Trade Type,Order Type,Transaction ID,Transaction Time,Risk Amount
+BTCUSDT,Trade,1.0/1.0,45000.00/45000.00,0.02%,9.00000000,Open Long,Limit,test123,2025-01-15 10:30:00,-
+ETHUSDT,Trade,0.5/0.5,2800.00/2800.00,0.02%,0.28000000,Open Short,Limit,test456,2025-01-15 11:45:00,-
+BTCUSDT,Trade,1.0/1.0,46000.00/46000.00,0.055%,25.30000000,Close Long,Market,test789,2025-01-15 14:20:00,1000.00 

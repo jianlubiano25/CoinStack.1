@@ -111,15 +111,7 @@ function setupTradingListeners() {
     });
   }
   
-  // Import file input
-  const importInput = document.getElementById('importCSV');
-  if (importInput) {
-    importInput.addEventListener('change', function(event) {
-      if (typeof importCSVFile === 'function') {
-        importCSVFile(event);
-      }
-    });
-  }
+
   
   // Bulk paste button
   const bulkBtn = document.querySelector('.btn-bulk');
@@ -355,6 +347,63 @@ function setupScheduleListeners() {
   }
 }
 
+// Modern Knowledge Base Interactivity
+function setupKnowledgeBase() {
+  // Sidebar category switching
+  const categoryItems = document.querySelectorAll('.kb-category-item');
+  const sections = document.querySelectorAll('.kb-section');
+  categoryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      categoryItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const cat = item.getAttribute('data-category');
+      sections.forEach(sec => {
+        if (sec.getAttribute('data-category') === cat) {
+          sec.style.display = '';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Collapsible cards
+  const cards = document.querySelectorAll('.kb-card.collapsible');
+  cards.forEach(card => {
+    const header = card.querySelector('.kb-card-header');
+    header.addEventListener('click', () => {
+      card.classList.toggle('active');
+    });
+    // Start with first card in each section open
+    if (card.parentElement.querySelector('.kb-card') === card) {
+      card.classList.add('active');
+    }
+  });
+}
+
+// Knowledge Base Navigation
+function setupKnowledgeBaseNavigation() {
+  const navButtons = document.querySelectorAll('.kb-nav-btn');
+  const sections = document.querySelectorAll('.kb-section');
+
+  navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetSection = button.getAttribute('data-section');
+      
+      // Remove active class from all buttons and sections
+      navButtons.forEach(btn => btn.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
+      
+      // Add active class to clicked button and target section
+      button.classList.add('active');
+      const targetElement = document.getElementById(targetSection);
+      if (targetElement) {
+        targetElement.classList.add('active');
+      }
+    });
+  });
+}
+
 // Initialize the application
 function initializeApp() {
   // Setup event listeners
@@ -415,6 +464,8 @@ function setupSearchClickOutside() {
 document.addEventListener('DOMContentLoaded', function() {
   initializeApp();
   setupSearchClickOutside();
+  setupKnowledgeBase();
+  setupKnowledgeBaseNavigation();
 });
 
 // Export functions for use in other modules

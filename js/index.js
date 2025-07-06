@@ -22,5 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('CoinStack: Schedule module loaded');
   }
   
+  // Initialize the application
+  if (typeof initializeApp === 'function') {
+    console.log('CoinStack: Calling initializeApp...');
+    initializeApp();
+  } else {
+    console.error('CoinStack: initializeApp function not found!');
+  }
+  
   console.log('CoinStack: Application ready');
 }); 

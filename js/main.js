@@ -426,6 +426,24 @@ function setupKnowledgeBaseNavigation() {
   });
 }
 
+// Close search results when clicking outside
+function setupSearchClickOutside() {
+  document.addEventListener('click', function(event) {
+    const searchResults = document.getElementById('searchResults');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchResults && searchInput && !searchResults.contains(event.target) && !searchInput.contains(event.target)) {
+      searchResults.style.display = 'none';
+    }
+  });
+}
+
+// Open Position Calculator
+function openPositionCalculator() {
+  // Open the position calculator in a new tab/window
+  window.open('position-calculator.html', '_blank');
+}
+
 // Initialize the application
 function initializeApp() {
   // Setup event listeners
@@ -470,18 +488,6 @@ function initializeApp() {
   if (endDateTimeInput) endDateTimeInput.value = currentDateTime;
 }
 
-// Close search results when clicking outside
-function setupSearchClickOutside() {
-  document.addEventListener('click', function(event) {
-    const searchResults = document.getElementById('searchResults');
-    const searchInput = document.getElementById('searchInput');
-    
-    if (searchResults && searchInput && !searchResults.contains(event.target) && !searchInput.contains(event.target)) {
-      searchResults.style.display = 'none';
-    }
-  });
-}
-
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   initializeApp();
@@ -492,4 +498,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Export functions for use in other modules
 window.openTab = openTab;
-window.toggleContent = toggleContent; 
+window.toggleContent = toggleContent;
+window.openPositionCalculator = openPositionCalculator; 

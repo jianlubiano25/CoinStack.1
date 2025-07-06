@@ -1091,8 +1091,8 @@
       const margin = (qty * entry) / leverage;
       
       // Fee calculations - using different rates for entry and exit
-      // Entry fee: 0.02%, Exit fee: 0.055%
-      const entryFeeRate = 0.0002; // 0.02%
+// Entry fee: 0.55%, Exit fee: 0.055%
+const entryFeeRate = 0.0055; // 0.55%
       const exitFeeRate = 0.00055; // 0.055%
       const entryFee = (qty * entry) * entryFeeRate;
       const exitFee = (qty * target) * exitFeeRate;
@@ -1132,7 +1132,7 @@
         <div class="result-info"><strong>Quantity (${coin || ''}):</strong> ${qty.toFixed(4)}</div>
         <div class="result-info"><strong>Margin Needed (with leverage):</strong> $${margin.toFixed(2)}</div>
         <div class="result-info" id="totalFees" style="cursor: pointer;"><strong>Total Fees:</strong> $${totalFees.toFixed(2)}</div>
-        <div class="result-info" id="entryFee" style="display: none;"><strong>Entry Fee (0.02%):</strong> $${entryFee.toFixed(2)}</div>
+        <div class="result-info" id="entryFee" style="display: none;"><strong>Entry Fee (0.55%):</strong> $${entryFee.toFixed(2)}</div>
         <div class="result-info" id="exitFee" style="display: none;"><strong>Exit Fee (0.055%):</strong> $${exitFee.toFixed(2)}</div>
         <div class="result-info" id="netProfit" style="cursor: pointer;"><strong>Net Profit (after fees):</strong> $${totalProfit.toFixed(2)}</div>
         <div class="result-info" id="grossProfit" style="display: none;"><strong>Gross Profit:</strong> $${grossProfit.toFixed(2)}</div>

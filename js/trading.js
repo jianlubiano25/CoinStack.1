@@ -366,6 +366,9 @@ function renderTrades() {
   // Update total PnL counter
   updateTotalPnLCounter(totalPnL);
   
+  // Update total trade count counter
+  updateTotalTradeCounter();
+  
   // Update today's trade count counter
   updateTodayTradeCounter();
 }
@@ -419,6 +422,24 @@ function updateTodayTradeCounter() {
     todayTradeCounter.style.transform = 'scale(1.02)';
     setTimeout(() => {
       todayTradeCounter.style.transform = 'scale(1)';
+    }, 200);
+  }
+}
+
+// Update total trade count counter
+function updateTotalTradeCounter() {
+  const totalTradeValue = document.getElementById('totalTradeValue');
+  const totalTradeCounter = document.getElementById('totalTradeCounter');
+  
+  if (totalTradeValue && totalTradeCounter) {
+    const trades = getTrades();
+    const totalCount = trades.length;
+    totalTradeValue.textContent = totalCount;
+    
+    // Add animation effect
+    totalTradeCounter.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+      totalTradeCounter.style.transform = 'scale(1)';
     }, 200);
   }
 }

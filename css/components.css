@@ -172,6 +172,10 @@ tr:hover {
   background: radial-gradient(circle at 30% 50%, rgba(16,185,129,0.1) 0%, transparent 50%);
 }
 
+.counter-glow-info {
+  background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.1) 0%, transparent 50%);
+}
+
 .counter-icon {
   color: #8b5cf6;
   font-size: 1.2rem;
@@ -181,6 +185,10 @@ tr:hover {
 
 .counter-icon-success {
   color: #10b981;
+}
+
+.counter-icon-info {
+  color: #3b82f6;
 }
 
 .counter-content {
@@ -209,6 +217,11 @@ tr:hover {
   text-shadow: 0 0 10px rgba(16,185,129,0.3);
 }
 
+.counter-value-info {
+  color: #3b82f6;
+  text-shadow: 0 0 10px rgba(59,130,246,0.3);
+}
+
 /* Counter Success Variant */
 .counter-success {
   border-color: rgba(16,185,129,0.2);
@@ -217,6 +230,16 @@ tr:hover {
 .counter-success:hover {
   border-color: rgba(16,185,129,0.3);
   box-shadow: 0 8px 25px rgba(16,185,129,0.15);
+}
+
+/* Counter Info Variant */
+.counter-info {
+  border-color: rgba(59,130,246,0.2);
+}
+
+.counter-info:hover {
+  border-color: rgba(59,130,246,0.3);
+  box-shadow: 0 8px 25px rgba(59,130,246,0.15);
 }
 
 /* Search Component */

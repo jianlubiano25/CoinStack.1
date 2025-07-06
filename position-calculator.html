@@ -151,6 +151,18 @@
       user-select: none;
     }
 
+    /* Result value styling */
+    .result-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+
+    /* Net profit specific styling */
+    #netProfit .result-value {
+      color: #27c46a;
+    }
+
     input, select {
       margin-bottom: 0;
     }
@@ -1091,9 +1103,8 @@
       const margin = (qty * entry) / leverage;
       
       // Fee calculations - using different rates for entry and exit
-// Entry fee: 0.55%, Exit fee: 0.055%
-const entryFeeRate = 0.0055; // 0.55%
-      const exitFeeRate = 0.00055; // 0.055%
+      let entryFeeRate = window.entryFeeRate !== undefined ? window.entryFeeRate : 0.00055; // 0.055%
+      let exitFeeRate = window.exitFeeRate !== undefined ? window.exitFeeRate : 0.00055; // 0.055%
       const entryFee = (qty * entry) * entryFeeRate;
       const exitFee = (qty * target) * exitFeeRate;
       const totalFees = entryFee + exitFee;
@@ -1125,19 +1136,19 @@ const entryFeeRate = 0.0055; // 0.55%
         liquidationPrice = entry * (1 + (1 / leverage) - maintenanceMarginRate);
       }
       resultsDiv.innerHTML = `
-        <div class="result-info"><strong>Coin:</strong> ${coin || '(none)'}</div>
-        <div class="result-info" id="riskAmount" style="cursor: pointer;"><strong>Risk Amount:</strong> $${riskAmountDisplay.toFixed(2)}</div>
-        <div class="result-info" id="riskPerCoin" style="display: none;"><strong>Risk per Coin:</strong> $${riskPerCoin.toFixed(2)}</div>
-        <div class="result-info" id="riskPercent" style="display: none;"><strong>Risk % per Trade:</strong> ${riskPctToDisplay.toFixed(2)}%</div>
-        <div class="result-info"><strong>Quantity (${coin || ''}):</strong> ${qty.toFixed(4)}</div>
-        <div class="result-info"><strong>Margin Needed (with leverage):</strong> $${margin.toFixed(2)}</div>
-        <div class="result-info" id="totalFees" style="cursor: pointer;"><strong>Total Fees:</strong> $${totalFees.toFixed(2)}</div>
-        <div class="result-info" id="entryFee" style="display: none;"><strong>Entry Fee (0.55%):</strong> $${entryFee.toFixed(2)}</div>
-        <div class="result-info" id="exitFee" style="display: none;"><strong>Exit Fee (0.055%):</strong> $${exitFee.toFixed(2)}</div>
-        <div class="result-info" id="netProfit" style="cursor: pointer;"><strong>Net Profit (after fees):</strong> $${totalProfit.toFixed(2)}</div>
-        <div class="result-info" id="grossProfit" style="display: none;"><strong>Gross Profit:</strong> $${grossProfit.toFixed(2)}</div>
-        <div class="result-info"><strong>Profit % (PnL):</strong> ${netPnlPercent.toFixed(2)}%</div>
-        <div class="result-info"><strong>Estimated Liquidation Price:</strong> $${liquidationPrice.toFixed(2)}</div>
+        <div class="result-info"><span class="result-label"><strong>Coin:</strong></span> <span class="result-value">${coin || '(none)'}</span></div>
+        <div class="result-info" id="riskAmount" style="cursor: pointer;"><span class="result-label"><strong>Risk Amount:</strong></span> <span class="result-value">$${riskAmountDisplay.toFixed(2)}</span></div>
+        <div class="result-info" id="riskPerCoin" style="display: none;"><span class="result-label"><strong>Risk per Coin:</strong></span> <span class="result-value">$${riskPerCoin.toFixed(2)}</span></div>
+        <div class="result-info" id="riskPercent" style="display: none;"><span class="result-label"><strong>Risk % per Trade:</strong></span> <span class="result-value">${riskPctToDisplay.toFixed(2)}%</span></div>
+        <div class="result-info"><span class="result-label"><strong>Quantity (${coin || ''}):</strong></span> <span class="result-value">${qty.toFixed(4)}</span></div>
+        <div class="result-info"><span class="result-label"><strong>Margin Needed (with leverage):</strong></span> <span class="result-value">$${margin.toFixed(2)}</span></div>
+        <div class="result-info" id="totalFees" style="cursor: pointer;"><span class="result-label"><strong>Total Fees:</strong></span> <span class="result-value">$${totalFees.toFixed(2)}</span></div>
+        <div class="result-info" id="entryFee" style="display: none; cursor:pointer;"><span class="result-label"><strong>Entry Fee (${(entryFeeRate*100).toFixed(3)}%):</strong></span> <span class="result-value">$${entryFee.toFixed(2)}</span></div>
+        <div class="result-info" id="exitFee" style="display: none; cursor:pointer;"><span class="result-label"><strong>Exit Fee (${(exitFeeRate*100).toFixed(3)}%):</strong></span> <span class="result-value">$${exitFee.toFixed(2)}</span></div>
+        <div class="result-info" id="netProfit" style="cursor: pointer; color: #27c46a;"><span class="result-label"><strong>Net Profit (after fees):</strong></span> <span class="result-value">$${totalProfit.toFixed(2)}</span></div>
+        <div class="result-info" id="grossProfit" style="display: none;"><span class="result-label"><strong>Gross Profit:</strong></span> <span class="result-value">$${grossProfit.toFixed(2)}</span></div>
+        <div class="result-info"><span class="result-label"><strong>Profit % (PnL):</strong></span> <span class="result-value">${netPnlPercent.toFixed(2)}%</span></div>
+        <div class="result-info"><span class="result-label"><strong>Estimated Liquidation Price:</strong></span> <span class="result-value">$${liquidationPrice.toFixed(2)}</span></div>
       `;
       console.log('Results:', resultsDiv.innerHTML);
       
@@ -1180,6 +1191,41 @@ const entryFeeRate = 0.0055; // 0.55%
           if (grossProfitElement) {
             const isHidden = grossProfitElement.style.display === 'none';
             grossProfitElement.style.display = isHidden ? 'flex' : 'none';
+          }
+        });
+      }
+      
+      // Add click event for entry fee to allow changing the rate
+      const entryFeeElement = document.getElementById('entryFee');
+      if (entryFeeElement) {
+        entryFeeElement.addEventListener('click', function() {
+          const current = (entryFeeRate * 100).toFixed(3);
+          let newRate = prompt(`Set new entry fee rate (%)`, current);
+          if (newRate !== null) {
+            newRate = parseFloat(newRate);
+            if (!isNaN(newRate) && newRate >= 0 && newRate < 100) {
+              window.entryFeeRate = newRate / 100;
+              handleCalculate();
+            } else {
+              alert('Invalid entry fee rate.');
+            }
+          }
+        });
+      }
+      // Add click event for exit fee to allow changing the rate
+      const exitFeeElement = document.getElementById('exitFee');
+      if (exitFeeElement) {
+        exitFeeElement.addEventListener('click', function() {
+          const current = (exitFeeRate * 100).toFixed(3);
+          let newRate = prompt(`Set new exit fee rate (%)`, current);
+          if (newRate !== null) {
+            newRate = parseFloat(newRate);
+            if (!isNaN(newRate) && newRate >= 0 && newRate < 100) {
+              window.exitFeeRate = newRate / 100;
+              handleCalculate();
+            } else {
+              alert('Invalid exit fee rate.');
+            }
           }
         });
       }

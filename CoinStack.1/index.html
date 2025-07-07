@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto Trading Analysis</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/trading.css">
+</head>
+<body>
+  <header>
+    <svg width="48" height="48" viewBox="0 0 32 32" style="display: inline-block; margin-right: 12px; vertical-align: middle;">
+      <!-- Coin Stack Logo -->
+      <defs>
+        <linearGradient id="coinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="coinShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+        </linearGradient>
+      </defs>
+      
+      <!-- Bottom coin (shadow) -->
+      <ellipse cx="16" cy="24" rx="10" ry="3" fill="url(#coinShadow)" opacity="0.4"/>
+      
+      <!-- Middle coin -->
+      <ellipse cx="16" cy="18" rx="9" ry="2.5" fill="url(#coinGradient)" opacity="0.8"/>
+      
+      <!-- Top coin -->
+      <ellipse cx="16" cy="12" rx="8" ry="2" fill="url(#coinGradient)"/>
+      
+      <!-- Coin center details -->
+      <circle cx="16" cy="12" r="2" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.8"/>
+      <circle cx="16" cy="18" r="1.5" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.6"/>
+      
+      <!-- Sparkle effect -->
+      <circle cx="12" cy="8" r="0.8" fill="#ffffff" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="20" cy="6" r="0.6" fill="#ffffff" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    CoinStack
+  </header>
+  
+  <div class="search-container">
+    <div class="search-input-container">
+      <div class="position-relative">
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input"
+          placeholder="Search technical indicators, patterns, or concepts..." 
+        >
+        <div class="search-icon">🔍</div>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
+  
+  <div class="tabs">
+    <button class="tab-button active" data-tab="knowledge-base">Knowledge Base</button>
+    <button class="tab-button" data-tab="trading-history">Trading History</button>
+    <button class="tab-button" data-tab="trading-schedule">Trading Schedule</button>
+    <button class="tab-button" data-tab="trading-tools">Trading Tools</button>
+  </div>
+
+  <div id="knowledge-base" class="tab-content active">
+    <!-- Modern Knowledge Base Section -->
+    <div class="kb-container">
+      <div class="kb-header">
+        <h1 class="kb-title">Trading Knowledge Base</h1>
+        <p class="kb-subtitle">Master the fundamentals of technical analysis and market psychology</p>
+      </div>
+      
+      <div class="kb-nav">
+        <button class="kb-nav-btn active" data-section="patterns">📊 Patterns</button>
+        <button class="kb-nav-btn" data-section="indicators">📈 Indicators</button>
+        <button class="kb-nav-btn" data-section="structure">🏗️ Structure</button>
+        <button class="kb-nav-btn" data-section="psychology">🧠 Psychology</button>
+      </div>
+
+      <!-- Patterns Section -->
+      <div class="kb-section active" id="patterns">
+        <div class="kb-grid">
+          <!-- Bullish Patterns -->
+          <div class="id-card bullish">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Bullish Engulfing Pattern -->
+                  <rect x="8" y="15" width="4" height="10" fill="#ef4444" rx="1"/>
+                  <rect x="14" y="10" width="4" height="20" fill="#10b981" rx="1"/>
+                  <line x1="10" y1="12" x2="10" y2="8" stroke="#ef4444" stroke-width="1"/>
+                  <line x1="10" y1="28" x2="10" y2="32" stroke="#ef4444" stroke-width="1"/>
+                  <line x1="16" y1="8" x2="16" y2="5" stroke="#10b981" stroke-width="1"/>
+                  <line x1="16" y1="32" x2="16" y2="35" stroke="#10b981" stroke-width="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Bullish Engulfing</h3>
+                <span class="card-subtitle">Reversal Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Bullish Reversal</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>High (80%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>All Timeframes</span>
+              </div>
+              <div class="card-description">
+                Two-candle reversal pattern at the bottom of a downtrend. A large green candle fully engulfs the prior red candle, showing strong buyer momentum and potential trend reversal.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card bullish">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Hammer Pattern -->
+                  <rect x="16" y="8" width="8" height="4" fill="#10b981" rx="1"/>
+                  <line x1="20" y1="4" x2="20" y2="1" stroke="#10b981" stroke-width="1"/>
+                  <line x1="20" y1="12" x2="20" y2="35" stroke="#10b981" stroke-width="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Hammer</h3>
+                <span class="card-subtitle">Reversal Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Bullish Reversal</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Medium (65%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>4H - Daily</span>
+              </div>
+              <div class="card-description">
+                Single candle pattern with small body at top and long lower wick. Indicates strong buying pressure after price rejection at lows. Best confirmed with follow-up bullish candle.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card bullish">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Morning Star Pattern -->
+                  <rect x="6" y="20" width="4" height="8" fill="#ef4444" rx="1"/>
+                  <rect x="12" y="18" width="4" height="4" fill="#6b7280" rx="1"/>
+                  <rect x="18" y="12" width="4" height="16" fill="#10b981" rx="1"/>
+                  <line x1="8" y1="18" x2="8" y2="15" stroke="#ef4444" stroke-width="1"/>
+                  <line x1="8" y1="28" x2="8" y2="31" stroke="#ef4444" stroke-width="1"/>
+                  <line x1="14" y1="16" x2="14" y2="13" stroke="#6b7280" stroke-width="1"/>
+                  <line x1="14" y1="22" x2="14" y2="25" stroke="#6b7280" stroke-width="1"/>
+                  <line x1="20" y1="10" x2="20" y2="7" stroke="#10b981" stroke-width="1"/>
+                  <line x1="20" y1="28" x2="20" y2="31" stroke="#10b981" stroke-width="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Morning Star</h3>
+                <span class="card-subtitle">Reversal Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Bullish Reversal</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Very High (90%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>Daily - Weekly</span>
+              </div>
+              <div class="card-description">
+                Three-candle pattern: long red → small indecision → strong green. Indicates sellers losing control and buyers taking over. Confirmation when green candle closes above red candle's midpoint.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bearish Patterns -->
+          <div class="id-card bearish">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Bearish Engulfing Pattern -->
+                  <rect x="8" y="15" width="4" height="10" fill="#10b981" rx="1"/>
+                  <rect x="14" y="10" width="4" height="20" fill="#ef4444" rx="1"/>
+                  <line x1="10" y1="12" x2="10" y2="8" stroke="#10b981" stroke-width="1"/>
+                  <line x1="10" y1="28" x2="10" y2="32" stroke="#10b981" stroke-width="1"/>
+                  <line x1="16" y1="8" x2="16" y2="5" stroke="#ef4444" stroke-width="1"/>
+                  <line x1="16" y1="32" x2="16" y2="35" stroke="#ef4444" stroke-width="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Bearish Engulfing</h3>
+                <span class="card-subtitle">Reversal Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Bearish Reversal</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>High (80%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>All Timeframes</span>
+              </div>
+              <div class="card-description">
+                Two-candle reversal at the top of an uptrend. Large red candle engulfs prior green candle, signaling sellers overpowering buyers and potential trend reversal.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card bearish">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Shooting Star Pattern -->
+                  <rect x="16" y="28" width="8" height="4" fill="#ef4444" rx="1"/>
+                  <line x1="20" y1="4" x2="20" y2="28" stroke="#ef4444" stroke-width="1"/>
+                  <line x1="20" y1="32" x2="20" y2="35" stroke="#ef4444" stroke-width="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Shooting Star</h3>
+                <span class="card-subtitle">Reversal Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Bearish Reversal</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Medium (65%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>4H - Daily</span>
+              </div>
+              <div class="card-description">
+                Single candle with small body at bottom and long upper wick. Shows buyers rejected at highs, suggesting potential reversal. Confirmation with bearish follow-up candle.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card bearish">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Evening Star Pattern -->
+                  <rect x="6" y="12" width="4" height="8" fill="#10b981" rx="1"/>
+                  <rect x="12" y="18" width="4" height="4" fill="#6b7280" rx="1"/>
+                  <rect x="18" y="12" width="4" height="16" fill="#ef4444" rx="1"/>
+                  <line x1="8" y1="10" x2="8" y2="7" stroke="#10b981" stroke-width="1"/>
+                  <line x1="8" y1="20" x2="8" y2="23" stroke="#10b981" stroke-width="1"/>
+                  <line x1="14" y1="16" x2="14" y2="13" stroke="#6b7280" stroke-width="1"/>
+                  <line x1="14" y1="22" x2="14" y2="25" stroke="#6b7280" stroke-width="1"/>
+                  <line x1="20" y1="10" x2="20" y2="7" stroke="#ef4444" stroke-width="1"/>
+                  <line x1="20" y1="28" x2="20" y2="31" stroke="#ef4444" stroke-width="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Evening Star</h3>
+                <span class="card-subtitle">Reversal Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Bearish Reversal</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Very High (90%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>Daily - Weekly</span>
+              </div>
+              <div class="card-description">
+                Three-candle pattern: long green → small indecision → strong red. Indicates buyers losing strength and sellers taking control. Confirmation when red candle closes below green candle's midpoint.
+              </div>
+            </div>
+          </div>
+
+          <!-- Neutral Patterns -->
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Doji Pattern -->
+                  <line x1="20" y1="8" x2="20" y2="32" stroke="#6b7280" stroke-width="1"/>
+                  <line x1="16" y1="20" x2="24" y2="20" stroke="#6b7280" stroke-width="2"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Doji</h3>
+                <span class="card-subtitle">Indecision Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Market Indecision</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Low (40%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>All Timeframes</span>
+              </div>
+              <div class="card-description">
+                Candle with equal open and close prices, forming a cross shape. Signals market indecision and potential trend exhaustion. Requires confirmation from next candle.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Spinning Top Pattern -->
+                  <rect x="18" y="18" width="4" height="4" fill="#6b7280" rx="1"/>
+                  <line x1="20" y1="8" x2="20" y2="18" stroke="#6b7280" stroke-width="1"/>
+                  <line x1="20" y1="22" x2="20" y2="32" stroke="#6b7280" stroke-width="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Spinning Top</h3>
+                <span class="card-subtitle">Indecision Pattern</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Signal Type</label>
+                <span>Market Indecision</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Low (35%)</span>
+              </div>
+              <div class="card-field">
+                <label>Timeframe</label>
+                <span>All Timeframes</span>
+              </div>
+              <div class="card-description">
+                Small body with long upper and lower wicks. Indicates market indecision and potential trend reversal. Longer wicks suggest more indecision. Requires confirmation.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicators Section -->
+      <div class="kb-section" id="indicators">
+        <div class="kb-grid">
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">📈</div>
+              <div>
+                <h3 class="card-title">Moving Averages</h3>
+                <span class="card-subtitle">Trend Indicator</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>SMA, EMA</span>
+              </div>
+              <div class="card-field">
+                <label>Best Periods</label>
+                <span>20, 50, 200</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Trend Direction</span>
+              </div>
+              <div class="card-description">
+                Simple and Exponential Moving Averages identify trend direction and support/resistance. Golden Cross (50 MA above 200 MA) signals bullish trend, Death Cross signals bearish trend.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">📊</div>
+              <div>
+                <h3 class="card-title">MACD</h3>
+                <span class="card-subtitle">Momentum Indicator</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Components</label>
+                <span>MACD, Signal, Histogram</span>
+              </div>
+              <div class="card-field">
+                <label>Default Settings</label>
+                <span>12, 26, 9</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Momentum Shifts</span>
+              </div>
+              <div class="card-description">
+                Shows relationship between two moving averages. Bullish when MACD crosses above signal line, bearish when below. Histogram shows momentum strength and potential divergences.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">⚡</div>
+              <div>
+                <h3 class="card-title">RSI</h3>
+                <span class="card-subtitle">Oscillator</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Range</label>
+                <span>0 - 100</span>
+              </div>
+              <div class="card-field">
+                <label>Overbought</label>
+                <span>> 70</span>
+              </div>
+              <div class="card-field">
+                <label>Oversold</label>
+                <span>< 30</span>
+              </div>
+              <div class="card-description">
+                Relative Strength Index measures speed and magnitude of price changes. Overbought conditions suggest potential reversal down, oversold conditions suggest potential reversal up.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">📏</div>
+              <div>
+                <h3 class="card-title">Bollinger Bands</h3>
+                <span class="card-subtitle">Volatility Indicator</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Components</label>
+                <span>Upper, Middle, Lower</span>
+              </div>
+              <div class="card-field">
+                <label>Default Settings</label>
+                <span>20 SMA, 2 SD</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Volatility & Breakouts</span>
+              </div>
+              <div class="card-description">
+                Bands contract during low volatility (squeeze), expand during high volatility. Price touching bands often acts as support/resistance. Breakouts from bands signal strong momentum.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Structure Section -->
+      <div class="kb-section" id="structure">
+        <div class="kb-grid">
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">🏗️</div>
+              <div>
+                <h3 class="card-title">Break of Structure</h3>
+                <span class="card-subtitle">Market Structure</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Bullish/Bearish</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Very High (95%)</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Trend Confirmation</span>
+              </div>
+              <div class="card-description">
+                Occurs when price closes above/below a significant high/low, confirming trend continuation or reversal. Bullish BoS breaks above previous high, bearish BoS breaks below previous low.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">🔄</div>
+              <div>
+                <h3 class="card-title">Change of Character</h3>
+                <span class="card-subtitle">Market Structure</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Trend Reversal</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>High (85%)</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Trend Change</span>
+              </div>
+              <div class="card-description">
+                Signals a shift in market structure from bullish to bearish or vice versa. Often marks the start of a new trend. Confirmed when price makes higher highs in uptrend or lower lows in downtrend.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">⚡</div>
+              <div>
+                <h3 class="card-title">Fair Value Gap</h3>
+                <span class="card-subtitle">Price Imbalance</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Price Imbalance</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Medium (70%)</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Entry/Exit Points</span>
+              </div>
+              <div class="card-description">
+                A price imbalance or inefficiency between candles, often revisited by price. Used for entries or exits. Bullish FVG occurs when price gaps up, bearish FVG when price gaps down.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Psychology Section -->
+      <div class="kb-section" id="psychology">
+        <div class="kb-grid">
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">🧠</div>
+              <div>
+                <h3 class="card-title">Fear & Greed</h3>
+                <span class="card-subtitle">Market Psychology</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Fear Index</label>
+                <span>0 - 100</span>
+              </div>
+              <div class="card-field">
+                <label>Greed Index</label>
+                <span>0 - 100</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Contrarian Signals</span>
+              </div>
+              <div class="card-description">
+                Extreme fear often signals buying opportunities, extreme greed signals selling opportunities. Contrarian indicator - when everyone is fearful, be greedy; when everyone is greedy, be fearful.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">📰</div>
+              <div>
+                <h3 class="card-title">News Trading</h3>
+                <span class="card-subtitle">Event-Driven</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Risk Level</label>
+                <span>Very High</span>
+              </div>
+              <div class="card-field">
+                <label>Volatility</label>
+                <span>Extreme</span>
+              </div>
+              <div class="card-field">
+                <label>Strategy</label>
+                <span>Fade or Follow</span>
+              </div>
+              <div class="card-description">
+                Trading around major news events. High volatility and unpredictable price movements. Can fade the initial move or follow the momentum. Requires strict risk management.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">🎯</div>
+              <div>
+                <h3 class="card-title">Risk Management</h3>
+                <span class="card-subtitle">Trading Psychology</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Risk Per Trade</label>
+                <span>1-2%</span>
+              </div>
+              <div class="card-field">
+                <label>Max Drawdown</label>
+                <span>5-10%</span>
+              </div>
+              <div class="card-field">
+                <label>Win Rate</label>
+                <span>40-60%</span>
+              </div>
+              <div class="card-description">
+                Never risk more than 1-2% of your account per trade. Use proper position sizing and stop losses. Focus on risk/reward ratios of 1:2 or better. Protect your capital above all else.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modern Knowledge Base Section -->
+  </div>
+
+  <div id="momentum" class="tab-content">
+    <div class="section">
+      <h3 style="color: #10b981; margin-bottom: 15px; font-size: 1.3rem;">⚡ Momentum & Oscillator Indicators</h3>
+      
+      <div class="collapsible">RSI (Relative Strength Index)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Measures speed and magnitude of price changes.<br><br>
+          <strong>Overbought:</strong> RSI > 70 indicates potential reversal down.<br><br>
+          <strong>Oversold:</strong> RSI < 30 indicates potential reversal up.<br><br>
+          <strong>Divergence:</strong> Price makes new high/low but RSI doesn't = reversal signal.<br><br>
+          <strong>Settings:</strong> Default 14 periods, can use 9 for faster signals.
+        </div>
+      </div>
+
+      <div class="collapsible">Stochastic Oscillator</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> %K line (current price vs range), %D line (3-period SMA of %K).<br><br>
+          <strong>Overbought:</strong> Above 80, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below 20, potential reversal up.<br><br>
+          <strong>Bullish Signal:</strong> %K crosses above %D in oversold area.<br><br>
+          <strong>Bearish Signal:</strong> %K crosses below %D in overbought area.<br><br>
+          <strong>Settings:</strong> Default 14,3,3 (periods, %K smoothing, %D smoothing).
+        </div>
+      </div>
+
+      <div class="collapsible">Williams %R</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Momentum oscillator measuring overbought/oversold levels.<br><br>
+          <strong>Range:</strong> 0 to -100 (inverted scale).<br><br>
+          <strong>Overbought:</strong> Above -20, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below -80, potential reversal up.<br><br>
+          <strong>Signal:</strong> Exit overbought/oversold zones.<br><br>
+          <strong>Settings:</strong> Default 14 periods.
+        </div>
+      </div>
+
+      <div class="collapsible">CCI (Commodity Channel Index)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Identifies cyclical trends and overbought/oversold conditions.<br><br>
+          <strong>Range:</strong> Typically ±100, but can extend beyond.<br><br>
+          <strong>Overbought:</strong> Above +100, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below -100, potential reversal up.<br><br>
+          <strong>Zero Line:</strong> Crossing above/below zero indicates trend change.<br><br>
+          <strong>Settings:</strong> Default 20 periods.
+        </div>
+      </div>
+
+      <div class="collapsible">MFI (Money Flow Index)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Volume-weighted RSI, combines price and volume.<br><br>
+          <strong>Range:</strong> 0 to 100.<br><br>
+          <strong>Overbought:</strong> Above 80, potential reversal down.<br><br>
+          <strong>Oversold:</strong> Below 20, potential reversal up.<br><br>
+          <strong>Divergence:</strong> Price/volume divergence signals reversal.<br><br>
+          <strong>Settings:</strong> Default 14 periods.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="volatility" class="tab-content">
+    <div class="section">
+      <h3 style="color: #f59e0b; margin-bottom: 15px; font-size: 1.3rem;">📊 Volatility & Range Indicators</h3>
+      
+      <div class="collapsible">Bollinger Bands</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> Middle band (20 SMA), Upper/Lower bands (±2 standard deviations).<br><br>
+          <strong>Squeeze:</strong> Bands contract = low volatility, expansion coming.<br><br>
+          <strong>Expansion:</strong> Bands widen = high volatility, trend continuation.<br><br>
+          <strong>Support/Resistance:</strong> Price often bounces off bands.<br><br>
+          <strong>Breakout:</strong> Price breaking bands = strong momentum.<br><br>
+          <strong>Settings:</strong> Default 20 periods, 2 standard deviations.
+        </div>
+      </div>
+
+      <div class="collapsible">ATR (Average True Range)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Measures market volatility, not direction.<br><br>
+          <strong>High ATR:</strong> High volatility, larger price movements expected.<br><br>
+          <strong>Low ATR:</strong> Low volatility, smaller price movements expected.<br><br>
+          <strong>Stop Loss:</strong> Use ATR multiplier for dynamic stop placement.<br><br>
+          <strong>Position Sizing:</strong> Higher ATR = smaller position size.<br><br>
+          <strong>Settings:</strong> Default 14 periods.
+        </div>
+      </div>
+
+      <div class="collapsible">Keltner Channel</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> Middle line (20 EMA), Upper/Lower bands (ATR multiplier).<br><br>
+          <strong>Trend Following:</strong> Price staying within channels indicates trend.<br><br>
+          <strong>Breakout:</strong> Price breaking channels = potential trend change.<br><br>
+          <strong>Mean Reversion:</strong> Price returning to middle line.<br><br>
+          <strong>Settings:</strong> Default 20 EMA, 2 ATR multiplier.
+        </div>
+      </div>
+
+      <div class="collapsible">Donchian Channel</div>
+      <div class="content">
+        <div class="card">
+          <strong>Components:</strong> Upper (highest high), Lower (lowest low), Middle (average).<br><br>
+          <strong>Breakout Trading:</strong> Price breaking upper/lower channels.<br><br>
+          <strong>Range Trading:</strong> Price bouncing between channels.<br><br>
+          <strong>Trend Strength:</strong> Channel width indicates volatility.<br><br>
+          <strong>Settings:</strong> Default 20 periods.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="volume" class="tab-content">
+    <div class="section">
+      <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 1.3rem;">📈 Volume & Market Structure</h3>
+      
+      <div class="collapsible">Volume Analysis</div>
+      <div class="content">
+        <div class="card">
+          <strong>High Volume:</strong> Confirms price movement, shows strong conviction.<br><br>
+          <strong>Low Volume:</strong> Weak conviction, potential reversal.<br><br>
+          <strong>Volume Divergence:</strong> Price up but volume down = weak move.<br><br>
+          <strong>Volume Climax:</strong> Extremely high volume often marks tops/bottoms.<br><br>
+          <strong>On-Balance Volume (OBV):</strong> Cumulative volume indicator for trend confirmation.
+        </div>
+      </div>
+
+      <div class="collapsible">VWAP (Volume Weighted Average Price)</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Average price weighted by volume, fair value indicator.<br><br>
+          <strong>Bullish:</strong> Price above VWAP, especially with volume.<br><br>
+          <strong>Bearish:</strong> Price below VWAP, especially with volume.<br><br>
+          <strong>Support/Resistance:</strong> VWAP often acts as dynamic level.<br><br>
+          <strong>Best Used:</strong> Intraday trading and institutional analysis.
+        </div>
+      </div>
+
+      <div class="collapsible">Accumulation/Distribution Line</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Measures buying/selling pressure based on price and volume.<br><br>
+          <strong>Accumulation:</strong> Line rising = smart money buying.<br><br>
+          <strong>Distribution:</strong> Line falling = smart money selling.<br><br>
+          <strong>Divergence:</strong> Price vs A/D line divergence signals reversal.<br><br>
+          <strong>Confirmation:</strong> A/D line confirming price trend.
+        </div>
+      </div>
+
+      <div class="collapsible">Chaikin Money Flow</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Volume-weighted average of accumulation/distribution.<br><br>
+          <strong>Range:</strong> -1 to +1.<br><br>
+          <strong>Bullish:</strong> Above +0.25, strong buying pressure.<br><br>
+          <strong>Bearish:</strong> Below -0.25, strong selling pressure.<br><br>
+          <strong>Neutral:</strong> Between -0.25 and +0.25.<br><br>
+          <strong>Settings:</strong> Default 20 periods.
+        </div>
+      </div>
+
+      <div class="collapsible">Volume Profile</div>
+      <div class="content">
+        <div class="card">
+          <strong>Purpose:</strong> Shows volume at different price levels.<br><br>
+          <strong>Value Area:</strong> 70% of volume occurs here, key support/resistance.<br><br>
+          <strong>Point of Control:</strong> Price level with highest volume.<br><br>
+          <strong>High Volume Nodes:</strong> Strong support/resistance areas.<br><br>
+          <strong>Low Volume Nodes:</strong> Weak areas, price moves through quickly.<br><br>
+          <strong>Best Used:</strong> Swing trading and position sizing.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="trading-history" class="tab-content">
+    <div class="section">
+      <!-- Header -->
+      <div class="trading-header">
+        <div class="trading-stats">
+          
+          <!-- Total PnL Counter -->
+          <div id="totalPnLCounter" class="counter-card">
+            <!-- Background glow effect -->
+            <div class="counter-glow"></div>
+            
+            <!-- Icon -->
+            <div class="counter-icon">💰</div>
+            
+            <!-- Content -->
+            <div class="counter-content">
+              <div class="counter-label">Total P&L</div>
+              <div id="totalPnLValue" class="counter-value">0.0000</div>
+        </div>
+      </div>
+
+          <!-- Total Trade Count Counter -->
+          <div id="totalTradeCounter" class="counter-card counter-info">
+            <!-- Background glow effect -->
+            <div class="counter-glow counter-glow-info"></div>
+            
+            <!-- Icon -->
+            <div class="counter-icon counter-icon-info">📈</div>
+            
+            <!-- Content -->
+            <div class="counter-content">
+              <div class="counter-label">Total Trades</div>
+              <div id="totalTradeValue" class="counter-value counter-value-info">0</div>
+            </div>
+          </div>
+
+          <!-- Today's Trade Count Counter -->
+          <div id="todayTradeCounter" class="counter-card counter-success">
+            <!-- Background glow effect -->
+            <div class="counter-glow counter-glow-success"></div>
+            
+            <!-- Icon -->
+            <div class="counter-icon counter-icon-success">📊</div>
+            
+            <!-- Content -->
+            <div class="counter-content">
+              <div class="counter-label">Today's Trades</div>
+              <div id="todayTradeValue" class="counter-value counter-value-success">0</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="action-buttons">
+          <button id="exportTradesBtn" class="btn-export">Export</button>
+          <button id="importTradesBtn" class="btn-import">Import</button>
+          <button class="btn-bulk">Bulk Paste</button>
+          <button class="btn-clear">Clear All</button>
+        </div>
+
+      </div>
+
+
+
+      <!-- Add Trade Toggle Button -->
+      <div class="add-trade-toggle">
+        <button id="toggleAddTradeBtn" class="btn-primary" onclick="if(typeof toggleAddTradeForm === 'function') { toggleAddTradeForm(); } else { console.error('toggleAddTradeForm not available'); }">
+          <span id="toggleBtnText">➕ Add New Trade</span>
+        </button>
+      </div>
+
+      <!-- Add Trade Form (Hidden by default) -->
+      <div id="addTradeForm" class="add-trade-form">
+        <h4>Add New Trade</h4>
+        <form id="tradeForm">
+          <div style="margin-bottom: 16px;">
+            <label for="tradeInput" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Paste trade (tab-separated):</label>
+            <div style="color: #9ca3af; font-size: 0.8rem; margin-bottom: 12px; line-height: 1.4;">
+              Format: Contracts, Filled Type, Filled/Total, Filled Price/Order Price, Fee Rate, Trading Fee, Trade Type, Order Type, Transaction ID, Transaction Time, <b>Risk Amount (optional - 10 or 11 columns)</b>
+            </div>
+            <input id="tradeInput" name="tradeInput" placeholder="e.g. SOLUSDT	Trade	5.0/5.0	150.350/150.350	0.02%	0.15035000	Open Short	Limit	0582d602	2025-07-04 18:25:30	100" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease; outline: none;" />
+            <div id="tradeFormError" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px; display: none;"></div>
+          </div>
+          <button type="submit" style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(139,92,246,0.3);">Add Trade</button>
+        </form>
+      </div>
+
+      <!-- Trading Table -->
+      <div class="trading-table-container">
+        <div class="trading-table-header">
+          <h4>Trade Records</h4>
+        </div>
+        <div class="trading-table-wrapper">
+          <table id="tradingHistoryTable">
+            <thead>
+              <tr>
+                <th style="width: 60px;">Actions</th>
+                <th>Contracts</th>
+                <th>Filled Type</th>
+                <th>Filled/Total</th>
+                <th>Filled Price/Order Price</th>
+                <th>Fee Rate</th>
+                <th>Trading Fee</th>
+                <th>Trade Type</th>
+                <th>Order Type</th>
+                <th>Transaction ID</th>
+                <th>Transaction Time</th>
+                <th>Profit/Loss</th>
+                <th>Risk Amount</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        
+        <!-- Mobile Card Layout -->
+        <div class="trading-table-mobile">
+          <!-- Mobile cards will be generated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Hidden file input for CSV import -->
+      <input type="file" id="importCSV" accept=".csv" style="display: none;" />
+    </div>
+  </div>
+
+  <div id="trading-schedule" class="tab-content">
+    <div class="section">
+      <!-- Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h3 style="color: #8b5cf6; font-size: 1.5rem; font-weight: 300; margin: 0;">Trading Schedule</h3>
+        <div style="display: flex; gap: 12px;">
+          <button id="exportScheduleBtn" style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Export</button>
+          <button style="background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 8px 16px; font-size: 0.9em; cursor: pointer; transition: all 0.2s ease;">Clear Completed</button>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-bottom: 30px;">
+        <div style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 16px; text-align: center;">
+          <div style="color: #8b5cf6; font-size: 1.5rem; font-weight: 600;" id="totalSessions">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Total</div>
+        </div>
+        <div style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 16px; text-align: center;">
+          <div style="color: #8b5cf6; font-size: 1.5rem; font-weight: 600;" id="scheduledSessions">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Scheduled</div>
+        </div>
+        <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 16px; text-align: center;">
+          <div style="color: #f59e0b; font-size: 1.5rem; font-weight: 600;" id="inProgressSessions">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">In Progress</div>
+        </div>
+        <div style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; padding: 16px; text-align: center;">
+          <div style="color: #10b981; font-size: 1.5rem; font-weight: 600;" id="completedSessions">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Completed</div>
+        </div>
+      </div>
+      
+      <!-- Schedule Form -->
+      <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-bottom: 30px;">
+        <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 500; margin-bottom: 20px;">Add New Session</h4>
+        <form id="scheduleForm">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+            <div>
+              <label for="scheduleStartDateTime" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Start Date & Time</label>
+              <input id="scheduleStartDateTime" type="text" required placeholder="2025-06-20 21:51:18" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
+            </div>
+            <div>
+              <label for="scheduleEndDateTime" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">End Date & Time</label>
+              <input id="scheduleEndDateTime" type="text" required placeholder="2025-06-20 21:51:18" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
+            </div>
+            <div>
+              <label for="scheduleSession" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Session Type</label>
+              <select id="scheduleSession" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
+                <option value="">Auto-detect or select</option>
+                <option value="London Open">London Open</option>
+                <option value="New York Open">New York Open</option>
+                <option value="London + NY Overlap">London + NY Overlap</option>
+                <option value="NY Drift/Closing">NY Drift/Closing</option>
+                <option value="Asian Session">Asian Session</option>
+                <option value="Pre-London">Pre-London</option>
+                <option value="Weekend">Weekend</option>
+                <option value="Custom">Custom</option>
+              </select>
+            </div>
+            <div>
+              <label for="scheduleDuration" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Duration</label>
+              <input id="scheduleDuration" type="text" readonly style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.2); color: #9ca3af; font-size: 0.9rem;" placeholder="Auto-calculated">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div>
+              <label for="scheduleNotes" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Notes</label>
+              <input id="scheduleNotes" type="text" placeholder="e.g., Focus on BTC, ETH pairs" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
+            </div>
+            <div>
+              <label for="scheduleStatus" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Status</label>
+              <select id="scheduleStatus" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
+                <option value="Scheduled">Scheduled</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: #fff; border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(139,92,246,0.3);">Add Session</button>
+        </form>
+      </div>
+
+      <!-- Schedule Table -->
+      <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; overflow: hidden;">
+        <div style="padding: 20px; border-bottom: 1px solid rgba(139,92,246,0.1);">
+          <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 500; margin: 0;">Scheduled Sessions</h4>
+        </div>
+        <div style="overflow-x: auto;">
+          <table id="scheduleTable" style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <thead>
+              <tr style="background: rgba(139,92,246,0.05);">
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1); width: 60px;">Actions</th>
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Date</th>
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Time</th>
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Duration</th>
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Session</th>
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Notes</th>
+                <th style="padding: 16px 12px; text-align: left; color: #8b5cf6; font-weight: 500; border-bottom: 1px solid rgba(139,92,246,0.1);">Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Best Trading Times Guide -->
+      <div style="margin-top: 30px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px;">
+        <!-- Combined Best Times & Visual Schedule -->
+        <div style="margin-bottom: 24px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            
+            <!-- Visual Schedule (Left) -->
+            <div style="background: linear-gradient(135deg, rgba(17,24,39,0.8) 0%, rgba(0,0,0,0.4) 100%); padding: 20px; border-radius: 12px; border: 1px solid rgba(139,92,246,0.15); position: relative; overflow: hidden; height: fit-content;">
+              <!-- Title -->
+              <div style="margin-bottom: 20px; text-align: center;">
+                <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 600; margin: 0 0 8px 0;">⏰ Visual Timeline</h4>
+                <p style="color: #9ca3af; font-size: 0.85rem; margin: 0;">24-hour trading cycle (PH Time)</p>
+              </div>
+              
+              <!-- Background Pattern -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 80%, rgba(139,92,246,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(16,185,129,0.03) 0%, transparent 50%); pointer-events: none;"></div>
+              
+              <!-- Timeline Container -->
+              <div style="position: relative; z-index: 1;">
+                <!-- Timeline Line -->
+                <div style="position: absolute; left: 60px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, transparent, rgba(139,92,246,0.3), transparent);"></div>
+                
+                <!-- Timeline Items -->
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <!-- 12am NY Close -->
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; text-align: right; color: #6b7280; font-size: 0.85em; font-weight: 500;">12am</div>
+                    <div style="width: 10px; height: 10px; background: #6b7280; border-radius: 50%; border: 2px solid rgba(139,92,246,0.2);"></div>
+                    <div style="flex: 1; padding: 10px 12px; background: rgba(107,114,128,0.1); border-radius: 6px; border-left: 3px solid #6b7280;">
+                      <div style="color: #6b7280; font-size: 0.85em; font-weight: 500;">NY Close</div>
+                      <div style="color: #9ca3af; font-size: 0.75em; margin-top: 2px;">Volume fades</div>
+                    </div>
+                  </div>
+                  
+                  <!-- 2am Asia Only -->
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; text-align: right; color: #6b7280; font-size: 0.85em; font-weight: 500;">2am</div>
+                    <div style="width: 10px; height: 10px; background: #6b7280; border-radius: 50%; border: 2px solid rgba(139,92,246,0.2);"></div>
+                    <div style="flex: 1; padding: 10px 12px; background: rgba(107,114,128,0.1); border-radius: 6px; border-left: 3px solid #6b7280;">
+                      <div style="color: #6b7280; font-size: 0.85em; font-weight: 500;">💤 Asia Only</div>
+                      <div style="color: #9ca3af; font-size: 0.75em; margin-top: 2px;">Avoid trading</div>
+                    </div>
+                  </div>
+                  
+                  <!-- 10am Asia Close -->
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; text-align: right; color: #6b7280; font-size: 0.85em; font-weight: 500;">10am</div>
+                    <div style="width: 10px; height: 10px; background: #6b7280; border-radius: 50%; border: 2px solid rgba(139,92,246,0.2);"></div>
+                    <div style="flex: 1; padding: 10px 12px; background: rgba(107,114,128,0.1); border-radius: 6px; border-left: 3px solid #6b7280;">
+                      <div style="color: #6b7280; font-size: 0.85em; font-weight: 500;">Asia Close</div>
+                      <div style="color: #9ca3af; font-size: 0.75em; margin-top: 2px;">London approaches</div>
+                    </div>
+                  </div>
+                  
+                  <!-- 3pm London Open -->
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; text-align: right; color: #f59e0b; font-size: 0.85em; font-weight: 600;">3pm</div>
+                    <div style="width: 10px; height: 10px; background: #f59e0b; border-radius: 50%; border: 2px solid rgba(245,158,11,0.3); box-shadow: 0 0 6px rgba(245,158,11,0.3);"></div>
+                    <div style="flex: 1; padding: 10px 12px; background: rgba(245,158,11,0.1); border-radius: 6px; border-left: 3px solid #f59e0b;">
+                      <div style="color: #f59e0b; font-size: 0.85em; font-weight: 600;">🟡 London Open</div>
+                      <div style="color: #9ca3af; font-size: 0.75em; margin-top: 2px;">Good for breakouts</div>
+                    </div>
+                  </div>
+                  
+                  <!-- 8pm London + NY Overlap -->
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; text-align: right; color: #ef4444; font-size: 0.85em; font-weight: 700;">8pm</div>
+                    <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 50%; border: 2px solid rgba(239,68,68,0.4); box-shadow: 0 0 8px rgba(239,68,68,0.4);"></div>
+                    <div style="flex: 1; padding: 12px 14px; background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(220,38,38,0.1)); border-radius: 8px; border-left: 4px solid #ef4444; position: relative;">
+                      <div style="position: absolute; top: -6px; right: 8px; background: #10b981; color: white; padding: 1px 6px; border-radius: 10px; font-size: 0.65em; font-weight: 600;">BEST</div>
+                      <div style="color: #ef4444; font-size: 0.9em; font-weight: 700;">🔥 London+NY</div>
+                      <div style="color: #9ca3af; font-size: 0.75em; margin-top: 2px;">Max volume, ideal</div>
+                    </div>
+                  </div>
+                  
+                  <!-- 9pm NY Open -->
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; text-align: right; color: #ef4444; font-size: 0.85em; font-weight: 700;">9pm</div>
+                    <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 50%; border: 2px solid rgba(239,68,68,0.4); box-shadow: 0 0 8px rgba(239,68,68,0.4);"></div>
+                    <div style="flex: 1; padding: 12px 14px; background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(220,38,38,0.1)); border-radius: 8px; border-left: 4px solid #ef4444; position: relative;">
+                      <div style="position: absolute; top: -6px; right: 8px; background: #10b981; color: white; padding: 1px 6px; border-radius: 10px; font-size: 0.65em; font-weight: 600;">STRONG</div>
+                      <div style="color: #ef4444; font-size: 0.9em; font-weight: 700;">🔥 NY Open</div>
+                      <div style="color: #9ca3af; font-size: 0.75em; margin-top: 2px;">Fast moves, 1m setups</div>
+                    </div>
+                  </div>
+                  
+                  <!-- 12am NY Close Start -->
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 45px; text-align: right; color: #6b7280; font-size: 0.85em; font-weight: 500;">12am</div>
+                    <div style="width: 10px; height: 10px; background: #6b7280; border-radius: 50%; border: 2px solid rgba(139,92,246,0.2);"></div>
+                    <div style="flex: 1; padding: 10px 12px; background: rgba(107,114,128,0.1); border-radius: 6px; border-left: 3px solid #6b7280;">
+                      <div style="color: #6b7280; font-size: 0.85em; font-weight: 500;">NY Fading</div>
+                      <div style="color: #9ca3af; font-size: 0.75em; margin-top: 2px;">Liquidity decreases</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Best Times Table (Right) -->
+            <div style="background: linear-gradient(135deg, rgba(17,24,39,0.6) 0%, rgba(0,0,0,0.3) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(139,92,246,0.1);">
+              <!-- Title -->
+              <div style="margin-bottom: 20px; text-align: center;">
+                <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 600; margin: 0 0 8px 0;">📊 Session Guide</h4>
+                <p style="color: #9ca3af; font-size: 0.85rem; margin: 0;">Trading recommendations & volatility</p>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                
+                <!-- London Open -->
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                  <div style="min-width: 60px; text-align: center;">
+                    <div style="color: #f59e0b; font-weight: 600; font-size: 0.9em;">3-5pm</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+                    <div style="color: #f59e0b; font-size: 1.2em;">🟡</div>
+                    <div>
+                      <div style="color: #d1d5db; font-weight: 500; font-size: 0.9em;">London Open</div>
+                      <div style="color: #9ca3af; font-size: 0.8em; margin-top: 2px;">EU markets, breakouts</div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="color: #d1d5db; font-size: 0.8em; margin-bottom: 2px;">Med-High</div>
+                    <div style="color: #10b981; font-weight: 600; font-size: 0.85em;">✅ Good</div>
+                  </div>
+                </div>
+
+                <!-- London + NY Overlap -->
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: linear-gradient(135deg, rgba(239,68,68,0.12), rgba(220,38,38,0.08)); border-radius: 8px; border-left: 4px solid #ef4444; position: relative;">
+                  <div style="position: absolute; top: -6px; right: 12px; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7em; font-weight: 600; box-shadow: 0 2px 8px rgba(16,185,129,0.3);">BEST</div>
+                  <div style="min-width: 60px; text-align: center;">
+                    <div style="color: #ef4444; font-weight: 700; font-size: 0.9em;">8-12am</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+                    <div style="color: #ef4444; font-size: 1.2em;">🔥</div>
+                    <div>
+                      <div style="color: #d1d5db; font-weight: 600; font-size: 0.9em;">London + NY</div>
+                      <div style="color: #9ca3af; font-size: 0.8em; margin-top: 2px;">Max volume, scalping</div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="color: #ef4444; font-weight: 600; font-size: 0.8em; margin-bottom: 2px;">Very High</div>
+                    <div style="color: #10b981; font-weight: 700; font-size: 0.85em;">✅✅ Best</div>
+                  </div>
+                </div>
+
+                <!-- NY Open -->
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: linear-gradient(135deg, rgba(239,68,68,0.12), rgba(220,38,38,0.08)); border-radius: 8px; border-left: 4px solid #ef4444; position: relative;">
+                  <div style="position: absolute; top: -6px; right: 12px; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7em; font-weight: 600; box-shadow: 0 2px 8px rgba(16,185,129,0.3);">STRONG</div>
+                  <div style="min-width: 60px; text-align: center;">
+                    <div style="color: #ef4444; font-weight: 700; font-size: 0.9em;">9-11pm</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+                    <div style="color: #ef4444; font-size: 1.2em;">🔥</div>
+                    <div>
+                      <div style="color: #d1d5db; font-weight: 600; font-size: 0.9em;">NY Open</div>
+                      <div style="color: #9ca3af; font-size: 0.8em; margin-top: 2px;">Fast moves, 1m setups</div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="color: #f59e0b; font-weight: 600; font-size: 0.8em; margin-bottom: 2px;">High</div>
+                    <div style="color: #10b981; font-weight: 700; font-size: 0.85em;">✅✅ Strong</div>
+                  </div>
+                </div>
+
+                <!-- NY Drift -->
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                  <div style="min-width: 60px; text-align: center;">
+                    <div style="color: #f59e0b; font-weight: 600; font-size: 0.9em;">12-2am</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+                    <div style="color: #f59e0b; font-size: 1.2em;">🟠</div>
+                    <div>
+                      <div style="color: #d1d5db; font-weight: 500; font-size: 0.9em;">NY Drift</div>
+                      <div style="color: #9ca3af; font-size: 0.8em; margin-top: 2px;">Liquidity fades</div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="color: #d1d5db; font-size: 0.8em; margin-bottom: 2px;">Low-Med</div>
+                    <div style="color: #f59e0b; font-weight: 600; font-size: 0.85em;">⚠️ Watch</div>
+                  </div>
+                </div>
+
+                <!-- Asian Session -->
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: rgba(239,68,68,0.08); border-radius: 8px; border-left: 4px solid #ef4444;">
+                  <div style="min-width: 60px; text-align: center;">
+                    <div style="color: #ef4444; font-weight: 600; font-size: 0.9em;">2-10am</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+                    <div style="color: #ef4444; font-size: 1.2em;">🔵</div>
+                    <div>
+                      <div style="color: #d1d5db; font-weight: 500; font-size: 0.9em;">Asian Session</div>
+                      <div style="color: #9ca3af; font-size: 0.8em; margin-top: 2px;">Choppy, low volume</div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="color: #d1d5db; font-size: 0.8em; margin-bottom: 2px;">Low</div>
+                    <div style="color: #ef4444; font-weight: 600; font-size: 0.85em;">❌ Avoid</div>
+                  </div>
+                </div>
+
+                <!-- Pre-London -->
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                  <div style="min-width: 60px; text-align: center;">
+                    <div style="color: #f59e0b; font-weight: 600; font-size: 0.9em;">10-2pm</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+                    <div style="color: #f59e0b; font-size: 1.2em;">🟠</div>
+                    <div>
+                      <div style="color: #d1d5db; font-weight: 500; font-size: 0.9em;">Pre-London</div>
+                      <div style="color: #9ca3af; font-size: 0.8em; margin-top: 2px;">Depends on news</div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="color: #d1d5db; font-size: 0.8em; margin-bottom: 2px;">Medium</div>
+                    <div style="color: #f59e0b; font-weight: 600; font-size: 0.85em;">⚠️ Optional</div>
+                  </div>
+                </div>
+
+                <!-- Weekend -->
+                <div style="display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: rgba(239,68,68,0.08); border-radius: 8px; border-left: 4px solid #ef4444;">
+                  <div style="min-width: 60px; text-align: center;">
+                    <div style="color: #ef4444; font-weight: 600; font-size: 0.9em;">Weekend</div>
+                  </div>
+                  <div style="flex: 1; display: flex; align-items: center; gap: 12px;">
+                    <div style="color: #ef4444; font-size: 1.2em;">🌍</div>
+                    <div>
+                      <div style="color: #d1d5db; font-weight: 500; font-size: 0.9em;">Global</div>
+                      <div style="color: #9ca3af; font-size: 0.8em; margin-top: 2px;">No institutional vol</div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="color: #d1d5db; font-size: 0.8em; margin-bottom: 2px;">Low</div>
+                    <div style="color: #ef4444; font-weight: 600; font-size: 0.85em;">❌ Avoid</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TradingView Alert Setup -->
+        <div>
+          <h5 style="color: #8b5cf6; margin-bottom: 12px; font-weight: 500;">🛠️ Bonus: TradingView Alert Setup (Optional)</h5>
+          <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; font-size: 0.9em; border: 1px solid rgba(139,92,246,0.1);">
+            <p style="margin-bottom: 12px; color: #d1d5db;">If you're using TradingView, you can set alerts for:</p>
+            <ul style="color: #d1d5db; margin-left: 20px; line-height: 1.6;">
+              <li>Session start times using session indicators (like "FX Sessions")</li>
+              <li>Volatility spikes (like ATR or volume breakout)</li>
+              <li>Price crossing key BOS or FVG zones</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Add Buttons -->
+      <div style="margin-top: 30px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px;">
+        <h4 style="color: #8b5cf6; margin-bottom: 16px; font-weight: 500;">Quick Add Common Sessions</h4>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟡 London Open (3PM-5PM)</button>
+          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 London+NY Overlap (8PM-12AM)</button>
+          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 NY Open (9PM-11PM)</button>
+          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 NY Drift (12AM-2AM)</button>
+          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🔵 Asian (2AM-10AM)</button>
+          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 Pre-London (10AM-2PM)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bulkPasteModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:#222; padding:30px 20px 20px 20px; border-radius:10px; max-width:500px; width:95%; position:relative;">
+      <button style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer;">&times;</button>
+      <h3 style="color:#8b5cf6; margin-bottom:10px;">Bulk Paste Trades</h3>
+      <div style="color:#d1d5db; font-size:0.95em; margin-bottom:8px;">Paste one or more tab-separated trades, one per line.<br>Format: Contracts, Filled Type, Filled/Total, Filled Price/Order Price, Fee Rate, Trading Fee, Trade Type, Order Type, Transaction ID, Transaction Time, <b>Risk Amount (optional - 10 or 11 columns)</b></div>
+      <textarea id="bulkPasteInput" rows="8" style="width:100%; border-radius:6px; border:1px solid #8b5cf6; padding:10px; background:#18181b; color:#fff; margin-bottom:10px;"></textarea>
+      <div id="bulkPasteError" style="color:#ef4444; font-size:0.95em; margin-bottom:8px; display:none;"></div>
+      <div id="bulkPasteSummary" style="color:#10b981; font-size:0.95em; margin-bottom:8px; display:none;"></div>
+      <button style="background:#8b5cf6; color:#fff; border:none; border-radius:4px; padding:8px 20px; font-weight:bold; cursor:pointer;">Add Trades</button>
+    </div>
+  </div>
+
+  <!-- Edit Trade Modal -->
+  <div id="editTradeModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:#222; padding:30px 20px 20px 20px; border-radius:10px; max-width:600px; width:95%; position:relative;">
+      <button style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer;">&times;</button>
+      <h3 style="color:#8b5cf6; margin-bottom:20px;">Edit Trade</h3>
+      <form id="editTradeForm" style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+        <div>
+          <label for="editContracts" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Contracts</label>
+          <input id="editContracts" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editFilledType" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Filled Type</label>
+          <input id="editFilledType" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editFilledTotal" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Filled/Total</label>
+          <input id="editFilledTotal" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editFilledPriceOrderPrice" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Filled Price/Order Price</label>
+          <input id="editFilledPriceOrderPrice" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editFeeRate" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Fee Rate</label>
+          <input id="editFeeRate" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editTradingFee" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Trading Fee</label>
+          <input id="editTradingFee" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editTradeType" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Trade Type</label>
+          <input id="editTradeType" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editOrderType" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Order Type</label>
+          <input id="editOrderType" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editTransactionId" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Transaction ID</label>
+          <input id="editTransactionId" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div>
+          <label for="editTransactionTime" style="color:#8b5cf6; font-size:0.9rem; display:block; margin-bottom:5px;">Transaction Time</label>
+          <input id="editTransactionTime" type="text" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #8b5cf6; background:rgba(0,0,0,0.4); color:#fff;">
+        </div>
+        <div style="grid-column: 1 / -1; display:flex; gap:10px; margin-top:10px;">
+          <button type="submit" style="background:#10b981; color:#fff; border:none; border-radius:4px; padding:10px 20px; font-weight:bold; cursor:pointer; flex:1;">Save Changes</button>
+          <button type="button" style="background:#6b7280; color:#fff; border:none; border-radius:4px; padding:10px 20px; font-weight:bold; cursor:pointer; flex:1;">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="trading-tools" class="tab-content">
+    <div class="section">
+      <!-- Header -->
+      <div class="tools-header">
+        <div class="tools-title-section">
+          <h3 class="tools-title">Trading Tools</h3>
+          <p class="tools-subtitle">Essential calculators and utilities for crypto trading</p>
+        </div>
+      </div>
+
+      <!-- Tools Grid -->
+      <div class="tools-grid">
+        <!-- Position Calculator Card -->
+        <div class="tool-card" onclick="openPositionCalculator()">
+          <div class="tool-card-header">
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <line x1="8" y1="12" x2="24" y2="12" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="8" y1="16" x2="20" y2="16" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="8" y1="20" x2="16" y2="20" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="26" cy="10" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Position Calculator</h4>
+              <p class="tool-description">Calculate position size, risk, and profit targets</p>
+            </div>
+          </div>
+          <div class="tool-card-footer">
+            <span class="tool-status">Ready</span>
+            <div class="tool-arrow">→</div>
+          </div>
+        </div>
+
+        <!-- Risk Calculator Card (Coming Soon) -->
+        <div class="tool-card coming-soon">
+          <div class="tool-card-header">
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4L28 16L16 28L4 16L16 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="16" cy="16" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Risk Calculator</h4>
+              <p class="tool-description">Calculate risk-reward ratios and portfolio risk</p>
+            </div>
+          </div>
+          <div class="tool-card-footer">
+            <span class="tool-status coming-soon">Coming Soon</span>
+            <div class="tool-arrow">→</div>
+          </div>
+        </div>
+
+        <!-- Portfolio Tracker Card (Coming Soon) -->
+        <div class="tool-card coming-soon">
+          <div class="tool-card-header">
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M4 28L12 20L20 24L28 16" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="20" r="2" fill="currentColor"/>
+                <circle cx="20" cy="24" r="2" fill="currentColor"/>
+                <circle cx="28" cy="16" r="2" fill="currentColor"/>
+                <rect x="2" y="2" width="28" height="28" rx="2" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Portfolio Tracker</h4>
+              <p class="tool-description">Track portfolio performance and allocations</p>
+            </div>
+          </div>
+          <div class="tool-card-footer">
+            <span class="tool-status coming-soon">Coming Soon</span>
+            <div class="tool-arrow">→</div>
+          </div>
+        </div>
+
+        <!-- Market Scanner Card (Coming Soon) -->
+        <div class="tool-card coming-soon">
+          <div class="tool-card-header">
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M16 4V8" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 24V28" stroke="currentColor" stroke-width="2"/>
+                <path d="M28 16H24" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 16H4" stroke="currentColor" stroke-width="2"/>
+                <path d="M22.6 9.4L20.5 11.5" stroke="currentColor" stroke-width="2"/>
+                <path d="M11.5 20.5L9.4 22.6" stroke="currentColor" stroke-width="2"/>
+                <path d="M22.6 22.6L20.5 20.5" stroke="currentColor" stroke-width="2"/>
+                <path d="M11.5 11.5L9.4 9.4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Market Scanner</h4>
+              <p class="tool-description">Scan for trading opportunities and setups</p>
+            </div>
+          </div>
+          <div class="tool-card-footer">
+            <span class="tool-status coming-soon">Coming Soon</span>
+            <div class="tool-arrow">→</div>
+          </div>
+        </div>
+
+        <!-- Journal Tracker Card (Coming Soon) -->
+        <div class="tool-card coming-soon">
+          <div class="tool-card-header">
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 4H24C25.1 4 26 4.9 26 6V26C26 27.1 25.1 28 24 28H8C6.9 28 6 27.1 6 26V6C6 4.9 6.9 4 8 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                <line x1="10" y1="10" x2="22" y2="10" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="10" y1="14" x2="18" y2="14" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="10" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="10" y1="22" x2="16" y2="22" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Trading Journal</h4>
+              <p class="tool-description">Document trades and track performance</p>
+            </div>
+          </div>
+          <div class="tool-card-footer">
+            <span class="tool-status coming-soon">Coming Soon</span>
+            <div class="tool-arrow">→</div>
+          </div>
+        </div>
+
+        <!-- Backtest Simulator Card (Coming Soon) -->
+        <div class="tool-card coming-soon">
+          <div class="tool-card-header">
+            <div class="tool-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M8 12L12 16L16 12L20 16L24 12" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                <circle cx="16" cy="12" r="1" fill="currentColor"/>
+                <circle cx="20" cy="16" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Backtest Simulator</h4>
+              <p class="tool-description">Test strategies on historical data</p>
+            </div>
+          </div>
+          <div class="tool-card-footer">
+            <span class="tool-status coming-soon">Coming Soon</span>
+            <div class="tool-arrow">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/trading.js"></script>
+  <script src="js/trade-actions.js"></script>
+  <script src="js/schedule.js"></script>
+  <script src="js/index.js"></script>
+  
+
+  
+
+  
+
+</body>
+</html>

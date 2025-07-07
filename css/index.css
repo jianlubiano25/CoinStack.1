@@ -328,8 +328,12 @@
 }
 
 .card-icon {
-  width: 48px;
-  height: 48px;
+  width: 100px !important;
+  height: 100px !important;
+  min-width: 100px !important;
+  min-height: 100px !important;
+  max-width: 100px !important;
+  max-height: 100px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -447,8 +451,12 @@
 }
 
 .card-icon svg {
-  width: 32px;
-  height: 32px;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100px !important;
+  min-height: 100px !important;
+  max-width: 100px !important;
+  max-height: 100px !important;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 

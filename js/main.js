@@ -1,29 +1,14 @@
 // Main JavaScript file for CoinStack Trading Dashboard
 // Handles core functionality, tab switching, and initialization
 
-// Cache frequently used DOM elements
-const DOM_CACHE = {
-  tabButtons: null,
-  tabContents: null,
-  collapsibles: null,
-  searchInput: null,
-  searchResults: null
-};
-
-// Initialize DOM cache
-function initDOMCache() {
-  DOM_CACHE.tabButtons = document.querySelectorAll('.tab-button');
-  DOM_CACHE.tabContents = document.querySelectorAll('.tab-content');
-  DOM_CACHE.collapsibles = document.querySelectorAll('.collapsible');
-  DOM_CACHE.searchInput = document.getElementById('searchInput');
-  DOM_CACHE.searchResults = document.getElementById('searchResults');
-}
-
 // Tab switching functionality
 function openTab(tabId, buttonElement) {
   // Remove active class from all tabs and contents
-  DOM_CACHE.tabButtons.forEach(btn => btn.classList.remove('active'));
-  DOM_CACHE.tabContents.forEach(tab => tab.classList.remove('active'));
+  const buttons = document.querySelectorAll('.tab-button');
+  const contents = document.querySelectorAll('.tab-content');
+  
+  buttons.forEach(btn => btn.classList.remove('active'));
+  contents.forEach(tab => tab.classList.remove('active'));
   
   // Add active class to selected tab and content
   const targetContent = document.getElementById(tabId);
@@ -37,86 +22,99 @@ function openTab(tabId, buttonElement) {
   localStorage.setItem('lastActiveTab', tabId);
 }
 
-// Toggle content sections with improved performance
+// Toggle content sections
 function toggleContent(el) {
-  const content = el.nextElementSibling;
-  const isVisible = content.style.display === 'block';
-  
   // Close all other content sections first
-  DOM_CACHE.collapsibles.forEach(collapsible => {
-    const otherContent = collapsible.nextElementSibling;
-    if (otherContent && otherContent !== content) {
-      otherContent.style.display = 'none';
-      collapsible.classList.remove('active');
+  const allContents = document.querySelectorAll('.content');
+  const allCollapsibles = document.querySelectorAll('.collapsible');
+  
+  allContents.forEach(content => {
+    if (content !== el.nextElementSibling) {
+      content.style.display = 'none';
     }
+  });
+  
+  // Remove active class from all collapsibles
+  allCollapsibles.forEach(collapsible => {
+    collapsible.classList.remove('active');
   });
   
   // Toggle the clicked content
-  content.style.display = isVisible ? 'none' : 'block';
-  el.classList.toggle('active', !isVisible);
+  const content = el.nextElementSibling;
+  if (content.style.display === 'block') {
+    content.style.display = 'none';
+    el.classList.remove('active');
+  } else {
+    content.style.display = 'block';
+    el.classList.add('active');
+  }
 }
 
-// Setup tab event listeners with event delegation
+// Setup tab event listeners
 function setupTabListeners() {
-  document.addEventListener('click', function(event) {
-    const tabButton = event.target.closest('.tab-button');
-    if (tabButton) {
-      const tabId = tabButton.getAttribute('data-tab');
+  const tabButtons = document.querySelectorAll('.tab-button');
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const tabId = this.getAttribute('data-tab');
       if (tabId) {
-        openTab(tabId, tabButton);
+        openTab(tabId, this);
       }
-    }
+    });
   });
 }
 
-// Setup collapsible event listeners with event delegation
+// Setup collapsible event listeners
 function setupCollapsibleListeners() {
-  document.addEventListener('click', function(event) {
-    const collapsible = event.target.closest('.collapsible');
-    if (collapsible) {
-      toggleContent(collapsible);
-    }
+  const collapsibles = document.querySelectorAll('.collapsible');
+  collapsibles.forEach(collapsible => {
+    collapsible.addEventListener('click', function() {
+      toggleContent(this);
+    });
   });
 }
 
-// Setup search event listeners with debouncing
+// Setup search event listeners
 function setupSearchListeners() {
-  if (!DOM_CACHE.searchInput) return;
-  
-  let searchTimeout;
-  
-  DOM_CACHE.searchInput.addEventListener('input', function() {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
       if (typeof searchContent === 'function') {
         searchContent();
       }
-    }, 300); // Debounce search input
-  });
-  
-  DOM_CACHE.searchInput.addEventListener('keyup', function(e) {
-    if (e.key === 'Escape' && DOM_CACHE.searchResults) {
-      DOM_CACHE.searchResults.style.display = 'none';
-    }
-  });
+    });
+    
+    searchInput.addEventListener('keyup', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('searchResults').style.display = 'none';
+      }
+    });
+  }
 }
 
-// Optimized trading event listeners with event delegation
+// Setup trading event listeners
 function setupTradingListeners() {
-  // Export button
+  // Export button - use specific ID
   const exportBtn = document.getElementById('exportTradesBtn');
   if (exportBtn) {
-    exportBtn.addEventListener('click', function() {
+    // Remove any existing event listeners to prevent duplicates
+    exportBtn.replaceWith(exportBtn.cloneNode(true));
+    const newExportBtn = document.getElementById('exportTradesBtn');
+    
+    newExportBtn.addEventListener('click', function() {
       if (typeof exportCSV === 'function') {
         exportCSV();
       }
     });
   }
   
-  // Import button
+  // Import button - use specific ID
   const importBtn = document.getElementById('importTradesBtn');
   if (importBtn) {
-    importBtn.addEventListener('click', function() {
+    // Remove any existing event listeners to prevent duplicates
+    importBtn.replaceWith(importBtn.cloneNode(true));
+    const newImportBtn = document.getElementById('importTradesBtn');
+    
+    newImportBtn.addEventListener('click', function() {
       if (typeof importCSV === 'function') {
         importCSV();
       }
@@ -133,31 +131,35 @@ function setupTradingListeners() {
     });
   }
   
-  // Event delegation for trading buttons
-  document.addEventListener('click', function(event) {
-    const target = event.target;
-    
-    // Bulk paste button
-    if (target.classList.contains('btn-bulk')) {
+  // Bulk paste button
+  const bulkBtn = document.querySelector('.btn-bulk');
+  if (bulkBtn) {
+    bulkBtn.addEventListener('click', function() {
       if (typeof showBulkPaste === 'function') {
         showBulkPaste();
       }
-    }
-    
-    // Clear all button
-    if (target.classList.contains('btn-clear')) {
+    });
+  }
+  
+  // Clear all button
+  const clearBtn = document.querySelector('.btn-clear');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
       if (typeof clearAllTrades === 'function') {
         clearAllTrades();
       }
-    }
-    
-    // Toggle add trade form button
-    if (target.id === 'toggleAddTradeBtn') {
+    });
+  }
+  
+  // Toggle add trade form button
+  const toggleBtn = document.getElementById('toggleAddTradeBtn');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
       if (typeof toggleAddTradeForm === 'function') {
         toggleAddTradeForm();
       }
-    }
-  });
+    });
+  }
   
   // Trade form submission
   const tradeForm = document.getElementById('tradeForm');
@@ -200,24 +202,15 @@ function setupTradingListeners() {
       });
     }
     
-    // Add trades button
-    const addTradesBtn = bulkModal.querySelector('button:last-child');
-    if (addTradesBtn) {
-      addTradesBtn.addEventListener('click', function() {
-        if (typeof processBulkPaste === 'function') {
-          processBulkPaste();
+    // Submit button
+    const submitBtn = bulkModal.querySelector('button[style*="background:#8b5cf6"]');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function() {
+        if (typeof submitBulkPaste === 'function') {
+          submitBulkPaste();
         }
       });
     }
-    
-    // Close modal on outside click
-    bulkModal.addEventListener('click', function(event) {
-      if (event.target === bulkModal) {
-        if (typeof hideBulkPaste === 'function') {
-          hideBulkPaste();
-        }
-      }
-    });
   }
   
   // Edit trade modal events
@@ -227,18 +220,18 @@ function setupTradingListeners() {
     const closeBtn = editModal.querySelector('button');
     if (closeBtn) {
       closeBtn.addEventListener('click', function() {
-        if (typeof hideEditModal === 'function') {
-          hideEditModal();
+        if (typeof hideEditTrade === 'function') {
+          hideEditTrade();
         }
       });
     }
     
     // Cancel button
-    const cancelBtn = editModal.querySelector('button:last-child');
+    const cancelBtn = editModal.querySelector('button[style*="background:#6b7280"]');
     if (cancelBtn) {
       cancelBtn.addEventListener('click', function() {
-        if (typeof hideEditModal === 'function') {
-          hideEditModal();
+        if (typeof hideEditTrade === 'function') {
+          hideEditTrade();
         }
       });
     }
@@ -247,52 +240,55 @@ function setupTradingListeners() {
     const editForm = document.getElementById('editTradeForm');
     if (editForm) {
       editForm.addEventListener('submit', function(event) {
-        event.preventDefault();
         if (typeof saveEditTrade === 'function') {
-          saveEditTrade();
+          saveEditTrade(event);
         }
       });
     }
-    
-    // Close modal on outside click
-    editModal.addEventListener('click', function(event) {
-      if (event.target === editModal) {
-        if (typeof hideEditModal === 'function') {
-          hideEditModal();
-        }
-      }
-    });
   }
 }
 
-// Optimized schedule event listeners
+// Setup schedule event listeners
 function setupScheduleListeners() {
-  // Export schedule button
-  const exportScheduleBtn = document.getElementById('exportScheduleBtn');
-  if (exportScheduleBtn) {
-    exportScheduleBtn.addEventListener('click', function() {
-      if (typeof exportScheduleCSV === 'function') {
-        exportScheduleCSV();
-      }
-    });
-  }
-  
-  // Clear completed button
-  const clearCompletedBtn = document.querySelector('.btn-clear-completed');
-  if (clearCompletedBtn) {
-    clearCompletedBtn.addEventListener('click', function() {
-      if (typeof clearCompletedSessions === 'function') {
-        clearCompletedSessions();
-      }
-    });
-  }
-  
   // Schedule form submission
   const scheduleForm = document.getElementById('scheduleForm');
   if (scheduleForm) {
     scheduleForm.addEventListener('submit', function(event) {
-      if (typeof addScheduleSession === 'function') {
-        addScheduleSession(event);
+      if (typeof addScheduleEntry === 'function') {
+        addScheduleEntry(event);
+      }
+    });
+  }
+  
+  // Auto-detect session type
+  const startDateTimeInput = document.getElementById('scheduleStartDateTime');
+  const endDateTimeInput = document.getElementById('scheduleEndDateTime');
+  const sessionSelect = document.getElementById('scheduleSession');
+  
+  if (startDateTimeInput) {
+    startDateTimeInput.addEventListener('change', function() {
+      if (typeof autoDetectSession === 'function') {
+        autoDetectSession();
+      }
+    });
+    
+    startDateTimeInput.addEventListener('blur', function() {
+      if (typeof autoDetectSession === 'function') {
+        autoDetectSession();
+      }
+    });
+  }
+  
+  if (endDateTimeInput) {
+    endDateTimeInput.addEventListener('change', function() {
+      if (typeof autoDetectSession === 'function') {
+        autoDetectSession();
+      }
+    });
+    
+    endDateTimeInput.addEventListener('blur', function() {
+      if (typeof autoDetectSession === 'function') {
+        autoDetectSession();
       }
     });
   }
@@ -307,146 +303,200 @@ function setupScheduleListeners() {
       const action = button.getAttribute('data-action');
       const index = parseInt(button.getAttribute('data-index'));
       
-      if (action === 'edit' && typeof editScheduleSession === 'function') {
-        editScheduleSession(index);
-      } else if (action === 'delete' && typeof deleteScheduleSession === 'function') {
-        deleteScheduleSession(index);
-      } else if (action === 'complete' && typeof completeScheduleSession === 'function') {
-        completeScheduleSession(index);
+      if (action === 'edit' && typeof editScheduleEntry === 'function') {
+        editScheduleEntry(index);
+      } else if (action === 'delete' && typeof deleteScheduleEntry === 'function') {
+        deleteScheduleEntry(index);
       }
     });
   }
   
-  // Quick add buttons
-  document.addEventListener('click', function(event) {
-    const target = event.target;
-    if (target.matches('button[data-quick-add]')) {
-      const sessionType = target.getAttribute('data-quick-add');
-      if (typeof quickAddSession === 'function') {
-        quickAddSession(sessionType);
-      }
-    }
-  });
-  
-  // DateTime inputs for auto-calculation
-  const startDateTimeInput = document.getElementById('scheduleStartDateTime');
-  const endDateTimeInput = document.getElementById('scheduleEndDateTime');
-  const durationInput = document.getElementById('scheduleDuration');
-  
-  if (startDateTimeInput && endDateTimeInput && durationInput) {
-    function calculateDuration() {
-      const start = new Date(startDateTimeInput.value);
-      const end = new Date(endDateTimeInput.value);
-      
-      if (start && end && start < end) {
-        const diff = end - start;
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        durationInput.value = `${hours}h ${minutes}m`;
-      }
-    }
-    
-    startDateTimeInput.addEventListener('change', calculateDuration);
-    endDateTimeInput.addEventListener('change', calculateDuration);
-  }
-}
-
-// Optimized knowledge base setup
-function setupKnowledgeBase() {
-  // Knowledge base navigation
-  setupKnowledgeBaseNavigation();
-  
-  // Search functionality
-  setupSearchClickOutside();
-}
-
-// Optimized knowledge base navigation
-function setupKnowledgeBaseNavigation() {
-  const kbNavButtons = document.querySelectorAll('.kb-nav-btn');
-  const kbSections = document.querySelectorAll('.kb-section');
-  
-  kbNavButtons.forEach(button => {
+  // Quick add session buttons
+  const quickAddButtons = document.querySelectorAll('button[style*="background:rgba(245,158,11,0.1)"], button[style*="background:rgba(239,68,68,0.1)"]');
+  quickAddButtons.forEach(button => {
     button.addEventListener('click', function() {
-      const section = this.getAttribute('data-section');
+      const text = this.textContent;
+      if (text.includes('London Open')) {
+        if (typeof quickAddSession === 'function') {
+          quickAddSession('London Open', '15:00', '17:00');
+        }
+      } else if (text.includes('London+NY Overlap')) {
+        if (typeof quickAddSession === 'function') {
+          quickAddSession('London + NY Overlap', '20:00', '00:00');
+        }
+      } else if (text.includes('NY Open')) {
+        if (typeof quickAddSession === 'function') {
+          quickAddSession('New York Open', '21:00', '23:00');
+        }
+      } else if (text.includes('NY Drift')) {
+        if (typeof quickAddSession === 'function') {
+          quickAddSession('NY Drift/Closing', '00:00', '02:00');
+        }
+      } else if (text.includes('Asian')) {
+        if (typeof quickAddSession === 'function') {
+          quickAddSession('Asian Session', '02:00', '10:00');
+        }
+      } else if (text.includes('Pre-London')) {
+        if (typeof quickAddSession === 'function') {
+          quickAddSession('Pre-London', '10:00', '14:00');
+        }
+      }
+    });
+  });
+  
+  // Export schedule button - use specific ID
+  const exportScheduleBtn = document.getElementById('exportScheduleBtn');
+  if (exportScheduleBtn) {
+    // Remove any existing event listeners to prevent duplicates
+    exportScheduleBtn.replaceWith(exportScheduleBtn.cloneNode(true));
+    const newExportScheduleBtn = document.getElementById('exportScheduleBtn');
+    
+    newExportScheduleBtn.addEventListener('click', function() {
+      if (typeof exportScheduleCSV === 'function') {
+        exportScheduleCSV();
+      }
+    });
+  }
+  
+  // Clear completed sessions button
+  const clearCompletedBtn = document.querySelector('button[style*="background: rgba(239,68,68,0.1)"]');
+  if (clearCompletedBtn) {
+    clearCompletedBtn.addEventListener('click', function() {
+      if (typeof clearCompletedSessions === 'function') {
+        clearCompletedSessions();
+      }
+    });
+  }
+}
+
+// Modern Knowledge Base Interactivity
+function setupKnowledgeBase() {
+  // Sidebar category switching
+  const categoryItems = document.querySelectorAll('.kb-category-item');
+  const sections = document.querySelectorAll('.kb-section');
+  categoryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      categoryItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const cat = item.getAttribute('data-category');
+      sections.forEach(sec => {
+        if (sec.getAttribute('data-category') === cat) {
+          sec.style.display = '';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Collapsible cards
+  const cards = document.querySelectorAll('.kb-card.collapsible');
+  cards.forEach(card => {
+    const header = card.querySelector('.kb-card-header');
+    header.addEventListener('click', () => {
+      card.classList.toggle('active');
+    });
+    // Start with first card in each section open
+    if (card.parentElement.querySelector('.kb-card') === card) {
+      card.classList.add('active');
+    }
+  });
+}
+
+// Knowledge Base Navigation
+function setupKnowledgeBaseNavigation() {
+  const navButtons = document.querySelectorAll('.kb-nav-btn');
+  const sections = document.querySelectorAll('.kb-section');
+
+  navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetSection = button.getAttribute('data-section');
       
-      // Update active states
-      kbNavButtons.forEach(btn => btn.classList.remove('active'));
-      kbSections.forEach(sec => sec.classList.remove('active'));
+      // Remove active class from all buttons and sections
+      navButtons.forEach(btn => btn.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
       
-      this.classList.add('active');
-      const targetSection = document.getElementById(section);
-      if (targetSection) {
-        targetSection.classList.add('active');
+      // Add active class to clicked button and target section
+      button.classList.add('active');
+      const targetElement = document.getElementById(targetSection);
+      if (targetElement) {
+        targetElement.classList.add('active');
       }
     });
   });
 }
 
-// Optimized search click outside functionality
+// Close search results when clicking outside
 function setupSearchClickOutside() {
   document.addEventListener('click', function(event) {
-    const searchContainer = document.querySelector('.search-container');
     const searchResults = document.getElementById('searchResults');
+    const searchInput = document.getElementById('searchInput');
     
-    if (searchContainer && searchResults && !searchContainer.contains(event.target)) {
+    if (searchResults && searchInput && !searchResults.contains(event.target) && !searchInput.contains(event.target)) {
       searchResults.style.display = 'none';
     }
   });
 }
 
-// Optimized position calculator opener
+// Open Position Calculator
 function openPositionCalculator() {
+  // Open the position calculator in a new tab/window
   window.open('position-calculator.html', '_blank');
 }
 
-// Main initialization function
+// Initialize the application
 function initializeApp() {
-  // Initialize DOM cache
-  initDOMCache();
-  
-  // Setup all event listeners
+  // Setup event listeners
   setupTabListeners();
   setupCollapsibleListeners();
   setupSearchListeners();
   setupTradingListeners();
   setupScheduleListeners();
-  setupKnowledgeBase();
   
   // Restore last active tab
-  const lastActiveTab = localStorage.getItem('lastActiveTab');
-  if (lastActiveTab) {
-    const tabButton = document.querySelector(`[data-tab="${lastActiveTab}"]`);
+  const lastTab = localStorage.getItem('lastActiveTab');
+  if (lastTab && document.getElementById(lastTab)) {
+    const tabButton = document.querySelector(`[data-tab="${lastTab}"]`);
     if (tabButton) {
-      openTab(lastActiveTab, tabButton);
+      openTab(lastTab, tabButton);
     }
   }
   
-  // Initialize any additional modules
-  if (typeof initializeTradingModule === 'function') {
-    initializeTradingModule();
+  // Initialize trading history
+  if (typeof renderTrades === 'function') {
+    renderTrades();
   }
   
-  if (typeof initializeScheduleModule === 'function') {
-    initializeScheduleModule();
+  // Initialize trading schedule
+  if (typeof renderSchedule === 'function') {
+    renderSchedule();
   }
   
-  console.log('CoinStack Trading Dashboard initialized successfully');
+  // Set default datetime to current time in text format
+  const now = new Date();
+  const currentDateTime = now.getFullYear() + '-' + 
+    String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+    String(now.getDate()).padStart(2, '0') + ' ' + 
+    String(now.getHours()).padStart(2, '0') + ':' + 
+    String(now.getMinutes()).padStart(2, '0') + ':' + 
+    String(now.getSeconds()).padStart(2, '0');
+  
+  const startDateTimeInput = document.getElementById('scheduleStartDateTime');
+  const endDateTimeInput = document.getElementById('scheduleEndDateTime');
+  
+  if (startDateTimeInput) startDateTimeInput.value = currentDateTime;
+  if (endDateTimeInput) endDateTimeInput.value = currentDateTime;
 }
 
-// Performance optimization: Use requestIdleCallback for non-critical initialization
-if ('requestIdleCallback' in window) {
-  requestIdleCallback(() => {
-    initializeApp();
-  });
-} else {
-  // Fallback for browsers that don't support requestIdleCallback
-  setTimeout(initializeApp, 0);
-}
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  initializeApp();
+  setupSearchClickOutside();
+  setupKnowledgeBase();
+  setupKnowledgeBaseNavigation();
+});
 
 // Export functions for use in other modules
-window.CoinStack = {
-  openTab,
-  toggleContent,
-  openPositionCalculator,
-  initializeApp
-}; 
+window.openTab = openTab;
+window.toggleContent = toggleContent;
+window.openPositionCalculator = openPositionCalculator; 

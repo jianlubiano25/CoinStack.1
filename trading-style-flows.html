@@ -221,14 +221,341 @@
       box-shadow: 0 1px 4px 0 rgba(139,92,246,0.07);
       font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     }
-    @media (max-width: 900px) {
-      .container { max-width: 99vw; padding: 10px; }
-      .flow-card { min-width: 0; max-width: 99vw; width: 100%; padding: 10px 2px; }
-      .flow-title { font-size: 0.95rem; }
-      .flow-step { min-width: 0; max-width: 100vw; padding: 4px 6px; font-size: 0.89rem; }
-      .flow-arrow { font-size: 1.1rem; margin: 0 2px 0 0; }
-      .search-bar { margin-bottom: 8px; }
+    
+    /* Enhanced Responsive Design */
+    @media (max-width: 1200px) {
+      .container {
+        max-width: 95vw;
+        padding: 30px 25px 25px 25px;
+        margin: 30px auto 0 auto;
+      }
+      .header-title {
+        font-size: 2.2rem;
+      }
+      .card-grid {
+        gap: 24px;
+      }
     }
+    
+    @media (max-width: 900px) {
+      .container {
+        max-width: 98vw;
+        padding: 20px 15px 20px 15px;
+        margin: 20px auto 0 auto;
+        border-radius: 20px;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .header-title {
+        font-size: 1.8rem;
+        letter-spacing: -1px;
+      }
+      .flow-card {
+        min-width: 0;
+        max-width: 100%;
+        width: 100%;
+        padding: 16px 12px 12px 12px;
+        border-radius: 16px;
+      }
+      .flow-title {
+        font-size: 0.95rem;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .flow-stepper {
+        gap: 2px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .flow-step {
+        min-width: 0;
+        max-width: calc(100% - 8px);
+        padding: 4px 8px;
+        font-size: 0.85rem;
+        margin: 2px 2px 0 0;
+        flex-shrink: 1;
+      }
+      .flow-step-icon {
+        font-size: 1rem;
+      }
+      .flow-step-label {
+        font-size: 0.85rem;
+      }
+      .flow-step-desc {
+        font-size: 0.8rem;
+      }
+      .flow-arrow {
+        font-size: 1.1rem;
+        margin: 0 2px 0 0;
+      }
+      .search-bar {
+        margin-bottom: 12px;
+      }
+      .search-input {
+        padding: 12px 40px 12px 40px;
+        font-size: 1rem;
+      }
+      .search-icon {
+        left: 14px;
+        font-size: 1.3rem;
+      }
+      .dark-paragraph {
+        font-size: 1rem;
+        padding: 12px 14px;
+        margin-bottom: 16px;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100vw;
+        padding: 15px 10px 15px 10px;
+        margin: 10px auto 0 auto;
+        border-radius: 16px;
+      }
+      .header-title {
+        font-size: 1.6rem;
+        letter-spacing: -0.5px;
+      }
+      .back-link {
+        font-size: 1rem;
+        margin-bottom: 16px;
+      }
+      .flow-card {
+        padding: 14px 10px 10px 10px;
+        border-radius: 12px;
+        border-width: 2px;
+      }
+      .flow-title {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+      .flow-stepper {
+        gap: 1px;
+        padding-bottom: 0;
+      }
+      .flow-step {
+        padding: 3px 6px;
+        font-size: 0.8rem;
+        margin: 1px 1px 0 0;
+        border-radius: 6px;
+      }
+      .flow-step-icon {
+        font-size: 0.9rem;
+      }
+      .flow-step-label {
+        font-size: 0.8rem;
+      }
+      .flow-step-desc {
+        font-size: 0.75rem;
+      }
+      .flow-arrow {
+        font-size: 1rem;
+        margin: 0 1px 0 0;
+      }
+      .search-input {
+        padding: 10px 36px 10px 36px;
+        font-size: 0.95rem;
+        border-radius: 8px;
+      }
+      .search-icon {
+        left: 12px;
+        font-size: 1.2rem;
+      }
+      .add-btn {
+        padding: 0 20px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+      }
+      .dark-paragraph {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+      }
+      textarea.add-input, textarea.edit-flow-input {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+        border-radius: 6px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 12px 8px 12px 8px;
+        margin: 5px auto 0 auto;
+      }
+      .header-title {
+        font-size: 1.4rem;
+      }
+      .flow-card {
+        padding: 12px 8px 8px 8px;
+      }
+      .flow-title {
+        font-size: 0.85rem;
+      }
+      .flow-step {
+        padding: 2px 5px;
+        font-size: 0.75rem;
+        margin: 1px 1px 0 0;
+      }
+      .flow-step-icon {
+        font-size: 0.85rem;
+      }
+      .flow-step-label {
+        font-size: 0.75rem;
+      }
+      .flow-step-desc {
+        font-size: 0.7rem;
+      }
+      .flow-arrow {
+        font-size: 0.9rem;
+      }
+      .search-input {
+        padding: 8px 32px 8px 32px;
+        font-size: 0.9rem;
+      }
+      .search-icon {
+        left: 10px;
+        font-size: 1.1rem;
+      }
+      .add-btn {
+        padding: 0 16px;
+        font-size: 1rem;
+      }
+      .dark-paragraph {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+      }
+    }
+    
+         /* Mobile-specific improvements */
+     @media (max-width: 600px) {
+       .search-add-bar {
+         gap: 12px;
+         margin-bottom: 24px;
+       }
+       
+       /* Improve form layout on mobile */
+       .add-form-container {
+         flex-direction: column;
+         gap: 8px;
+       }
+       
+       .add-form-container > * {
+         width: 100%;
+         min-width: auto;
+       }
+      
+      /* Better button sizing on mobile */
+      .add-btn {
+        align-self: stretch;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      /* Improve import/export buttons */
+      .import-export-bar {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+      }
+      
+      .import-export-bar > * {
+        width: 100%;
+        text-align: center;
+      }
+      
+      /* Better card actions on mobile */
+      .flow-card .flow-title > div:last-child {
+        gap: 6px;
+      }
+      
+      .flow-card .flow-title button {
+        font-size: 1rem;
+        padding: 4px;
+      }
+    }
+    
+         /* Touch-friendly improvements */
+     @media (hover: none) and (pointer: coarse) {
+       .flow-step {
+         min-height: 32px;
+       }
+       
+       .add-btn, .export-btn, .import-btn {
+         min-height: 44px;
+       }
+       
+       .flow-card .flow-title button {
+         min-width: 32px;
+         min-height: 32px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+       }
+       
+       /* Better touch targets */
+       .search-input, .add-title-input, textarea.add-input {
+         min-height: 44px;
+       }
+       
+       .flow-card {
+         margin-bottom: 12px;
+       }
+       
+       /* Mobile step improvements */
+       .mobile-step {
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+         padding: 6px 8px;
+         min-width: 80px;
+       }
+       
+       .mobile-step .flow-step-icon {
+         margin-bottom: 2px;
+       }
+       
+       .mobile-step .flow-step-label {
+         font-size: 0.75rem;
+         margin-bottom: 1px;
+       }
+       
+       .mobile-step .flow-step-desc {
+         font-size: 0.65rem;
+         line-height: 1.2;
+       }
+     }
+     
+     /* Landscape mobile improvements */
+     @media (max-width: 900px) and (orientation: landscape) {
+       .container {
+         padding: 15px 20px 15px 20px;
+         margin: 10px auto 0 auto;
+       }
+       
+       .header {
+         flex-direction: row;
+         align-items: center;
+         gap: 15px;
+         margin-bottom: 15px;
+       }
+       
+       .header-title {
+         font-size: 1.6rem;
+       }
+       
+       .search-add-bar {
+         margin-bottom: 20px;
+       }
+     }
   </style>
 </head>
 <body>
@@ -250,7 +577,7 @@
         <input class="search-input" type="text" placeholder="Search style flows...">
         <span class="search-icon">🔍</span>
       </div>
-      <div style="display:flex; gap:8px; align-items:flex-start; width:100%; flex-wrap:wrap;">
+      <div class="add-form-container" style="display:flex; gap:8px; align-items:flex-start; width:100%; flex-wrap:wrap;">
         <input class="add-title-input" type="text" placeholder="Title (e.g. My Flow Name)" style="flex:1; min-width:120px; padding:10px 14px; border-radius:8px; border:none; background:#181926; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif;">
         <textarea class="add-input dark-paragraph" placeholder="Add new style flow (paste or type here)..." style="flex:2; min-width:160px; resize:vertical; min-height:38px; max-height:120px; border:none; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif; overflow:auto;"></textarea>
         <button class="add-btn" style="align-self:center;">＋</button>
@@ -346,8 +673,8 @@
         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:2px;">
           <div class="flow-title"><span style="font-size:1.5rem;">🧭</span>${highlightQ ? highlightMatch(title, highlightQ) : escapeHTML(title)}</div>
           <div style="display:flex; gap:8px;">
-            <button class="edit-btn" title="Edit" style="background:none; border:none; color:#a78bfa; font-size:1.1rem; cursor:pointer;">✏️</button>
-            <button class="delete-btn" title="Delete" style="background:none; border:none; color:#f87171; font-size:1.1rem; cursor:pointer;">🗑️</button>
+            <button class="edit-btn" title="Edit" style="background:none; border:none; color:#a78bfa; font-size:1.1rem; cursor:pointer; padding:4px; border-radius:4px; transition:background 0.2s;">✏️</button>
+            <button class="delete-btn" title="Delete" style="background:none; border:none; color:#f87171; font-size:1.1rem; cursor:pointer; padding:4px; border-radius:4px; transition:background 0.2s;">🗑️</button>
           </div>
         </div>
         <div class="flow-stepper">`;
@@ -369,7 +696,12 @@
         // Remove brackets from label and desc for display
         label = label.replace(/[\[\]]/g, '');
         desc = desc.replace(/[\[\]]/g, '');
-        html += `<div class="flow-step">${icon ? `<span class='flow-step-icon'>${icon}</span>` : ''}<span class="flow-step-label">${highlightQ ? highlightMatch(label, highlightQ) : escapeHTML(label)}</span>${desc ? `<span class="flow-step-desc">${highlightQ ? highlightMatch(desc, highlightQ) : escapeHTML(desc)}</span>` : ''}</div>`;
+        
+        // Mobile-friendly step display
+        const isMobile = window.innerWidth <= 600;
+        const stepClass = isMobile ? 'flow-step mobile-step' : 'flow-step';
+        
+        html += `<div class="${stepClass}">${icon ? `<span class='flow-step-icon'>${icon}</span>` : ''}<span class="flow-step-label">${highlightQ ? highlightMatch(label, highlightQ) : escapeHTML(label)}</span>${desc ? `<span class="flow-step-desc">${highlightQ ? highlightMatch(desc, highlightQ) : escapeHTML(desc)}</span>` : ''}</div>`;
         if (j < steps.length - 1) html += `<span class="flow-arrow">→</span>`;
       });
       html += '</div></div>';
@@ -402,13 +734,43 @@
       const flowInput = document.querySelector('.add-input');
       const title = titleInput.value.trim();
       const flow = flowInput.value.trim();
-      if (!title || !flow) return;
+      
+      // Better validation with user feedback
+      if (!title) {
+        titleInput.style.borderColor = '#ef4444';
+        titleInput.placeholder = 'Title is required!';
+        setTimeout(() => {
+          titleInput.style.borderColor = '';
+          titleInput.placeholder = 'Title (e.g. My Flow Name)';
+        }, 2000);
+        return;
+      }
+      if (!flow) {
+        flowInput.style.borderColor = '#ef4444';
+        flowInput.placeholder = 'Flow content is required!';
+        setTimeout(() => {
+          flowInput.style.borderColor = '';
+          flowInput.placeholder = 'Add new style flow (paste or type here)...';
+        }, 2000);
+        return;
+      }
+      
       const flows = getFlows();
       flows.unshift({ title, flow }); // Add to top
       saveFlows(flows);
       renderFlows();
       titleInput.value = '';
       flowInput.value = '';
+      
+      // Mobile-friendly feedback
+      const addBtn = document.querySelector('.add-btn');
+      const originalText = addBtn.textContent;
+      addBtn.textContent = '✓ Added!';
+      addBtn.style.background = 'linear-gradient(90deg, #10b981 0%, #059669 100%)';
+      setTimeout(() => {
+        addBtn.textContent = originalText;
+        addBtn.style.background = '';
+      }, 1500);
     };
 
     // --- EDIT/DELETE HANDLERS ---
@@ -440,6 +802,30 @@
 
     // --- RENDER ON LOAD ---
     renderFlows();
+    
+    // Handle window resize for responsive updates
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        // Re-render flows to update mobile step classes
+        const currentSearchQuery = document.querySelector('.search-input').value.trim();
+        if (currentSearchQuery) {
+          // If there's an active search, re-apply it
+          const flows = getFlows();
+          const container = document.getElementById('flowCardsContainer');
+          container.innerHTML = '';
+          const filtered = searchFlows(flows, currentSearchQuery);
+          if (filtered.length) {
+            filtered.forEach((flow, i) => {
+              container.innerHTML += flowCardHTML(flow.title, flow.flow, i, currentSearchQuery);
+            });
+          }
+        } else {
+          renderFlows();
+        }
+      }, 150);
+    });
 
     // --- SEARCH (optimized multi-word, fuzzy, debounced) ---
     function fuzzyMatch(str, q) {
@@ -503,7 +889,38 @@
 
     // Add highlight style
     const highlightStyle = document.createElement('style');
-    highlightStyle.innerHTML = `.flow-highlight { background:rgba(251,191,36,0.45); color:#fff; font-weight:bold; border-radius:4px; padding:0 2px; }`;
+    highlightStyle.innerHTML = `
+      .flow-highlight { 
+        background:rgba(251,191,36,0.45); 
+        color:#fff; 
+        font-weight:bold; 
+        border-radius:4px; 
+        padding:0 2px; 
+      }
+      
+      /* Mobile button hover states */
+      @media (hover: hover) {
+        .edit-btn:hover, .delete-btn:hover {
+          background: rgba(139,92,246,0.1);
+        }
+        .add-btn:hover, .export-btn:hover, .import-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 16px 0 rgba(139,92,246,0.4);
+        }
+      }
+      
+      /* Mobile form validation */
+      .add-title-input:invalid, .add-input:invalid {
+        border: 1px solid rgba(239,68,68,0.5);
+        box-shadow: 0 0 0 1px rgba(239,68,68,0.2);
+      }
+      
+      /* Loading state for buttons */
+      .add-btn:disabled, .export-btn:disabled, .import-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    `;
     document.head.appendChild(highlightStyle);
 
     // Auto-resize textarea utility
@@ -511,6 +928,7 @@
       textarea.style.height = 'auto';
       textarea.style.height = (textarea.scrollHeight) + 'px';
     }
+    
     // Observe edit mode and attach auto-resize
     const flowCardsContainer = document.getElementById('flowCardsContainer');
     const observer = new MutationObserver(() => {
@@ -521,10 +939,57 @@
       }
     });
     observer.observe(flowCardsContainer, { childList: true, subtree: true });
+    
+    // Mobile keyboard shortcuts and accessibility
+    document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + Enter to add flow
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        const titleInput = document.querySelector('.add-title-input');
+        const flowInput = document.querySelector('.add-input');
+        if (document.activeElement === titleInput || document.activeElement === flowInput) {
+          e.preventDefault();
+          document.querySelector('.add-btn').click();
+        }
+      }
+      
+      // Escape to cancel edit mode
+      if (e.key === 'Escape') {
+        const editCard = document.querySelector('.flow-card[data-index] .cancel-btn');
+        if (editCard) {
+          editCard.click();
+        }
+      }
+    });
+    
+    // Mobile-friendly focus management
+    document.querySelector('.add-title-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Tab' && !e.shiftKey) {
+        e.preventDefault();
+        document.querySelector('.add-input').focus();
+      }
+    });
+    
+    document.querySelector('.add-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Tab' && e.shiftKey) {
+        e.preventDefault();
+        document.querySelector('.add-title-input').focus();
+      }
+    });
 
     // --- EXPORT/IMPORT ---
     document.querySelector('.export-btn').onclick = function() {
       const flows = getFlows();
+      if (!flows.length) {
+        document.querySelector('.import-export-msg').textContent = 'No flows to export!';
+        setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 2000);
+        return;
+      }
+      
+      const exportBtn = document.querySelector('.export-btn');
+      const originalText = exportBtn.textContent;
+      exportBtn.textContent = 'Exporting...';
+      exportBtn.disabled = true;
+      
       const blob = new Blob([JSON.stringify(flows, null, 2)], {type: 'application/json'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -533,30 +998,56 @@
       document.body.appendChild(a);
       a.click();
       setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+      
       document.querySelector('.import-export-msg').textContent = 'Exported!';
-      setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 1800);
+      setTimeout(() => { 
+        document.querySelector('.import-export-msg').textContent = '';
+        exportBtn.textContent = originalText;
+        exportBtn.disabled = false;
+      }, 1800);
     };
     document.getElementById('importFlowsInput').onchange = function(e) {
       const file = e.target.files[0];
       if (!file) return;
+      
+      const importBtn = document.querySelector('.import-btn');
+      const originalText = importBtn.textContent;
+      importBtn.textContent = 'Importing...';
+      importBtn.style.opacity = '0.7';
+      
       const reader = new FileReader();
       reader.onload = function(ev) {
         try {
           const imported = JSON.parse(ev.target.result);
           if (!Array.isArray(imported) || !imported.every(f => f.title && f.flow)) {
             document.querySelector('.import-export-msg').textContent = 'Invalid file format.';
-            setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 2500);
+            setTimeout(() => { 
+              document.querySelector('.import-export-msg').textContent = '';
+              importBtn.textContent = originalText;
+              importBtn.style.opacity = '';
+            }, 2500);
             return;
           }
-          if (confirm('Import will REPLACE all your current flows. Continue?')) {
+          if (confirm(`Import will REPLACE all your current flows. Import ${imported.length} flows?`)) {
             saveFlows(imported);
             renderFlows();
-            document.querySelector('.import-export-msg').textContent = 'Imported!';
-            setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 1800);
+            document.querySelector('.import-export-msg').textContent = `Imported ${imported.length} flows!`;
+            setTimeout(() => { 
+              document.querySelector('.import-export-msg').textContent = '';
+              importBtn.textContent = originalText;
+              importBtn.style.opacity = '';
+            }, 2000);
+          } else {
+            importBtn.textContent = originalText;
+            importBtn.style.opacity = '';
           }
         } catch {
-          document.querySelector('.import-export-msg').textContent = 'Import failed.';
-          setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 2500);
+          document.querySelector('.import-export-msg').textContent = 'Import failed - invalid JSON.';
+          setTimeout(() => { 
+            document.querySelector('.import-export-msg').textContent = '';
+            importBtn.textContent = originalText;
+            importBtn.style.opacity = '';
+          }, 2500);
         }
         e.target.value = '';
       };

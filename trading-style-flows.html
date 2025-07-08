@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trading Style Flows</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/trading.css">
+  <style>
+    body {
+      background: linear-gradient(120deg, #181926 60%, #23243a 100%);
+      color: #fff;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 48px auto 0 auto;
+      padding: 40px 40px 32px 40px;
+      background: rgba(36, 37, 54, 0.82);
+      border-radius: 28px;
+      box-shadow: 0 8px 48px 0 rgba(139, 92, 246, 0.13);
+      backdrop-filter: blur(8px) saturate(1.2);
+      border: 1.5px solid rgba(139,92,246,0.18);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .header-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: #a78bfa;
+      text-shadow: 0 2px 12px #23243a44;
+    }
+    .back-link {
+      color: #10b981;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #8b5cf6;
+    }
+    .search-add-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 38px;
+      background: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+    }
+    .search-bar {
+      width: 100%;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 14px 44px 14px 44px;
+      border-radius: 10px;
+      border: none;
+      background: rgba(36, 37, 54, 0.95);
+      color: #fff;
+      font-size: 1.1rem;
+      outline: none;
+      box-shadow: 0 1px 4px 0 rgba(139,92,246,0.07);
+      transition: box-shadow 0.2s;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    }
+    .search-input:focus {
+      box-shadow: 0 2px 12px 0 #8b5cf6aa;
+    }
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #8b5cf6;
+      pointer-events: none;
+    }
+    .add-btn {
+      background: linear-gradient(90deg, #10b981 60%, #8b5cf6 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0 28px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px 0 #10b98133;
+    }
+    .add-btn:hover {
+      background: linear-gradient(90deg, #8b5cf6 0%, #10b981 100%);
+      box-shadow: 0 4px 16px 0 #8b5cf633;
+    }
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      margin-top: 32px;
+      justify-content: flex-start;
+    }
+    .flow-card {
+      background: rgba(36, 37, 54, 0.98);
+      border: 2.5px solid #8b5cf6;
+      border-radius: 20px;
+      box-shadow: 0 4px 32px 0 rgba(139, 92, 246, 0.10);
+      color: #fff;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      flex: 1 1 100%;
+      padding: 22px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    }
+    .flow-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #a78bfa;
+      margin-bottom: 10px;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    }
+    .flow-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0px;
+      width: 100%;
+      flex-wrap: wrap;
+      padding-bottom: 2px;
+      justify-content: flex-start;
+    }
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(139,92,246,0.10);
+      border-radius: 999px;
+      padding: 6px 12px;
+      margin: 4px 4px 0 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.04);
+      font-size: 0.98rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .flow-step-icon {
+      font-size: 1.15rem;
+      margin-bottom: 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    }
+    .flow-step-label {
+      font-size: 0.97rem;
+      color: #a5b4fc;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    }
+    .flow-step-desc {
+      font-size: 0.89rem;
+      color: #cbd5e1;
+      text-align: center;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    }
+    .flow-arrow {
+      font-size: 1.3rem;
+      color: #8b5cf6;
+      margin: 0 3px 0 0;
+      flex-shrink: 0;
+    }
+    textarea.add-input, textarea.edit-flow-input {
+      width: 100%;
+      min-height: 38px;
+      max-height: 120px;
+      resize: vertical;
+      font-size: 1rem;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      border-radius: 8px;
+      border: none;
+      background: #23243a;
+      color: #fff;
+      padding: 10px 14px;
+      outline: none;
+      box-shadow: 0 1px 4px 0 rgba(139,92,246,0.07);
+      margin-bottom: 0;
+      transition: box-shadow 0.2s;
+    }
+    textarea.add-input:focus, textarea.edit-flow-input:focus {
+      box-shadow: 0 2px 12px 0 #8b5cf6aa;
+    }
+    @media (max-width: 900px) {
+      .container { max-width: 99vw; padding: 10px; }
+      .flow-card { min-width: 0; max-width: 99vw; width: 100%; padding: 10px 2px; }
+      .flow-title { font-size: 0.95rem; }
+      .flow-step { min-width: 0; max-width: 100vw; padding: 4px 6px; font-size: 0.89rem; }
+      .flow-arrow { font-size: 1.1rem; margin: 0 2px 0 0; }
+      .search-bar { margin-bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html#trading-tools" class="back-link">← Back to Trading Tools</a>
+    <div class="header">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <rect x="6" y="12" width="28" height="16" rx="6" fill="#8b5cf6" opacity="0.18"/>
+        <rect x="10" y="16" width="20" height="8" rx="4" fill="#a78bfa"/>
+        <rect x="16" y="20" width="8" height="4" rx="2" fill="#10b981"/>
+      </svg>
+      <span class="header-title">Trading Style Flows</span>
+    </div>
+    <div style="color:#a5b4fc; font-size:1.1rem; margin-bottom:18px;">Explore and document your favorite style flow setups here.</div>
+
+    <!-- Search and Add Section -->
+    <div class="search-add-bar">
+      <div class="search-bar">
+        <input class="search-input" type="text" placeholder="Search style flows...">
+        <span class="search-icon">🔍</span>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center; width:100%; flex-wrap:wrap;">
+        <input class="add-title-input" type="text" placeholder="Title (e.g. My Flow Name)" style="flex:1; min-width:120px; padding:10px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif;">
+        <textarea class="add-input" placeholder="Add new style flow (paste or type here)..." style="flex:2; min-width:160px; resize:vertical; min-height:38px; max-height:120px; padding:10px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif; overflow:auto;"></textarea>
+        <button class="add-btn">＋</button>
+      </div>
+    </div>
+
+    <div class="card-grid" id="flowCardsContainer">
+      <!-- Cards will be rendered here by JS -->
+    </div>
+
+    <script>
+    // --- ICON MAP ---
+    const ICON_MAP = {
+      'EQH': '🔺',
+      'EQL': '🔻',
+      'CHoCH': '🔄',
+      'OB': '🟪',
+      'FVG': '🟪',
+      'BOS': '🏗️',
+      'Entry': '✅',
+      'Long': '🟢',
+      'Short': '🔴',
+      'Break': '⚡',
+      'Retest': '🔁',
+      'Reversal': '🔃',
+      'Sweep': '💧',
+      'Trend': '📈',
+      'Support': '🟩',
+      'Resistance': '🟥',
+      'OB/FVG': '🟪',
+      'OB/FVG retest': '🟪',
+      'CHoCH appears': '🔄',
+      'BOS confirms trend': '🏗️',
+      'swept': '💧',
+      'appears': '✨',
+      'confirms trend': '📈',
+      'retest': '🔁',
+      '': ''
+    };
+
+    // --- LOCAL STORAGE ---
+    const STORAGE_KEY = 'tradingStyleFlows';
+    function getFlows() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch { return []; }
+    }
+    function saveFlows(flows) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(flows));
+    }
+
+    // --- RENDERING ---
+    function renderFlows(editIndex = null) {
+      const flows = getFlows();
+      const container = document.getElementById('flowCardsContainer');
+      container.innerHTML = '';
+      if (!flows.length) {
+        // Show sample if no entries
+        container.innerHTML = `
+        <div class="flow-card">
+          <div class="flow-title"><span style="font-size:2.1rem;">🧭</span>Craig-Style Reversal Flow</div>
+          <div class="flow-stepper">
+            <div class="flow-step"><span class="flow-step-icon">🔺</span><span class="flow-step-label" style="color:#f87171;">EQH</span><span class="flow-step-desc">or</span><span class="flow-step-icon">🔻</span><span class="flow-step-label" style="color:#60a5fa;">EQL</span><span class="flow-step-desc">swept</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step"><span class="flow-step-icon">🔄</span><span class="flow-step-label" style="color:#fbbf24;">CHoCH</span><span class="flow-step-desc">appears</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step"><span class="flow-step-icon">🟪</span><span class="flow-step-label" style="color:#a78bfa;">OB/FVG</span><span class="flow-step-desc">retest</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step"><span class="flow-step-icon">🏗️</span><span class="flow-step-label" style="color:#10b981;">BOS</span><span class="flow-step-desc">confirms trend</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step"><span class="flow-step-icon">✅</span><span class="flow-step-label" style="color:#10b981;">Entry</span></div>
+          </div>
+        </div>`;
+        return;
+      }
+      flows.forEach((flow, i) => {
+        if (editIndex === i) {
+          container.innerHTML += editFlowCardHTML(flow.title, flow.flow, i);
+        } else {
+          container.innerHTML += flowCardHTML(flow.title, flow.flow, i);
+        }
+      });
+    }
+
+    function flowCardHTML(title, flow, i, highlightQ = null) {
+      const steps = flow.split(/\s*(?:→|->)\s*/g).map(s => s.trim()).filter(Boolean);
+      let html = `<div class="flow-card" data-index="${i}">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:2px;">
+          <div class="flow-title"><span style="font-size:1.5rem;">🧭</span>${escapeHTML(title)}</div>
+          <div style="display:flex; gap:8px;">
+            <button class="edit-btn" title="Edit" style="background:none; border:none; color:#a78bfa; font-size:1.1rem; cursor:pointer;">✏️</button>
+            <button class="delete-btn" title="Delete" style="background:none; border:none; color:#f87171; font-size:1.1rem; cursor:pointer;">🗑️</button>
+          </div>
+        </div>
+        <div class="flow-stepper">`;
+      steps.forEach((step, j) => {
+        let icon = '';
+        let label = step;
+        let desc = '';
+        for (const key in ICON_MAP) {
+          if (step.toUpperCase().includes(key.toUpperCase())) {
+            icon = ICON_MAP[key];
+            break;
+          }
+        }
+        if (step.match(/\b(or|and|then|after|before|appears|swept|retest|confirms|entry)\b/i)) {
+          const parts = step.split(/\b(or|and|then|after|before|appears|swept|retest|confirms|entry)\b/i);
+          label = parts[0].trim();
+          desc = parts.slice(1).join('').trim();
+        }
+        // Remove brackets from label and desc for display
+        label = label.replace(/[\[\]]/g, '');
+        desc = desc.replace(/[\[\]]/g, '');
+        html += `<div class="flow-step">${icon ? `<span class='flow-step-icon'>${icon}</span>` : ''}<span class="flow-step-label">${highlightQ ? highlightMatch(label, highlightQ) : escapeHTML(label)}</span>${desc ? `<span class="flow-step-desc">${highlightQ ? highlightMatch(desc, highlightQ) : escapeHTML(desc)}</span>` : ''}</div>`;
+        if (j < steps.length - 1) html += `<span class="flow-arrow">→</span>`;
+      });
+      html += '</div></div>';
+      return html;
+    }
+
+    function editFlowCardHTML(title, flow, i) {
+      return `<div class="flow-card" data-index="${i}">
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:2px;">
+          <div class="flow-title"><span style="font-size:1.5rem;">🧭</span><input class="edit-title-input" value="${escapeHTML(title)}" style="font-size:1.05rem; font-family:'Inter',sans-serif; border-radius:6px; border:none; padding:4px 8px; background:#23243a; color:#fff; width:160px; margin-right:8px;" /></div>
+          <div style="display:flex; gap:8px;">
+            <button class="save-btn" title="Save" style="background:none; border:none; color:#10b981; font-size:1.1rem; cursor:pointer;">💾</button>
+            <button class="cancel-btn" title="Cancel" style="background:none; border:none; color:#a5b4fc; font-size:1.1rem; cursor:pointer;">✖️</button>
+          </div>
+        </div>
+        <textarea class="edit-flow-input" style="width:100%; font-size:0.97rem; font-family:'Inter',sans-serif; border-radius:6px; border:none; padding:6px 10px; background:#23243a; color:#fff; margin-bottom:8px; resize:vertical; min-height:38px; max-height:240px; overflow:auto;">${escapeHTML(flow)}</textarea>
+      </div>`;
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>"']/g, function(tag) {
+        const charsToReplace = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+        return charsToReplace[tag] || tag;
+      });
+    }
+
+    // --- ADD ENTRY ---
+    document.querySelector('.add-btn').onclick = function() {
+      const titleInput = document.querySelector('.add-title-input');
+      const flowInput = document.querySelector('.add-input');
+      const title = titleInput.value.trim();
+      const flow = flowInput.value.trim();
+      if (!title || !flow) return;
+      const flows = getFlows();
+      flows.unshift({ title, flow }); // Add to top
+      saveFlows(flows);
+      renderFlows();
+      titleInput.value = '';
+      flowInput.value = '';
+    };
+
+    // --- EDIT/DELETE HANDLERS ---
+    document.getElementById('flowCardsContainer').onclick = function(e) {
+      const card = e.target.closest('.flow-card');
+      if (!card) return;
+      const idx = parseInt(card.getAttribute('data-index'));
+      if (e.target.classList.contains('edit-btn')) {
+        renderFlows(idx);
+      } else if (e.target.classList.contains('delete-btn')) {
+        if (confirm('Delete this flow?')) {
+          const flows = getFlows();
+          flows.splice(idx, 1);
+          saveFlows(flows);
+          renderFlows();
+        }
+      } else if (e.target.classList.contains('save-btn')) {
+        const newTitle = card.querySelector('.edit-title-input').value.trim();
+        const newFlow = card.querySelector('.edit-flow-input').value.trim();
+        if (!newTitle || !newFlow) return;
+        const flows = getFlows();
+        flows[idx] = { title: newTitle, flow: newFlow };
+        saveFlows(flows);
+        renderFlows();
+      } else if (e.target.classList.contains('cancel-btn')) {
+        renderFlows();
+      }
+    };
+
+    // --- RENDER ON LOAD ---
+    renderFlows();
+
+    // --- SEARCH (filter flows by title or flow) ---
+    document.querySelector('.search-input').addEventListener('input', function() {
+      const q = this.value.trim().toLowerCase();
+      const flows = getFlows();
+      const container = document.getElementById('flowCardsContainer');
+      container.innerHTML = '';
+      if (!q) return renderFlows();
+      const filtered = flows.filter(f => f.title.toLowerCase().includes(q) || f.flow.toLowerCase().includes(q));
+      if (!filtered.length) {
+        container.innerHTML = '<div style="color:#a5b4fc; text-align:center; padding:32px 0; font-size:1.1rem;">No matching flows found.</div>';
+        return;
+      }
+      filtered.forEach((flow, i) => {
+        container.innerHTML += flowCardHTML(flow.title, flow.flow, i, q);
+      });
+    });
+
+    // Highlight helper
+    function highlightMatch(text, q) {
+      if (!q) return escapeHTML(text);
+      const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'ig');
+      return escapeHTML(text).replace(regex, '<span class="flow-highlight">$1</span>');
+    }
+
+    // Add highlight style
+    const highlightStyle = document.createElement('style');
+    highlightStyle.innerHTML = `.flow-highlight { background:rgba(251,191,36,0.45); color:#fff; font-weight:bold; border-radius:4px; padding:0 2px; }`;
+    document.head.appendChild(highlightStyle);
+
+    // Auto-resize textarea utility
+    function autoResizeTextarea(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = (textarea.scrollHeight) + 'px';
+    }
+    // Observe edit mode and attach auto-resize
+    const flowCardsContainer = document.getElementById('flowCardsContainer');
+    const observer = new MutationObserver(() => {
+      const editTA = flowCardsContainer.querySelector('.edit-flow-input');
+      if (editTA) {
+        autoResizeTextarea(editTA);
+        editTA.addEventListener('input', function() { autoResizeTextarea(this); });
+      }
+    });
+    observer.observe(flowCardsContainer, { childList: true, subtree: true });
+    </script>
+  </div>
+</body>
+</html> 

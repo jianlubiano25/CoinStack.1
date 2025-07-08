@@ -189,21 +189,22 @@
       align-items: center;
       justify-content: center;
       color: #8b5cf6;
-      margin: 0 3px 0 0;
+      margin: 0 6px 0 0;
       flex-shrink: 0;
       transition: all 0.2s ease;
+      padding: 2px;
     }
     
     .flow-arrow svg {
-      width: 20px;
-      height: 20px;
-      filter: drop-shadow(0 1px 2px rgba(139,92,246,0.3));
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 2px 4px rgba(139,92,246,0.4));
       transition: all 0.3s ease;
     }
     
     .flow-arrow:hover svg {
-      transform: translateX(3px) scale(1.1);
-      filter: drop-shadow(0 3px 6px rgba(139,92,246,0.6));
+      transform: translateX(4px) scale(1.15);
+      filter: drop-shadow(0 4px 8px rgba(139,92,246,0.7));
     }
     
     /* Arrow animation for flow progression */
@@ -442,9 +443,9 @@
        }
        
        .flow-arrow svg {
-         width: 18px;
-         height: 18px;
-         filter: drop-shadow(0 1px 3px rgba(139,92,246,0.4));
+         width: 22px;
+         height: 22px;
+         filter: drop-shadow(0 2px 4px rgba(139,92,246,0.5));
        }
        .search-input {
          padding: 12px 40px 12px 40px;
@@ -520,9 +521,9 @@
        }
        
        .flow-arrow svg {
-         width: 16px;
-         height: 16px;
-         filter: drop-shadow(0 1px 2px rgba(139,92,246,0.3));
+         width: 20px;
+         height: 20px;
+         filter: drop-shadow(0 2px 3px rgba(139,92,246,0.4));
        }
        .search-input {
          padding: 10px 36px 10px 36px;
@@ -902,14 +903,14 @@
         
         html += `<div class="${stepClass}">${icon ? `<span class='flow-step-icon'>${icon}</span>` : ''}<span class="flow-step-label">${highlightQ ? highlightMatch(label, highlightQ) : escapeHTML(label)}</span>${desc ? `<span class="flow-step-desc">${highlightQ ? highlightMatch(desc, highlightQ) : escapeHTML(desc)}</span>` : ''}</div>`;
         if (j < steps.length - 1) html += `<span class="flow-arrow">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
                 <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
               </linearGradient>
             </defs>
-            <path d="M3 12H21M21 12L14 5M21 12L14 19" stroke="url(#arrowGradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12H22M22 12L13 3M22 12L13 21" stroke="url(#arrowGradient)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>`;
       });

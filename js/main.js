@@ -453,6 +453,11 @@ function initializeApp() {
   setupTradingListeners();
   setupScheduleListeners();
   
+  // Setup schedule event listeners
+  if (typeof setupScheduleEventListeners === 'function') {
+    setupScheduleEventListeners();
+  }
+  
   // Restore last active tab
   const lastTab = localStorage.getItem('lastActiveTab');
   if (lastTab && document.getElementById(lastTab)) {

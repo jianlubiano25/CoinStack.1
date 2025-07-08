@@ -678,6 +678,365 @@
   border-color: rgba(239,68,68,0.3);
 }
 
+/* ===== SCHEDULE RESPONSIVE DESIGN ===== */
+
+/* Schedule Mobile Card Layout */
+.schedule-table-mobile {
+  display: none;
+  padding: 16px;
+}
+
+.schedule-table-mobile .schedule-card {
+  background: rgba(17,24,39,0.6);
+  border: 1px solid rgba(139,92,246,0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.schedule-table-mobile .schedule-card .schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(139,92,246,0.1);
+}
+
+.schedule-table-mobile .schedule-card .schedule-session {
+  font-weight: 600;
+  color: #8b5cf6;
+  font-size: 1rem;
+}
+
+.schedule-table-mobile .schedule-card .schedule-status {
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.schedule-table-mobile .schedule-card .schedule-status.scheduled {
+  background: rgba(139,92,246,0.2);
+  color: #8b5cf6;
+}
+
+.schedule-table-mobile .schedule-card .schedule-status.in-progress {
+  background: rgba(245,158,11,0.2);
+  color: #f59e0b;
+}
+
+.schedule-table-mobile .schedule-card .schedule-status.completed {
+  background: rgba(16,185,129,0.2);
+  color: #10b981;
+}
+
+.schedule-table-mobile .schedule-card .schedule-status.cancelled {
+  background: rgba(239,68,68,0.2);
+  color: #ef4444;
+}
+
+.schedule-table-mobile .schedule-card .schedule-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.schedule-table-mobile .schedule-card .schedule-actions button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.schedule-table-mobile .schedule-card .schedule-actions button.edit {
+  color: #8b5cf6;
+}
+
+.schedule-table-mobile .schedule-card .schedule-actions button.delete {
+  color: #ef4444;
+}
+
+.schedule-table-mobile .schedule-card .schedule-actions button:hover {
+  background: rgba(139,92,246,0.1);
+}
+
+.schedule-table-mobile .schedule-card .schedule-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.schedule-table-mobile .schedule-card .schedule-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-table-mobile .schedule-card .schedule-detail-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.schedule-table-mobile .schedule-card .schedule-detail-value {
+  font-size: 0.85rem;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.schedule-table-mobile .schedule-card .schedule-notes {
+  padding-top: 8px;
+  border-top: 1px solid rgba(139,92,246,0.1);
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Schedule Form Responsive */
+@media (max-width: 768px) {
+  .schedule-form {
+    padding: 16px;
+  }
+  
+  .schedule-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .schedule-form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .schedule-form h4 {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  
+  .schedule-form input,
+  .schedule-form select {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .schedule-form button[type="submit"] {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+}
+
+/* Schedule Stats Responsive */
+@media (max-width: 768px) {
+  .schedule-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .stat-card {
+    padding: 12px;
+  }
+  
+  .stat-value {
+    font-size: 1.2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .stat-card {
+    padding: 10px;
+  }
+  
+  .stat-value {
+    font-size: 1.1rem;
+  }
+  
+  .stat-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* Schedule Table Responsive */
+@media (max-width: 768px) {
+  .schedule-table-container .schedule-table-wrapper {
+    display: none;
+  }
+  
+  .schedule-table-container .schedule-table-mobile {
+    display: block;
+  }
+  
+  .schedule-table-mobile .schedule-card .schedule-details {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  
+  .schedule-table-mobile .schedule-card {
+    padding: 12px;
+  }
+  
+  .schedule-table-mobile .schedule-card .schedule-session {
+    font-size: 0.9rem;
+  }
+  
+  .schedule-table-mobile .schedule-card .schedule-status {
+    font-size: 0.75rem;
+    padding: 3px 6px;
+  }
+}
+
+/* Trading Times Guide Responsive */
+@media (max-width: 768px) {
+  .trading-times-guide {
+    padding: 16px;
+  }
+  
+  .trading-times-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .timeline-container {
+    padding: 16px;
+  }
+  
+  .timeline-time {
+    width: 35px;
+    font-size: 0.8em;
+  }
+  
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .timeline-dot.active {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .timeline-content-box {
+    padding: 8px 10px;
+  }
+  
+  .timeline-content-box.active {
+    padding: 10px 12px;
+  }
+  
+  .timeline-badge {
+    font-size: 0.6em;
+    padding: 1px 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trading-times-guide {
+    padding: 12px;
+  }
+  
+  .timeline-container {
+    padding: 12px;
+  }
+  
+  .timeline-time {
+    width: 30px;
+    font-size: 0.75em;
+  }
+  
+  .timeline-dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .timeline-dot.active {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .timeline-content-box {
+    padding: 6px 8px;
+  }
+  
+  .timeline-content-box.active {
+    padding: 8px 10px;
+  }
+  
+  .timeline-title-text {
+    font-size: 0.8em;
+  }
+  
+  .timeline-content-box.active .timeline-title-text {
+    font-size: 0.85em;
+  }
+  
+  .timeline-description {
+    font-size: 0.7em;
+  }
+}
+
+/* Quick Add Buttons Responsive */
+@media (max-width: 768px) {
+  .quick-add-container {
+    padding: 16px;
+  }
+  
+  .quick-add-container h4 {
+    font-size: 1rem;
+  }
+  
+  .quick-add-buttons {
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .quick-add-btn {
+    padding: 8px 12px;
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-add-container {
+    padding: 12px;
+  }
+  
+  .quick-add-buttons {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .quick-add-btn {
+    padding: 10px 12px;
+    font-size: 0.85em;
+    text-align: center;
+  }
+}
+
+/* Hide mobile layout on larger screens */
+@media (min-width: 769px) {
+  .schedule-table-container .schedule-table-mobile {
+    display: none;
+  }
+  
+  .schedule-table-container .schedule-table-wrapper {
+    display: block;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .trading-times-grid {

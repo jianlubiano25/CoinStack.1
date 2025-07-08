@@ -91,9 +91,12 @@ function updateScheduleStats() {
 function renderSchedule() {
   const schedule = getSchedule();
   const tbody = document.querySelector('#scheduleTable tbody');
+  const mobileContainer = document.querySelector('.schedule-table-mobile');
+  
   if (!tbody) return;
   
   tbody.innerHTML = '';
+  if (mobileContainer) mobileContainer.innerHTML = '';
   
   schedule.forEach((entry, index) => {
     const tr = document.createElement('tr');
@@ -114,6 +117,46 @@ function renderSchedule() {
       <td style="padding: 12px; color: ${statusColor}; font-weight: 500;">${entry.status}</td>
     `;
     tbody.appendChild(tr);
+    
+    // Generate mobile card
+    if (mobileContainer) {
+      const card = document.createElement('div');
+      card.className = 'schedule-card';
+      card.setAttribute('data-index', index);
+      
+      const statusClass = entry.status.toLowerCase().replace(' ', '-');
+      
+      card.innerHTML = `
+        <div class="schedule-header">
+          <div class="schedule-session">${entry.sessionType}</div>
+          <div class="schedule-status ${statusClass}">${entry.status}</div>
+          <div class="schedule-actions">
+            <button data-action="edit" data-index="${index}" class="edit" title="Edit">✏️</button>
+            <button data-action="delete" data-index="${index}" class="delete" title="Delete">❌</button>
+          </div>
+        </div>
+        <div class="schedule-details">
+          <div class="schedule-detail">
+            <div class="schedule-detail-label">Date</div>
+            <div class="schedule-detail-value">${formatDate(entry.date)}</div>
+          </div>
+          <div class="schedule-detail">
+            <div class="schedule-detail-label">Time</div>
+            <div class="schedule-detail-value">${timeRange}</div>
+          </div>
+          <div class="schedule-detail">
+            <div class="schedule-detail-label">Duration</div>
+            <div class="schedule-detail-value">${duration}</div>
+          </div>
+          <div class="schedule-detail">
+            <div class="schedule-detail-label">Status</div>
+            <div class="schedule-detail-value" style="color: ${statusColor};">${entry.status}</div>
+          </div>
+        </div>
+        ${entry.notes ? `<div class="schedule-notes">📝 ${entry.notes}</div>` : ''}
+      `;
+      mobileContainer.appendChild(card);
+    }
   });
   
   updateScheduleStats();
@@ -371,6 +414,60 @@ function clearCompletedSessions() {
   renderSchedule();
 }
 
+// Setup schedule event listeners
+function setupScheduleEventListeners() {
+  // Table event listeners
+  document.addEventListener('click', function(e) {
+    if (e.target.matches('#scheduleTable button[data-action]')) {
+      const action = e.target.getAttribute('data-action');
+      const index = parseInt(e.target.getAttribute('data-index'));
+      
+      if (action === 'edit') {
+        editScheduleEntry(index);
+      } else if (action === 'delete') {
+        deleteScheduleEntry(index);
+      }
+    }
+  });
+  
+  // Mobile card event listeners
+  document.addEventListener('click', function(e) {
+    if (e.target.matches('.schedule-table-mobile button[data-action]')) {
+      const action = e.target.getAttribute('data-action');
+      const index = parseInt(e.target.getAttribute('data-index'));
+      
+      if (action === 'edit') {
+        editScheduleEntry(index);
+      } else if (action === 'delete') {
+        deleteScheduleEntry(index);
+      }
+    }
+  });
+  
+  // Form event listeners
+  const scheduleForm = document.getElementById('scheduleForm');
+  if (scheduleForm) {
+    scheduleForm.addEventListener('submit', addScheduleEntry);
+  }
+  
+  // Auto-detect session on datetime change
+  const startDateTimeInput = document.getElementById('scheduleStartDateTime');
+  const endDateTimeInput = document.getElementById('scheduleEndDateTime');
+  
+  if (startDateTimeInput) {
+    startDateTimeInput.addEventListener('input', autoDetectSession);
+  }
+  if (endDateTimeInput) {
+    endDateTimeInput.addEventListener('input', autoDetectSession);
+  }
+  
+  // Export button
+  const exportBtn = document.getElementById('exportScheduleBtn');
+  if (exportBtn) {
+    exportBtn.addEventListener('click', exportScheduleCSV);
+  }
+}
+
 // Export functions for use in other modules
 window.getSchedule = getSchedule;
 window.saveSchedule = saveSchedule;
@@ -381,4 +478,5 @@ window.quickAddSession = quickAddSession;
 window.editScheduleEntry = editScheduleEntry;
 window.deleteScheduleEntry = deleteScheduleEntry;
 window.exportScheduleCSV = exportScheduleCSV;
-window.clearCompletedSessions = clearCompletedSessions; 
+window.clearCompletedSessions = clearCompletedSessions;
+window.setupScheduleEventListeners = setupScheduleEventListeners; 

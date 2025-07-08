@@ -1347,30 +1347,30 @@
       </div>
 
       <!-- Stats Cards -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-bottom: 30px;">
-        <div style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 16px; text-align: center;">
-          <div style="color: #8b5cf6; font-size: 1.5rem; font-weight: 600;" id="totalSessions">0</div>
-          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Total</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-bottom: 30px;" class="schedule-stats">
+        <div style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 16px; text-align: center;" class="stat-card">
+          <div style="color: #8b5cf6; font-size: 1.5rem; font-weight: 600;" id="totalSessions" class="stat-value">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;" class="stat-label">Total</div>
         </div>
-        <div style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 16px; text-align: center;">
-          <div style="color: #8b5cf6; font-size: 1.5rem; font-weight: 600;" id="scheduledSessions">0</div>
-          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Scheduled</div>
+        <div style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 8px; padding: 16px; text-align: center;" class="stat-card">
+          <div style="color: #8b5cf6; font-size: 1.5rem; font-weight: 600;" id="scheduledSessions" class="stat-value">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;" class="stat-label">Scheduled</div>
         </div>
-        <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 16px; text-align: center;">
-          <div style="color: #f59e0b; font-size: 1.5rem; font-weight: 600;" id="inProgressSessions">0</div>
-          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">In Progress</div>
+        <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 16px; text-align: center;" class="stat-card warning">
+          <div style="color: #f59e0b; font-size: 1.5rem; font-weight: 600;" id="inProgressSessions" class="stat-value">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;" class="stat-label">In Progress</div>
         </div>
-        <div style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; padding: 16px; text-align: center;">
-          <div style="color: #10b981; font-size: 1.5rem; font-weight: 600;" id="completedSessions">0</div>
-          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Completed</div>
+        <div style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; padding: 16px; text-align: center;" class="stat-card success">
+          <div style="color: #10b981; font-size: 1.5rem; font-weight: 600;" id="completedSessions" class="stat-value">0</div>
+          <div style="color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;" class="stat-label">Completed</div>
         </div>
       </div>
       
       <!-- Schedule Form -->
-      <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-bottom: 30px;">
+      <div style="background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px; margin-bottom: 30px;" class="schedule-form">
         <h4 style="color: #8b5cf6; font-size: 1.1rem; font-weight: 500; margin-bottom: 20px;">Add New Session</h4>
         <form id="scheduleForm">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;" class="schedule-form-grid">
             <div>
               <label for="scheduleStartDateTime" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Start Date & Time</label>
               <input id="scheduleStartDateTime" type="text" required placeholder="2025-06-20 21:51:18" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
@@ -1398,7 +1398,7 @@
               <input id="scheduleDuration" type="text" readonly style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.2); color: #9ca3af; font-size: 0.9rem;" placeholder="Auto-calculated">
             </div>
           </div>
-          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 20px;">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 20px;" class="schedule-form-row">
             <div>
               <label for="scheduleNotes" style="color: #d1d5db; font-size: 0.85rem; display: block; margin-bottom: 8px; font-weight: 500;">Notes</label>
               <input id="scheduleNotes" type="text" placeholder="e.g., Focus on BTC, ETH pairs" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(139,92,246,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 0.9rem; transition: all 0.2s ease;">
@@ -1438,13 +1438,18 @@
             <tbody></tbody>
           </table>
         </div>
+        
+        <!-- Mobile Schedule Card Layout -->
+        <div class="schedule-table-mobile">
+          <!-- Mobile schedule cards will be generated by JavaScript -->
+        </div>
       </div>
 
       <!-- Best Trading Times Guide -->
       <div style="margin-top: 30px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px;">
         <!-- Combined Best Times & Visual Schedule -->
         <div style="margin-bottom: 24px;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div class="trading-times-grid">
             
             <!-- Visual Schedule (Left) -->
             <div style="background: linear-gradient(135deg, rgba(17,24,39,0.8) 0%, rgba(0,0,0,0.4) 100%); padding: 20px; border-radius: 12px; border: 1px solid rgba(139,92,246,0.15); position: relative; overflow: hidden; height: fit-content;">
@@ -1697,15 +1702,15 @@
       </div>
 
       <!-- Quick Add Buttons -->
-      <div style="margin-top: 30px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px;">
+      <div style="margin-top: 30px; background: rgba(17,24,39,0.6); border: 1px solid rgba(139,92,246,0.1); border-radius: 12px; padding: 24px;" class="quick-add-container">
         <h4 style="color: #8b5cf6; margin-bottom: 16px; font-weight: 500;">Quick Add Common Sessions</h4>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟡 London Open (3PM-5PM)</button>
-          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 London+NY Overlap (8PM-12AM)</button>
-          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 NY Open (9PM-11PM)</button>
-          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 NY Drift (12AM-2AM)</button>
-          <button style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🔵 Asian (2AM-10AM)</button>
-          <button style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 Pre-London (10AM-2PM)</button>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;" class="quick-add-buttons">
+          <button class="quick-add-btn" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟡 London Open (3PM-5PM)</button>
+          <button class="quick-add-btn best" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 London+NY Overlap (8PM-12AM)</button>
+          <button class="quick-add-btn best" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; font-weight:500; transition: all 0.2s ease;">🔥 NY Open (9PM-11PM)</button>
+          <button class="quick-add-btn" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 NY Drift (12AM-2AM)</button>
+          <button class="quick-add-btn avoid" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🔵 Asian (2AM-10AM)</button>
+          <button class="quick-add-btn" style="background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:10px 16px; cursor:pointer; font-size:0.9em; transition: all 0.2s ease;">🟠 Pre-London (10AM-2PM)</button>
         </div>
       </div>
     </div>

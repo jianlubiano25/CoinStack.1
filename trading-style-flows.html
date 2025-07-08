@@ -244,6 +244,11 @@
         <textarea class="add-input" placeholder="Add new style flow (paste or type here)..." style="flex:2; min-width:160px; resize:vertical; min-height:38px; max-height:120px; padding:10px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif; overflow:auto;"></textarea>
         <button class="add-btn">＋</button>
       </div>
+      <div class="import-export-bar" style="display:flex; gap:12px; margin-top:10px; align-items:center;">
+        <button class="export-btn" style="background:linear-gradient(90deg,#8b5cf6 60%,#10b981 100%);color:#fff;border:none;border-radius:8px;padding:8px 22px;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:0 2px 8px 0 #8b5cf633;transition:background 0.2s;">Export</button>
+        <label for="importFlowsInput" class="import-btn" style="background:linear-gradient(90deg,#10b981 60%,#8b5cf6 100%);color:#fff;border:none;border-radius:8px;padding:8px 22px;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:0 2px 8px 0 #10b98133;transition:background 0.2s;display:inline-block;">Import<input id="importFlowsInput" type="file" accept="application/json" style="display:none;"></label>
+        <span class="import-export-msg" style="color:#a5b4fc;font-size:0.98rem;margin-left:8px;"></span>
+      </div>
     </div>
 
     <div class="card-grid" id="flowCardsContainer">
@@ -469,6 +474,47 @@
       }
     });
     observer.observe(flowCardsContainer, { childList: true, subtree: true });
+
+    // --- EXPORT/IMPORT ---
+    document.querySelector('.export-btn').onclick = function() {
+      const flows = getFlows();
+      const blob = new Blob([JSON.stringify(flows, null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'trading-style-flows.json';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+      document.querySelector('.import-export-msg').textContent = 'Exported!';
+      setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 1800);
+    };
+    document.getElementById('importFlowsInput').onchange = function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        try {
+          const imported = JSON.parse(ev.target.result);
+          if (!Array.isArray(imported) || !imported.every(f => f.title && f.flow)) {
+            document.querySelector('.import-export-msg').textContent = 'Invalid file format.';
+            setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 2500);
+            return;
+          }
+          if (confirm('Import will REPLACE all your current flows. Continue?')) {
+            saveFlows(imported);
+            renderFlows();
+            document.querySelector('.import-export-msg').textContent = 'Imported!';
+            setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 1800);
+          }
+        } catch {
+          document.querySelector('.import-export-msg').textContent = 'Import failed.';
+          setTimeout(() => { document.querySelector('.import-export-msg').textContent = ''; }, 2500);
+        }
+        e.target.value = '';
+      };
+      reader.readAsText(file);
+    };
     </script>
   </div>
 </body>

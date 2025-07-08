@@ -140,15 +140,15 @@ tr:hover {
 .counter-card {
   background: linear-gradient(135deg, rgba(17,24,39,0.8) 0%, rgba(0,0,0,0.4) 100%);
   border: 1px solid rgba(139,92,246,0.2);
-  border-radius: 12px;
-  padding: 12px 20px;
+  border-radius: 8px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-width: 200px;
+  gap: 8px;
+  min-width: 140px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
 }
 
@@ -180,7 +180,7 @@ tr:hover {
 
 .counter-icon {
   color: #8b5cf6;
-  font-size: 1.2rem;
+  font-size: 1rem;
   z-index: 1;
   position: relative;
 }
@@ -202,18 +202,18 @@ tr:hover {
 
 .counter-label {
   color: #9ca3af;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+  margin-bottom: 1px;
 }
 
 .counter-value {
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   font-family: 'Courier New', monospace;
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  text-shadow: 0 0 8px rgba(255,255,255,0.3);
 }
 
 .counter-value-success {

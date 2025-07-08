@@ -363,6 +363,67 @@ function calculateRiskAmount(trade) {
   return risk.toFixed(4);
 }
 
+// Helper to get leverage from trade (default 100)
+function getLeverage(trade) {
+  let lev = 100;
+  if (trade.leverage && !isNaN(parseFloat(trade.leverage)) && parseFloat(trade.leverage) > 0) {
+    lev = parseFloat(trade.leverage);
+  }
+  return lev;
+}
+
+// Calculate Initial Margin (IM) for a trade
+function calculateIM(trade) {
+  // Contracts: from filledTotal (first value)
+  // Entry Price: from filledPriceOrderPrice (first value)
+  // Leverage: from trade.leverage or default 100
+  let contracts = 0;
+  let entry = 0;
+  try {
+    if (trade.filledTotal) contracts = parseFloat(trade.filledTotal.split('/')[0]);
+    if (trade.filledPriceOrderPrice) entry = parseFloat(trade.filledPriceOrderPrice.split('/')[0]);
+  } catch {}
+  const lev = getLeverage(trade);
+  if (!contracts || !entry || !lev) return '-';
+  return (contracts * entry / lev).toFixed(4);
+}
+
+// Calculate win rate and average RR
+function calculateWinRateAndRR() {
+  const trades = getTrades();
+  let winCount = 0;
+  let closeCount = 0;
+  let rrSum = 0;
+  let rrCount = 0;
+
+  trades.forEach(trade => {
+    if (/close/i.test(trade.tradeType)) {
+      const pnl = parseFloat(calculatePnL(trade));
+      const risk = parseFloat(calculateRiskAmount(trade));
+      if (!isNaN(pnl)) {
+        closeCount++;
+        if (pnl > 0) winCount++;
+        if (!isNaN(risk) && risk > 0) {
+          rrSum += pnl / risk;
+          rrCount++;
+        }
+      }
+    }
+  });
+
+  const winRate = closeCount > 0 ? (winCount / closeCount) * 100 : 0;
+  const avgRR = rrCount > 0 ? rrSum / rrCount : 0;
+  return { winRate, avgRR };
+}
+
+function updateWinRateAndRR() {
+  const { winRate, avgRR } = calculateWinRateAndRR();
+  const winRateValue = document.getElementById('winRateValue');
+  const rrValue = document.getElementById('rrValue');
+  if (winRateValue) winRateValue.textContent = winRate.toFixed(1) + '%';
+  if (rrValue) rrValue.textContent = avgRR.toFixed(2);
+}
+
 // Render trades table
 function renderTrades() {
   console.log('renderTrades called');
@@ -397,6 +458,7 @@ function renderTrades() {
     }
     
     const riskAmount = calculateRiskAmount(trade);
+    const im = calculateIM(trade);
     tr.innerHTML = `
       <td style="text-align: center;">
         <button data-action="edit" data-index="${index}" style="background:none; color:#8b5cf6; border:none; padding:2px 6px; margin-right:4px; cursor:pointer; font-size:0.8em;" title="Edit">✏️</button>
@@ -414,6 +476,7 @@ function renderTrades() {
       <td>${trade.transactionTime}</td>
       <td class="pnl-cell">${pnl}</td>
       <td>${riskAmount}</td>
+      <td>${im}</td>
     `;
     tbody.appendChild(tr);
     
@@ -474,6 +537,10 @@ function renderTrades() {
             <div class="trade-detail-label">Risk Amount</div>
             <div class="trade-detail-value">${riskAmount}</div>
           </div>
+          <div class="trade-detail">
+            <div class="trade-detail-label">IM</div>
+            <div class="trade-detail-value">${im}</div>
+          </div>
         </div>
         <div class="trade-pnl">
           <div class="trade-pnl-label">Profit/Loss</div>
@@ -513,10 +580,10 @@ function renderTrades() {
   
   // Update total PnL counter
   updateTotalPnLCounter(totalPnL);
-  
   // Update total trade count counter
   updateTotalTradeCounter();
-  
+  // Update win rate and RR
+  updateWinRateAndRR();
   // Update today's trade count counter
   updateTodayTradeCounter();
 }
@@ -624,10 +691,9 @@ function addTrade(e) {
   console.log('Parsed fields:', fields);
   console.log('Number of fields:', fields.length);
   
-  if (fields.length < 10 || fields.length > 11) {
-    errorDiv.textContent = 'Please enter 10-11 tab-separated values (Risk Amount is optional).';
+  if (fields.length < 10 || fields.length > 12) {
+    errorDiv.textContent = 'Please enter 10-12 tab-separated values (Leverage and Risk Amount are optional).';
     errorDiv.style.display = 'block';
-    console.log('Validation failed - wrong number of fields');
     return;
   }
   
@@ -642,7 +708,8 @@ function addTrade(e) {
     orderType: fields[7],
     transactionId: fields[8],
     transactionTime: fields[9],
-    riskAmount: fields[10] || '-' // Optional risk amount field
+    leverage: fields.length >= 12 ? fields[10] : '',
+    riskAmount: fields.length === 12 ? fields[11] : (fields.length === 11 ? fields[10] : '-')
   };
   
   console.log('Created trade object:', trade);

@@ -192,16 +192,16 @@
   
   /* Counter Cards Responsive */
   .counter-card {
-    min-width: 150px;
-    padding: 10px 16px;
+    min-width: 120px;
+    padding: 8px 12px;
   }
   
   .counter-value {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .counter-label {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
   
   /* Search Responsive */
@@ -328,21 +328,21 @@
   
   /* Counter Cards Responsive */
   .counter-card {
-    min-width: 120px;
-    padding: 8px 12px;
-    gap: 8px;
+    min-width: 100px;
+    padding: 6px 10px;
+    gap: 6px;
   }
   
   .counter-icon {
-    font-size: 1rem;
-  }
-  
-  .counter-value {
     font-size: 0.9rem;
   }
   
+  .counter-value {
+    font-size: 0.85rem;
+  }
+  
   .counter-label {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
   
   /* Search Responsive */

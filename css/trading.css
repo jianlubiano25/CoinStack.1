@@ -700,16 +700,16 @@
     gap: 20px;
     align-items: stretch;
   }
-  
   .trading-stats {
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    justify-content: unset;
   }
-  
   .action-buttons {
     justify-content: center;
     flex-wrap: wrap;
   }
-  
   .schedule-header {
     flex-direction: column;
     gap: 20px;
@@ -727,12 +727,26 @@
 
 @media (max-width: 480px) {
   .trading-stats {
-    flex-direction: column;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    flex-direction: unset !important;
+  }
+  .trading-table-mobile .trade-card .trade-details {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .trading-table-mobile .trade-card {
+    padding: 12px;
   }
   
-  .schedule-stats {
-    grid-template-columns: 1fr;
+  .trading-table-mobile .trade-card .trade-contract {
+    font-size: 0.9rem;
+  }
+  
+  .trading-table-mobile .trade-card .trade-type {
+    font-size: 0.75rem;
+    padding: 3px 6px;
   }
   
   .timeline-time {
@@ -860,7 +874,7 @@
   
   .trading-table-mobile .trade-card .trade-details {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
     margin-bottom: 12px;
   }

@@ -577,6 +577,86 @@
               </div>
             </div>
           </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">🔺</div>
+              <div>
+                <h3 class="card-title">EQH – Equal Highs</h3>
+                <span class="card-subtitle">Liquidity Zone</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Resistance / Liquidity Pool</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>High</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>
+                  Entry on breakout above EQH (with confirmation).<br>
+                  Short after liquidity sweep above EQH (fakeout/stop hunt).
+                </span>
+              </div>
+              <div class="card-description">
+                When price hits the same high level multiple times without breaking above, it forms EQH. This signals strong resistance and a potential liquidity pool above. Institutions often target these zones, as many stop-losses for shorts are placed just above EQH. A break above EQH can trigger a liquidity grab before reversal or continuation.<br><br>
+                <strong>Example:</strong> BTC hits $60,000 three times and rejects – this forms EQH.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">🔻</div>
+              <div>
+                <h3 class="card-title">EQL – Equal Lows</h3>
+                <span class="card-subtitle">Liquidity Zone</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Support / Liquidity Pool</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>High</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>
+                  Entry on bounce from EQL (expecting support to hold).<br>
+                  Entry on break + retest of EQL (expecting breakdown).<br>
+                  Long after liquidity grab below EQL (if price reclaims support).
+                </span>
+              </div>
+              <div class="card-description">
+                When price hits the same low level multiple times without breaking below, it forms EQL. This signals strong support and a potential liquidity pool below. Many stop-losses for longs are placed just below EQL, making it a target for liquidity grabs. A break below EQL can trigger a stop-loss hunt, often followed by a reversal or further breakdown.<br><br>
+                <strong>Example:</strong> ETH keeps bouncing at $3,000 – this forms an EQL zone.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">🧠</div>
+              <div>
+                <h3 class="card-title">Bonus Insight: Craig Percoco Style</h3>
+                <span class="card-subtitle">Liquidity & Retest Tactics</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-description">
+                Wait for a sweep of EQH, then short if price shows weakness.<br>
+                Wait for a sweep of EQL, then go long on confirmation.<br>
+                Combine these zones with trendlines and candle patterns for higher probability entries.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1567,6 +1647,97 @@
             <div class="tool-arrow">→</div>
           </div>
         </div>
+
+        <!-- Trade Checklist Card -->
+        <a href="solana-smart-money-checklist.html" target="_blank" style="text-decoration:none;">
+          <div class="tool-card" id="tradeChecklistCard">
+            <div class="tool-card-header">
+              <div class="tool-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <rect x="4" y="8" width="24" height="16" rx="2" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+                  <path d="M10 14h12M10 18h8" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="8" cy="14" r="1.5" fill="#10b981"/>
+                  <circle cx="8" cy="18" r="1.5" fill="#10b981"/>
+                </svg>
+              </div>
+              <div class="tool-info">
+                <h4 class="tool-name">Trade Checklist</h4>
+                <p class="tool-description">Solana Smart-Money Trading Checklist</p>
+              </div>
+            </div>
+            <div class="tool-card-footer">
+              <span class="tool-status">Ready</span>
+              <div class="tool-arrow">→</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Trade Checklist Modal -->
+        <div id="tradeChecklistModal" class="modal" style="display:none;">
+          <div class="modal-content" style="max-width:700px;">
+            <span class="close" onclick="closeTradeChecklistModal()">&times;</span>
+            <h2 style="color:#8b5cf6; margin-bottom: 10px;">SOLANA Smart-Money Trading Checklist</h2>
+            <div style="max-height:60vh; overflow-y:auto; color:#d1d5db; font-size:1rem; line-height:1.6;">
+              <h3 style="color:#10b981; margin-top:18px;">Multi-Timeframe Trend (Top-Down Bias)</h3>
+              <ul style="margin-left:18px;">
+                <li><b>Define Trend on 15m/1H:</b> Start with a higher timeframe (e.g. 15-min or 1H) to determine bias. Only trade in the direction of established trend (higher highs/lows = uptrend; lower lows/highs = downtrend).</li>
+                <li><b>Confirm Higher TF:</b> If possible, check an even higher chart (4H/daily) for the overall trend to avoid trading against bigger moves. For instance, if 15m and 4H both show an uptrend, only hunt long setups on 5m/1m.</li>
+                <li><b>Watch Structure Shifts:</b> Mark any Break of Structure (BOS) on 15m – a decisive break of a swing low/high can signal trend continuation. Likewise, a Change of Character (CHoCH) – a quick false break then reversal – often indicates a trend flip. Use these to adjust bias (e.g. pause shorts after a bullish CHoCH).</li>
+              </ul>
+              <h3 style="color:#10b981; margin-top:18px;">High-Probability SMC Setups</h3>
+              <ul style="margin-left:18px;">
+                <li><b>Order Blocks (OB):</b> Identify institutional order blocks on 15m (zones of consolidation before a strong move). A bullish OB is drawn from the last bearish candle before a big upmove, a bearish OB from the last bullish candle before a big downmove. Only take trades in line with the OB (long on a bullish OB retest, short on a bearish OB retest). Place stops just beyond the OB to avoid getting knocked out by an institutional stop-hunt.</li>
+                <li><b>Fair Value Gaps (FVG):</b> Look for 3-bar gaps (imbalances) on the 15m chart. A bullish FVG forms when a large green candle leaves its adjacent candles unfilled, and vice versa for bearish FVG. When price returns to the FVG zone, it often "fills" the gap. Enter on the first valid touch of the FVG in the trend direction (e.g. buy when price re-enters a bullish FVG).</li>
+                <li><b>Liquidity Grabs/Inducements:</b> Watch for false breakouts that hunt stops. For example, price may spike above a swing high (clearing stops) then reverse down sharply. Recognize these "liquidity grabs" or inducement moves as traps. Plan entries only after the fake-out is complete and price moves cleanly in the intended direction.</li>
+                <li><b>BOS/CHOCH Entry Signals:</b> Use Breaks of Structure and Change-of-Character as high-prob setups. A clean BOS (break of prior support/resistance) confirms momentum – enter on the close beyond it. A CHOCH (failure of break, then opposite move) signals a reversal – after spotting CHOCH, wait for the new swing high/low to form and trade in that direction.</li>
+              </ul>
+              <h3 style="color:#10b981; margin-top:18px;">Price-Action Confirmations</h3>
+              <ul style="margin-left:18px;">
+                <li><b>Candlestick Reversals:</b> Seek strong reversal bars at key zones. A bullish pin-bar (long lower wick) at support/OB shows rejection of lower prices, implying a long entry; a bearish pin-bar (long upper wick) at resistance suggests a short. Likewise, bullish/bearish engulfing bars crossing support or resistance are strong signals that smart money is stepping in. Use these candles to confirm your SMC zone entry.</li>
+                <li><b>False-Move (Inducement) Caution:</b> If the market spikes through your level and quickly snaps back, treat it as an inducement. Do not enter on the initial spike; instead wait for price to clearly reverse and retest. This avoids getting caught on a liquidity trap. Only trigger your entry when the reversal candle closes back into the level (showing real commitment in the trade direction).</li>
+              </ul>
+              <h3 style="color:#10b981; margin-top:18px;">Entry & Stop Placement</h3>
+              <ul style="margin-left:18px;">
+                <li><b>Entry Techniques:</b> Enter on a retest of the trigger zone. For example, after BOS, wait for a pullback to just above (for longs) or below (for shorts) the broken level to enter. Similarly, enter at the first valid touch of an OB or FVG in the trend direction. This allows tighter stops and confirmation. FluxCharts notes: when price returns to a respected OB, a common entry is on a reversal signal there.</li>
+                <li><b>Stop-Loss Location:</b> Always place stops beyond the key invalidation point. Typically just outside the order block or beyond the last swing high/low. For example, if you buy at a bullish OB, set the stop just below the OB zone. This avoids normal market noise and avoids stops being triggered by short-term spikes (liquidity hunts).</li>
+                <li><b>Scaling & Trade Management:</b> For scalp entries (1m/5m), consider scaling in or out. E.g., take partial profit at a 1:1 R:R level and move stop to breakeven on the rest. Always exit fully if the level fails decisively.</li>
+              </ul>
+              <h3 style="color:#10b981; margin-top:18px;">Risk-to-Reward Guidelines</h3>
+              <ul style="margin-left:18px;">
+                <li><b>Position Sizing:</b> Never risk more than ~1–2% of your account on a single trade. With $100 capital, that means risking about $1–$2 per trade (despite a $10 max). Keeping risk low preserves capital through inevitable losses.</li>
+                <li><b>Target R:R:</b> Aim for at least 2:1 reward-to-risk. Industry experts (Babypips) recommend ~3:1 so that even a 50% win rate yields profit. For example, if risking $2, target $4–$6 gain. Adjust targets based on volatility and nearby support/resistance; always verify target is realistic for the move.</li>
+                <li><b>Win-Rate vs. R:R:</b> Remember, higher R:R lets you profit with moderate win rates. However, in very short timeframes the market can be choppy – be prepared that very high R:R (like 5:1) may require waiting or occur less frequently.</li>
+              </ul>
+              <h3 style="color:#10b981; margin-top:18px;">Market Sessions & Timing</h3>
+              <ul style="margin-left:18px;">
+                <li><b>High-Liquidity Sessions:</b> Trade primarily when crypto markets have the most volume. Peak overlap is Europe↔️US: roughly 13:00–16:00 UTC. The U.S. stock open (13:30 UTC) often brings big moves in crypto. The Asian session open (Tokyo/Singapore at 00:00–03:00 UTC) also sees bursts of volatility.</li>
+                <li><b>Avoid Thin Hours:</b> Be cautious during very low-volume times. Weekends or late-night hours (UTC) can have sparse liquidity. Investopedia notes crypto volume drops on weekends, reducing liquidity, which means wider spreads and more erratic candles. Either reduce size or sit out these periods.</li>
+                <li><b>News & Events:</b> Crypto is 24/7 but still reacts to big events. Check the economic calendar or crypto news (e.g. Fed decisions, large tech events, major network upgrades). Avoid opening new trades right before known catalysts – the market can "gap" or whipsaw unexpectedly.</li>
+              </ul>
+              <h3 style="color:#10b981; margin-top:18px;">Pre-Entry Checklist (Filters)</h3>
+              <ul style="margin-left:18px;">
+                <li><b>Setup Validity:</b> Ensure your trade fits the SMC criteria: price should be at a defined zone (e.g. an OB, FVG or flipped level) after a clear structure move. If conditions aren't textbook, skip the trade.</li>
+                <li><b>Trend Alignment:</b> Verify your entry aligns with multi-timeframe trend. For example, don't take a bullish OB long if the 15m trend is down. As BullsOnWallStreet advises: it's easier to go with the market trend.</li>
+                <li><b>Reward/Risk Check:</b> Before entry, make sure your stop and target yield ≥2:1 R:R. If the R:R is too low (e.g. close resistance caps profit), either adjust your target or pass on the trade.</li>
+                <li><b>Stop Logistics:</b> Confirm stop location is logical and respects volatility. The stop should invalidate your trade idea. For example, if buying a bullish OB, the stop must be below the OB. Avoid arbitrarily tight stops that can get hit by normal noise.</li>
+                <li><b>News & Context:</b> Quickly check for any big scheduled announcements or unexpected news. Crypto can move on tweets or surprises. If a major news (e.g. regulatory update, network fork) is imminent, it may be wise to wait.</li>
+                <li><b>Mindset & Discipline:</b> Are you following the plan, or chasing emotion? If you're feeling FOMO or revenge-trading, do not take the trade. The checklist question "would you advise this trade to family?" helps spot biases. Only trade when you're calmly following the rules.</li>
+              </ul>
+              <div style="color:#9ca3af; font-size:0.95em; margin-top:18px;">
+                <b>Sources:</b> Concepts and examples above are drawn from Smart Money trading literature and price-action guides, and are tailored to high-frequency crypto scalping on Solana. Each checklist item is evidence-based for high-probability setups.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+        function openTradeChecklistModal() {
+          document.getElementById('tradeChecklistModal').style.display = 'block';
+        }
+        function closeTradeChecklistModal() {
+          document.getElementById('tradeChecklistModal').style.display = 'none';
+        }
+        </script>
       </div>
     </div>
   </div>

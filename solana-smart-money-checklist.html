@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOLANA Smart-Money Trading Checklist</title>
+  <link href="css/index.css" rel="stylesheet">
+  <style>
+    body {
+      background: var(--bg-primary, #181926);
+      color: var(--text-secondary, #d1d5db);
+      font-family: var(--font-family, 'Inter', 'Segoe UI', Arial, sans-serif);
+      margin: 0;
+      padding: 0;
+    }
+    .checklist-container {
+      max-width: 900px;
+      margin: 40px auto 32px auto;
+      background: var(--bg-secondary, #23233a);
+      border-radius: var(--radius-lg, 12px);
+      box-shadow: 0 4px 32px var(--shadow-primary, rgba(139,92,246,0.08));
+      padding: 0 0 32px 0;
+    }
+    .checklist-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: linear-gradient(90deg, rgba(139,92,246,0.18) 0%, rgba(16,185,129,0.10) 100%);
+      border-radius: var(--radius-lg, 12px) var(--radius-lg, 12px) 0 0;
+      padding: 32px 32px 18px 32px;
+      border-bottom: 1px solid var(--border-primary, rgba(139,92,246,0.12));
+    }
+    .checklist-header-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color, #8b5cf6);
+      background: rgba(139,92,246,0.08);
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px 0 var(--shadow-primary, rgba(139,92,246,0.08));
+    }
+    .checklist-header-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color, #8b5cf6);
+      margin: 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin: 24px 0 0 32px;
+      color: var(--primary-color, #8b5cf6);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--success-color, #10b981);
+      text-decoration: underline;
+    }
+    .checklist-section {
+      background: var(--bg-card, rgba(255,255,255,0.02));
+      border-radius: var(--radius-md, 8px);
+      box-shadow: 0 2px 8px 0 var(--shadow-primary, rgba(139,92,246,0.08));
+      margin: 28px 32px 0 32px;
+      padding: 24px 24px 18px 24px;
+      border: 1px solid var(--border-secondary, rgba(139,92,246,0.06));
+    }
+    .checklist-section-title {
+      color: var(--success-color, #10b981);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 0;
+    }
+    .checklist-list {
+      margin: 0 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .checklist-list li {
+      margin-bottom: 12px;
+      padding-left: 0;
+      position: relative;
+      line-height: 1.7;
+    }
+    .checklist-list li:before {
+      content: '✔';
+      color: var(--primary-color, #8b5cf6);
+      font-size: 1em;
+      margin-right: 10px;
+      position: relative;
+      top: 0;
+    }
+    .checklist-sources {
+      color: var(--text-muted, #9ca3af);
+      font-size: 0.98em;
+      margin: 32px 32px 0 32px;
+      padding-bottom: 8px;
+    }
+    @media (max-width: 700px) {
+      .checklist-container { padding: 0 0 18px 0; }
+      .checklist-header, .checklist-section, .checklist-sources { margin-left: 4vw; margin-right: 4vw; }
+      .checklist-header { padding: 24px 4vw 12px 4vw; }
+    }
+    @media (max-width: 480px) {
+      .checklist-header-title { font-size: 1.1rem; }
+      .checklist-header-icon { font-size: 1.5rem; width: 36px; height: 36px; }
+      .checklist-section { padding: 14px 8px 10px 8px; }
+    }
+    .checklist-tooltip {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -38px;
+      background: #23233a;
+      color: #f3f4f6;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 0.98em;
+      box-shadow: 0 2px 8px 0 rgba(139,92,246,0.12);
+      pointer-events: none;
+      z-index: 10;
+      white-space: nowrap;
+      opacity: 0.97;
+    }
+    .checklist-tooltip.active {
+      display: block !important;
+    }
+    .checklist-highlight {
+      filter: drop-shadow(0 0 6px #8b5cf6) brightness(1.2);
+      stroke-width: 3 !important;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Back to CoinStack</a>
+  <div class="checklist-container">
+    <div class="checklist-header">
+      <div class="checklist-header-icon">📝</div>
+      <div>
+        <div class="checklist-header-title">SOLANA Smart-Money Trading Checklist</div>
+        <div style="color:var(--text-muted,#9ca3af);font-size:1.05em;margin-top:2px;">Evidence-based, high-probability trade planning for Solana</div>
+      </div>
+    </div>
+    <div class="checklist-section">
+      <div class="checklist-section-title">Multi-Timeframe Trend (Top-Down Bias)</div>
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-block;position:relative;">
+          <svg id="trendSVG" width="340" height="110" viewBox="0 0 340 110" style="cursor:pointer;">
+            <!-- Uptrend -->
+            <polyline id="uptrendLine" points="15,95 75,65 135,80 195,45 255,65 315,25 335,45" fill="none" stroke="#10b981" stroke-width="4"/>
+            <g id="uptrendDots">
+              <circle class="trend-high" cx="75" cy="65" r="6" fill="#8b5cf6"/>
+              <circle class="trend-high" cx="195" cy="45" r="6" fill="#8b5cf6"/>
+              <circle class="trend-high" cx="315" cy="25" r="6" fill="#8b5cf6"/>
+              <circle class="trend-low" cx="15" cy="95" r="6" fill="#ef4444"/>
+              <circle class="trend-low" cx="135" cy="80" r="6" fill="#ef4444"/>
+              <circle class="trend-low" cx="255" cy="65" r="6" fill="#ef4444"/>
+              <circle class="trend-low" cx="335" cy="45" r="6" fill="#ef4444"/>
+            </g>
+            <text id="trendLabelUp" x="30" y="30" font-size="15" fill="#9ca3af">Uptrend: Higher Highs/Lows</text>
+            <!-- Downtrend (hidden by default) -->
+            <g id="downtrendGroup" style="display:none;">
+              <polyline points="15,25 75,65 135,40 195,80 255,55 315,95 335,75" fill="none" stroke="#ef4444" stroke-width="4"/>
+              <g id="downtrendDots">
+                <circle class="trend-high" cx="15" cy="25" r="6" fill="#8b5cf6"/>
+                <circle class="trend-high" cx="135" cy="40" r="6" fill="#8b5cf6"/>
+                <circle class="trend-high" cx="255" cy="55" r="6" fill="#8b5cf6"/>
+                <circle class="trend-high" cx="335" cy="75" r="6" fill="#8b5cf6"/>
+                <circle class="trend-low" cx="75" cy="65" r="6" fill="#ef4444"/>
+                <circle class="trend-low" cx="195" cy="80" r="6" fill="#ef4444"/>
+                <circle class="trend-low" cx="315" cy="95" r="6" fill="#ef4444"/>
+              </g>
+              <text id="trendLabelDown" x="30" y="30" font-size="15" fill="#9ca3af">Downtrend: Lower Highs/Lows</text>
+            </g>
+            <!-- Toggle Button -->
+            <rect id="trendToggle" x="260" y="10" width="70" height="32" rx="16" fill="#23233a" stroke="#8b5cf6" stroke-width="2"/>
+            <text id="trendToggleText" x="295" y="32" font-size="16" fill="#8b5cf6" text-anchor="middle" style="pointer-events:none;">Toggle</text>
+          </svg>
+          <div id="trendTooltip" class="checklist-tooltip" style="display:none;"></div>
+        </div>
+      </div>
+      <ul class="checklist-list">
+        <li><b>Define Trend on 15m/1H:</b> Start with a higher timeframe (e.g. 15-min or 1H) to determine bias. Only trade in the direction of established trend (higher highs/lows = uptrend; lower lows/highs = downtrend).</li>
+        <li><b>Confirm Higher TF:</b> If possible, check an even higher chart (4H/daily) for the overall trend to avoid trading against bigger moves. For instance, if 15m and 4H both show an uptrend, only hunt long setups on 5m/1m.</li>
+        <li><b>Watch Structure Shifts:</b> Mark any Break of Structure (BOS) on 15m – a decisive break of a swing low/high can signal trend continuation. Likewise, a Change of Character (CHoCH) – a quick false break then reversal – often indicates a trend flip. Use these to adjust bias (e.g. pause shorts after a bullish CHoCH).</li>
+      </ul>
+    </div>
+    <div class="checklist-section">
+      <div class="checklist-section-title">High-Probability SMC Setups</div>
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-block;position:relative;">
+          <svg id="obSVG" width="340" height="110" viewBox="0 0 340 110" style="cursor:pointer;">
+            <!-- Price Line -->
+            <polyline points="15,95 75,80 135,90 195,55 255,65 295,35 325,45 335,25 335,95" fill="none" stroke="#8b5cf6" stroke-width="3.5"/>
+            <!-- Order Block -->
+            <rect id="obBlock" x="65" y="75" width="60" height="20" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="2.5"/>
+            <text x="68" y="72" font-size="13" fill="#10b981">Bullish OB</text>
+            <!-- FVG -->
+            <rect id="fvgBlock" x="195" y="50" width="45" height="15" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="197" y="48" font-size="13" fill="#f59e0b">FVG</text>
+            <!-- Stop Hunt Wick -->
+            <line id="stopHunt" x1="335" y1="25" x2="335" y2="95" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,3"/>
+            <circle cx="335" cy="25" r="6" fill="#ef4444"/>
+            <text x="340" y="22" font-size="13" fill="#ef4444">Stop Hunt</text>
+          </svg>
+          <div id="obTooltip" class="checklist-tooltip" style="display:none;"></div>
+        </div>
+      </div>
+      <ul class="checklist-list">
+        <li><b>Order Blocks (OB):</b> Identify institutional order blocks on 15m (zones of consolidation before a strong move). A bullish OB is drawn from the last bearish candle before a big upmove, a bearish OB from the last bullish candle before a big downmove. Only take trades in line with the OB (long on a bullish OB retest, short on a bearish OB retest). Place stops just beyond the OB to avoid getting knocked out by an institutional stop-hunt.</li>
+        <li><b>Fair Value Gaps (FVG):</b> Look for 3-bar gaps (imbalances) on the 15m chart. A bullish FVG forms when a large green candle leaves its adjacent candles unfilled, and vice versa for bearish FVG. When price returns to the FVG zone, it often "fills" the gap. Enter on the first valid touch of the FVG in the trend direction (e.g. buy when price re-enters a bullish FVG).</li>
+        <li><b>Liquidity Grabs/Inducements:</b> Watch for false breakouts that hunt stops. For example, price may spike above a swing high (clearing stops) then reverse down sharply. Recognize these "liquidity grabs" or inducement moves as traps. Plan entries only after the fake-out is complete and price moves cleanly in the intended direction.</li>
+        <li><b>BOS/CHOCH Entry Signals:</b> Use Breaks of Structure and Change-of-Character as high-prob setups. A clean BOS (break of prior support/resistance) confirms momentum – enter on the close beyond it. A CHOCH (failure of break, then opposite move) signals a reversal – after spotting CHOCH, wait for the new swing high/low to form and trade in that direction.</li>
+      </ul>
+    </div>
+    <div class="checklist-section">
+      <div class="checklist-section-title">Price-Action Confirmations</div>
+      <div style="text-align:center;margin-bottom:16px;">
+        <svg width="220" height="60" viewBox="0 0 220 60">
+          <rect x="40" y="20" width="10" height="30" fill="#10b981" stroke="#10b981" stroke-width="1.5" rx="2"/>
+          <rect x="60" y="30" width="10" height="20" fill="#ef4444" stroke="#ef4444" stroke-width="1.5" rx="2"/>
+          <rect x="80" y="15" width="10" height="35" fill="#10b981" stroke="#10b981" stroke-width="1.5" rx="2"/>
+          <rect x="100" y="35" width="10" height="15" fill="#ef4444" stroke="#ef4444" stroke-width="1.5" rx="2"/>
+          <rect x="120" y="10" width="10" height="40" fill="#10b981" stroke="#10b981" stroke-width="1.5" rx="2"/>
+          <text x="40" y="58" font-size="10" fill="#9ca3af">Pin Bar & Engulfing</text>
+        </svg>
+      </div>
+      <ul class="checklist-list">
+        <li><b>Candlestick Reversals:</b> Seek strong reversal bars at key zones. A bullish pin-bar (long lower wick) at support/OB shows rejection of lower prices, implying a long entry; a bearish pin-bar (long upper wick) at resistance suggests a short. Likewise, bullish/bearish engulfing bars crossing support or resistance are strong signals that smart money is stepping in. Use these candles to confirm your SMC zone entry.</li>
+        <li><b>False-Move (Inducement) Caution:</b> If the market spikes through your level and quickly snaps back, treat it as an inducement. Do not enter on the initial spike; instead wait for price to clearly reverse and retest. This avoids getting caught on a liquidity trap. Only trigger your entry when the reversal candle closes back into the level (showing real commitment in the trade direction).</li>
+      </ul>
+    </div>
+    <div class="checklist-section">
+      <div class="checklist-section-title">Entry & Stop Placement</div>
+      <div style="text-align:center;margin-bottom:16px;">
+        <svg width="220" height="60" viewBox="0 0 220 60">
+          <polyline points="20,50 60,30 100,40 140,20 180,30" fill="none" stroke="#8b5cf6" stroke-width="2.5"/>
+          <rect x="55" y="25" width="20" height="10" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+          <line x1="75" y1="25" x2="75" y2="15" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="55" y="58" font-size="10" fill="#9ca3af">Entry & Stop</text>
+          <defs>
+            <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto" markerUnits="strokeWidth">
+              <polygon points="0 0, 6 3, 0 6" fill="#ef4444" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+      <ul class="checklist-list">
+        <li><b>Entry Techniques:</b> Enter on a retest of the trigger zone. For example, after BOS, wait for a pullback to just above (for longs) or below (for shorts) the broken level to enter. Similarly, enter at the first valid touch of an OB or FVG in the trend direction. This allows tighter stops and confirmation. FluxCharts notes: when price returns to a respected OB, a common entry is on a reversal signal there.</li>
+        <li><b>Stop-Loss Location:</b> Always place stops beyond the key invalidation point. Typically just outside the order block or beyond the last swing high/low. For example, if you buy at a bullish OB, set the stop just below the OB zone. This avoids normal market noise and avoids stops being triggered by short-term spikes (liquidity hunts).</li>
+        <li><b>Scaling & Trade Management:</b> For scalp entries (1m/5m), consider scaling in or out. E.g., take partial profit at a 1:1 R:R level and move stop to breakeven on the rest. Always exit fully if the level fails decisively.</li>
+      </ul>
+    </div>
+    <div class="checklist-section">
+      <div class="checklist-section-title">Risk-to-Reward Guidelines</div>
+      <div style="text-align:center;margin-bottom:20px;">
+        <svg width="340" height="110" viewBox="0 0 340 110">
+          <!-- Price Axis -->
+          <line x1="60" y1="20" x2="60" y2="100" stroke="#9ca3af" stroke-width="2"/>
+          <text x="30" y="30" font-size="13" fill="#9ca3af">Price</text>
+          <!-- Entry Line -->
+          <line x1="60" y1="70" x2="300" y2="70" stroke="#8b5cf6" stroke-width="2.5"/>
+          <circle cx="60" cy="70" r="5" fill="#8b5cf6"/>
+          <text x="10" y="75" font-size="13" fill="#8b5cf6">Entry</text>
+          <!-- Stop Line -->
+          <line x1="60" y1="95" x2="220" y2="95" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,3"/>
+          <circle cx="60" cy="95" r="5" fill="#ef4444"/>
+          <text x="10" y="100" font-size="13" fill="#ef4444">Stop</text>
+          <!-- Target Line -->
+          <line x1="60" y1="35" x2="320" y2="35" stroke="#10b981" stroke-width="2.5"/>
+          <circle cx="60" cy="35" r="5" fill="#10b981"/>
+          <text x="10" y="40" font-size="13" fill="#10b981">Target</text>
+          <!-- R:R Bracket -->
+          <rect x="250" y="70" width="20" height="25" fill="none" stroke="#ef4444" stroke-width="2" rx="5"/>
+          <rect x="250" y="35" width="20" height="35" fill="none" stroke="#10b981" stroke-width="2" rx="5"/>
+          <text x="275" y="90" font-size="12" fill="#ef4444">Risk</text>
+          <text x="275" y="60" font-size="12" fill="#10b981">Reward</text>
+          <!-- R:R Ratio -->
+          <text x="200" y="60" font-size="15" fill="#f59e0b" font-weight="bold">R:R = 2:1</text>
+        </svg>
+      </div>
+      <ul class="checklist-list">
+        <li><b>Position Sizing:</b> Never risk more than ~1–2% of your account on a single trade. With $100 capital, that means risking about $1–$2 per trade (despite a $10 max). Keeping risk low preserves capital through inevitable losses.</li>
+        <li><b>Target R:R:</b> Aim for at least 2:1 reward-to-risk. Industry experts (Babypips) recommend ~3:1 so that even a 50% win rate yields profit. For example, if risking $2, target $4–$6 gain. Adjust targets based on volatility and nearby support/resistance; always verify target is realistic for the move.</li>
+        <li><b>Win-Rate vs. R:R:</b> Remember, higher R:R lets you profit with moderate win rates. However, in very short timeframes the market can be choppy – be prepared that very high R:R (like 5:1) may require waiting or occur less frequently.</li>
+      </ul>
+    </div>
+    <div class="checklist-section">
+      <div class="checklist-section-title">Market Sessions & Timing</div>
+      <div style="text-align:center;margin-bottom:16px;">
+        <svg width="220" height="60" viewBox="0 0 220 60">
+          <rect x="30" y="30" width="40" height="20" fill="#8b5cf6" fill-opacity="0.18" stroke="#8b5cf6" stroke-width="1.5"/>
+          <rect x="110" y="20" width="60" height="30" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+          <text x="35" y="55" font-size="10" fill="#8b5cf6">Asia</text>
+          <text x="115" y="55" font-size="10" fill="#10b981">US/EU</text>
+        </svg>
+      </div>
+      <ul class="checklist-list">
+        <li><b>High-Liquidity Sessions:</b> Trade primarily when crypto markets have the most volume. Peak overlap is Europe↔️US: roughly 13:00–16:00 UTC. The U.S. stock open (13:30 UTC) often brings big moves in crypto. The Asian session open (Tokyo/Singapore at 00:00–03:00 UTC) also sees bursts of volatility.</li>
+        <li><b>Avoid Thin Hours:</b> Be cautious during very low-volume times. Weekends or late-night hours (UTC) can have sparse liquidity. Investopedia notes crypto volume drops on weekends, reducing liquidity, which means wider spreads and more erratic candles. Either reduce size or sit out these periods.</li>
+        <li><b>News & Events:</b> Crypto is 24/7 but still reacts to big events. Check the economic calendar or crypto news (e.g. Fed decisions, large tech events, major network upgrades). Avoid opening new trades right before known catalysts – the market can "gap" or whipsaw unexpectedly.</li>
+      </ul>
+    </div>
+    <div class="checklist-section">
+      <div class="checklist-section-title">Pre-Entry Checklist (Filters)</div>
+      <div style="text-align:center;margin-bottom:16px;">
+        <svg width="220" height="60" viewBox="0 0 220 60">
+          <circle cx="40" cy="30" r="10" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+          <rect x="80" y="20" width="20" height="20" fill="#8b5cf6" fill-opacity="0.18" stroke="#8b5cf6" stroke-width="1.5"/>
+          <polygon points="150,50 170,20 190,50" fill="#ef4444" fill-opacity="0.18" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="25" y="55" font-size="10" fill="#10b981">Zone</text>
+          <text x="80" y="55" font-size="10" fill="#8b5cf6">Structure</text>
+          <text x="155" y="55" font-size="10" fill="#ef4444">Risk</text>
+        </svg>
+      </div>
+      <ul class="checklist-list">
+        <li><b>Setup Validity:</b> Ensure your trade fits the SMC criteria: price should be at a defined zone (e.g. an OB, FVG or flipped level) after a clear structure move. If conditions aren't textbook, skip the trade.</li>
+        <li><b>Trend Alignment:</b> Verify your entry aligns with multi-timeframe trend. For example, don't take a bullish OB long if the 15m trend is down. As BullsOnWallStreet advises: it's easier to go with the market trend.</li>
+        <li><b>Reward/Risk Check:</b> Before entry, make sure your stop and target yield ≥2:1 R:R. If the R:R is too low (e.g. close resistance caps profit), either adjust your target or pass on the trade.</li>
+        <li><b>Stop Logistics:</b> Confirm stop location is logical and respects volatility. The stop should invalidate your trade idea. For example, if buying a bullish OB, the stop must be below the OB. Avoid arbitrarily tight stops that can get hit by normal noise.</li>
+        <li><b>News & Context:</b> Quickly check for any big scheduled announcements or unexpected news. Crypto can move on tweets or surprises. If a major news (e.g. regulatory update, network fork) is imminent, it may be wise to wait.</li>
+        <li><b>Mindset & Discipline:</b> Are you following the plan, or chasing emotion? If you're feeling FOMO or revenge-trading, do not take the trade. The checklist question "would you advise this trade to family?" helps spot biases. Only trade when you're calmly following the rules.</li>
+      </ul>
+    </div>
+    <div class="checklist-sources">
+      <b>Sources:</b> Concepts and examples above are drawn from Smart Money trading literature and price-action guides, and are tailored to high-frequency crypto scalping on Solana. Each checklist item is evidence-based for high-probability setups.
+    </div>
+  </div>
+  <script>
+    // Trend SVG Interactivity
+    const trendSVG = document.getElementById('trendSVG');
+    const uptrendLine = document.getElementById('uptrendLine');
+    const downtrendGroup = document.getElementById('downtrendGroup');
+    const trendToggle = document.getElementById('trendToggle');
+    const trendToggleText = document.getElementById('trendToggleText');
+    let isUptrend = true;
+    const trendLabelUp = document.getElementById('trendLabelUp');
+    const trendLabelDown = document.getElementById('trendLabelDown');
+    const uptrendDots = document.getElementById('uptrendDots');
+    const downtrendDots = document.getElementById('downtrendDots');
+    trendSVG.addEventListener('click', function(e) {
+      const pt = trendSVG.createSVGPoint();
+      pt.x = e.clientX; pt.y = e.clientY;
+      const cursor = pt.matrixTransform(trendSVG.getScreenCTM().inverse());
+      if (cursor.x >= 260 && cursor.x <= 330 && cursor.y >= 10 && cursor.y <= 42) {
+        isUptrend = !isUptrend;
+        uptrendLine.style.display = isUptrend ? '' : 'none';
+        uptrendDots.style.display = isUptrend ? '' : 'none';
+        downtrendGroup.style.display = isUptrend ? 'none' : '';
+        trendLabelUp.style.display = isUptrend ? '' : 'none';
+        trendLabelDown.style.display = isUptrend ? 'none' : '';
+      }
+    });
+    // On load, ensure only uptrend dots and label are visible
+    uptrendDots.style.display = '';
+    downtrendGroup.style.display = 'none';
+    trendLabelUp.style.display = '';
+    if (trendLabelDown) trendLabelDown.style.display = 'none';
+    // Tooltip for highs/lows
+    const trendTooltip = document.getElementById('trendTooltip');
+    trendSVG.querySelectorAll('.trend-high').forEach(el => {
+      el.addEventListener('mouseenter', e => {
+        trendTooltip.textContent = 'Swing High: Resistance';
+        trendTooltip.style.display = 'block';
+      });
+      el.addEventListener('mouseleave', e => { trendTooltip.style.display = 'none'; });
+    });
+    trendSVG.querySelectorAll('.trend-low').forEach(el => {
+      el.addEventListener('mouseenter', e => {
+        trendTooltip.textContent = 'Swing Low: Support';
+        trendTooltip.style.display = 'block';
+      });
+      el.addEventListener('mouseleave', e => { trendTooltip.style.display = 'none'; });
+    });
+    // OB SVG Interactivity
+    const obSVG = document.getElementById('obSVG');
+    const obBlock = document.getElementById('obBlock');
+    const fvgBlock = document.getElementById('fvgBlock');
+    const stopHunt = document.getElementById('stopHunt');
+    const obTooltip = document.getElementById('obTooltip');
+    obBlock.addEventListener('mouseenter', () => {
+      obBlock.classList.add('checklist-highlight');
+      obTooltip.textContent = 'Order Block: Institutional buy zone';
+      obTooltip.style.display = 'block';
+    });
+    obBlock.addEventListener('mouseleave', () => {
+      obBlock.classList.remove('checklist-highlight');
+      obTooltip.style.display = 'none';
+    });
+    fvgBlock.addEventListener('mouseenter', () => {
+      fvgBlock.classList.add('checklist-highlight');
+      obTooltip.textContent = 'FVG: Fair Value Gap (Imbalance)';
+      obTooltip.style.display = 'block';
+    });
+    fvgBlock.addEventListener('mouseleave', () => {
+      fvgBlock.classList.remove('checklist-highlight');
+      obTooltip.style.display = 'none';
+    });
+    stopHunt.addEventListener('mouseenter', () => {
+      stopHunt.classList.add('checklist-highlight');
+      obTooltip.textContent = 'Stop Hunt: Liquidity grab';
+      obTooltip.style.display = 'block';
+    });
+    stopHunt.addEventListener('mouseleave', () => {
+      stopHunt.classList.remove('checklist-highlight');
+      obTooltip.style.display = 'none';
+    });
+  </script>
+</body>
+</html> 

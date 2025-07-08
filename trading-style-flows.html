@@ -333,7 +333,7 @@
       const steps = flow.split(/\s*(?:→|->)\s*/g).map(s => s.trim()).filter(Boolean);
       let html = `<div class="flow-card" data-index="${i}">
         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:2px;">
-          <div class="flow-title"><span style="font-size:1.5rem;">🧭</span>${escapeHTML(title)}</div>
+          <div class="flow-title"><span style="font-size:1.5rem;">🧭</span>${highlightQ ? highlightMatch(title, highlightQ) : escapeHTML(title)}</div>
           <div style="display:flex; gap:8px;">
             <button class="edit-btn" title="Edit" style="background:none; border:none; color:#a78bfa; font-size:1.1rem; cursor:pointer;">✏️</button>
             <button class="delete-btn" title="Delete" style="background:none; border:none; color:#f87171; font-size:1.1rem; cursor:pointer;">🗑️</button>
@@ -430,28 +430,64 @@
     // --- RENDER ON LOAD ---
     renderFlows();
 
-    // --- SEARCH (filter flows by title or flow) ---
-    document.querySelector('.search-input').addEventListener('input', function() {
-      const q = this.value.trim().toLowerCase();
-      const flows = getFlows();
-      const container = document.getElementById('flowCardsContainer');
-      container.innerHTML = '';
-      if (!q) return renderFlows();
-      const filtered = flows.filter(f => f.title.toLowerCase().includes(q) || f.flow.toLowerCase().includes(q));
-      if (!filtered.length) {
-        container.innerHTML = '<div style="color:#a5b4fc; text-align:center; padding:32px 0; font-size:1.1rem;">No matching flows found.</div>';
-        return;
+    // --- SEARCH (optimized multi-word, fuzzy, debounced) ---
+    function fuzzyMatch(str, q) {
+      if (!q) return true;
+      str = str.toLowerCase();
+      q = q.toLowerCase();
+      if (str.includes(q)) return true;
+      // Simple fuzzy: allow 1 char difference for short queries
+      if (q.length <= 3) {
+        for (let i = 0; i < str.length; i++) {
+          let miss = str.slice(0, i) + str.slice(i + 1);
+          if (miss.includes(q)) return true;
+        }
       }
-      filtered.forEach((flow, i) => {
-        container.innerHTML += flowCardHTML(flow.title, flow.flow, i, q);
+      return false;
+    }
+    function searchFlows(flows, query) {
+      if (!query) return flows;
+      const tokens = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      return flows.filter(f => {
+        const title = f.title.toLowerCase();
+        const steps = f.flow.split(/\s*(?:→|->)\s*/g).map(s => s.trim().toLowerCase());
+        // All tokens must be present in title or any step
+        return tokens.every(token =>
+          fuzzyMatch(title, token) || steps.some(step => fuzzyMatch(step, token))
+        );
       });
+    }
+    let searchTimeout = null;
+    document.querySelector('.search-input').addEventListener('input', function() {
+      const q = this.value.trim();
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const flows = getFlows();
+        const container = document.getElementById('flowCardsContainer');
+        container.innerHTML = '';
+        if (!q) return renderFlows();
+        const filtered = searchFlows(flows, q);
+        if (!filtered.length) {
+          container.innerHTML = '<div style="color:#a5b4fc; text-align:center; padding:32px 0; font-size:1.1rem;">No matching flows found.</div>';
+          return;
+        }
+        filtered.forEach((flow, i) => {
+          container.innerHTML += flowCardHTML(flow.title, flow.flow, i, q);
+        });
+      }, 120);
     });
 
     // Highlight helper
     function highlightMatch(text, q) {
       if (!q) return escapeHTML(text);
-      const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'ig');
-      return escapeHTML(text).replace(regex, '<span class="flow-highlight">$1</span>');
+      const tokens = q.trim().split(/\s+/).filter(Boolean);
+      let result = escapeHTML(text);
+      tokens.forEach(token => {
+        if (!token) return;
+        const regex = new RegExp(`(${token.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')})`, 'ig');
+        result = result.replace(regex, '<span class="flow-highlight">$1</span>');
+      });
+      return result;
     }
 
     // Add highlight style

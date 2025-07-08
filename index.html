@@ -497,7 +497,8 @@
       <!-- Structure Section -->
       <div class="kb-section" id="structure">
         <div class="kb-grid">
-          <div class="id-card neutral">
+         
+          <div class="id-card neutral" id="bosCard">
             <div class="card-header">
               <div class="card-icon">🏗️</div>
               <div>
@@ -523,8 +524,74 @@
               </div>
             </div>
           </div>
+ <!-- Move Red BOS and Green BOS cards here, before Break of Structure -->
+ <div class="id-card neutral bos-toggle-card" style="display:none">
+  <div class="card-header">
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+        <!-- Red BOS: Downward zigzag arrow -->
+        <polyline points="8,12 16,24 24,16 32,28" fill="none" stroke="#ef4444" stroke-width="3"/>
+        <polygon points="30,28 32,28 32,30" fill="#ef4444"/>
+      </svg>
+    </div>
+    <div>
+      <h3 class="card-title">Red BOS</h3>
+      <span class="card-subtitle">Bearish Break of Structure</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-field">
+      <label>Type</label>
+      <span>Bearish Structure Break</span>
+    </div>
+    <div class="card-field">
+      <label>Reliability</label>
+      <span>High</span>
+    </div>
+    <div class="card-field">
+      <label>Usage</label>
+      <span>Look for short entries after strong break + retest</span>
+    </div>
+    <div class="card-description">
+      Happens when price breaks below a previous low with momentum. Confirms bearish intent. Often follows a CHoCH or liquidity grab above EQH. Watch for rejection at OB or FVG zone after the break.
+    </div>
+  </div>
+</div>
 
-          <div class="id-card neutral">
+<div class="id-card neutral bos-toggle-card" style="display:none">
+  <div class="card-header">
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+        <!-- Green BOS: Upward zigzag arrow -->
+        <polyline points="8,28 16,16 24,24 32,12" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="30,12 32,12 32,14" fill="#10b981"/>
+      </svg>
+    </div>
+    <div>
+      <h3 class="card-title">Green BOS</h3>
+      <span class="card-subtitle">Bullish Break of Structure</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-field">
+      <label>Type</label>
+      <span>Bullish Structure Break</span>
+    </div>
+    <div class="card-field">
+      <label>Reliability</label>
+      <span>High</span>
+    </div>
+    <div class="card-field">
+      <label>Usage</label>
+      <span>Look for long entries after strong break + retest</span>
+    </div>
+    <div class="card-description">
+      Occurs when price breaks above a previous high. Confirms bullish intent after CHoCH or sweep below EQL. Ideal to enter on retest with a confirmation candle (e.g. bullish engulfing).
+    </div>
+  </div>
+</div>
+
+          <div class="id-card neutral" id="chochCard">
             <div class="card-header">
               <div class="card-icon">🔄</div>
               <div>
@@ -551,6 +618,71 @@
             </div>
           </div>
 
+          <div class="id-card neutral choch-toggle-card" style="display:none">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Red CHoCH: Downward kinked arrow -->
+                  <polyline points="8,12 20,24 20,32" fill="none" stroke="#ef4444" stroke-width="3"/>
+                  <polygon points="18,30 20,32 22,30" fill="#ef4444"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Red CHoCH</h3>
+                <span class="card-subtitle">Bearish Change of Character</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Bearish Structure Shift</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>High</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Signals potential bearish reversal — prepare to short</span>
+              </div>
+              <div class="card-description">
+                Occurs when price fails to make a new high and instead breaks the most recent higher low. Marks a shift from bullish to bearish intent. Often forms just before a BOS down.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral choch-toggle-card" style="display:none">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Green CHoCH: Upward kinked arrow -->
+                  <polyline points="8,28 20,16 20,8" fill="none" stroke="#10b981" stroke-width="3"/>
+                  <polygon points="18,10 20,8 22,10" fill="#10b981"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Green CHoCH</h3>
+                <span class="card-subtitle">Bullish Change of Character</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Bullish Structure Shift</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>High</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Signals potential bullish reversal — prepare to long</span>
+              </div>
+              <div class="card-description">
+                Happens when price fails to make a new low and breaks the most recent lower high. Indicates a shift from bearish to bullish structure. Usually precedes a BOS up.
+              </div>
+            </div>
+          </div>
           <div class="id-card neutral">
             <div class="card-header">
               <div class="card-icon">⚡</div>
@@ -597,14 +729,10 @@
               </div>
               <div class="card-field">
                 <label>Usage</label>
-                <span>
-                  Entry on breakout above EQH (with confirmation).<br>
-                  Short after liquidity sweep above EQH (fakeout/stop hunt).
-                </span>
+                <span>Look for short setups after liquidity sweeps above the highs</span>
               </div>
               <div class="card-description">
-                When price hits the same high level multiple times without breaking above, it forms EQH. This signals strong resistance and a potential liquidity pool above. Institutions often target these zones, as many stop-losses for shorts are placed just above EQH. A break above EQH can trigger a liquidity grab before reversal or continuation.<br><br>
-                <strong>Example:</strong> BTC hits $60,000 three times and rejects – this forms EQH.
+                Two or more swing highs at the same level create a liquidity pool where retail traders place stop-losses. Price often grabs stops, then reverses down.
               </div>
             </div>
           </div>
@@ -628,15 +756,10 @@
               </div>
               <div class="card-field">
                 <label>Usage</label>
-                <span>
-                  Entry on bounce from EQL (expecting support to hold).<br>
-                  Entry on break + retest of EQL (expecting breakdown).<br>
-                  Long after liquidity grab below EQL (if price reclaims support).
-                </span>
+                <span>Look for long setups after sweep of lows</span>
               </div>
               <div class="card-description">
-                When price hits the same low level multiple times without breaking below, it forms EQL. This signals strong support and a potential liquidity pool below. Many stop-losses for longs are placed just below EQL, making it a target for liquidity grabs. A break below EQL can trigger a stop-loss hunt, often followed by a reversal or further breakdown.<br><br>
-                <strong>Example:</strong> ETH keeps bouncing at $3,000 – this forms an EQL zone.
+                Two or more swing lows at the same level form a bear trap zone. Smart money often sweeps these levels and then reverses up.
               </div>
             </div>
           </div>
@@ -657,6 +780,77 @@
               </div>
             </div>
           </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Micro EQH/EQL: Stacked bar chart icon -->
+                  <rect x="10" y="24" width="4" height="8" fill="#facc15" rx="1"/>
+                  <rect x="18" y="20" width="4" height="12" fill="#facc15" rx="1"/>
+                  <rect x="26" y="26" width="4" height="6" fill="#facc15" rx="1"/>
+                  <rect x="10" y="16" width="20" height="2" fill="#facc15" rx="1"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Micro EQH/EQL</h3>
+                <span class="card-subtitle">Small Local Equal Highs/Lows</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Micro Liquidity Zones</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Moderate</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Scalping, Short-Term Moves</span>
+              </div>
+              <div class="card-description">
+                Tiny range equal highs or lows seen on 1M–5M charts. These micro zones often break easily and are best used for short-term scalps or identifying micro liquidity traps. Not reliable for major trades—use with caution and always confirm with structure or volume.
+              </div>
+            </div>
+          </div>
+
+          <div class="id-card neutral">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="pattern-svg">
+                  <!-- Fake EQH/EQL: Warning triangle with wavy line -->
+                  <polygon points="20,8 34,34 6,34" fill="#fbbf24" stroke="#f59e42" stroke-width="2"/>
+                  <rect x="18" y="18" width="4" height="8" rx="1" fill="#fff7ed"/>
+                  <path d="M14 30 Q20 34 26 30" stroke="#f59e42" stroke-width="2" fill="none"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Fake EQH/EQL</h3>
+                <span class="card-subtitle">Messy or Staggered Highs/Lows</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-field">
+                <label>Type</label>
+                <span>Trap Zone</span>
+              </div>
+              <div class="card-field">
+                <label>Reliability</label>
+                <span>Low</span>
+              </div>
+              <div class="card-field">
+                <label>Usage</label>
+                <span>Avoid Unless Confirmed</span>
+              </div>
+              <div class="card-description">
+                Price appears to form equal highs or lows but the levels are not clean or aligned—often a trap for retail traders. Avoid trading off these unless there's clear confirmation from structure (like CHoCH/BOS) or volume. These zones frequently result in fakeouts and stop hunts.
+              </div>
+            </div>
+          </div>
+
+          
         </div>
       </div>
 
@@ -1756,3 +1950,5 @@
 
 </body>
 </html>
+
+

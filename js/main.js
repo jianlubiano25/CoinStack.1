@@ -494,6 +494,38 @@ document.addEventListener('DOMContentLoaded', function() {
   setupSearchClickOutside();
   setupKnowledgeBase();
   setupKnowledgeBaseNavigation();
+
+  // Toggle Red/Green BOS cards when Break of Structure card is clicked
+  const bosCard = document.getElementById('bosCard');
+  if (bosCard) {
+    bosCard.style.cursor = 'pointer';
+    bosCard.addEventListener('click', function() {
+      const bosToggles = document.querySelectorAll('.bos-toggle-card');
+      bosToggles.forEach(card => {
+        if (card.style.display === 'none' || card.style.display === '') {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // Toggle Red/Green CHoCH cards when Change of Character card is clicked
+  const chochCard = document.getElementById('chochCard');
+  if (chochCard) {
+    chochCard.style.cursor = 'pointer';
+    chochCard.addEventListener('click', function() {
+      const chochToggles = document.querySelectorAll('.choch-toggle-card');
+      chochToggles.forEach(card => {
+        if (card.style.display === 'none' || card.style.display === '') {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }
 });
 
 // Export functions for use in other modules

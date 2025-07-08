@@ -72,7 +72,7 @@
       padding: 14px 44px 14px 44px;
       border-radius: 10px;
       border: none;
-      background: rgba(36, 37, 54, 0.95);
+      background: #181926;
       color: #fff;
       font-size: 1.1rem;
       outline: none;
@@ -199,7 +199,7 @@
       font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
       border-radius: 8px;
       border: none;
-      background: #23243a;
+      background: #181926;
       color: #fff;
       padding: 10px 14px;
       outline: none;
@@ -209,6 +209,17 @@
     }
     textarea.add-input:focus, textarea.edit-flow-input:focus {
       box-shadow: 0 2px 12px 0 #8b5cf6aa;
+    }
+    .dark-paragraph, p.dark-paragraph {
+      background: #181926;
+      color: #e0e7ef;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      box-shadow: 0 1px 4px 0 rgba(139,92,246,0.07);
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     }
     @media (max-width: 900px) {
       .container { max-width: 99vw; padding: 10px; }
@@ -231,7 +242,7 @@
       </svg>
       <span class="header-title">Trading Style Flows</span>
     </div>
-    <div style="color:#a5b4fc; font-size:1.1rem; margin-bottom:18px;">Explore and document your favorite style flow setups here.</div>
+    <div class="dark-paragraph">Explore and document your favorite style flow setups here.</div>
 
     <!-- Search and Add Section -->
     <div class="search-add-bar">
@@ -239,10 +250,10 @@
         <input class="search-input" type="text" placeholder="Search style flows...">
         <span class="search-icon">🔍</span>
       </div>
-      <div style="display:flex; gap:8px; align-items:center; width:100%; flex-wrap:wrap;">
-        <input class="add-title-input" type="text" placeholder="Title (e.g. My Flow Name)" style="flex:1; min-width:120px; padding:10px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif;">
-        <textarea class="add-input" placeholder="Add new style flow (paste or type here)..." style="flex:2; min-width:160px; resize:vertical; min-height:38px; max-height:120px; padding:10px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif; overflow:auto;"></textarea>
-        <button class="add-btn">＋</button>
+      <div style="display:flex; gap:8px; align-items:flex-start; width:100%; flex-wrap:wrap;">
+        <input class="add-title-input" type="text" placeholder="Title (e.g. My Flow Name)" style="flex:1; min-width:120px; padding:10px 14px; border-radius:8px; border:none; background:#181926; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif;">
+        <textarea class="add-input dark-paragraph" placeholder="Add new style flow (paste or type here)..." style="flex:2; min-width:160px; resize:vertical; min-height:38px; max-height:120px; border:none; color:#fff; font-size:1rem; outline:none; box-shadow:0 1px 4px 0 rgba(139,92,246,0.07); font-family:'Inter', 'Segoe UI', Arial, sans-serif; overflow:auto;"></textarea>
+        <button class="add-btn" style="align-self:center;">＋</button>
       </div>
       <div class="import-export-bar" style="display:flex; gap:12px; margin-top:10px; align-items:center;">
         <button class="export-btn" style="background:linear-gradient(90deg,#8b5cf6 60%,#10b981 100%);color:#fff;border:none;border-radius:8px;padding:8px 22px;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:0 2px 8px 0 #8b5cf633;transition:background 0.2s;">Export</button>
@@ -368,13 +379,13 @@
     function editFlowCardHTML(title, flow, i) {
       return `<div class="flow-card" data-index="${i}">
         <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:2px;">
-          <div class="flow-title"><span style="font-size:1.5rem;">🧭</span><input class="edit-title-input" value="${escapeHTML(title)}" style="font-size:1.05rem; font-family:'Inter',sans-serif; border-radius:6px; border:none; padding:4px 8px; background:#23243a; color:#fff; width:160px; margin-right:8px;" /></div>
+          <div class="flow-title"><span style="font-size:1.5rem;">🧭</span><input class="edit-title-input" value="${escapeHTML(title)}" style="font-size:1.05rem; font-family:'Inter',sans-serif; border-radius:6px; border:none; padding:4px 8px; background:#181926; color:#fff; width:160px; margin-right:8px;" /></div>
           <div style="display:flex; gap:8px;">
             <button class="save-btn" title="Save" style="background:none; border:none; color:#10b981; font-size:1.1rem; cursor:pointer;">💾</button>
             <button class="cancel-btn" title="Cancel" style="background:none; border:none; color:#a5b4fc; font-size:1.1rem; cursor:pointer;">✖️</button>
           </div>
         </div>
-        <textarea class="edit-flow-input" style="width:100%; font-size:0.97rem; font-family:'Inter',sans-serif; border-radius:6px; border:none; padding:6px 10px; background:#23243a; color:#fff; margin-bottom:8px; resize:vertical; min-height:38px; max-height:240px; overflow:auto;">${escapeHTML(flow)}</textarea>
+        <textarea class="edit-flow-input dark-paragraph" style="width:100%; font-size:0.97rem; font-family:'Inter',sans-serif; border:none; color:#fff; margin-bottom:8px; resize:vertical; min-height:38px; max-height:240px; overflow:auto;">${escapeHTML(flow)}</textarea>
       </div>`;
     }
 

@@ -7,6 +7,9 @@
   <title>Crypto Trading Analysis</title>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/trading.css">
+  <style>
+    .hidden { display: none !important; }
+  </style>
 </head>
 <body>
   <header>
@@ -1197,28 +1200,30 @@
           
           <!-- Total PnL Counter -->
           <div id="totalPnLCounter" class="counter-card">
-            <!-- Background glow effect -->
             <div class="counter-glow"></div>
-            
-            <!-- Icon -->
             <div class="counter-icon">💰</div>
-            
-            <!-- Content -->
             <div class="counter-content">
               <div class="counter-label">Total P&L</div>
               <div id="totalPnLValue" class="counter-value">0.0000</div>
-        </div>
-      </div>
+            </div>
+          </div>
+
+          <!-- Account Balance Counter -->
+          <div id="accountBalanceCounter" class="counter-card counter-balance hidden" style="cursor:pointer; position:relative;">
+            <div class="counter-glow counter-glow-balance"></div>
+            <div class="counter-icon counter-icon-balance">🏦</div>
+            <div class="counter-content">
+              <div id="accountBalanceLabel" class="counter-label" title="Click to set initial balance">Account Balance</div>
+              <div id="accountBalanceValue" class="counter-value counter-value-balance" title="Click to edit">0.0000</div>
+              <input id="accountBalanceInput" type="number" min="0" step="0.0001" style="display:none; width:90px; font-size:1rem; border-radius:6px; border:1px solid #8b5cf6; padding:2px 6px; margin-top:4px; background:#18181b; color:#fff;" />
+              
+            </div>
+          </div>
 
           <!-- Total Trade Count Counter -->
           <div id="totalTradeCounter" class="counter-card counter-info">
-            <!-- Background glow effect -->
             <div class="counter-glow counter-glow-info"></div>
-            
-            <!-- Icon -->
             <div class="counter-icon counter-icon-info">📈</div>
-            
-            <!-- Content -->
             <div class="counter-content">
               <div class="counter-label">Total Trades</div>
               <div id="totalTradeValue" class="counter-value counter-value-info">0</div>
@@ -1247,13 +1252,8 @@
 
           <!-- Today's Trade Count Counter -->
           <div id="todayTradeCounter" class="counter-card counter-success">
-            <!-- Background glow effect -->
             <div class="counter-glow counter-glow-success"></div>
-            
-            <!-- Icon -->
             <div class="counter-icon counter-icon-success">📊</div>
-            
-            <!-- Content -->
             <div class="counter-content">
               <div class="counter-label">Today's Trades</div>
               <div id="todayTradeValue" class="counter-value counter-value-success">0</div>

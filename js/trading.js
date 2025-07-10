@@ -725,11 +725,138 @@ function addTrade(e) {
   console.log('Trade added successfully');
 }
 
+// --- Hide/show Account Balance and Total PnL cards logic ---
+function showAccountBalanceCard() {
+  document.getElementById('totalPnLCounter')?.classList.add('hidden');
+  document.getElementById('accountBalanceCounter')?.classList.remove('hidden');
+}
+function showTotalPnLCard() {
+  document.getElementById('accountBalanceCounter')?.classList.add('hidden');
+  document.getElementById('totalPnLCounter')?.classList.remove('hidden');
+}
 
+// --- Account Balance Card Logic ---
+function getInitialAccountBalance() {
+  const stored = localStorage.getItem('accountInitialBalance');
+  return stored ? parseFloat(stored) : 0;
+}
 
+function setInitialAccountBalance(val) {
+  localStorage.setItem('accountInitialBalance', val);
+}
 
+function updateAccountBalanceCounter(totalPnL) {
+  const initial = getInitialAccountBalance();
+  const accountBalance = initial + totalPnL;
+  const valueEl = document.getElementById('accountBalanceValue');
+  const counterEl = document.getElementById('accountBalanceCounter');
+  if (!valueEl || !counterEl) return;
+  valueEl.textContent = accountBalance.toFixed(4);
+  // Color/glow
+  let color, glowColor, borderColor;
+  if (accountBalance > initial) {
+    color = '#10b981';
+    glowColor = 'rgba(16,185,129,0.3)';
+    borderColor = 'rgba(16,185,129,0.4)';
+  } else if (accountBalance < initial) {
+    color = '#ef4444';
+    glowColor = 'rgba(239,68,68,0.3)';
+    borderColor = 'rgba(239,68,68,0.4)';
+  } else {
+    color = '#fff';
+    glowColor = 'rgba(139,92,246,0.2)';
+    borderColor = 'rgba(139,92,246,0.2)';
+  }
+  valueEl.style.color = color;
+  valueEl.style.textShadow = `0 0 10px ${glowColor}`;
+  counterEl.style.borderColor = borderColor;
+  // Animation
+  counterEl.style.transform = 'scale(1.04)';
+  setTimeout(() => { counterEl.style.transform = 'scale(1)'; }, 200);
+}
 
+function setupAccountBalanceEdit() {
+  const valueEl = document.getElementById('accountBalanceValue');
+  const inputEl = document.getElementById('accountBalanceInput');
+  const counterEl = document.getElementById('accountBalanceCounter');
+  const totalPnLCounter = document.getElementById('totalPnLCounter');
+  if (!valueEl || !inputEl || !counterEl || !totalPnLCounter) return;
 
+  // Show Account Balance card when Total PnL is clicked
+  totalPnLCounter.addEventListener('click', function(e) {
+    showAccountBalanceCard();
+    e.stopPropagation();
+  });
+
+  // Show input on click (if not already editing)
+  let editing = false;
+  counterEl.addEventListener('click', function(e) {
+    if (editing) return; // Don't toggle if editing
+    showTotalPnLCard();
+    e.stopPropagation();
+  });
+  valueEl.addEventListener('click', function(e) {
+    editing = true;
+    inputEl.value = getInitialAccountBalance().toFixed(4);
+    valueEl.style.display = 'none';
+    inputEl.style.display = 'inline-block';
+    inputEl.focus();
+    inputEl.select();
+    e.stopPropagation();
+  });
+  // Save on blur or Enter
+  function saveInput() {
+    let val = parseFloat(inputEl.value);
+    if (isNaN(val) || val < 0) val = 0;
+    setInitialAccountBalance(val);
+    inputEl.style.display = 'none';
+    valueEl.style.display = 'inline-block';
+    editing = false;
+    // Recompute with latest PnL
+    const totalPnL = parseFloat(document.getElementById('totalPnLValue')?.textContent || '0');
+    updateAccountBalanceCounter(totalPnL);
+    // After editing, show Total PnL card
+    showTotalPnLCard();
+  }
+  inputEl.addEventListener('blur', saveInput);
+  inputEl.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      inputEl.blur();
+    } else if (e.key === 'Escape') {
+      inputEl.style.display = 'none';
+      valueEl.style.display = 'inline-block';
+      editing = false;
+      showTotalPnLCard();
+    }
+  });
+  // Prevent click bubbling
+  inputEl.addEventListener('click', e => e.stopPropagation());
+  // Hide input if clicking elsewhere
+  document.body.addEventListener('click', function() {
+    if (inputEl.style.display !== 'none') {
+      inputEl.style.display = 'none';
+      valueEl.style.display = 'inline-block';
+      editing = false;
+      showTotalPnLCard();
+    }
+  });
+}
+
+// --- Patch updateTotalPnLCounter to also update account balance ---
+const _updateTotalPnLCounter = updateTotalPnLCounter;
+updateTotalPnLCounter = function(totalPnL) {
+  _updateTotalPnLCounter(totalPnL);
+  updateAccountBalanceCounter(totalPnL);
+};
+
+// --- On DOMContentLoaded, setup account balance edit and initial display ---
+document.addEventListener('DOMContentLoaded', function() {
+  setupAccountBalanceEdit();
+  // On load, update account balance with current PnL
+  const totalPnL = parseFloat(document.getElementById('totalPnLValue')?.textContent || '0');
+  updateAccountBalanceCounter(totalPnL);
+});
+// --- END Account Balance Card Logic ---
 
 // Export functions for use in other modules
 window.getTrades = getTrades;

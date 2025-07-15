@@ -368,7 +368,7 @@ function submitBulkPaste() {
       riskAmount: fields.length === 11 ? fields[10] : '-'
     };
     
-    if (!trades.some(t => t.transactionId === trade.transactionId)) {
+    if (!trades.some(t => t.transactionId === trade.transactionId && t.transactionTime === trade.transactionTime)) {
       trades.push(trade);
       added++;
     } else {
